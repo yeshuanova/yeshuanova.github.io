@@ -72,7 +72,7 @@
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/programming" rel="category">Programming</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
-			<p>C++ 標準自從建立後到現在已經經過了許多次改版，其中最重要的版本除了 C++98 外，當在2011 年正式發佈的 C++11 標準了。該標準加入了許多新特性，不但讓程式撰寫更為精簡，在執行時效率也更加上升，可說是之後 C++14 與 C++17 等標準的基石。本篇文章簡單整理了一些關於 C++11 重要標準變更與概念，若要詳細了解相關內容以及 C++<sup>14</sup>&frasl;<sub>17</sub> 的相關變更可參考 <a href="https://en.wikipedia.org/wiki/C%2B%2B11">Wikipedia</a> 等網站。</p>
+			<p>C++ 標準自從建立後到現在已經經過了許多次改版，其中最重要的版本除了 C++98 外，當在2011 年正式發佈的 C++11 標準了。該標準加入了許多新特性，不但讓程式撰寫更為精簡，在執行時效率也更加上升，可說是之後 C++14 與 C++17 等標準的基石。本篇文章簡單整理了一些關於 C++11 重要標準變更與概念，若要詳細了解相關內容以及 C++14/17 的相關變更可參考 <a href="https://en.wikipedia.org/wiki/C%2B%2B11">Wikipedia</a> 等網站。</p>
 
 <p></p>
 
@@ -132,7 +132,7 @@ int* p03 = NULL;
 int* p11 = nullptr
 </code></pre>
 
-<h4 id="range-based-for-loop">Range-based for loop</h4>
+<h4 id="rangebased-for-loop">Range-based for loop</h4>
 
 <pre><code class="language-c++">auto vec = vector&lt;int&gt;{1, 2, 3, 4, 5};
 // C++03
@@ -168,7 +168,7 @@ auto vec = vector&lt;int&gt;{1, 2, 3};
 auto pairs = vector&lt;tuple&lt;int, float&gt;&gt;{ {1, 1.1f}, {2, 2.2f}, {3, 3.3f} };
 </code></pre>
 
-<h4 id="r-value-reference-右值參照-與-move-semantic">R-Value Reference (右值參照) 與 Move Semantic</h4>
+<h4 id="rvalue-reference-右值參照-與-move-semantic">R-Value Reference (右值參照) 與 Move Semantic</h4>
 
 <p>在 C++ 的定義中，左值為可以透過記憶體參照對應到的物件，其他則為右值。也可以把右值想像成一個臨時的數值，左值可以被賦值並修改但右值不行。因 C++ 為值語意程式語言，在物件的建立上常會有多餘的建構與複製動作而倒置效能上的損失。而 C++11 中加入了右值參照功能，透過關鍵字 <code>&amp;&amp;</code> 來區別右值。</p>
 
@@ -436,7 +436,7 @@ call thread_1() : Call thread_2()
 
 <p>C++11 新增的 <code>std::function</code> 類別，可以將 function 當作物件般儲存操作與傳遞。而 <code>std::bind</code> 則是能將不同的 function 綁定依照特定順序綁定，重新建立一個函式物件。上面兩類可透過 <code>#include &lt;functional&gt;</code> 引入程式碼中使用。</p>
 
-<h4 id="std-function">std::function</h4>
+<h4 id="stdfunction">std::function</h4>
 
 <pre><code class="language-c++">#include &lt;functional&gt;
 
@@ -457,7 +457,7 @@ auto sum_2 = [](int x, int y) -&gt; float {return x + y + 1.1; };
 cout &lt;&lt; sum_2(2, 4) &lt;&lt; endl; // output: 7.1
 </code></pre>
 
-<h4 id="std-bind">std::bind</h4>
+<h4 id="stdbind">std::bind</h4>
 
 <pre><code class="language-c++">#include &lt;fnuctional&gt;
 
@@ -502,6 +502,29 @@ cout &lt;&lt; mul_b(2, 3) &lt;&lt; endl;    // output: 15
 	</div>
 </nav>
 	
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yeshuanova" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
 </main>
 
 <aside class="sidebar">
