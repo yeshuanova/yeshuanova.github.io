@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Autoencoder 簡介與應用範例</title>
+	<meta name="description" content="About Autoencoder theory and examples using MNIST dataset">
+	<meta name="generator" content="Hugo 0.42.2" />
+	<meta property="og:title" content="Autoencoder 簡介與應用範例" />
+<meta property="og:description" content="About Autoencoder theory and examples using MNIST dataset" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018/01/autoencoder-tutorial/" />
+
+
+
+<meta property="article:published_time" content="2018-01-04T18:00:00&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-01-04T18:00:00&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Autoencoder 簡介與應用範例"/>
+<meta name="twitter:description" content="About Autoencoder theory and examples using MNIST dataset"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<script type="text/javascript" src="/js/scripts.js"></script>
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+</head>
+<body class="body body-right-sidebar">
+	<div class="container container-outer">
+		<header class="header">
+			<div class="container container-inner">
+				<div class="logo" role="banner">
+					<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+						<div class="logo__title">Xeno Universe</div>
+						<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+					</a>
+				</div>
+			</div>
+			
+<nav class="menu">
+	<ul class="menu__list">
+		<li class="menu__item"><a class="menu__link" href="/about/">ABOUT</a></li>
+	</ul>
+</nav>
+
+		</header>
+		<div class="wrapper clearfix">
+
+<main class="main content">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Autoencoder 簡介與應用範例</h1><div class="post__meta meta">
+<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+<time class="post__meta-date meta-date" datetime="2018-01-04T18:00:00">2018-01-04</time>
+<span class="post__meta-categories meta-categories">
+	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/machine-learning" rel="category">Machine Learning</a></span>
+</span></div>
+		</header><div class="post__content clearfix">
+			<p>Autoencoder(自動編碼器)是一種是透過 <a href="https://en.wikipedia.org/wiki/Artificial_neural_network">Artificial Neural Network</a>，來進行資料自動學習與編碼的技術。本文將使用機器學習函式庫 <a href="https://keras.io/">Keras</a> 建立 Autoencoder Model，並使用 MNIST Datatset 來展示兩個 Autoencoder 範例 - <strong>資料降維回復</strong>與<strong>去雜訊(Denoising)</strong>的Model。</p>
+
+<p></p>
+
+<h1 id="autoencoder">Autoencoder</h1>
+
+<p>什麼是 Autoencoder ? 簡單來說是一種透過<strong>類神經網路</strong>來自動學習資料中的<strong>特徵</strong>，以達成特定功能如 Dimension Reduction，Data Denoising 等功能的模型。</p>
+
+<p>該模型主要包含三部分 - <strong>Encoding Function</strong> $h = f(x)$， <strong>Decoding Function</strong> $r = g(h)$ 與 <strong>Loss function</strong> $L(x, r)$。我們希望輸入壓縮後的資料在復原後能盡可能接近原始資料，即 $x \approx r$。下圖為 Autoencoder 基本架構</p>
+
+<p><img src="/images/autoencoder/autoencoder_structure.png" alt="framework" />
+<em>Autoencoder Structure (From: Wikipedia)</em></p>
+
+<p>與一般的資料壓縮演算法如，Zip, MP3，JPG 等通用演算法不同，Autoencoder 有資料相依的性質。即訓練完成的 Model 只適用於特定類型資料且會損失(lossy)原始資訊。但由於 Autoencoder 不需要標示 Label 以及能自動學習的特性，可以幫助解決 Unsupervised Learning 的問題，因此仍然存在著許多發展潛力。</p>
+
+<h2 id="regularized-autoencoders">Regularized Autoencoders</h2>
+
+<p>在 Autoencoder 中，Code 的維度比輸入資料<strong>小</strong>的模型稱為 <strong>Undercomplete Autoencoder</strong>，比輸入資料<strong>大</strong>的則稱為 <strong>Overcomplete Autoencoder</strong>。上例即為 <strong>Undercomplete Autoencoder</strong> 的範例。</p>
+
+<p>由於 Autoencoder 主要目的為希望能學習到資料特徵，若只是單純回復輸入得資料通常意義不大，因此比起限制 Code 維度大小，通常更傾向使 Autoencoder Model 去學習某些的特性，讓 Model 能達到特定效果。這些 Model 也被稱為 Regularized Autoencoder，如下例的 <strong>DAE(Denoising Autoencoder)</strong> 即是 Code 維度比輸入資料更大的 Model。</p>
+
+<h2 id="examples">Examples</h2>
+
+<p>以下將使用 <a href="https://keras.io/">Keras</a> 函式庫並使用 <a href="http://yann.lecun.com/exdb/mnist/">MNIST</a> Dataset 來展示兩個 Autoencoder 範例，基本 Autoencoder 架構與 Denoising Autoencoder。該範例主要來自 <a href="https://blog.keras.io/building-autoencoders-in-keras.html">Building Autoencoders in Keras</a> 這篇文章，若需要更深入的理解可自行參考相關內容。</p>
+
+<h3 id="mnist-資料降維與復原">MNIST 資料降維與復原</h3>
+
+<p>MNIST 為一著名的手寫辨識資料集，在此範例中使用 Fully-Connection Neural Network，將 <strong>28 * 28 = 784</strong> 維的圖片轉換成 <strong>32</strong> 維的 Encoding Layer 後，再還原至原先的 <strong>28 * 28</strong> 維影像資料並比較雙方差異。</p>
+
+<pre><code class="language-python"># 讀取 MNIST dataset 並進行前處理
+from keras.datasets import mnist
+import numpy as np
+
+# x_train: Autoencoder 訓練資料
+# x_test: Autoencoder 測試資料
+(x_train, _), (x_test, _) = mnist.load_data()
+
+x_train = x_train.astype('float32') / 255. # 正規化資料數值範圍至 [0, 1] 間
+x_test = x_test.astype('float32') / 255.
+
+# 正規化資料維度，以便 Keras 處理
+x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
+x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
+</code></pre>
+
+<p>資料讀取完成後，接著建立 Autoencoder Model 並使用 <code>x_train</code> 資料進行訓練。</p>
+
+<pre><code class="language-python">from keras.layers import Input, Dense
+from keras.models import Model
+
+input_img = Input(shape=(784,))
+encoded = Dense(32, activation='relu')(input_img) ## Encoding layer 設為 32 維
+decoded = Dense(784, activation='sigmoid')(encoded) ## Decoding layer 設為與 input layer 相同的 784 維
+
+# 建立 Model 並將 loss funciton 設為 binary cross entropy
+autoencoder = Model(input_img, decoded)
+autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
+
+autoencoder.fit(x_train,
+                x_train,  # Label 也設為 x_train
+                epochs=25,
+                batch_size=128,
+                shuffle=True,
+                validation_data=(x_test, x_test))
+</code></pre>
+
+<p>訓練完後可以得到 <strong>loss</strong> 值約為 <code>0.1049</code> 以及 <strong>Validation loss</strong> 為 <code>0.1029</code> 的 Autoencoder Model。下圖為將 <code>x_test</code> 資料輸入 <code>autoencoder</code> 物件後的得到的結果圖片。</p>
+
+<p><img src="/images/autoencoder/nn_autoencoder_comparison.png" alt="nn_imaga_comparision" />
+<em>(Top) 原始影像。 (Middle) 32維編碼資料以 $8 \times 4$ 平面呈現。 (Bottom) 輸出結果。</em></p>
+
+<p>從上圖可看出，即使將原先 28*28 = 784 維的資料轉換到 32 維的資料後再復原回原先的圖片，仍能保留相關特徵存在。</p>
+
+<h3 id="denosing-autoencoder-dae">Denosing Autoencoder (DAE)</h3>
+
+<p>最初的 Autoencoder 為使用相同的輸入與輸出來建立 Model，但我們也可以對 Model 做一些修改來達成其他效果。如對輸入的資料 $x$ 加入的 noise 使 $\tilde{x}=noise(x)$。現在使用 $\tilde{x}$ 做為訓練資料而 $x$ 為輸出結果進行訓練。即讓 Loss function 為 $L(x, g( f( \tilde{x} )))$ 可得到一個對原始資料具有去雜訊功能的 Model。</p>
+
+<pre><code class="language-python">noise_factor = 0.5 # 決定 noise 的數量，值越大 noise 越多
+x_train_noisy = x_train + noise_factor * np.random.normal(loc=0.0, scale=1.0, size=x_train.shape)
+x_test_noisy = x_test + noise_factor * np.random.normal(loc=0.0, scale=1.0, size=x_test.shape)
+
+# 將資料限制在 [0, 1] 之間的範圍內
+x_train_noisy = np.clip(x_train_noisy, 0., 1.)
+x_test_noisy = np.clip(x_test_noisy, 0., 1.)
+</code></pre>
+
+<p>使用加入 Noise 的資料建立 Autoencoder Model 並進行訓練</p>
+
+<pre><code class="language-python">input_img = Input(shape=(28, 28, 1))
+x = Conv2D(32, (3, 3), activation='relu', padding='same')(input_img)
+x = MaxPooling2D((2, 2), padding='same')(x)
+x = Conv2D(32, (3, 3), activation='relu', padding='same')(x)
+
+# encoded size = (7, 7, 32) dimension
+encoded = MaxPooling2D((2, 2), padding='same')(x) 
+
+x = Conv2D(32, (3, 3), activation='relu', padding='same')(encoded)
+x = UpSampling2D((2, 2))(x)
+x = Conv2D(32, (3, 3), activation='relu', padding='same')(x)
+x = UpSampling2D((2, 2))(x)
+
+# Decoded size = (28, 28, 1) dimension (Original size)
+decoded = Conv2D(1, (3, 3), activation='sigmoid', padding='same')(x)
+
+autoencoder = Model(input_img, decoded)
+autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
+
+# 訓練 DAE Model
+autoencoder.fit(x_train_noisy, # 加入 noise 的資料為輸入
+                x_train,  # 原始資料為 Label
+                epochs=20,
+                batch_size=256,
+                shuffle=True,
+                validation_data=(x_test_noisy, x_test))
+</code></pre>
+
+<p>訓練後可得到一個 Denoising Autoencoder Model。現建立加入不同雜訊數量的 MNIST 影像資料輸入訓練完成的 DAE 中得到的 denoising 的結果。</p>
+
+<p><img src="/images/autoencoder/denoising_origin.png" alt="DAE_Origin" />
+<em>Original Image</em></p>
+
+<p><img src="/images/autoencoder/denoising_factor_0.2.png" alt="DAE_factor_0.2" />
+<em>Noise = 0.2</em></p>
+
+<p><img src="/images/autoencoder/denoising_factor_0.5.png" alt="DAE_factor_0.5" />
+<em>Noise = 0.5</em></p>
+
+<p><img src="/images/autoencoder/denoising_factor_0.8.png" alt="DAE_factor_0.8" />
+<em>Noise = 0.8</em></p>
+
+<p>可以看出訓練之後的模型，對不同程度的雜訊都有一定的抗噪作用，能回覆原先大部分的結構。即使是使用 Noise = 0.5 的資料加以訓練，也能一定程度回覆 Noise = 0.8 的資料內容。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Autoencoder">Autoencoder on Wikipedia</a></li>
+<li><a href="http://www.deeplearningbook.org/">Deep Learning Book</a></li>
+<li><a href="https://keras.io/">Keras Office Website</a></li>
+<li><a href="https://blog.keras.io/building-autoencoders-in-keras.html">Building Autoencoders in Keras</a></li>
+<li><a href="http://yann.lecun.com/exdb/mnist/">MNIST dataset</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/neural-network/" rel="tag">Neural Network</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/autoencoder/" rel="tag">Autoencoder</a></li>
+	</ul>
+</div>
+	</article>
+	
+	
+<nav class="post-nav row clearfix">
+	<div class="post-nav__item post-nav__item--prev mr-col-1-2">
+		<a class="post-nav__link" href="/post/2017/11/python-visualization-datashader/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Python 資料視覺化 - 使用 datashader</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next mr-col-1-2">
+		<a class="post-nav__link" href="/post/2018/01/tensorflow-lite-in-ios-device/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">使用 TensorFlow Lite 在 iOS 裝置上進行圖片分類</p></a>
+	</div>
+</nav>
+	
+</main>
+
+<aside class="sidebar">
+	
+	
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/06/strava-how-to-generate-heatmap/">Strava 建立全球運動熱點圖的方式</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/implement-osm-map-tiles-parallel/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/thinkbayes-ch1/">ThinkBayes 心得筆記 - Chapter 1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/04/implement-osm-map-tiles/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/03/learning-commons/">京都大學的 Learning Commons (學習共享空間) 參訪感想</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/deep-learning">Deep learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/dimension-reduction">Dimension reduction</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/travel">Travel</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/visualization">Visualization</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/cheng-shiang-li" target="_blank">
+				<svg class="widget-social__link-icon icon-linkedin" viewBox="0 0 352 352" width="24" height="24" fill="#fff"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/yeshuanova" target="_blank">
+				<svg class="widget-social__link-icon icon-github" viewBox="0 0 384 374" width="24" height="24" fill="#fff"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:yeshuanova@gmail.com">
+				<svg class="widget-social__link-icon icon-mail" viewBox="0 0 416 288" width="24" height="24" fill="#fff"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>yeshuanova@gmail.com</span>
+			</a>
+		</div>
+	</div>
+</div>
+	
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/autoencoder" title="Autoencoder">Autoencoder</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bayes" title="Bayes">Bayes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;" title="C&#43;&#43;">C&#43;&#43;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/classification" title="Classification">Classification</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/datashader" title="Datashader">Datashader</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heatmap" title="Heatmap">Heatmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ios" title="Ios">Ios</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iris" title="Iris">Iris</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/isomap" title="Isomap">Isomap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/japan" title="Japan">Japan</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kaggle" title="Kaggle">Kaggle</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mds" title="Mds">Mds</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mercatile" title="Mercatile">Mercatile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mobilenet" title="Mobilenet">Mobilenet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neural-network" title="Neural network">Neural network</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openstreetmap" title="Openstreetmap">Openstreetmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/starcraft" title="Starcraft">Starcraft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/strava" title="Strava">Strava</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tensorflow" title="Tensorflow">Tensorflow</a>
+	</div>
+</div>
+</aside>
+	</div>
+		<footer class="footer">
+			<div class="container container-inner">
+				<div class="footer__copyright">&copy; 2018 Xeno Universe. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+			</div>
+		</footer>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+
+</body>
+</html>

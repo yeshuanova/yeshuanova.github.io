@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Isomap - Isometric Mapping</title>
+	<meta name="description" content="Isomap - Isometric Mapping">
+	<meta name="generator" content="Hugo 0.42.2" />
+	<meta property="og:title" content="Isomap - Isometric Mapping" />
+<meta property="og:description" content="Isomap - Isometric Mapping" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2017/08/isomap/" />
+
+
+
+<meta property="article:published_time" content="2017-08-13T14:00:00&#43;08:00"/>
+
+<meta property="article:modified_time" content="2017-08-13T14:00:00&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Isomap - Isometric Mapping"/>
+<meta name="twitter:description" content="Isomap - Isometric Mapping"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<script type="text/javascript" src="/js/scripts.js"></script>
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+</head>
+<body class="body body-right-sidebar">
+	<div class="container container-outer">
+		<header class="header">
+			<div class="container container-inner">
+				<div class="logo" role="banner">
+					<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+						<div class="logo__title">Xeno Universe</div>
+						<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+					</a>
+				</div>
+			</div>
+			
+<nav class="menu">
+	<ul class="menu__list">
+		<li class="menu__item"><a class="menu__link" href="/about/">ABOUT</a></li>
+	</ul>
+</nav>
+
+		</header>
+		<div class="wrapper clearfix">
+
+<main class="main content">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Isomap - Isometric Mapping</h1><div class="post__meta meta">
+<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+<time class="post__meta-date meta-date" datetime="2017-08-13T14:00:00">2017-08-13</time>
+<span class="post__meta-categories meta-categories">
+	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/dimension-reduction" rel="category">Dimension Reduction</a></span>
+</span></div>
+		</header><div class="post__content clearfix">
+			<p><a href="https://en.wikipedia.org/wiki/Isomap"><strong>Isomap</strong></a>，全名為<strong>Isometric Mapping</strong>，
+是一種基於Classical MDS所產生的<strong>非線性降維演算法</strong>（Nonlinear Dimensional Reduction）。
+一般來說，如果資料有著線性分佈的性質，如PCA與MDS這類計算整體資料（Global）之間的關係後再進行降維的線性演算法，
+都會有不錯的效果。但如果資料本身為非線性分佈，古典PCA與MDS則時常無法在降維後正確展現出資料間的關係。</p>
+
+<p></p>
+
+<p>如下圖資料分佈呈現螺旋狀，被稱為瑞士卷（Swiss Roll）的資料型態，</p>
+
+<p><img src="/images/isomap/swiss-roll.png" alt="swiss-roll" /></p>
+
+<p>使用PCA對該資料集進行降維後可得到下圖的結果。</p>
+
+<p><img src="/images/isomap/swiss-roll-pca.png" alt="swiss-roll" /></p>
+
+<p>可以看出降到二維後，並沒有正確表現出資料的分佈狀態。而使用MDS進行降維，也產生同樣的問題。</p>
+
+<p><img src="/images/isomap/swiss-roll-mds.png" alt="swiss-roll" /></p>
+
+<p>主要因為PCA與MDS演算法所考慮到的是Global資料分佈，沒有辦法處理像Swiss Roll這樣螺旋分佈的非線性資料狀態。
+因此我們可以知道，資料分佈特性對降維演算法效果有著非常大的影響。</p>
+
+<h2 id="isomap-isometric-mapping-等距特徵映射">Isomap（Isometric Mapping，等距特徵映射）</h2>
+
+<p><a href="http://web.mit.edu/cocosci/isomap/isomap.html"><strong>Isomap</strong></a>為
+<strong>J. B. Tenenbaum</strong>，<strong>V. de Silva</strong>與<strong>J. C. Langford</strong>在2000年時提出的一種基於MDS與Manifold的降維演算法。
+<strong>Manifold</strong>在幾何學上，指的是局部具有歐式空間性質的空間。一個例子就是地球表面。球面本身是非歐幾何，即從赤道上的延伸兩條平行線，在一般的歐式空間中平行線並不會相交，但因空間本身是彎曲的，因此平行線會在極點交會（如經度線）。雖然在大尺度（Global）中球面為非歐幾何，但世界地圖卻能由一群由歐式幾何平面二維地圖所組合而成。因此球面可以說是一個二維Manifold。</p>
+
+<p>將這個想法應用到MDS演算法時，可以將資料實際分佈與距離看成是可由局部建立出整體的Manifold結構。</p>
+
+<p><img src="/images/isomap/isomap-concept.png" alt="isomap-concept" /></p>
+
+<p><strong>圖(A)</strong>顯示在Swiss roll data set中，兩點的實際距離並非藍色虛線所表示的的高維歐式距離，而是的低維度上的藍色實線（Geodesic distance）。<strong>圖(B)</strong>中的紅線爲以Neighborhood Graph所建立出來的兩點間最短路徑。<strong>圖&copy;</strong>為用Isomap降到二維後，兩點間的歐式距離（藍線）與Shortest Path路徑（紅線）的差異。</p>
+
+<h2 id="algorithm">Algorithm</h2>
+
+<ul>
+<li><p>依照K個最近的點（K nearest neighbors）或是一定距離內的點（some fixed radius），
+定義每點的Neighbor。</p></li>
+
+<li><p>依照前一步的neighbor關係，依照歐式距離建立所有點的Neighborhood Graph。</p></li>
+
+<li><p>使用<a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra</a>或<a href="https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd–Warshall</a>等最短路徑（Shortest Path）演算法，依照建立出的Neighborhood Graph，計算每點之間的最短距離。</p></li>
+
+<li><p>以Shortest Path建立出來的距離矩陣，執行<strong>MDS（Multidimensional Scaling）</strong>演算法降維。</p></li>
+</ul>
+
+<h2 id="code">Code</h2>
+
+<p>以下使用Scikit-learn中的Isoamp元件示範</p>
+
+<pre><code class="language-python"># 匯入相關Package
+import matplotlib.pyplot as plt
+from sklearn import datasets, manifold
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.manifold import Isomap
+
+# 產生 Swiss Roll data set
+swiss_roll_data = datasets.make_swiss_roll(n_samples=500, random_state=0)
+data = swiss_roll_data[0]
+rel = swiss_roll_data[1]
+
+## 位置顯示原始資料分佈
+fig = plt.figure()
+ax = Axes3D(fig=fig)
+ax.scatter(xs=data[:,0], ys=data[:,1], zs=data[:,2], c=rel)
+ax.view_init(azim=100, elev=10)
+
+# 建立 k = 8 的 Isomap Model並將資料
+isomap_model = Isomap(n_components=2, n_neighbors=8)
+isomap_result = isomap_model.fit_transform(data)
+plt.scatter(x=isomap_result[:, 0], y=isomap_result[:, 1], c=rel)
+</code></pre>
+
+<p>在<strong>K=8</strong>時的降維結果如下，</p>
+
+<p><img src="/images/isomap/swiss-roll-isomap-n8.png" alt="isomap-n8" /></p>
+
+<p>可看出原本Swiss Roll資料集，被<strong>攤開</strong>成二維平面，並沒有向之前的PCA或MDS一樣使資料混在一起，
+在降維到2D後仍保有原先資料分佈關係。</p>
+
+<h3 id="issue">Issue</h3>
+
+<p>由於Isomap是由每點之間的Neighbors來建立出整個連結距離網路，因此鄰近點數量會大幅影響到降維結構。
+若是太少會無法使結構無法正確展現，太多則會有可能產生Shortcut狀況，下圖為使用$$K=3$$以及$$K=15$$時的降維結果</p>
+
+<p><img src="/images/isomap/swiss-roll-isomap-n3.png" alt="isomap-n3" /></p>
+
+<p><img src="/images/isomap/swiss-roll-isomap-n15.png" alt="isomap-n8" /></p>
+
+<p>可看出在鄰近點過多過少的，都會使降維結果受到影響，因此在使用Isomap時需要測試不同的Neighbor參數，
+已找到最佳降維的參數與結果。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Isomap">Wikipedia Isomap</a></li>
+<li><a href="http://web.mit.edu/cocosci/isomap/isomap.html">Isomap Website</a></li>
+<li><a href="https://www.amazon.com/Introduction-Machine-Learning-Adaptive-Computation/dp/0262028182/ref=sr_1_1?ie=UTF8&amp;qid=1502604528&amp;sr=8-1&amp;keywords=introduction+to+machine+learning">Introduction to Machine Learning</a></li>
+<li><a href="https://www.slideshare.net/ChengShiangLi/multidimension-scaling-and-isomap?ref=https://www.slideshare.net/ChengShiangLi/slideshelf">SlideShare</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/isomap/" rel="tag">Isomap</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/python/" rel="tag">Python</a></li>
+	</ul>
+</div>
+	</article>
+	
+	
+<nav class="post-nav row clearfix">
+	<div class="post-nav__item post-nav__item--prev mr-col-1-2">
+		<a class="post-nav__link" href="/post/2017/08/multidimensional-scaling/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Multidimensional Scaling</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next mr-col-1-2">
+		<a class="post-nav__link" href="/post/2017/09/from-go-to-sc2-part-1/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)</p></a>
+	</div>
+</nav>
+	
+</main>
+
+<aside class="sidebar">
+	
+	
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/06/strava-how-to-generate-heatmap/">Strava 建立全球運動熱點圖的方式</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/implement-osm-map-tiles-parallel/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/thinkbayes-ch1/">ThinkBayes 心得筆記 - Chapter 1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/04/implement-osm-map-tiles/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/03/learning-commons/">京都大學的 Learning Commons (學習共享空間) 參訪感想</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/deep-learning">Deep learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/dimension-reduction">Dimension reduction</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/travel">Travel</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/visualization">Visualization</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/cheng-shiang-li" target="_blank">
+				<svg class="widget-social__link-icon icon-linkedin" viewBox="0 0 352 352" width="24" height="24" fill="#fff"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/yeshuanova" target="_blank">
+				<svg class="widget-social__link-icon icon-github" viewBox="0 0 384 374" width="24" height="24" fill="#fff"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:yeshuanova@gmail.com">
+				<svg class="widget-social__link-icon icon-mail" viewBox="0 0 416 288" width="24" height="24" fill="#fff"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>yeshuanova@gmail.com</span>
+			</a>
+		</div>
+	</div>
+</div>
+	
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/autoencoder" title="Autoencoder">Autoencoder</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bayes" title="Bayes">Bayes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;" title="C&#43;&#43;">C&#43;&#43;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/classification" title="Classification">Classification</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/datashader" title="Datashader">Datashader</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heatmap" title="Heatmap">Heatmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ios" title="Ios">Ios</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iris" title="Iris">Iris</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/isomap" title="Isomap">Isomap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/japan" title="Japan">Japan</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kaggle" title="Kaggle">Kaggle</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mds" title="Mds">Mds</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mercatile" title="Mercatile">Mercatile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mobilenet" title="Mobilenet">Mobilenet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neural-network" title="Neural network">Neural network</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openstreetmap" title="Openstreetmap">Openstreetmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/starcraft" title="Starcraft">Starcraft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/strava" title="Strava">Strava</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tensorflow" title="Tensorflow">Tensorflow</a>
+	</div>
+</div>
+</aside>
+	</div>
+		<footer class="footer">
+			<div class="container container-inner">
+				<div class="footer__copyright">&copy; 2018 Xeno Universe. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+			</div>
+		</footer>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>使用 TensorFlow Lite 在 iOS 裝置上進行圖片分類</title>
+	<meta name="description" content="Image classification in iOS device using TensorFlow Lite">
+	<meta name="generator" content="Hugo 0.42.2" />
+	<meta property="og:title" content="使用 TensorFlow Lite 在 iOS 裝置上進行圖片分類" />
+<meta property="og:description" content="Image classification in iOS device using TensorFlow Lite" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018/01/tensorflow-lite-in-ios-device/" />
+
+
+
+<meta property="article:published_time" content="2018-01-15T12:00:00&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-01-15T12:00:00&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用 TensorFlow Lite 在 iOS 裝置上進行圖片分類"/>
+<meta name="twitter:description" content="Image classification in iOS device using TensorFlow Lite"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<script type="text/javascript" src="/js/scripts.js"></script>
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+</head>
+<body class="body body-right-sidebar">
+	<div class="container container-outer">
+		<header class="header">
+			<div class="container container-inner">
+				<div class="logo" role="banner">
+					<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+						<div class="logo__title">Xeno Universe</div>
+						<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+					</a>
+				</div>
+			</div>
+			
+<nav class="menu">
+	<ul class="menu__list">
+		<li class="menu__item"><a class="menu__link" href="/about/">ABOUT</a></li>
+	</ul>
+</nav>
+
+		</header>
+		<div class="wrapper clearfix">
+
+<main class="main content">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">使用 TensorFlow Lite 在 iOS 裝置上進行圖片分類</h1><div class="post__meta meta">
+<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+<time class="post__meta-date meta-date" datetime="2018-01-15T12:00:00">2018-01-15</time>
+<span class="post__meta-categories meta-categories">
+	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/mobile-device" rel="category">Mobile Device</a></span>
+</span></div>
+		</header><div class="post__content clearfix">
+			<p>近幾年來由 Google 推出的 TensorFlow 在深度學習等領域有著大量的發展，但也因為由 TensorFlow 所訓練出的 Model 容量大且本身執行時也會佔用較多資源，並不適合在行動裝置上執行。因此 Google 推出了 TensorFlow Lite 讓在行動裝置上執行 TensorFlow  更為方便。本文章將簡單介紹如何在 iOS 裝置上執行 TensorFlow Lite 並進行圖像分類的方法。</p>
+
+<p></p>
+
+<h2 id="tensorflow-lite">TensorFlow Lite</h2>
+
+<p><a href="https://www.tensorflow.org/mobile/tflite/">TensorFlow Lite</a> 是 Google 基於原先 TensorFlow Library，為行動與嵌入式裝置所推出的輕量化版本，有著較低的功耗以及記憶體空間消耗。在執行時 TensorFlow Lite 並不直接使用 TensorFlow 訓練好的模型，而是會先轉換為使用 <a href="https://google.github.io/flatbuffers/">FlatBuffers</a> 建立的新格式以減少 Model 的大小（通常命名 *<strong>.tflite</strong>）。</p>
+
+<h2 id="在-xcode-專案中使用-tensroflow-lite">在 Xcode 專案中使用 TensroFlow Lite</h2>
+
+<h3 id="使用-cocoapods-安裝">使用 CocoaPods 安裝</h3>
+
+<p>要在 iOS 中使用 TensorFlow Lite，最簡單的方法就是使用 <a href="https://cocoapods.org/">CocoaPods</a> 來引入相關函式庫與連結檔。方法為安裝 CocoaPods 套件後（可使用 <a href="https://brew.sh/">Homebrew</a> 安裝），在 Project 資料夾下執行</p>
+
+<pre><code class="language-bash">pod init # 初始化 CocoaPods 並建立 Podfile
+</code></pre>
+
+<p>執行完成後會自動建立 <strong>Podfile</strong> 檔案，接著編輯該檔案並在其中加入</p>
+
+<pre><code class="language-bash">pod 'TensorFlowLite'  # 安裝 TensorFlowLite library
+</code></pre>
+
+<p>完成後回到 command line 介面後執行</p>
+
+<pre><code class="language-bash">pod install # 安裝 Library
+</code></pre>
+
+<p>安裝成功後會自動建立 *<strong>.xcworkspace</strong> 檔案並引入 TensorFlow Lite 相關函式庫。</p>
+
+<h3 id="從原始碼編譯-tensorflow-lite">從原始碼編譯 TensorFlow Lite</h3>
+
+<p>除了使用 CocoaPods，也可以從原始碼重新編譯 TensorFlow Lite。要在 Mac OS X 上編譯 TensorFlow Lite 需先安裝  Xcode command line tools，此外也需使用到 <a href="https://en.wikipedia.org/wiki/Automake">automake</a> 與 <a href="https://en.wikipedia.org/wiki/GNU_Libtool">libtool</a> 這兩個套件（一樣可透過 <a href="http://brew.sh/">Homebrew</a> 來安裝）。</p>
+
+<pre><code class="language-bash"># Install Xcode command line tools (for i)
+xcode-select --install
+
+# Install automake and libtool 
+brew install automake
+brew install libtool
+</code></pre>
+
+<h4 id="取得-tensorflow-原始碼">取得 TensorFlow 原始碼</h4>
+
+<p>使用 <a href="https://git-scm.com/">Git</a> 從 <a href="https://github.com/tensorflow/tensorflow">Github</a> 上取得 Source code 或直接下載</p>
+
+<pre><code class="language-bash">git clone https://github.com/tensorflow/tensorflow.git
+</code></pre>
+
+<p>安裝完成後切換到 TensorFlow 的資料夾中</p>
+
+<h4 id="編譯-tensorflow-lite">編譯 TensorFlow Lite</h4>
+
+<p>在 TensorFlow 的 root folder 位置執行以下指令</p>
+
+<pre><code class="language-bash"># 下載取得相依元件
+tensorflow/contrib/lite/download_dependencies.sh
+
+# 編譯 TensorFlow Lite
+tensorflow/contrib/lite/build_ios_universal_lib.sh
+</code></pre>
+
+<p>若編譯成功則可在 <code>tensorflow/contrib/lite/gen/lib/libtensorflow-lite.a</code> 找到連結檔的位置。</p>
+
+<blockquote>
+<p>如在執行 <code>build_ios_universal_lib.sh</code> 時出現 <code>no such file or directory: 'x86_64'</code> 的錯誤，須在 Xcode &gt; Preferences &gt; Locations 中開啟 <code>Command Line Tools</code> 的選項。此外因 Tensorflow 的 master branch 是開發中的分支，可能在編譯時會出現錯誤。可先將版本切到其他版本來進行編譯試試看。</p>
+</blockquote>
+
+<h4 id="設定連結">設定連結</h4>
+
+<p>編譯完成後，須先在 Xcode 的 Project 中設定連結在能專案中正確使用 TensorFlow API</p>
+
+<h4 id="project-設定">Project 設定</h4>
+
+<ul>
+<li>在 <strong>Header Search Paths</strong> 中加入以下 folder 位置的路徑。
+
+<ul>
+<li>TensorFlow Code 的 root folder 位置</li>
+<li><code>tensorflow/contrib/lite/downloads</code></li>
+<li><code>tensorflow/contrib/lite/downloads/flatbuffers/include</code></li>
+</ul></li>
+<li>在 <strong>Library Search Paths</strong> 加入以下 folder 位置的路徑。
+
+<ul>
+<li><code>tensorflow/tensorflow/contrib/lite/gen/lib</code></li>
+</ul></li>
+</ul>
+
+<h4 id="target-設定">Target 設定</h4>
+
+<ul>
+<li>將 <code>libtensorflow-lite.a</code> 的連結加入 <strong>Build Phases</strong> 設定中的 <strong>Link Binary With Libraries</strong> 裡。</li>
+</ul>
+
+<p>設定完成即在可專案中呼叫 TensorFlow Lite API。</p>
+
+<blockquote>
+<p>因 TensorFlow Lite 的 API 使用 C++ 寫成，若要在 Objectvie-C 中使用需將呼叫的檔案設定為 <code>*.mm</code> 讓 Xcode 使用 C++ 來編譯。若使用 Swift 來開發則需透過 Objective-C++ wrapper 的方式呼叫，相關方式可參考<a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html">此篇文章</a>。</p>
+</blockquote>
+
+<h2 id="使用-tensorflow-lite-api">使用 Tensorflow Lite API</h2>
+
+<p>因 TensorFlow Lite 的 API 使用 C++ 寫成，若要在 Objectvie-C 中使用需將呼叫的檔案設定為 <code>*.mm</code> 以讓 Xcode 可編譯 Objective-C++ 語法。若使用 Swift 來開發則需透過 Objective-C++ wrapper 的方式呼叫，相關方式可參考<a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html">此篇文章</a>。下面程式碼範例部分參考 TensorFlow Lite 的官方 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/examples/ios">iOS 範例</a>。</p>
+
+<h4 id="匯入-model-檔案到-xcode-專案中">匯入 Model 檔案到 Xcode 專案中</h4>
+
+<p>在使 TensorFlow Lite 前，須先引入 TensorFlow Lite 可使用的 model file ( *.tflite)，在此我們直接使用 Google 所提供的 <a href="http://download.tensorflow.org/models/mobilenet_v1_2018_02_22/mobilenet_v1_0.25_128.tgz">mobilenet_v1_0.25_128</a> Model，將檔案下載並解壓縮後將 <code>mobilenet_v1_0.25_128.tflite</code> 與 <code>labels.txt</code> 複製到專案中。此外也可從自行下載下載<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/models.md">其他模型</a>使用。。</p>
+
+<h4 id="讀取-tensorflow-lite-model">讀取  TensorFlow Lite Model</h4>
+
+<p>使用 NSBundle 中的 <a href="https://developer.apple.com/documentation/foundation/nsbundle/1410989-pathforresource">pathForResource</a>  function 取得 model 檔案路徑後建立 <code>model</code> 物件。</p>
+
+<pre><code class="language-cpp">auto graph_path = /* Get model path */
+auto model = tflite::FlatBufferModel::BuildFromFile(graph_path.c_str());
+</code></pre>
+
+<h4 id="建立-interpreter">建立 Interpreter</h4>
+
+<p>建立 Interpreter 物件，並設定所要使用的 model。</p>
+
+<pre><code class="language-cpp">auto interpreter = std::make_unique&lt;tflite::Interpreter&gt;();
+auto resolver = tflite::ops::builtin::BuiltinOpResolver();
+auto builder = tflite::InterpreterBuilder(*model, resolver);
+builder(&amp;p_interpreter);
+</code></pre>
+
+<h4 id="初始化-input-tensor">初始化 Input Tensor</h4>
+
+<p>在執行需先建立 Input tensor，設定維度後分配記憶體空間。因 <strong>mobilenet</strong> 的模型為 <strong>224 * 224 * 3</strong> 的圖片，引此維度需設為 <code>vector&lt;int&gt;{1, 224, 224, 3}</code>。</p>
+
+<pre><code class="language-cpp">// 設定 Input Tensor 的維度
+interpreter-&gt;ResizeInputTensor(interpreter-&gt;inputs()[0], vector&lt;int&gt;{1, 224, 224, 3);
+
+// 建立 Input Tensor 的記憶體空間 (ResizeInputTensor() 後一定要執行)
+interpreter-&gt;AllocateTensors(); 
+</code></pre>
+
+<h4 id="設定資料到-input-tensor">設定資料到 Input Tensor</h4>
+
+<p>要設定資料到 Input Tensor，可先取得資料的初始 address 後，計算 Raw Data 中對應的位置後將資料傳入 Input Tensor 中。</p>
+
+<pre><code class="language-cpp">// 取得輸入的資料初始 Address
+float* out = interpreter-&gt;typed_tensor&lt;float&gt;(interpreter-&gt;inputs()[0]);
+
+// Raw data 的資料的初始位址
+uint8_t* in = raw_data.data();  // raw_data: 原始資料的 byte array
+
+// 設定 model 與 input data 的寬度，高度與 channel 數量
+size_t model_height = 224; // Model 的輸入高度
+size_t model_height = 224;  // Model 的輸入寬度
+size_t model_channels = 3;  // Model 的輸入 Channel 數
+size_t image_width = /* Input data 的高度 */;
+size_t image_height = /* Input data 的寬度 */;
+size_t image_channels = /* Input data 的 Channel 數 */;  
+
+float input_mean = 127.5f;
+float input_std = 127.5f;
+    
+// 計算每一個 input data 對應的 input tensor 位置，並將 data 設定至 tensor 中
+for (int y = 0; y &lt; model_height; ++y) {
+    int in_y = static_cast&lt;int&gt;(y * image_height / model_height);
+    uint8_t* in_row = in + (in_y * image_width * image_channels);
+    float* out_row = out + (y * model_width * model_channels);
+    for (int x = 0; x &lt; model_width; ++x) {
+        const int in_x = static_cast&lt;int&gt;(x * image_width / model_width);
+        const uint8_t* in_pixel = in_row + (in_x * image_channels);
+        float* out_pixel = out_row + (x * model_channels);
+        for (int c = 0; c &lt; model_channels; ++c) {
+            // 正規化輸入資料
+            out_pixel[c] = (in_pixel[c] - input_mean) / input_std;
+        }
+    }
+}
+</code></pre>
+
+<h4 id="執行-tensorflow-lite-model">執行 TensorFlow Lite Model</h4>
+
+<p>當資料設定完成後可呼叫 <code>Interpreter::Invoke()</code> 函式執行 Model。</p>
+
+<pre><code class="language-cpp">// 使用 Invoke() function 執行設定 model，並確定狀態是否執行成功。
+interpreter-&gt;Invoke()
+</code></pre>
+
+<h4 id="取得執行後的結果">取得執行後的結果</h4>
+
+<p>若執行成功可得出 <strong>MobileNet</strong> 的中對應每個 <strong>Label</strong> 的 score 資訊（Label 的資訊存在 <strong>labels.txt</strong> 中）。</p>
+
+<pre><code class="language-cpp">// 取得 output tensor 初始位置
+float* output = interpreter-&gt;typed_output_tensor&lt;float&gt;(0);
+
+// 使用 output 資料建立 Score vector
+auto scores = vector&lt;float&gt;(output, output + 1000); // mobilenet 共有 1000 個 labels
+</code></pre>
+
+<h4 id="顯示結果">顯示結果</h4>
+
+<p>在這裡我們用一個簡單的範例來顯示對圖片進行分類的結果。下方 Label 代表使用 MobileNet 分類結果的 Top 5，Label 右方的數值為可能性百分比。</p>
+
+<p><img src="/images/tensorflow-lite-ios/tflite-ios.jpg" alt="tflite-ios" /></p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite">TensorFlow Lite</a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/ios.md">TensorFlow Lite for iOS</a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/docs_src/mobile/tflite/devguide.md">Developer Guide</a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/apis.md">TensorFlow API</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/ios/" rel="tag">iOS</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/tensorflow/" rel="tag">TensorFlow</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/classification/" rel="tag">Classification</a></li>
+	</ul>
+</div>
+	</article>
+	
+	
+<nav class="post-nav row clearfix">
+	<div class="post-nav__item post-nav__item--prev mr-col-1-2">
+		<a class="post-nav__link" href="/post/2018/01/autoencoder-tutorial/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Autoencoder 簡介與應用範例</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next mr-col-1-2">
+		<a class="post-nav__link" href="/post/2018/02/modern-cpp-changing/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Modern C&#43;&#43; changing</p></a>
+	</div>
+</nav>
+	
+</main>
+
+<aside class="sidebar">
+	
+	
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/06/strava-how-to-generate-heatmap/">Strava 建立全球運動熱點圖的方式</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/implement-osm-map-tiles-parallel/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/thinkbayes-ch1/">ThinkBayes 心得筆記 - Chapter 1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/04/implement-osm-map-tiles/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/03/learning-commons/">京都大學的 Learning Commons (學習共享空間) 參訪感想</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/deep-learning">Deep learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/dimension-reduction">Dimension reduction</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/travel">Travel</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/visualization">Visualization</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/cheng-shiang-li" target="_blank">
+				<svg class="widget-social__link-icon icon-linkedin" viewBox="0 0 352 352" width="24" height="24" fill="#fff"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/yeshuanova" target="_blank">
+				<svg class="widget-social__link-icon icon-github" viewBox="0 0 384 374" width="24" height="24" fill="#fff"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:yeshuanova@gmail.com">
+				<svg class="widget-social__link-icon icon-mail" viewBox="0 0 416 288" width="24" height="24" fill="#fff"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>yeshuanova@gmail.com</span>
+			</a>
+		</div>
+	</div>
+</div>
+	
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/autoencoder" title="Autoencoder">Autoencoder</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bayes" title="Bayes">Bayes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;" title="C&#43;&#43;">C&#43;&#43;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/classification" title="Classification">Classification</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/datashader" title="Datashader">Datashader</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heatmap" title="Heatmap">Heatmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ios" title="Ios">Ios</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iris" title="Iris">Iris</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/isomap" title="Isomap">Isomap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/japan" title="Japan">Japan</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kaggle" title="Kaggle">Kaggle</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mds" title="Mds">Mds</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mercatile" title="Mercatile">Mercatile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mobilenet" title="Mobilenet">Mobilenet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neural-network" title="Neural network">Neural network</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openstreetmap" title="Openstreetmap">Openstreetmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/starcraft" title="Starcraft">Starcraft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/strava" title="Strava">Strava</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tensorflow" title="Tensorflow">Tensorflow</a>
+	</div>
+</div>
+</aside>
+	</div>
+		<footer class="footer">
+			<div class="container container-inner">
+				<div class="footer__copyright">&copy; 2018 Xeno Universe. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+			</div>
+		</footer>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+
+</body>
+</html>

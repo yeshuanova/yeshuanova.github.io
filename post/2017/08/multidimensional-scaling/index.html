@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Multidimensional Scaling</title>
+	<meta name="description" content="Multidimensional Scaling">
+	<meta name="generator" content="Hugo 0.42.2" />
+	<meta property="og:title" content="Multidimensional Scaling" />
+<meta property="og:description" content="Multidimensional Scaling" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2017/08/multidimensional-scaling/" />
+
+
+
+<meta property="article:published_time" content="2017-08-10T20:00:00&#43;08:00"/>
+
+<meta property="article:modified_time" content="2017-08-10T20:00:00&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Multidimensional Scaling"/>
+<meta name="twitter:description" content="Multidimensional Scaling"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<script type="text/javascript" src="/js/scripts.js"></script>
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+</head>
+<body class="body body-right-sidebar">
+	<div class="container container-outer">
+		<header class="header">
+			<div class="container container-inner">
+				<div class="logo" role="banner">
+					<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+						<div class="logo__title">Xeno Universe</div>
+						<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+					</a>
+				</div>
+			</div>
+			
+<nav class="menu">
+	<ul class="menu__list">
+		<li class="menu__item"><a class="menu__link" href="/about/">ABOUT</a></li>
+	</ul>
+</nav>
+
+		</header>
+		<div class="wrapper clearfix">
+
+<main class="main content">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Multidimensional Scaling</h1><div class="post__meta meta">
+<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+<time class="post__meta-date meta-date" datetime="2017-08-10T20:00:00">2017-08-10</time>
+<span class="post__meta-categories meta-categories">
+	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/dimension-reduction" rel="category">Dimension Reduction</a></span>
+</span></div>
+		</header><div class="post__content clearfix">
+			<p>在<a href="{{ site.baseurl }}/posts/dimension-reduction-tutorial/">之前</a>已經介紹過資料降維的基礎概念
+以及使用進行PCA示範，因此這篇要來談的是另一種降維方式
+<a href="https://en.wikipedia.org/wiki/Multidimensional_scaling">MDS</a>，並敘述相關理論推導。</p>
+
+<p></p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>MDS全名為<strong>Multidimensional Scaling</strong>，和之前使用過的PCA一樣是非常經典的演算法，
+現在也衍生如出許多進階版本，在本篇我們將主要介紹放在古典MDS演算法內容。</p>
+
+<p>MDS主要概念為透過保持資料間<strong>歐式距離（Euclidean distance）</strong>關係，
+也就是希望轉換後的低維資料中每筆資料間的<strong>距離</strong>，盡可能和高維資料的資料間距離保持差異最小化。
+假設現在有一存在<span  class="math">\(n\)</span>筆資料的資料集<span  class="math">\(A=\{a_1,a_2,\ldots,a_n\}\)</span>，經過MDS轉換後成為新資料集
+<span  class="math">\(B=\{b_1,b_2,\dots,b_n\}\)</span>，則</p>
+
+<p><span  class="math">\[d(a_i,a_j) \approx d(b_i,b_j)\]</span></p>
+
+<p>兩點間的歐式距離<span  class="math">\(d(x, y)\)</span>為</p>
+
+<p><span  class="math">\[d(x, y) = \sqrt{(x-y)(x-y)^T}\]</span></p>
+
+<h2 id="matrix-form">Matrix Form</h2>
+
+<p>假如現在有一資料集<span  class="math">\(X\)</span>並將其表示為<span  class="math">\(m \times n\)</span>矩陣，其中<span  class="math">\(m\)</span>為資料數量，<span  class="math">\(n\)</span>為資料維度，則矩陣表示式如下：</p>
+
+<p><span  class="math">\[X=\begin{bmatrix}X_1 \\ \vdots \\ X_m\end{bmatrix}=\begin{bmatrix}x_{11} & \cdots & x_{1n} \\ \vdots & & \vdots \\ x_{m1} & \cdots & x_{mn}\end{bmatrix}\]</span></p>
+
+<p>而降維後的資料矩陣 <span  class="math">\(Z\)</span> 為 <span  class="math">\(m \times k\)</span> 與 <span  class="math">\(k \leq n\)</span>，則</p>
+
+<p><span  class="math">\[Z=\begin{bmatrix} Z_1 \\ \vdots \\ X_m \end{bmatrix} = \begin{bmatrix} z_{11} & \cdots & z_{1k} \\ \vdots & & \vdots \\ z_{m1} & \cdots & z_{mk} \end{bmatrix}\]</span></p>
+
+<p>定義<span  class="math">\(X\)</span>與<span  class="math">\(Z\)</span>的<span  class="math">\(m \times m\)</span>歐式距離矩陣為<span  class="math">\(D\)</span>與<span  class="math">\(P\)</span>，其中</p>
+
+<p><span  class="math">\[D_{ij}=d(X_i, X_j)\]</span></p>
+
+<p><span  class="math">\[P_{rs}=d(Z_r, Z_s)\]</span></p>
+
+<p>假定<span  class="math">\(Z\)</span>中所有資料相加為零，即<span  class="math">\(\sum\limits_{r}{}Z_r=0\)</span>，經推導後<span  class="math">\(Z\)</span>的內積矩陣<span  class="math">\(B\)</span>可轉換為</p>
+
+<p><span  class="math">\[B=-\frac{1}{2}HDH=ZZ^T\]</span></p>
+
+<p>其中</p>
+
+<p><span  class="math">\[H=I-\frac{1}{m}11^{'}\]</span></p>
+
+<p>對<span  class="math">\(B\)</span>進行<a href="https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix">特徵根分解</a>可得</p>
+
+<p><span  class="math">\[B=V\Lambda V^T=(V\Lambda^{\frac{1}{2}})(V\Lambda^{\frac{1}{2}})^T=ZZ^T\]</span></p>
+
+<p>由上式可知</p>
+
+<p><span  class="math">\[Z=V\Lambda^{\frac{1}{2}}\]</span></p>
+
+<p>其中<span  class="math">\(\Lambda\)</span>為<span  class="math">\(B\)</span>的特徵根對角矩陣，<span  class="math">\(\Lambda_{ii}=\lambda_i\)</span>。<span  class="math">\(V\)</span>為特徵向量矩陣
+，<span  class="math">\(V=[v_1, v_2,\dots,v_m]\)</span>。且
+<span  class="math">\(\lambda_1 \geq \lambda_2 \dots \lambda_m \geq 0\)</span></p>
+
+<h2 id="algorithm">Algorithm</h2>
+
+<p>由以上的推導可知，降維資料<span  class="math">\(Z\)</span>可由以下步驟加以求得</p>
+
+<ul>
+<li><p>計算原始資料距離矩陣<span  class="math">\(D=[d_ij]\)</span></p></li>
+
+<li><p>轉換爲Centering Matrix <span  class="math">\(B=-\frac{1}{2}HDH\)</span>，其中<span  class="math">\(H=I-\frac{1}{m}11^{'}\)</span></p></li>
+
+<li><p>求出<span  class="math">\(B\)</span>的最大<span  class="math">\(k\)</span>個特徵根<span  class="math">\(\lambda_{1}, \lambda _{2},...,\lambda _{k}\)</span>，與其對應的特徵向量<span  class="math">\(e_{1},e_{2},..., e_{k}\)</span></p></li>
+
+<li><p>因此<span  class="math">\(Z\)</span>可由<span  class="math">\(Z=E_{k}\Lambda_{k}^{\frac{1}{2}}\)</span>求得，
+其中<span  class="math">\(\Lambda_{k}^{\frac{1}{2}}\)</span>為<span  class="math">\(k \times k\)</span>的特徵根對角矩陣，而
+<span  class="math">\(E_{k}\)</span>為對應的<span  class="math">\(m \times k\)</span>特徵向量矩陣。</p></li>
+</ul>
+
+<h2 id="code">Code</h2>
+
+<p>以下為將Iris flower dataset與scikit-learn套件，進行MDS降維與結果展示</p>
+
+<pre><code class="language-python"># 匯入相關 Package
+import matplotlib.pyplot as plt
+from sklearn import datasets
+from sklearn.manifold import MDS
+
+# 取得 Iris data set
+iris = datasets.load_iris()
+iris_label = iris.target
+
+# 設定 MDS Model參數並對 dataset進行降維
+mds_coeff = MDS(n_components=2)
+mds_result = mds_coeff.fit_transform(iris.data)
+
+# 繪製資料2D表示圖，並將不同類別加上顏色標示
+for idx, label in enumerate(iris_label):
+    if label == 0:
+        color = 'ro'
+    elif label == 1:
+        color = 'go'
+    elif label == 2:
+        color = 'bo'
+    else:
+        continue
+    x = mds_result[idx, 0]
+    y = mds_result[idx, 1]
+    plt.plot(x, y, color)
+</code></pre>
+
+<p>下圖為執行結果，可看data set中的各類別，在降低到2維仍有明確的群聚關係。</p>
+
+<p><figure><img src="/images/multi-dimensional-scaling/iris_mds_2d.svg" alt="Iris-MDS-2d"></figure></p>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/mds/" rel="tag">MDS</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/python/" rel="tag">Python</a></li>
+	</ul>
+</div>
+	</article>
+	
+	
+<nav class="post-nav row clearfix">
+	<div class="post-nav__item post-nav__item--prev mr-col-1-2">
+		<a class="post-nav__link" href="/post/2017/08/dimension-reduction-tutorial/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Introduction to Dimension Reduction</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next mr-col-1-2">
+		<a class="post-nav__link" href="/post/2017/08/isomap/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Isomap - Isometric Mapping</p></a>
+	</div>
+</nav>
+	
+</main>
+
+<aside class="sidebar">
+	
+	
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/06/strava-how-to-generate-heatmap/">Strava 建立全球運動熱點圖的方式</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/implement-osm-map-tiles-parallel/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/thinkbayes-ch1/">ThinkBayes 心得筆記 - Chapter 1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/04/implement-osm-map-tiles/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/03/learning-commons/">京都大學的 Learning Commons (學習共享空間) 參訪感想</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/deep-learning">Deep learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/dimension-reduction">Dimension reduction</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/travel">Travel</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/visualization">Visualization</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/cheng-shiang-li" target="_blank">
+				<svg class="widget-social__link-icon icon-linkedin" viewBox="0 0 352 352" width="24" height="24" fill="#fff"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/yeshuanova" target="_blank">
+				<svg class="widget-social__link-icon icon-github" viewBox="0 0 384 374" width="24" height="24" fill="#fff"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:yeshuanova@gmail.com">
+				<svg class="widget-social__link-icon icon-mail" viewBox="0 0 416 288" width="24" height="24" fill="#fff"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>yeshuanova@gmail.com</span>
+			</a>
+		</div>
+	</div>
+</div>
+	
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/autoencoder" title="Autoencoder">Autoencoder</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bayes" title="Bayes">Bayes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;" title="C&#43;&#43;">C&#43;&#43;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/classification" title="Classification">Classification</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/datashader" title="Datashader">Datashader</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heatmap" title="Heatmap">Heatmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ios" title="Ios">Ios</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iris" title="Iris">Iris</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/isomap" title="Isomap">Isomap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/japan" title="Japan">Japan</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kaggle" title="Kaggle">Kaggle</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mds" title="Mds">Mds</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mercatile" title="Mercatile">Mercatile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mobilenet" title="Mobilenet">Mobilenet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neural-network" title="Neural network">Neural network</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openstreetmap" title="Openstreetmap">Openstreetmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/starcraft" title="Starcraft">Starcraft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/strava" title="Strava">Strava</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tensorflow" title="Tensorflow">Tensorflow</a>
+	</div>
+</div>
+</aside>
+	</div>
+		<footer class="footer">
+			<div class="container container-inner">
+				<div class="footer__copyright">&copy; 2018 Xeno Universe. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+			</div>
+		</footer>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</title>
+	<meta name="description" content="Implement OSM map tiles using datashader and mercantile (version 2)">
+	<meta name="generator" content="Hugo 0.42.2" />
+	<meta property="og:title" content="使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)" />
+<meta property="og:description" content="Implement OSM map tiles using datashader and mercantile (version 2)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018/05/implement-osm-map-tiles-parallel/" />
+
+
+
+<meta property="article:published_time" content="2018-05-24T18:00:00&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-05-24T18:00:00&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)"/>
+<meta name="twitter:description" content="Implement OSM map tiles using datashader and mercantile (version 2)"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<script type="text/javascript" src="/js/scripts.js"></script>
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+</head>
+<body class="body body-right-sidebar">
+	<div class="container container-outer">
+		<header class="header">
+			<div class="container container-inner">
+				<div class="logo" role="banner">
+					<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+						<div class="logo__title">Xeno Universe</div>
+						<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+					</a>
+				</div>
+			</div>
+			
+<nav class="menu">
+	<ul class="menu__list">
+		<li class="menu__item"><a class="menu__link" href="/about/">ABOUT</a></li>
+	</ul>
+</nav>
+
+		</header>
+		<div class="wrapper clearfix">
+
+<main class="main content">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</h1><div class="post__meta meta">
+<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+<time class="post__meta-date meta-date" datetime="2018-05-24T18:00:00">2018-05-24</time>
+<span class="post__meta-categories meta-categories">
+	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/visualization" rel="category">Visualization</a></span>
+</span></div>
+		</header><div class="post__content clearfix">
+			<p>在<a href="https://yeshuanova.github.io/blog/posts/implement-OSM-map-tiles/">上一篇文章</a>中已展示過了已展示如何從 NYC taxi trip dataset 中建立 map tiles 的基本方式。本篇將進一步改進該演算法，加速產生速度以及大檔案方式。</p>
+
+<p></p>
+
+<h2 id="concept">Concept</h2>
+
+<p>和前篇的 map tiles 建立方式方式相比，新方法著重在</p>
+
+<ul>
+<li>Concurrency (平行化)
+
+<ul>
+<li>盡可能將處理單元拆成獨立部分，並使用 <a href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a> 套件將任務平行處理，讓多 CPU 能充分發揮處理能力。</li>
+</ul></li>
+<li>單一大檔案處理
+
+<ul>
+<li>以 <a href="https://en.wikipedia.org/wiki/Divide_and_conquer_algorithm">Divide and Conquer</a> 概念來分割檔案，轉換為適合的處理格式再平行處理。</li>
+</ul></li>
+<li>加速 Map Tiles 建立
+
+<ul>
+<li>對每個處理單元中點數所屬的 Map tile 進行 Group 後再進行 Aggregate。</li>
+</ul></li>
+<li>Bottom-Up 建立 Map Tile
+
+<ul>
+<li>從基底 Tiles 以由下往上 (Bottom-Up) 合併的方式建立新 Map Tile。</li>
+</ul></li>
+<li>修改繪圖方式
+
+<ul>
+<li>分別使用 <a href="https://en.wikipedia.org/wiki/Histogram_equalization">Histogram_Equalization</a> 與 Log 方式（需紀錄每個 zoom 中 pixel 最大點為）來繪製 Map tile 來取得較好的繪圖效果。</li>
+</ul></li>
+</ul>
+
+<p>下方將展示演算法概念，詳細程式碼可參考 Github 上的 <a href="https://github.com/yeshuanova/nyc_taxi_trip_map/blob/master/generate_nyc_map_tiles_parallel_blog.ipynb">ipython notebook</a>。</p>
+
+<h3 id="資料前處理">資料前處理</h3>
+
+<h4 id="download-nyc-taxi-trip-data">Download NYC Taxi Trip Data</h4>
+
+<p>使用 <code>wget</code> 指令取得 NYC Taxi trip data，這裡一樣使用 2016 年 5 月的計程車資料。</p>
+
+<pre><code class="language-bash">wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv
+</code></pre>
+
+<h4 id="將原始-csv-分割為小檔案">將原始 CSV 分割為小檔案</h4>
+
+<p>依照資料筆數切割為許多小檔案</p>
+
+<pre><code class="language-bash">mkdir split # 建立 split 資料夾
+
+# 以 1,000,000 lines 為單位，將原始 csv 檔案分割為數個檔案（不包含 header）
+tail -n +2 yellow_tripdata_2016-05.csv | split -d -l 1000000 - split/trip.csv.
+</code></pre>
+
+<p>完成後可得到 <code>split/trip.csv.00</code>，<code>split/trip.csv.01</code> 等不包含標頭的分割檔</p>
+
+<blockquote>
+<p>若使用 mac 可先安裝 <a href="http://macappstore.org/coreutils/">coreutils</a>，並將 <code>tail</code> 與 <code>split</code> 指令換成 <code>gtail</code> 與 <code>gsplit</code> 並執行即可。</p>
+</blockquote>
+
+<h3 id="轉換-csv-內容到目標格式">轉換 csv 內容到目標格式</h3>
+
+<p>將 csv 檔案轉換到包含 Web Mercator 格式座標(epsg:3857)以及所在基底 Tile 的座標資料。</p>
+
+<pre><code class="language-python">with futuresfutures.ProcessPoolExecutor() as executor:
+    datas = zip(source_cshttp://macappstore.org/coreutils/vs, epsg3857_csvs, [base_zoom] * len(source_csvs))
+    fs = executor.map(convTripGpsToWebMercatorWrapper, datas)
+    futures.as_completed(fs)
+</code></pre>
+
+<p>轉換完成後可得到如下方格式的 csv 檔案</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">x</th>
+<th align="center">y</th>
+<th align="center">zoom</th>
+<th align="center">xtile</th>
+<th align="center">ytile</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">Web Mercator X</td>
+<td align="center">Web Mercator - Y</td>
+<td align="center">地圖基底 zoom</td>
+<td align="center">Map Tile X 位置</td>
+<td align="center">Map Tile Y 位置</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="建立-map-tile-aggregation-file">建立 map tile aggregation file</h3>
+
+<p>建立基底 zoom 中，有包含點位資料的 aggregation files</p>
+
+<ul>
+<li>用 Pandas 讀取分割的 csv 檔案。</li>
+<li>使用 Groupby 計算所需建立的 tile group，避免沒必要的 aggregate 計算。</li>
+<li>使用 Group 後的座標資料建立 aggregation data</li>
+<li>使用 concurrent.futures 進行平行處理，加快計算速度。</li>
+</ul>
+
+<pre><code class="language-python">def makeTilesAggregation(source, root):
+    if not os.path.exists(source):
+        raise ValueError(f'Source file {source} doesn\'t exist')
+    
+    os.makedirs(root, exist_ok=True)
+    
+    df = pd.read_csv(source,
+                     usecols=['x', 'y', 'zoom', 'xtile', 'ytile'],
+                     dtype={'x':np.float32,
+                            'y':np.float32,
+                            'zoom':np.int8,
+                            'xtile':np.int32,
+                            'ytile':np.int32})
+    
+    for ((zoom, xtile, ytile), data) in df.groupby(by=['zoom', 'xtile', 'ytile']):
+        agg = mapTileCanvas(xtile, ytile, zoom).points(data, 'x', 'y')
+        serializeAggToFile(agg, getAggFilePath(root, xtile, ytile, zoom))
+        serializeAggYaml(agg, getAggYamlFilePath(root, xtile, ytile, zoom))
+        
+def makeTilesAggregationWrapper(data):
+    source, root = data
+    makeTilesAggregation(source, root)
+</code></pre>
+
+<ul>
+<li>平行化建立 Map tiles</li>
+</ul>
+
+<pre><code class="language-python">with futures.ProcessPoolExecutor() as executor:
+    targets_root = [os.path.join(temp_root, os.path.basename(f)) for f in epsg3857_csvs]
+    datas = zip(epsg3857_csvs, targets_root)
+    fs = executor.map(makeTilesAggregationWrapper, datas)
+    futures.as_completed(fs)
+</code></pre>
+
+<h3 id="合併-aggregation-files">合併 aggregation files</h3>
+
+<p>合併所有 map tiles aggregation files，成為一個包含所有分割 csv 資料的整合 aggregation，並將其當作是基底 map tile 資料。</p>
+
+<pre><code class="language-python"># 平行化合併處理方式 
+with futures.ProcessPoolExecutor() as executor:
+    tiles = getCombineTiles(glob.glob(os.path.join(temp_root, '*')))
+    tiles_chunk = list(chunks(tiles, chunksSize(len(tiles), 4)))
+    tiles_tuple = zip(tiles_chunk, [temp_root] * len(tiles_chunk), [agg_root] * len(tiles_chunk))
+    fs = executor.map(combineAggregationWrapper, tiles_tuple)
+    futures.as_completed(fs)
+</code></pre>
+
+<h3 id="使用-bottom-up-方式合併並產生上層-zoom-的-map-tiles">使用 Bottom-Up 方式合併並產生上層 zoom 的 map tiles</h3>
+
+<ul>
+<li><p>從基底 tile 的 aggregation 的檔案中建立所有 parents tile 列表。</p></li>
+
+<li><p>讀取 parents tile 中所有的 child tiles 檔案並合併資料後，再寫入 parents tile（如果有的 child tiles 不存在，則建立內部為空值的 map tile）</p>
+
+<ul>
+<li><p>假如 tile 座標為 (xtile, ytile, zoom) = (23, 43, 6)，則該 tile 的 parenet 為 <strong>ptile</strong> = (11, 21, 5)。</p></li>
+
+<li><p>而 pTile 的 四個 children tiles 分別為 (22, 42, 6), (23, 42, 6), (23, 43, 6), (22, 43, 6)。</p></li>
+
+<li><p>因此 pTile 的 aggregation file 可從四個 children tiles 中合併得來</p></li>
+</ul></li>
+
+<li><p>不斷往上建立 parents tiles 直到  zoom 0 為止。</p></li>
+</ul>
+
+<pre><code class="language-python">for zoom in range(base_zoom, 0, -1):
+    print(f'Make parents tiles from zoom {zoom}')
+    with futures.ProcessPoolExecutor() as executor:
+        tiles = [(agg_root, x, y, z) for x, y, z in getParentTiles(agg_root, zoom)]
+        tiles_chunk = chunks(tiles, chunksSize(len(tiles), 4))
+        fs = executor.map(makeTilesBottomUpWrapper, tiles_chunk)
+        futures.as_completed(fs)
+</code></pre>
+
+<h3 id="建立每個-zoom-中的最大點數資料">建立每個 zoom 中的最大點數資料</h3>
+
+<p>掃描 zoom 中每個 tile 的最大點位資料，並儲存進 <code>{zoom}/zoom_config.yaml</code> 中（與前篇方式相同）。</p>
+
+<pre><code class="language-python"># 計算 zoom 中的最大點數資料
+def getZoomMaxCount(zoom_root):
+    max_count = 0;
+    for root, dirs, files in os.walk(zoom_root):
+        for file in files:
+            exts = file.split(os.extsep)
+            if os.path.splitext(file)[1] != '.yaml':
+                continue
+            mc = getYamlMaxCount(os.path.join(root, file))
+            max_count = mc if max_count &lt; mc else max_count
+    return max_count
+
+for zoom in os.listdir(agg_root):
+    max_count = getZoomMaxCount(os.path.join(agg_root, zoom))
+    zoom_yaml = os.path.join(agg_root, zoom, 'zoom_config.yaml')
+    with open(zoom_yaml, 'w') as file:
+        yaml_obj = {'max_count': max_count}
+        yaml.dump(yaml_obj, file, default_flow_style=False)
+</code></pre>
+
+<h3 id="產生-aggregation-檔案對應的-tile-影像">產生 Aggregation 檔案對應的 Tile 影像</h3>
+
+<ul>
+<li>建立所有要繪製圖片的 aggregation 列表，並設定繪製方式。
+
+<ul>
+<li>如果使用 Log 方法繪製，則先讀取之前建立好的 zoom max count 值為數值範圍。</li>
+</ul></li>
+<li>建立對應的 PNG 影像圖磚。</li>
+</ul>
+
+<p><img src="/images/nyc_taxi_trip_map/769_log.png" alt="nyc_tax_map_log" />
+<em>位置為 /11/603/769.png 的 map tile（背景為透明）</em></p>
+
+<h3 id="使用-folium-顯示-map-tile">使用 Folium 顯示 map tile</h3>
+
+<p><a href="https://yeshuanova.github.io/nyc_taxi_trip_map/map_log.html">地圖範例連結</a></p>
+
+<p><img src="/images/nyc_taxi_trip_map/nyc_taxi_layer_map_log.png" alt="nyc_tax_map_log" /></p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>本篇文章在現有基礎上加強了建立圖磚演算法的效率，並且可經由平行化的方式快速繪製 map tiles。詳細程式碼可參考 Github 上的 <a href="https://github.com/yeshuanova/nyc_taxi_trip_map/blob/master/generate_nyc_map_tiles_parallel_blog.ipynb">ipython notebook</a></p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://www.openstreetmap.org/">OpenStreetMap</a></li>
+<li><a href="https://wiki.openstreetmap.org/wiki/Slippy_Map">OpenStreetMap - Slippy Map</a></li>
+<li><a href="http://www.liedman.net/tiled-maps/">The Hitchhacker’s Guide To Tiled Maps</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/python/" rel="tag">Python</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/datashader/" rel="tag">datashader</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/mercatile/" rel="tag">mercatile</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/openstreetmap/" rel="tag">OpenStreetMap</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/heatmap/" rel="tag">Heatmap</a></li>
+	</ul>
+</div>
+	</article>
+	
+	
+<nav class="post-nav row clearfix">
+	<div class="post-nav__item post-nav__item--prev mr-col-1-2">
+		<a class="post-nav__link" href="/post/2018/05/thinkbayes-ch1/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">ThinkBayes 心得筆記 - Chapter 1</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next mr-col-1-2">
+		<a class="post-nav__link" href="/post/2018/06/strava-how-to-generate-heatmap/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Strava 建立全球運動熱點圖的方式</p></a>
+	</div>
+</nav>
+	
+</main>
+
+<aside class="sidebar">
+	
+	
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/06/strava-how-to-generate-heatmap/">Strava 建立全球運動熱點圖的方式</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/implement-osm-map-tiles-parallel/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/thinkbayes-ch1/">ThinkBayes 心得筆記 - Chapter 1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/04/implement-osm-map-tiles/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/03/learning-commons/">京都大學的 Learning Commons (學習共享空間) 參訪感想</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/deep-learning">Deep learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/dimension-reduction">Dimension reduction</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/travel">Travel</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/visualization">Visualization</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/cheng-shiang-li" target="_blank">
+				<svg class="widget-social__link-icon icon-linkedin" viewBox="0 0 352 352" width="24" height="24" fill="#fff"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/yeshuanova" target="_blank">
+				<svg class="widget-social__link-icon icon-github" viewBox="0 0 384 374" width="24" height="24" fill="#fff"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:yeshuanova@gmail.com">
+				<svg class="widget-social__link-icon icon-mail" viewBox="0 0 416 288" width="24" height="24" fill="#fff"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>yeshuanova@gmail.com</span>
+			</a>
+		</div>
+	</div>
+</div>
+	
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/autoencoder" title="Autoencoder">Autoencoder</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bayes" title="Bayes">Bayes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;" title="C&#43;&#43;">C&#43;&#43;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/classification" title="Classification">Classification</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/datashader" title="Datashader">Datashader</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heatmap" title="Heatmap">Heatmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ios" title="Ios">Ios</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iris" title="Iris">Iris</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/isomap" title="Isomap">Isomap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/japan" title="Japan">Japan</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kaggle" title="Kaggle">Kaggle</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mds" title="Mds">Mds</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mercatile" title="Mercatile">Mercatile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mobilenet" title="Mobilenet">Mobilenet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neural-network" title="Neural network">Neural network</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openstreetmap" title="Openstreetmap">Openstreetmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/starcraft" title="Starcraft">Starcraft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/strava" title="Strava">Strava</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tensorflow" title="Tensorflow">Tensorflow</a>
+	</div>
+</div>
+</aside>
+	</div>
+		<footer class="footer">
+			<div class="container container-inner">
+				<div class="footer__copyright">&copy; 2018 Xeno Universe. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+			</div>
+		</footer>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+
+</body>
+</html>

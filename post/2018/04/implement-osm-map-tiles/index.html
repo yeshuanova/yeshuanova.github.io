@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</title>
+	<meta name="description" content="Implement OSM map tiles using datashader and mercantile">
+	<meta name="generator" content="Hugo 0.42.2" />
+	<meta property="og:title" content="使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統" />
+<meta property="og:description" content="Implement OSM map tiles using datashader and mercantile" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018/04/implement-osm-map-tiles/" />
+
+
+
+<meta property="article:published_time" content="2018-04-24T18:00:00&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-04-24T18:00:00&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統"/>
+<meta name="twitter:description" content="Implement OSM map tiles using datashader and mercantile"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<script type="text/javascript" src="/js/scripts.js"></script>
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+</head>
+<body class="body body-right-sidebar">
+	<div class="container container-outer">
+		<header class="header">
+			<div class="container container-inner">
+				<div class="logo" role="banner">
+					<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+						<div class="logo__title">Xeno Universe</div>
+						<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+					</a>
+				</div>
+			</div>
+			
+<nav class="menu">
+	<ul class="menu__list">
+		<li class="menu__item"><a class="menu__link" href="/about/">ABOUT</a></li>
+	</ul>
+</nav>
+
+		</header>
+		<div class="wrapper clearfix">
+
+<main class="main content">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</h1><div class="post__meta meta">
+<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+<time class="post__meta-date meta-date" datetime="2018-04-24T18:00:00">2018-04-24</time>
+<span class="post__meta-categories meta-categories">
+	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/visualization" rel="category">Visualization</a></span>
+</span></div>
+		</header><div class="post__content clearfix">
+			<p>在先前的文章 <a href="https://yeshuanova.github.io/blog/posts/python-visualization-datashader/">Python 地圖視覺化 - 使用 Folium</a> 中，我們已經介紹過如何使用 Python 與 datashader 套件將 GPS 資料繪製成圖片。本篇文章將進一步示範如何使用 NYC Taxi Trip Data 來建立 New York City 的計程車上車位置的 Heatmap，並把繪製出的 map tile 資料與 <a href="https://github.com/python-visualization/folium">Folium</a> 地圖元件整合以達到互動的效果。</p>
+
+<p></p>
+
+<h2 id="openstreetmap-tiles-system">OpenStreetMap tiles system</h2>
+
+<p><a href="https://www.openstreetmap.org/#map=8/23.611/120.768">OpenStreetMap</a> 是一個由 <a href="https://en.wikipedia.org/wiki/Steve_Coast">Steve Coast</a> 所發起網路協作地圖計畫，目的是建立一個由使用者所共同建立的開放地圖服務。除了所有人都能免費使用該地圖服務外，使用者也可協助編輯地圖內容，上傳 GPS 路徑等資料，以完善地圖品質。現在著名的手機遊戲 Pokemon Go，也在 2017年底時將遊戲內的地圖資料，由先前所使用的 Google Map <a href="https://pokemongohub.net/post/news/game-map-updated-openstreetmap-data-imported-notable-changes-around-globe/">轉移到 OpenStreetMap 上</a>。</p>
+
+<p>在建立地圖資料前，先介紹現在 <strong>OpenStreetMap</strong> 所使用的 <a href="https://wiki.openstreetmap.org/wiki/Slippy_Map">Map tile system （圖磚系統）</a>。由於地圖所包含的資料量非常龐大，所以地圖資料會依照所涵蓋區域的大小，分成許多小型的<strong>正方形區域</strong>，該區域稱為 tile（圖磚），每個區域的大小為 <strong>256x256 pixels</strong>。</p>
+
+<h4 id="map-tile-coordinate">Map tile coordinate</h4>
+
+<p>每個圖磚座標主要由三個部分組成，<strong>Zoom</strong>，<strong>X</strong> 與 <strong>Y</strong>。</p>
+
+<ul>
+<li><strong>Zoom</strong>：地圖涵蓋區域的大小，數值最大代表範圍越廣（ 0 為整個世界地圖範圍），最大範圍為 0 ~ 19</li>
+<li><strong>X</strong>：地圖 X 座標軸，依照 Zoom 大小變化。範圍為 0 到 <span  class="math">\(2^{zoom}-1\)</span>。</li>
+<li><strong>Y</strong>：地圖 X 座標軸，依照 Zoom 大小變化。範圍為 0 到 <span  class="math">\(2^{zoom}-1\)</span>。</li>
+</ul>
+
+<p>可知當 zoom 越大時，tiles 的數量也會越來多，如當 zoom = 2 時，tiles 數量只有<span  class="math">\(2^2*2^2=16\)</span>個。而當 zoom = 12 時，tiles 數量就會有<span  class="math">\(2^{12}*2^{12}=16,777,216\)</span> 個。當 zoom 每增加一層，tiles 數就會增加四倍。</p>
+
+<p>使用地圖服務時，OpenStreetmap 會去設定的 tile server 拿取對應位置的圖片。如標準 OpenStreetMap 的 Tile Server URL 為</p>
+
+<pre><code class="language-http">http://tile.openstreetmap.org/${zoom}/${x}/${y}.png
+</code></pre>
+
+<p>當移動到對應的範圍時，OpenStreetMap 就回去拿取對應位置的圖磚資料。如下圖所示，左圖為 zoom=0, x=0, y=0 的圖磚，可直接下列網址取得，如下表左方的圖片</p>
+
+<pre><code class="language-http">http://tile.openstreetmap.org/0/0/0.png
+</code></pre>
+
+<p>而 zoom = 7, x = 63, y = 42 的圖磚則可由下列 URL 取得，如下表右方的圖片</p>
+
+<pre><code class="language-http">http://tile.openstreetmap.org/7/63/42.png
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="center">OSM (.../0/0/0.png)</th>
+<th align="center">OSM (.../7/63/42.png)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><figure><img src="https://tile.openstreetmap.org/0/0/0.png" alt="OSM-tile-0-0-0"></figure></td>
+<td align="center"><figure><img src="https://tile.openstreetmap.org/7/63/42.png" alt="OSM-tile-7-63-42"></figure></td>
+</tr>
+</tbody>
+</table>
+
+<p>除了標準 OpenStreetMap 的 tiles 外，也可由不同的 Tile Server 取得不同的<a href="https://wiki.openstreetmap.org/wiki/Tiles">圖磚</a>加以應用，或<a href="https://switch2osm.org/the-basics/">自行建立 Tile Server</a> 來使用自訂的圖磚。</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Stamen Toner</th>
+<th align="center">Stamen Watercolor</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><figure><img src="http://tile.stamen.com/toner/7/63/42.png" alt="ST-tile-7-63-42"></figure></td>
+<td align="center"><figure><img src="http://c.tile.stamen.com/watercolor/7/63/42.jpg" alt="SW-tile-7-63-42"></figure></td>
+</tr>
+</tbody>
+</table>
+
+<p>關於 map tile 更詳細的解說可參考<a href="http://www.liedman.net/tiled-maps/">本篇文章</a>。</p>
+
+<h2 id="mercantile-package">Mercantile Package</h2>
+
+<p>除了前篇所提過的 <a href="http://datashader.org/">datashader</a>，<a href="https://pandas.pydata.org/">Pandas</a>，<a href="https://dask.pydata.org/en/latest/">Dask</a> 等之外 ，這次使用 <a href="https://github.com/mapbox/mercantile">Ｍercantile</a> 這套由 <a href="https://www.mapbox.com/">Mapbox</a> 所開源的 Spherical mercator coordinate 工具，來幫助我們從 tile 座標產生對應的經緯度或 web mercator 座標，或反過來產生包含特定座標的 map tiles 。</p>
+
+<h3 id="安裝">安裝</h3>
+
+<p>直接使用 python 的 pip 套件管理工具即可安裝 mercantile</p>
+
+<pre><code class="language-bash">pip install mercantile
+</code></pre>
+
+<h3 id="使用範例">使用範例</h3>
+
+<h4 id="從-map-tile-座標取得對應的經緯度範圍">從 map tile 座標，取得對應的經緯度範圍</h4>
+
+<pre><code class="language-python">import mercatile
+
+mercantile.bounds(603, 769, 11) # x=603, y=769, z=11
+# LngLatBbox(west=-74.00390625, south=40.713955826286046, east=-73.828125, north=40.84706035607122)
+</code></pre>
+
+<h4 id="從-gps-座標產生對應的單一-tile-物件">從 GPS 座標產生對應的單一 Tile 物件</h4>
+
+<pre><code class="language-python">mercantile.tile(-74.00390625, -73.828125, 11)
+# Tile(x=603, y=769, z=11)
+</code></pre>
+
+<h4 id="從-gps-座標與-zoom-範圍產生包含在內的-tile-列表">從 GPS 座標與 zoom 範圍產生包含在內的 tile 列表</h4>
+
+<pre><code class="language-python"># 建立地圖範圍 (west, south, east, north)
+bound_nyc = (-74.029495, 40.697930, -73.946411, 40.817817) 
+
+# 產生 zoom 範圍為 0 到 15 的所有 tile 的 generator
+mercantile.tiles(*bound_nyc, zooms=list(range(0, 16)))
+# len(list(tile_list)) = 212, 共有 212 個圖磚
+</code></pre>
+
+<h4 id="從-tile-物件取得-web-mercator-座標">從 Tile 物件取得 Web Mercator 座標</h4>
+
+<pre><code class="language-python">from mercantile import Tile
+bound_xy = mercantile.xy_bounds(Tile(x=603, y=769, z=11))
+# bound_xy = Bbox(left=-8238077.160463155, bottom=4970241.327215301, right=-8218509.281222151, top=4989809.2064563045)
+</code></pre>
+
+<p>之後將使用 <strong>mercantile</strong> 工具來建立所需產生的圖磚資料。</p>
+
+<h2 id="使用-nyc-taxi-trip-data-建立-map-tiles">使用 NYC Taxi Trip Data 建立 Map Tiles</h2>
+
+<p>完整程式碼可至 <a href="https://github.com/yeshuanova/nyc_taxi_trip_map/blob/master/generate_nyc_map_tiles_blog.ipynb">GitHub</a> 參考。</p>
+
+<h3 id="演算法概念">演算法概念</h3>
+
+<ul>
+<li>建立要繪製的 map tile 列表
+
+<ul>
+<li>使用 Mercantile 套件，對設定的範圍自動產生所有的 Tile 列表。</li>
+</ul></li>
+<li>統計 map tile 範圍內每個點的資料數量
+
+<ul>
+<li>使用 <strong>datashader.Canvas.point</strong> 函數，對 map tile 範圍內進行統計。</li>
+<li>將統計結果使用 pickle 與 gzip 序列化成壓縮檔儲存（*<strong>.pkl.gz</strong>）。</li>
+<li>將每個點中的最大值儲存在 *<strong>.pkl.yaml</strong> 檔中方檢視。</li>
+<li>不儲存無資料（全為零）的統計結果以節省空間。</li>
+</ul></li>
+<li>尋找 zoom 中的最大值
+
+<ul>
+<li>統計 zoom 中的所有 tile 的最大值，並儲存在 <strong>_config.yaml</strong> 中。</li>
+</ul></li>
+<li>依照統計資料，繪製每個 tile 圖片。
+
+<ul>
+<li>讀取 *<strong>.pkl.gz</strong> 並還原為統計物件來進行繪圖。</li>
+<li>繪圖時使用 <strong>log</strong> 方法來進行內差計算，避免資料過於集中導致較少的點位看不出資料的問題。</li>
+<li>繪圖時將範圍設為 <strong>[0, zoom_agg__max]</strong>，避免不同 tile 做 interpolate 後得出的顏色範圍不統一的問題。</li>
+<li>儲存圖片到指定路徑。</li>
+</ul></li>
+<li>使用 Folium 套件來呈現結果。</li>
+</ul>
+
+<h3 id="下載-nyc-taxi-trip-data">下載 NYC taxi trip data</h3>
+
+<p>前篇的 datashader 視覺化使用 kaggle 上整理完畢的 dataset，這次我們直<a href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">原始資料網站</a>下載資料集。進入官網後可下載個年度的統計資料（使用 *.csv 格式），這裡我們使用 Yellow Taxi 在 2016 年 5 月份的<a href="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv">資料</a>。</p>
+
+<blockquote>
+<p>目前有上下車 GPS 位置的資料中最多只到 2016 年 6 月。</p>
+</blockquote>
+
+<p>也可在 Command Line 直接使用 <code>wget</code> 指令下載（該資料集約 1.8 GB）</p>
+
+<pre><code class="language-bash">wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv
+</code></pre>
+
+<p>也可直接在 Python 中使用 <code>os</code> package來下達 <code>wget</code> 指令</p>
+
+<pre><code class="language-python">import os
+os.system(&quot;wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv&quot;)
+</code></pre>
+
+<blockquote>
+<p>其他在 Python 中下載檔案的方式可參考這篇文章 - <a href="http://stackabuse.com/download-files-with-python/">Download Files with Python</a></p>
+</blockquote>
+
+<h3 id="讀取-dataset">讀取 dataset</h3>
+
+<p>因我們只需要 GPS 座標，因此只需要讀取特定欄位的資料即可，這邊我們只讀取上車位置的經緯度欄位 <strong>pickup_longitude</strong>  與  <strong>pickup_latitude</strong> 即可。</p>
+
+<pre><code class="language-python">import pandas as pd
+import numpy as np
+
+# 讀取 pickup_longitude 與 pickup_latitude 兩欄位
+df = pd.read_csv(&quot;yellow_tripdata_2016-05.csv&quot;,
+                 usecols=['pickup_longitude', &quot;pickup_latitude&quot;],
+                 dtype={'pickup_longitude':np.float32,
+                        &quot;pickup_latitude&quot;:np.float32})
+</code></pre>
+
+<h3 id="轉換-gps-座標至-web-mercator-coordinate">轉換 GPS 座標至 Web Mercator coordinate</h3>
+
+<p>因原始資料的座標使用的 GPS 為球面座標，因此須先轉換為 Web mercator coordinate 才能使用在 map tiles 的座標系統中。我們使用 <a href="https://pypi.org/project/pyproj/">pyproj</a> 套件來轉換座標，將 <strong>pickup_longitude</strong> 與 <strong>pickup_latitude</strong> 的數值分別轉換到 <strong>pickup_x</strong> 與 <strong>pickup_y</strong> 欄位中。</p>
+
+<pre><code class="language-python"># 定義轉換函數
+from pyproj import transform, Proj
+
+# Set project function
+source = Proj(init=&quot;epsg:4326&quot;) # WGS84
+target = Proj(init=&quot;epsg:3857&quot;) # Web mercator 
+
+# 轉換 Longitude 到 Web Mercator - X coordinate
+def lngToX(lng):
+    return transform(source, target, lng, 0)[0]
+
+# 轉換 Latitude 到 Web Mercator - Y coordinate
+def latToY(lat):
+    return transform(source, target, 0, lat)[1]
+</code></pre>
+
+<p>之後將 dataframe 中的 Longitude 與 Latitude 轉換到 Web Mercator 中的 X, Y 座標中</p>
+
+<pre><code class="language-python">df['pickup_x'] = df.pickup_longitude.apply(lngToX)
+df['pickup_y'] = df.pickup_latitude.apply(latToY)
+</code></pre>
+
+<blockquote>
+<p>注意，GPS 所使用的 WGS84 能投影轉換到 Web Mercator 的範圍有限制，Longitude 為 ，而Latitude 為 ，使用前須先過過濾掉超出範圍的數值資料。</p>
+</blockquote>
+
+<h3 id="使用-dask-平行處理-dataframe">使用 Dask 平行處理 Dataframe</h3>
+
+<p>因 Pandas 是 single thread 架構，無法發揮多處理器的功能，因此我們使用 Dask 來讓 dataframe 能使用多處理器平行處理，以增加處理速度。</p>
+
+<pre><code class="language-python">import dask.dataframe as dd
+import multiprocessing as mp
+
+dask_df = dd.from_pandas(df, npartitions=mp.cpu_count())
+dask_df.persist()
+</code></pre>
+
+<h3 id="建立所要產生的-map-tile-列表">建立所要產生的 Map Tile 列表</h3>
+
+<p>使用 <strong>Mercantile</strong> 建立所要產生的 map tiles。</p>
+
+<pre><code class="language-python">import mercantile
+
+# New York City 周邊範圍
+bound_nyc = (-74.029495, 40.697930, -73.946411, 40.817817) 
+
+# 產生 zoom 範圍為 [0, 15]，在 bounds_nyc 中的所有 tiles
+tile_list = list(mercantile.tiles(*bounds_nyc, zooms=list(range(0, 16))))
+</code></pre>
+
+<h3 id="建立-aggregation-資料並寫入檔案中">建立 Aggregation 資料並寫入檔案中</h3>
+
+<p>當資料準備好後對每個 tile 範圍進行統計，並依照 tile 位置將 aggregation 資料寫入指定位置的檔案中。這步驟會產生兩個檔案，一個為該 tile 進行 aggregate 後產生的資料進行序列化並壓縮後的檔案，以 <code>*.pkl.gz</code> 表示。另一個則為記錄該 tile 中最大點數資料的 yaml 檔，以 <code>*.pkl.yaml</code> 表示。</p>
+
+<pre><code class="language-python">import gzip, pickle
+
+# 由 tile 資訊產生 Canvas 物件，並使用 pickup_x 與 pickup_y 的資料進行統計後產生 aggregation 物件
+cvs = mapTilesCanvas(*tile)
+agg = cvs.points(dask_df, 'pickup_x', 'pickup_y')
+
+# 將 aggregation 物件內容用 gzip 壓縮後寫入檔案
+agg_file = # *.pkl.gz
+with gzip.open(agg_file, mode='wb') as f:
+    pickle.dump(agg, f)
+
+# 將 aggregation 中的最大值寫入 yaml 檔案中
+agg_yaml_file = # *.pkl.yaml
+with open(agg_yaml_file, mode='w') as f:
+    yaml_obj = {&quot;max_count&quot;: int(agg.values.max())}
+    yaml.dump(yaml_obj, f, default_flow_style=False)
+</code></pre>
+
+<h3 id="建立每個-zoom-中的最大點數資料">建立每個 zoom 中的最大點數資料</h3>
+
+<p>尋訪每個 zoom 中的 *<strong>.pkl.yaml</strong> 檔案，取得 <strong>max_count</strong> 的數值並與目前 zoom 中的最大值進行比較，若比現有最大值大則以該數值取代現有最大值。全部尋訪完畢可取得現有 zoom 中的最大點數值並寫入 <strong>_config.yaml</strong> 檔中。</p>
+
+<pre><code class="language-python">zoom_yaml_file = # 每個 zoom 資料夾位置下都有一個 _config.yaml 檔案
+with open(zoom_yaml_file, 'w') as file:
+    yaml_obj = {'zoom_max_count': max_count}
+    yaml.dump(yaml_obj, file, default_flow_style=False)
+</code></pre>
+
+<h3 id="產生每個-aggregation-檔案對應的-tile-image">產生每個 Aggregation 檔案對應的 Tile Image</h3>
+
+<p>在相關資料都產生完後，接著我們開始產生所需要使用的 Map tile 圖檔。主要步驟為取出每個 aggregation 的檔案並使用其繪製 png 圖檔並儲存至對應的 folder 中。繪圖方式使用 <code>log</code> 且最大最小值範圍為 0 到 <strong>zoom_max</strong>， 使相同 zoom 中不同 tile 的顯示狀況能盡量一致。</p>
+
+<pre><code class="language-python">import datashader.transfer_functions as tf
+from matplotlib.cm import hot 
+
+# 取出每個 zoom 的最大統計
+max_dict = getMaxCountDict(agg_root)
+agg_path = # aggregation 檔案位置
+
+with gzip.open(agg_path, 'rb') as f:
+    agg = pickle.load(f)
+    zoom, xtile, ytile = getMapTileCoord(agg_path)
+    img = tf.shade(agg, cmap=hot, how='log', span=[0, max_dict[zoom]])
+
+    tile_path = # 影像儲存位置
+    with open(tile_path, mode='wb') as f:
+        f.write(img.to_bytesio(format='png').read())
+</code></pre>
+
+<p>完成後 map tile 會儲存在 <strong>{tile_root}/{z}/{x}/{y}.png</strong> 的位置中，我們可以將檔案放到 server 上讓其他地圖服務使用圖磚資料。這我們使用 GitHub 來存放 map tiles 讓 Folium 直接使用圖檔資料。</p>
+
+<p><figure><img src="/images/nyc_taxi_trip_map/769.png" alt="nyc_taxi_map_tile_11_603_769"></figure>
+<em>位置為 /11/603/769.png 的 map tile（背景為透明）</em></p>
+
+<h3 id="使用-folium-顯示-map-tile">使用 Folium 顯示 map tile</h3>
+
+<p>在前篇已經介紹過如何使用  <a href="https://github.com/python-visualization/folium">Folium</a> 地圖套件顯示地圖資料，因此我們可使用 <strong>Folium</strong> 來加入放在 GitHub 上的圖層資料，並將地圖匯出成 html 檔案以供檢視。</p>
+
+<pre><code class="language-python">import folium
+
+# 使用 Carto Dark 建立底圖
+fmap = folium.Map(location=[40.772562, -73.974039],
+                  tiles='https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
+                  zoom_start=12,
+                  attr='Carto Dark')
+, 
+# 加入放在 GitHub 存放的 map tiles 位置
+fmap.add_tile_layer(tiles='https://raw.githubusercontent.com/yeshuanova/nyc_taxi_trip_map/master/map/tile/{z}/{x}/{y}.png',
+                    attr='NYC taxi pickup Heatmap')
+
+# 儲存地圖為 html 檔，可直接用瀏覽器打開檢視地圖資訊
+fmap.save('map.html')
+
+# 直接在 ipython 中顯示地圖
+fmap
+</code></pre>
+
+<p>最後可得到如下的顯示結果，可看出地圖有正確顯示出上車熱點，</p>
+
+<p><figure><img src="/images/nyc_taxi_trip_map/nyc_taxi_layer_map.jpg" alt="folium_taxi_layer"></figure></p>
+
+<p>若要嘗試操作，也可由<a href="https://yeshuanova.github.io/nyc_taxi_trip_map/map.html">此連結</a>檢視<strong>互動式地圖</strong>。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://www.openstreetmap.org/">OpenStreetMap</a></li>
+<li><a href="https://github.com/mapbox/mercantile">Mercatile</a></li>
+<li><a href="https://github.com/bokeh/datashader">Datashader</a></li>
+<li><a href="https://github.com/dask/dask">Dask</a></li>
+<li><a href="https://anaconda.org/jbednar/nyc_taxi/notebook">NY-Taxi Notebook</a></li>
+<li><a href="https://wiki.openstreetmap.org/wiki/Slippy_Map">OpenStreetMap - Slippy Map</a></li>
+<li><a href="http://www.liedman.net/tiled-maps/">The Hitchhacker’s Guide To Tiled Maps</a></li>
+<li><a href="https://yeshuanova.github.io/blog/posts/python-visulization-folium/">Python 地圖視覺化 - 使用 Folium</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/python/" rel="tag">Python</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/datashader/" rel="tag">datashader</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/mercatile/" rel="tag">mercatile</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/openstreetmap/" rel="tag">OpenStreetMap</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/heatmap/" rel="tag">Heatmap</a></li>
+	</ul>
+</div>
+	</article>
+	
+	
+<nav class="post-nav row clearfix">
+	<div class="post-nav__item post-nav__item--prev mr-col-1-2">
+		<a class="post-nav__link" href="/post/2018/03/learning-commons/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">京都大學的 Learning Commons (學習共享空間) 參訪感想</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next mr-col-1-2">
+		<a class="post-nav__link" href="/post/2018/05/thinkbayes-ch1/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">ThinkBayes 心得筆記 - Chapter 1</p></a>
+	</div>
+</nav>
+	
+</main>
+
+<aside class="sidebar">
+	
+	
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/06/strava-how-to-generate-heatmap/">Strava 建立全球運動熱點圖的方式</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/implement-osm-map-tiles-parallel/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/thinkbayes-ch1/">ThinkBayes 心得筆記 - Chapter 1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/04/implement-osm-map-tiles/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/03/learning-commons/">京都大學的 Learning Commons (學習共享空間) 參訪感想</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/deep-learning">Deep learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/dimension-reduction">Dimension reduction</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/travel">Travel</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/visualization">Visualization</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/cheng-shiang-li" target="_blank">
+				<svg class="widget-social__link-icon icon-linkedin" viewBox="0 0 352 352" width="24" height="24" fill="#fff"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/yeshuanova" target="_blank">
+				<svg class="widget-social__link-icon icon-github" viewBox="0 0 384 374" width="24" height="24" fill="#fff"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:yeshuanova@gmail.com">
+				<svg class="widget-social__link-icon icon-mail" viewBox="0 0 416 288" width="24" height="24" fill="#fff"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>yeshuanova@gmail.com</span>
+			</a>
+		</div>
+	</div>
+</div>
+	
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/autoencoder" title="Autoencoder">Autoencoder</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bayes" title="Bayes">Bayes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;" title="C&#43;&#43;">C&#43;&#43;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/classification" title="Classification">Classification</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/datashader" title="Datashader">Datashader</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heatmap" title="Heatmap">Heatmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ios" title="Ios">Ios</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iris" title="Iris">Iris</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/isomap" title="Isomap">Isomap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/japan" title="Japan">Japan</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kaggle" title="Kaggle">Kaggle</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mds" title="Mds">Mds</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mercatile" title="Mercatile">Mercatile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mobilenet" title="Mobilenet">Mobilenet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neural-network" title="Neural network">Neural network</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openstreetmap" title="Openstreetmap">Openstreetmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/starcraft" title="Starcraft">Starcraft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/strava" title="Strava">Strava</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tensorflow" title="Tensorflow">Tensorflow</a>
+	</div>
+</div>
+</aside>
+	</div>
+		<footer class="footer">
+			<div class="container container-inner">
+				<div class="footer__copyright">&copy; 2018 Xeno Universe. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+			</div>
+		</footer>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+
+</body>
+</html>

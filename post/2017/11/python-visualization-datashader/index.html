@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Python 資料視覺化 - 使用 datashader</title>
+	<meta name="description" content="Python visualization with datashader">
+	<meta name="generator" content="Hugo 0.42.2" />
+	<meta property="og:title" content="Python 資料視覺化 - 使用 datashader" />
+<meta property="og:description" content="Python visualization with datashader" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2017/11/python-visualization-datashader/" />
+
+
+
+<meta property="article:published_time" content="2017-11-20T14:00:00&#43;08:00"/>
+
+<meta property="article:modified_time" content="2017-11-20T14:00:00&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python 資料視覺化 - 使用 datashader"/>
+<meta name="twitter:description" content="Python visualization with datashader"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<script type="text/javascript" src="/js/scripts.js"></script>
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+</head>
+<body class="body body-right-sidebar">
+	<div class="container container-outer">
+		<header class="header">
+			<div class="container container-inner">
+				<div class="logo" role="banner">
+					<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+						<div class="logo__title">Xeno Universe</div>
+						<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+					</a>
+				</div>
+			</div>
+			
+<nav class="menu">
+	<ul class="menu__list">
+		<li class="menu__item"><a class="menu__link" href="/about/">ABOUT</a></li>
+	</ul>
+</nav>
+
+		</header>
+		<div class="wrapper clearfix">
+
+<main class="main content">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Python 資料視覺化 - 使用 datashader</h1><div class="post__meta meta">
+<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+<time class="post__meta-date meta-date" datetime="2017-11-20T14:00:00">2017-11-20</time>
+<span class="post__meta-categories meta-categories">
+	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/visualization" rel="category">Visualization</a></span>
+</span></div>
+		</header><div class="post__content clearfix">
+			<p>在做資料視覺化時，經常會遇到因資料量過大而無法簡單進行處理，或是執行速度過慢的問題。本文章將介紹一套<strong>Python</strong>上的資料視覺化工具<strong>datashader</strong>，能將數億個點的大資料快速生成視覺化圖形，並以<strong>New York Taxi Trip</strong>資料集為範例說明如何使用<strong>datashader</strong>繪製乘車位置分佈圖。</p>
+
+<p></p>
+
+<h2 id="datashader">datashader</h2>
+
+<p><a href="https://github.com/bokeh/datashader">datashader</a>是Python上一套基於<a href="https://bokeh.pydata.org/en/latest/">Bokeh</a>的圖形繪製Pipeline，並使用了<a href="https://numba.pydata.org/">numba</a>套件以加速繪製效率，因此可以快速將大量資料轉換成視覺化圖形。</p>
+
+<p><strong>datashader</strong> 繪製圖片的過程主要可分為三個步驟:</p>
+
+<ul>
+<li><strong>Projection</strong> - 選擇所要處理的資料，並設定繪製的圖片大小與資料範圍等。</li>
+<li><strong>Aggregation</strong> - 統計原始資料並計算所對應的Grid性質。</li>
+<li><strong>Transformation</strong> - 將統計完成後的資料以圖片方式呈現出來。</li>
+</ul>
+
+<p>下圖為<strong>datashader</strong>的<a href="https://anaconda.org/jbednar/pipeline/notebook">Pipeline</a>）</p>
+
+<p><img src="/images/python-datashader/ds-pipeline.png" alt="pipeline" /></p>
+
+<h3 id="安裝-datashader">安裝 datashader</h3>
+
+<p>如果有安裝<a href="https://anaconda.org/">Anaconda</a>或<a href="https://conda.io/miniconda.html">Miniconda</a>，可直接透過<code>conda</code>來安裝<code>datashader</code>套件</p>
+
+<pre><code class="language-bash">conda install -c bokeh datashader
+</code></pre>
+
+<p>或是直接從<strong>GitHub</strong>上安裝最新版本的<code>datashader</code>套件</p>
+
+<pre><code class="language-bash">conda remove --force datashader
+git clone https://github.com/bokeh/datashader.git
+cd datashader
+pip install -e .
+</code></pre>
+
+<h2 id="dask">dask</h2>
+
+<p>一般在<strong>Python</strong>上處理資料時會使用<a href="http://pandas.pydata.org/">Pandas</a>這個套件來讀取資料並進行處理。但<strong>Pandas</strong>在使用時會先將資料完整讀取到記憶體內，當資料量非常巨大時常常會遇到<strong>out-of-memory</strong>問題。此外<strong>Pandas</strong>也因只能使用到單核心無法並行處理進而影響到效能。</p>
+
+<p>因此若有上敘資源問題時，可以使用<a href="https://github.com/dask/dask">dask</a>取代<strong>Pandas</strong>進行資料處理。<strong>Dask</strong>支援資料平行處理，將資料分成小部分執行，可避免出現記憶體不足的問題。此外因<strong>dask</strong>使用<strong>Pandas</strong>相似的使用者介面，熟悉<strong>Pandas</strong>的人很能很輕易熟悉<strong>dask</strong>的使用方式。</p>
+
+<h3 id="安裝-dask">安裝 dask</h3>
+
+<p>與<strong>datashader</strong>相同，<strong>dask</strong>也可透過<code>conda</code>安裝</p>
+
+<pre><code class="language-bash">conda install dask
+</code></pre>
+
+<p>或是由<code>GitHub</code>上下載安裝最新版本手動安裝</p>
+
+<pre><code class="language-bash">git clone https://github.com/dask/dask.git
+cd dask
+python setup.py install
+</code></pre>
+
+<h2 id="範例">範例</h2>
+
+<h3 id="dataset">Dataset</h3>
+
+<p>以下將使用Kaggle上的 <a href="https://www.kaggle.com/kentonnlp/2014-new-york-city-taxi-trips">2014 NYC Taxi Trip Dataset</a>來當作展示展示範例。該資料集為2014年紐約的計程車乘車資訊，包含上下車時間與<strong>GPS</strong>座標等，在本範例中只使用乘客上車時的資料來展示。</p>
+
+<blockquote>
+<p>若要從直接從 Linux terminal 上下載 Kaggle 上的檔案需附帶瀏覽器的Cookie資訊，方法可參照<a href="https://npatta01.github.io/2015/07/29/kaggle_getting_data">相關連結</a></p>
+</blockquote>
+
+<h3 id="preprocessing">Preprocessing</h3>
+
+<p>由於GPS座標為對應球面的座標系統，若要繪製二維平面時需將<strong>GPS</strong>轉換為<strong>2D</strong>平面座標。因此須先做資料前處理使資料能正確呈現。可以使用<code>datashader.utils.lnglat_to_meters()</code>函數將<strong>GPS</strong>座標轉換為<a href="https://en.wikipedia.org/wiki/Web_Mercator">Web Mercator</a>格式。如下列範例</p>
+
+<pre><code class="language-python">import datashader
+
+# New York GPS coordinator
+x, y = datashader.utils.lnglat_to_meters(longitude=-74.0059, latitude=40.7127)
+</code></pre>
+
+<p>執行後可得到 <code>x = -8238299.103697925</code> 與 <code>y = 4970056.8929846436</code> 的結果。分別代表由<strong>Greenwich</strong>往東以及由<strong>Equator(赤道)</strong>往北的距離(公尺)。以此方式將計程車資料集中的 <code>pickup_longitude</code> 與 <code>pickup_latitude</code> 欄位轉換為 <code>pickup_x</code> 與 <code>pickup_y</code> 欄位，並與 <code>pickup_datetime</code> 欄位一起另存為 <code>nyc_taxi_data_2014_pickup.csv</code> 檔案，以方便的之後的資料繪製。</p>
+
+<h3 id="code">Code</h3>
+
+<p>這裡我們透過 Pandas 套件讀取 CSV 檔為 Dataframe</p>
+
+<pre><code class="language-python"># 匯入所需 Packages
+import dask.dataframe as dd
+import dask.diagnostics as diag
+import datashader as ds
+import datashader.transfer_functions as ds_tf
+import numpy as np
+from datashader.utils import export_image
+from matplotlib.cm import hot
+
+# 設定 NY taxi dataset 路徑
+dataset = '{DATASET_FOLDER_PATH}/nyc_taxi_data_2014_pickup.csv'
+
+# 設定讀取的檔案
+df = dd.io.csv.read_csv(dataset)
+</code></pre>
+
+<p>使用<code>df.head(n=3)</code>可得到下列<code>dataframe</code>資料欄位</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">pickup_datetime</th>
+<th align="center">pickup_x</th>
+<th align="center">pickup_y</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td align="center">2014-01-09 20:45:25</td>
+<td align="center">-8237059.5</td>
+<td align="center">4973602.5</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td align="center">2014-01-09 20:46:12</td>
+<td align="center">-8235682.0</td>
+<td align="center">4978972.5</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td align="center">2014-01-09 20:44:47</td>
+<td align="center">-8236370.0</td>
+<td align="center">4973980.5</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-python"># 依照設定範圍，計算圖片寬度對應的高度
+def calcCanvasHeightPixel(fix_width, x_bound, y_bound):
+    x_coff = abs(x_bound[0] - x_bound[1])
+    y_coff = abs(y_bound[0] - y_bound[1])
+    return int(fix_width * y_coff / x_coff)
+
+# 參數設定
+bound = ds.utils.lnglat_to_meters([-74.056273, -73.735558], [40.686604, 40.916272])
+x_bound = tuple(bound[0])
+y_bound = tuple(bound[1])
+
+# 計算 Canvas 的 Pixel 寬高
+width = 800
+height = calcCanvasHeightPixel(fix_width=width, x_bound=x_bound, y_bound=y_bound)
+
+# 建立 Canvas 物件
+canvas = ds.Canvas(plot_width=width, plot_height=height, x_range=x_bound, y_range=y_bound)
+
+## 使用 dataframe 資料建立 Aggregation 物件，並使用 ProgressBar 顯示處理進度。
+with diag.ProgressBar():
+    agg = canvas.points(df, 'pickup_x', 'pickup_y')
+
+# 建立影像物件並設定背景為黑色
+img = ds_tf.shade(agg, cmap=hot)
+img = ds_tf.set_background(img, color='black')
+
+# 儲存為 png file
+export_image(img=img, filename='nyc_taxi_2014_pickup', fmt='.png')
+</code></pre>
+
+<p>開啟儲存的<strong>nyc_taxi_2014_pickup.png</strong>圖片檔可得到以下結果</p>
+
+<p><img src="/images/python-datashader/nyc_taxi_2014_pickup.png" alt="pickup" />
+<em>New York City 2014年乘車地點分佈圖</em></p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="http://dask.pydata.org/en/latest/">dask</a></li>
+<li><a href="https://bokeh.pydata.org/en/latest/">bokeh</a></li>
+<li><a href="https://github.com/bokeh/datashader">datashader</a></li>
+<li><a href="https://anaconda.org/jbednar/pipeline/notebook">datashader - pipeline</a></li>
+<li><a href="https://www.kaggle.com/kentonnlp/2014-new-york-city-taxi-trips">Kaggle - 2014 NYC Taxi Trip</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/python/" rel="tag">Python</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/datashader/" rel="tag">datashader</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/kaggle/" rel="tag">kaggle</a></li>
+	</ul>
+</div>
+	</article>
+	
+	
+<nav class="post-nav row clearfix">
+	<div class="post-nav__item post-nav__item--prev mr-col-1-2">
+		<a class="post-nav__link" href="/post/2017/10/python-visulization-folium/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Python 地圖視覺化 - 使用 Folium</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next mr-col-1-2">
+		<a class="post-nav__link" href="/post/2018/01/autoencoder-tutorial/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Autoencoder 簡介與應用範例</p></a>
+	</div>
+</nav>
+	
+</main>
+
+<aside class="sidebar">
+	
+	
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/06/strava-how-to-generate-heatmap/">Strava 建立全球運動熱點圖的方式</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/implement-osm-map-tiles-parallel/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/05/thinkbayes-ch1/">ThinkBayes 心得筆記 - Chapter 1</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/04/implement-osm-map-tiles/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/03/learning-commons/">京都大學的 Learning Commons (學習共享空間) 參訪感想</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/deep-learning">Deep learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/dimension-reduction">Dimension reduction</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/travel">Travel</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/visualization">Visualization</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/cheng-shiang-li" target="_blank">
+				<svg class="widget-social__link-icon icon-linkedin" viewBox="0 0 352 352" width="24" height="24" fill="#fff"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/yeshuanova" target="_blank">
+				<svg class="widget-social__link-icon icon-github" viewBox="0 0 384 374" width="24" height="24" fill="#fff"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:yeshuanova@gmail.com">
+				<svg class="widget-social__link-icon icon-mail" viewBox="0 0 416 288" width="24" height="24" fill="#fff"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>yeshuanova@gmail.com</span>
+			</a>
+		</div>
+	</div>
+</div>
+	
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/autoencoder" title="Autoencoder">Autoencoder</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bayes" title="Bayes">Bayes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;" title="C&#43;&#43;">C&#43;&#43;</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/classification" title="Classification">Classification</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/datashader" title="Datashader">Datashader</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/heatmap" title="Heatmap">Heatmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ios" title="Ios">Ios</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iris" title="Iris">Iris</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/isomap" title="Isomap">Isomap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/japan" title="Japan">Japan</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kaggle" title="Kaggle">Kaggle</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mds" title="Mds">Mds</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mercatile" title="Mercatile">Mercatile</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mobilenet" title="Mobilenet">Mobilenet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/neural-network" title="Neural network">Neural network</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openstreetmap" title="Openstreetmap">Openstreetmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/probability" title="Probability">Probability</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python" title="Python">Python</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/starcraft" title="Starcraft">Starcraft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/strava" title="Strava">Strava</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tensorflow" title="Tensorflow">Tensorflow</a>
+	</div>
+</div>
+</aside>
+	</div>
+		<footer class="footer">
+			<div class="container container-inner">
+				<div class="footer__copyright">&copy; 2018 Xeno Universe. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+			</div>
+		</footer>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+
+</body>
+</html>

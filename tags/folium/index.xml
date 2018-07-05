@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Folium on Xeno Universe</title>
+    <link>/tags/folium/</link>
+    <description>Recent content in Folium on Xeno Universe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Oct 2017 08:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/folium/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python 地圖視覺化 - 使用 Folium</title>
+      <link>/post/2017/10/python-visulization-folium/</link>
+      <pubDate>Sun, 08 Oct 2017 08:00:00 +0800</pubDate>
+      
+      <guid>/post/2017/10/python-visulization-folium/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/python-visualization/folium&#34;&gt;Folium&lt;/a&gt;是一套Python上的地圖視覺化工具。透過&lt;a href=&#34;http://leafletjs.com/&#34;&gt;Leaflet&lt;/a&gt;這個JavaScript Library以及&lt;a href=&#34;https://www.openstreetmap.org/&#34;&gt;OpenStreetMap&lt;/a&gt;地圖服務，可在Jupyter Notebook上實現互動式地圖繪製。本篇將簡單介紹&lt;strong&gt;Folium&lt;/strong&gt;的使用方式以及繪製效果。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

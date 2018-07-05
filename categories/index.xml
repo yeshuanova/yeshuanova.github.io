@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Xeno Universe</title>
+    <link>/categories/</link>
+    <description>Recent content in Categories on Xeno Universe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deep Learning</title>
+      <link>/categories/deep-learning/</link>
+      <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
+      
+      <guid>/categories/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dimension Reduction</title>
+      <link>/categories/dimension-reduction/</link>
+      <pubDate>Sun, 13 Aug 2017 14:00:00 +0800</pubDate>
+      
+      <guid>/categories/dimension-reduction/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>/categories/machine-learning/</link>
+      <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
+      
+      <guid>/categories/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mathematics</title>
+      <link>/categories/mathematics/</link>
+      <pubDate>Wed, 16 May 2018 15:00:00 +0800</pubDate>
+      
+      <guid>/categories/mathematics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mobile Device</title>
+      <link>/categories/mobile-device/</link>
+      <pubDate>Mon, 15 Jan 2018 12:00:00 +0800</pubDate>
+      
+      <guid>/categories/mobile-device/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Programming</title>
+      <link>/categories/programming/</link>
+      <pubDate>Sat, 03 Feb 2018 16:00:00 +0800</pubDate>
+      
+      <guid>/categories/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Travel</title>
+      <link>/categories/travel/</link>
+      <pubDate>Mon, 05 Mar 2018 16:00:00 +0800</pubDate>
+      
+      <guid>/categories/travel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Visualization</title>
+      <link>/categories/visualization/</link>
+      <pubDate>Sat, 02 Jun 2018 20:00:00 +0800</pubDate>
+      
+      <guid>/categories/visualization/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

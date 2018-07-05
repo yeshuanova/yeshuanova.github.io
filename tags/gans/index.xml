@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gans on Xeno Universe</title>
+    <link>/tags/gans/</link>
+    <description>Recent content in Gans on Xeno Universe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Jul 2017 14:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/gans/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Generative Adversarial Networks Tutorial</title>
+      <link>/post/2017/07/gans-tutorial/</link>
+      <pubDate>Wed, 26 Jul 2017 14:00:00 +0800</pubDate>
+      
+      <guid>/post/2017/07/gans-tutorial/</guid>
+      <description>&lt;p&gt;Generative Adversarial Networks（生成式對抗網路，以下簡稱GANs）是近年來備受矚目的機器學習框架。
+自從&lt;a href=&#34;https://en.wikipedia.org/wiki/Ian_Goodfellow&#34;&gt;Ian Goodfellow&lt;/a&gt;於2014年提出GANs的概念後，
+許多研究人員與企業如Google，Facebook與Apple等代表性公司均相繼投入了GANs的應用研究與發展，
+並產生了許多衍生模型。
+Machine Learning界大師&lt;a href=&#34;http://yann.lecun.com/&#34;&gt;Yann LeCun&lt;/a&gt;也稱GANs為近十年來最有趣的想法。
+此篇文章將簡單介紹Ian Goodfellow所提出的最原始GANs概念，以及其之後的衍生應用。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

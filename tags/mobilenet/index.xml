@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mobilenet on Xeno Universe</title>
+    <link>/tags/mobilenet/</link>
+    <description>Recent content in Mobilenet on Xeno Universe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 09 Feb 2018 15:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/mobilenet/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>高效卷積計算結構 - Depthwise Separable Convolution</title>
+      <link>/post/2018/02/depthwise-separable-convolution/</link>
+      <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/02/depthwise-separable-convolution/</guid>
+      <description>&lt;p&gt;近年來因與計算機的計算能力大幅上升，GPGPU 的支援等，使深度神經網路技術取得了非常好的效果發展。但所衍生的高計算量卻讓行動裝置以及嵌入式系統等計算能力有限的平台在執行時遇到效能的限制。因此 Google 在 MobileNets 模型中使用了新的卷積計算模型 depthwise separable convolution 來減少所需的計量。本篇將從基礎類神經網路開始介紹，說明卷積神經網路的架構與計算成本問題，並解說 depthwise separable convolution 的技術內容與計算成本。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

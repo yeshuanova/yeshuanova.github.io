@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/post/2018/06/strava-how-to-generate-heatmap/</loc>
+    <lastmod>2018-06-02T20:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2018/05/implement-osm-map-tiles-parallel/</loc>
+    <lastmod>2018-05-24T18:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2018/05/thinkbayes-ch1/</loc>
+    <lastmod>2018-05-16T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2018/04/implement-osm-map-tiles/</loc>
+    <lastmod>2018-04-24T18:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2018/03/learning-commons/</loc>
+    <lastmod>2018-03-05T16:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2018/02/depthwise-separable-convolution/</loc>
+    <lastmod>2018-02-09T15:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2018/02/modern-cpp-changing/</loc>
+    <lastmod>2018-02-03T16:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2018/01/tensorflow-lite-in-ios-device/</loc>
+    <lastmod>2018-01-15T12:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2018/01/autoencoder-tutorial/</loc>
+    <lastmod>2018-01-04T18:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2017/11/python-visualization-datashader/</loc>
+    <lastmod>2017-11-20T14:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2017/10/python-visulization-folium/</loc>
+    <lastmod>2017-10-08T08:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2017/09/from-go-to-sc2-part-1/</loc>
+    <lastmod>2017-09-05T14:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2017/08/isomap/</loc>
+    <lastmod>2017-08-13T14:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2017/08/multidimensional-scaling/</loc>
+    <lastmod>2017-08-10T20:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2017/08/dimension-reduction-tutorial/</loc>
+    <lastmod>2017-08-07T20:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2017/07/gans-tutorial/</loc>
+    <lastmod>2017-07-26T14:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/autoencoder/</loc>
+    <lastmod>2018-01-04T18:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/bayes/</loc>
+    <lastmod>2018-05-16T15:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/c&#43;&#43;/</loc>
+    <lastmod>2018-02-03T16:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/classification/</loc>
+    <lastmod>2018-01-15T12:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/datashader/</loc>
+    <lastmod>2018-05-24T18:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/deep-learning/</loc>
+    <lastmod>2018-02-09T15:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/deepmind/</loc>
+    <lastmod>2017-09-05T14:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/dimension-reduction/</loc>
+    <lastmod>2017-08-13T14:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/folium/</loc>
+    <lastmod>2017-10-08T08:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/gans/</loc>
+    <lastmod>2017-07-26T14:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/go/</loc>
+    <lastmod>2017-09-05T14:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/heatmap/</loc>
+    <lastmod>2018-06-02T20:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/ios/</loc>
+    <lastmod>2018-01-15T12:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/iris/</loc>
+    <lastmod>2017-08-07T20:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/isomap/</loc>
+    <lastmod>2017-08-13T14:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/japan/</loc>
+    <lastmod>2018-03-05T16:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/kaggle/</loc>
+    <lastmod>2017-11-20T14:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/machine-learning/</loc>
+    <lastmod>2018-02-09T15:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/mathematics/</loc>
+    <lastmod>2018-05-16T15:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/mds/</loc>
+    <lastmod>2017-08-10T20:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/mercatile/</loc>
+    <lastmod>2018-05-24T18:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/mobile-device/</loc>
+    <lastmod>2018-01-15T12:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/mobilenet/</loc>
+    <lastmod>2018-02-09T15:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/neural-network/</loc>
+    <lastmod>2018-02-09T15:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/openstreetmap/</loc>
+    <lastmod>2018-05-24T18:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2018-06-02T20:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/probability/</loc>
+    <lastmod>2018-05-16T15:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/programming/</loc>
+    <lastmod>2018-02-03T16:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/project/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/python/</loc>
+    <lastmod>2018-05-24T18:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/starcraft/</loc>
+    <lastmod>2017-09-05T14:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/strava/</loc>
+    <lastmod>2018-06-02T20:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2018-01-04T18:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tensorflow/</loc>
+    <lastmod>2018-01-15T12:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/travel/</loc>
+    <lastmod>2018-03-05T16:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/visualization/</loc>
+    <lastmod>2018-06-02T20:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2018-06-02T20:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

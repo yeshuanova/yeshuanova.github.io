@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Xeno Universe</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on Xeno Universe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Jun 2018 20:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Strava 建立全球運動熱點圖的方式</title>
+      <link>/post/2018/06/strava-how-to-generate-heatmap/</link>
+      <pubDate>Sat, 02 Jun 2018 20:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/06/strava-how-to-generate-heatmap/</guid>
+      <description>&lt;p&gt;因之前研究了有關 map tile 的建立的方式，因此進一步了解 Strava 如何建立熱點圖的方式，因此在本篇中在這篇文章 &lt;a href=&#34;https://medium.com/strava-engineering/the-global-heatmap-now-6x-hotter-23fc01d301de&#34;&gt;Building the Global Heatmap&lt;/a&gt; 中 Strava 官方說明了建立 &lt;a href=&#34;https://www.strava.com/heatmap&#34;&gt;Strava Global Heatmap&lt;/a&gt; 的過程，在看完後覺得很有趣因此分享一下心得。本篇將專注在建立熱度圖的演算法上，並不涉及如何在 Cluster 上大量運算的方法。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</title>
+      <link>/post/2018/05/implement-osm-map-tiles-parallel/</link>
+      <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/05/implement-osm-map-tiles-parallel/</guid>
+      <description>&lt;p&gt;在&lt;a href=&#34;https://yeshuanova.github.io/blog/posts/implement-OSM-map-tiles/&#34;&gt;上一篇文章&lt;/a&gt;中已展示過了已展示如何從 NYC taxi trip dataset 中建立 map tiles 的基本方式。本篇將進一步改進該演算法，加速產生速度以及大檔案方式。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ThinkBayes 心得筆記 - Chapter 1</title>
+      <link>/post/2018/05/thinkbayes-ch1/</link>
+      <pubDate>Wed, 16 May 2018 15:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/05/thinkbayes-ch1/</guid>
+      <description>&lt;p&gt;本筆記主要紀錄閱讀 &lt;a href=&#34;http://greenteapress.com/wp/think-bayes/&#34;&gt;ThinkBayes&lt;/a&gt; 一書內各章節的心得筆記，提供往後參考與複習。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</title>
+      <link>/post/2018/04/implement-osm-map-tiles/</link>
+      <pubDate>Tue, 24 Apr 2018 18:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/04/implement-osm-map-tiles/</guid>
+      <description>&lt;p&gt;在先前的文章 &lt;a href=&#34;https://yeshuanova.github.io/blog/posts/python-visualization-datashader/&#34;&gt;Python 地圖視覺化 - 使用 Folium&lt;/a&gt; 中，我們已經介紹過如何使用 Python 與 datashader 套件將 GPS 資料繪製成圖片。本篇文章將進一步示範如何使用 NYC Taxi Trip Data 來建立 New York City 的計程車上車位置的 Heatmap，並把繪製出的 map tile 資料與 &lt;a href=&#34;https://github.com/python-visualization/folium&#34;&gt;Folium&lt;/a&gt; 地圖元件整合以達到互動的效果。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>京都大學的 Learning Commons (學習共享空間) 參訪感想</title>
+      <link>/post/2018/03/learning-commons/</link>
+      <pubDate>Mon, 05 Mar 2018 16:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/03/learning-commons/</guid>
+      <description>&lt;p&gt;這次到京都自助旅行時因行程有經過&lt;a href=&#34;http://www.kyoto-u.ac.jp/zh-tw&#34;&gt;京都大學&lt;/a&gt;，因此特別抽空參觀了校園以及圖書館，而在其中最讓我覺得有趣的是圖書館中的 Learning Commons（ラーニング・コモンズ，學習共享空間）的概念與功能。因此整理了一些 Learning Commons 的相關資料以及將參訪心得記錄下來。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>高效卷積計算結構 - Depthwise Separable Convolution</title>
+      <link>/post/2018/02/depthwise-separable-convolution/</link>
+      <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/02/depthwise-separable-convolution/</guid>
+      <description>&lt;p&gt;近年來因與計算機的計算能力大幅上升，GPGPU 的支援等，使深度神經網路技術取得了非常好的效果發展。但所衍生的高計算量卻讓行動裝置以及嵌入式系統等計算能力有限的平台在執行時遇到效能的限制。因此 Google 在 MobileNets 模型中使用了新的卷積計算模型 depthwise separable convolution 來減少所需的計量。本篇將從基礎類神經網路開始介紹，說明卷積神經網路的架構與計算成本問題，並解說 depthwise separable convolution 的技術內容與計算成本。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Modern C&#43;&#43; changing</title>
+      <link>/post/2018/02/modern-cpp-changing/</link>
+      <pubDate>Sat, 03 Feb 2018 16:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/02/modern-cpp-changing/</guid>
+      <description>&lt;p&gt;C++ 標準自從建立後到現在已經經過了許多次改版，其中最重要的版本除了 C++98 外，當在2011 年正式發佈的 C++11 標準了。該標準加入了許多新特性，不但讓程式撰寫更為精簡，在執行時效率也更加上升，可說是之後 C++14 與 C++17 等標準的基石。本篇文章簡單整理了一些關於 C++11 重要標準變更與概念，若要詳細了解相關內容以及 C++&lt;sup&gt;14&lt;/sup&gt;&amp;frasl;&lt;sub&gt;17&lt;/sub&gt; 的相關變更可參考 &lt;a href=&#34;https://en.wikipedia.org/wiki/C%2B%2B11&#34;&gt;Wikipedia&lt;/a&gt; 等網站。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 TensorFlow Lite 在 iOS 裝置上進行圖片分類</title>
+      <link>/post/2018/01/tensorflow-lite-in-ios-device/</link>
+      <pubDate>Mon, 15 Jan 2018 12:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/01/tensorflow-lite-in-ios-device/</guid>
+      <description>&lt;p&gt;近幾年來由 Google 推出的 TensorFlow 在深度學習等領域有著大量的發展，但也因為由 TensorFlow 所訓練出的 Model 容量大且本身執行時也會佔用較多資源，並不適合在行動裝置上執行。因此 Google 推出了 TensorFlow Lite 讓在行動裝置上執行 TensorFlow  更為方便。本文章將簡單介紹如何在 iOS 裝置上執行 TensorFlow Lite 並進行圖像分類的方法。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Autoencoder 簡介與應用範例</title>
+      <link>/post/2018/01/autoencoder-tutorial/</link>
+      <pubDate>Thu, 04 Jan 2018 18:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/01/autoencoder-tutorial/</guid>
+      <description>&lt;p&gt;Autoencoder(自動編碼器)是一種是透過 &lt;a href=&#34;https://en.wikipedia.org/wiki/Artificial_neural_network&#34;&gt;Artificial Neural Network&lt;/a&gt;，來進行資料自動學習與編碼的技術。本文將使用機器學習函式庫 &lt;a href=&#34;https://keras.io/&#34;&gt;Keras&lt;/a&gt; 建立 Autoencoder Model，並使用 MNIST Datatset 來展示兩個 Autoencoder 範例 - &lt;strong&gt;資料降維回復&lt;/strong&gt;與&lt;strong&gt;去雜訊(Denoising)&lt;/strong&gt;的Model。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python 資料視覺化 - 使用 datashader</title>
+      <link>/post/2017/11/python-visualization-datashader/</link>
+      <pubDate>Mon, 20 Nov 2017 14:00:00 +0800</pubDate>
+      
+      <guid>/post/2017/11/python-visualization-datashader/</guid>
+      <description>&lt;p&gt;在做資料視覺化時，經常會遇到因資料量過大而無法簡單進行處理，或是執行速度過慢的問題。本文章將介紹一套&lt;strong&gt;Python&lt;/strong&gt;上的資料視覺化工具&lt;strong&gt;datashader&lt;/strong&gt;，能將數億個點的大資料快速生成視覺化圖形，並以&lt;strong&gt;New York Taxi Trip&lt;/strong&gt;資料集為範例說明如何使用&lt;strong&gt;datashader&lt;/strong&gt;繪製乘車位置分佈圖。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python 地圖視覺化 - 使用 Folium</title>
+      <link>/post/2017/10/python-visulization-folium/</link>
+      <pubDate>Sun, 08 Oct 2017 08:00:00 +0800</pubDate>
+      
+      <guid>/post/2017/10/python-visulization-folium/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/python-visualization/folium&#34;&gt;Folium&lt;/a&gt;是一套Python上的地圖視覺化工具。透過&lt;a href=&#34;http://leafletjs.com/&#34;&gt;Leaflet&lt;/a&gt;這個JavaScript Library以及&lt;a href=&#34;https://www.openstreetmap.org/&#34;&gt;OpenStreetMap&lt;/a&gt;地圖服務，可在Jupyter Notebook上實現互動式地圖繪製。本篇將簡單介紹&lt;strong&gt;Folium&lt;/strong&gt;的使用方式以及繪製效果。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)</title>
+      <link>/post/2017/09/from-go-to-sc2-part-1/</link>
+      <pubDate>Tue, 05 Sep 2017 14:00:00 +0800</pubDate>
+      
+      <guid>/post/2017/09/from-go-to-sc2-part-1/</guid>
+      <description>&lt;p&gt;從AI黎明期開始，如&lt;a href=&#34;https://en.wikipedia.org/wiki/Chess&#34;&gt;西洋棋(chess)&lt;/a&gt;，&lt;a href=&#34;https://en.wikipedia.org/wiki/Go_(game)&#34;&gt;圍棋(Go)&lt;/a&gt;或&lt;a href=&#34;https://en.wikipedia.org/wiki/Xiangqi&#34;&gt;象棋&lt;/a&gt;等棋類遊戲一直是人工智慧的研究與測試領域。但由於早期的計算機的能力限制以及演算法的發展，較為複雜的棋類遊戲仍無法打敗世界級水準的棋手。直到1997年時IBM的&lt;a href=&#34;https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)&#34;&gt;深藍(Deep Blue)&lt;/a&gt;在西洋棋比賽中打敗了世界棋王&lt;a href=&#34;https://en.wikipedia.org/wiki/Garry_Kasparov&#34;&gt;Garry Kasparov&lt;/a&gt;，展現了電腦也能夠在西洋棋上打敗人類世界頂尖棋手的實力。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Isomap - Isometric Mapping</title>
+      <link>/post/2017/08/isomap/</link>
+      <pubDate>Sun, 13 Aug 2017 14:00:00 +0800</pubDate>
+      
+      <guid>/post/2017/08/isomap/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Isomap&#34;&gt;&lt;strong&gt;Isomap&lt;/strong&gt;&lt;/a&gt;，全名為&lt;strong&gt;Isometric Mapping&lt;/strong&gt;，
+是一種基於Classical MDS所產生的&lt;strong&gt;非線性降維演算法&lt;/strong&gt;（Nonlinear Dimensional Reduction）。
+一般來說，如果資料有著線性分佈的性質，如PCA與MDS這類計算整體資料（Global）之間的關係後再進行降維的線性演算法，
+都會有不錯的效果。但如果資料本身為非線性分佈，古典PCA與MDS則時常無法在降維後正確展現出資料間的關係。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Multidimensional Scaling</title>
+      <link>/post/2017/08/multidimensional-scaling/</link>
+      <pubDate>Thu, 10 Aug 2017 20:00:00 +0800</pubDate>
+      
+      <guid>/post/2017/08/multidimensional-scaling/</guid>
+      <description>&lt;p&gt;在&lt;a href=&#34;{{ site.baseurl }}/posts/dimension-reduction-tutorial/&#34;&gt;之前&lt;/a&gt;已經介紹過資料降維的基礎概念
+以及使用進行PCA示範，因此這篇要來談的是另一種降維方式
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Multidimensional_scaling&#34;&gt;MDS&lt;/a&gt;，並敘述相關理論推導。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Dimension Reduction</title>
+      <link>/post/2017/08/dimension-reduction-tutorial/</link>
+      <pubDate>Mon, 07 Aug 2017 20:00:00 +0800</pubDate>
+      
+      <guid>/post/2017/08/dimension-reduction-tutorial/</guid>
+      <description>&lt;p&gt;在現實生活中，一筆資料可能會有許多欄位，如交易資料會有交易日期，時間，數量等欄位，而天氣資料會有氣溫，氣壓，濕度等，視資料屬性而定還會有超高維度資料存在（如100x100大小的灰階圖片資料可以看成是10,000維的資料，若為RGB彩色圖片就是高達30,000維的高維資料）在處理這些高維資料時會需要耗費許多時間與空間進行處理資料，且時常會包含較不重要的維度資料在其中，並增加資料複雜度。因此在進行高維資料處理時，常使用被稱為&lt;strong&gt;資料降維（Dimension Reduction）&lt;/strong&gt;的技術，將高維資料轉換為低維資料，以利後續的資料處理。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generative Adversarial Networks Tutorial</title>
+      <link>/post/2017/07/gans-tutorial/</link>
+      <pubDate>Wed, 26 Jul 2017 14:00:00 +0800</pubDate>
+      
+      <guid>/post/2017/07/gans-tutorial/</guid>
+      <description>&lt;p&gt;Generative Adversarial Networks（生成式對抗網路，以下簡稱GANs）是近年來備受矚目的機器學習框架。
+自從&lt;a href=&#34;https://en.wikipedia.org/wiki/Ian_Goodfellow&#34;&gt;Ian Goodfellow&lt;/a&gt;於2014年提出GANs的概念後，
+許多研究人員與企業如Google，Facebook與Apple等代表性公司均相繼投入了GANs的應用研究與發展，
+並產生了許多衍生模型。
+Machine Learning界大師&lt;a href=&#34;http://yann.lecun.com/&#34;&gt;Yann LeCun&lt;/a&gt;也稱GANs為近十年來最有趣的想法。
+此篇文章將簡單介紹Ian Goodfellow所提出的最原始GANs概念，以及其之後的衍生應用。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

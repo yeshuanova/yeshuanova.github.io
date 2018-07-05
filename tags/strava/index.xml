@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Strava on Xeno Universe</title>
+    <link>/tags/strava/</link>
+    <description>Recent content in Strava on Xeno Universe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Jun 2018 20:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/strava/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Strava 建立全球運動熱點圖的方式</title>
+      <link>/post/2018/06/strava-how-to-generate-heatmap/</link>
+      <pubDate>Sat, 02 Jun 2018 20:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/06/strava-how-to-generate-heatmap/</guid>
+      <description>&lt;p&gt;因之前研究了有關 map tile 的建立的方式，因此進一步了解 Strava 如何建立熱點圖的方式，因此在本篇中在這篇文章 &lt;a href=&#34;https://medium.com/strava-engineering/the-global-heatmap-now-6x-hotter-23fc01d301de&#34;&gt;Building the Global Heatmap&lt;/a&gt; 中 Strava 官方說明了建立 &lt;a href=&#34;https://www.strava.com/heatmap&#34;&gt;Strava Global Heatmap&lt;/a&gt; 的過程，在看完後覺得很有趣因此分享一下心得。本篇將專注在建立熱度圖的演算法上，並不涉及如何在 Cluster 上大量運算的方法。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
