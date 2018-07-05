@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -133,30 +133,27 @@ if (!doNotTrack) {
 <h2 id="code">Code</h2>
 
 <p>以下使用Scikit-learn中的Isoamp元件示範</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;background-color:#0f140f;font-style:italic"># 匯入相關Package</span>
+<span style="color:#fb660a;font-weight:bold">import</span> matplotlib.pyplot <span style="color:#fb660a;font-weight:bold">as</span> plt
+<span style="color:#fb660a;font-weight:bold">from</span> sklearn <span style="color:#fb660a;font-weight:bold">import</span> datasets, manifold
+<span style="color:#fb660a;font-weight:bold">from</span> mpl_toolkits.mplot3d <span style="color:#fb660a;font-weight:bold">import</span> Axes3D
+<span style="color:#fb660a;font-weight:bold">from</span> sklearn.manifold <span style="color:#fb660a;font-weight:bold">import</span> Isomap
 
-<pre><code class="language-python"># 匯入相關Package
-import matplotlib.pyplot as plt
-from sklearn import datasets, manifold
-from mpl_toolkits.mplot3d import Axes3D
-from sklearn.manifold import Isomap
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 產生 Swiss Roll data set</span>
+swiss_roll_data = datasets.make_swiss_roll(n_samples=<span style="color:#0086f7;font-weight:bold">500</span>, random_state=<span style="color:#0086f7;font-weight:bold">0</span>)
+data = swiss_roll_data[<span style="color:#0086f7;font-weight:bold">0</span>]
+rel = swiss_roll_data[<span style="color:#0086f7;font-weight:bold">1</span>]
 
-# 產生 Swiss Roll data set
-swiss_roll_data = datasets.make_swiss_roll(n_samples=500, random_state=0)
-data = swiss_roll_data[0]
-rel = swiss_roll_data[1]
-
-## 位置顯示原始資料分佈
+<span style="color:#080;background-color:#0f140f;font-style:italic">## 位置顯示原始資料分佈</span>
 fig = plt.figure()
 ax = Axes3D(fig=fig)
-ax.scatter(xs=data[:,0], ys=data[:,1], zs=data[:,2], c=rel)
-ax.view_init(azim=100, elev=10)
+ax.scatter(xs=data[:,<span style="color:#0086f7;font-weight:bold">0</span>], ys=data[:,<span style="color:#0086f7;font-weight:bold">1</span>], zs=data[:,<span style="color:#0086f7;font-weight:bold">2</span>], c=rel)
+ax.view_init(azim=<span style="color:#0086f7;font-weight:bold">100</span>, elev=<span style="color:#0086f7;font-weight:bold">10</span>)
 
-# 建立 k = 8 的 Isomap Model並將資料
-isomap_model = Isomap(n_components=2, n_neighbors=8)
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 建立 k = 8 的 Isomap Model並將資料</span>
+isomap_model = Isomap(n_components=<span style="color:#0086f7;font-weight:bold">2</span>, n_neighbors=<span style="color:#0086f7;font-weight:bold">8</span>)
 isomap_result = isomap_model.fit_transform(data)
-plt.scatter(x=isomap_result[:, 0], y=isomap_result[:, 1], c=rel)
-</code></pre>
-
+plt.scatter(x=isomap_result[:, <span style="color:#0086f7;font-weight:bold">0</span>], y=isomap_result[:, <span style="color:#0086f7;font-weight:bold">1</span>], c=rel)</code></pre></div>
 <p>在<strong>K=8</strong>時的降維結果如下，</p>
 
 <p><img src="/images/isomap/swiss-roll-isomap-n8.png" alt="isomap-n8" /></p>

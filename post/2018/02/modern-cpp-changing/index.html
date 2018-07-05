@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -92,355 +92,293 @@ if (!doNotTrack) {
 <h4 id="auto-and-decltype">Auto and decltype</h4>
 
 <p>C++11 可使用 <code>Auto</code> 來自動推導宣告的變數型別，藉以減少需要撰寫的資料長度。</p>
-
-<pre><code class="language-c++">// C++03
-float x = 3.0f;
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++03
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">float</span> x = <span style="color:#0086f7;font-weight:bold">3.0f</span>;
 vector&lt;string&gt; vec = vector&lt;string&gt;();
 
-// C++11, 自動型別推導
-auto x_11 = 3.0f;   // x_11 is float type
-auto vec_11 = vector&lt;std::string&gt;();
-</code></pre>
-
+<span style="color:#080;background-color:#0f140f;font-style:italic">// C++11, 自動型別推導
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> x_11 = <span style="color:#0086f7;font-weight:bold">3.0f</span>;   <span style="color:#080;background-color:#0f140f;font-style:italic">// x_11 is float type
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> vec_11 = vector&lt;std::string&gt;();
+</code></pre></div>
 <p>而關鍵字 <code>decltype</code> 可由已存在變數的推導出型別</p>
-
-<pre><code class="language-c++">float f = 30.0f;
-decltype(f) fc; // variable 'fc' is float type
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#cdcaa9;font-weight:bold">float</span> f = <span style="color:#0086f7;font-weight:bold">30.0f</span>;
+<span style="color:#fb660a;font-weight:bold">decltype</span>(f) fc; <span style="color:#080;background-color:#0f140f;font-style:italic">// variable &#39;fc&#39; is float type
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <p>實作上 <code>decltype</code> 常與 <code>auto</code> 並用，如自動推導 template function 的返回型別等。</p>
-
-<pre><code class="language-c++">template&lt;class Fun, class... Args&gt;
-decltype(auto) Example(Fun fun, Args&amp;&amp;... args)
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">template</span>&lt;<span style="color:#fb660a;font-weight:bold">class</span> Fun, <span style="color:#fb660a;font-weight:bold">class</span>... Args&gt;
+<span style="color:#fb660a;font-weight:bold">decltype</span>(<span style="color:#fb660a;font-weight:bold">auto</span>) Example(Fun fun, Args&amp;&amp;... args)
 {
-    return fun(std::forward&lt;Args&gt;(args)...);
+    <span style="color:#fb660a;font-weight:bold">return</span> fun(std::forward&lt;Args&gt;(args)...);
 }
-</code></pre>
-
+</code></pre></div>
 <h4 id="constexpr">Constexpr</h4>
 
 <p>C++11 可透過 constexpr 來限制 function 行為，讓編譯器可以在編譯時提早決定數值。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">template</span>&lt;<span style="color:#cdcaa9;font-weight:bold">int</span> T&gt; <span style="color:#fb660a;font-weight:bold">struct</span> K {};
 
-<pre><code class="language-c++">template&lt;int T&gt; struct K {};
-
-// C++03
-int getValue(int x) { return x + 5;}
-auto ss = K&lt;getValue(3)&gt;(); // Compiler error !
-
-// C++11
-constexpr int getValue(int x) { return x + 5;}
-auto ss = K&lt;getValue(3)&gt;(); // pass !!
-</code></pre>
-
+<span style="color:#080;background-color:#0f140f;font-style:italic">// C++03
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">int</span> <span style="color:#ff0086;font-weight:bold">getValue</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> x) { <span style="color:#fb660a;font-weight:bold">return</span> x + <span style="color:#0086f7;font-weight:bold">5</span>;}
+<span style="color:#fb660a;font-weight:bold">auto</span> ss = K&lt;getValue(<span style="color:#0086f7;font-weight:bold">3</span>)&gt;(); <span style="color:#080;background-color:#0f140f;font-style:italic">// Compiler error !
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
+<span style="color:#080;background-color:#0f140f;font-style:italic">// C++11
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">constexpr</span> <span style="color:#cdcaa9;font-weight:bold">int</span> <span style="color:#ff0086;font-weight:bold">getValue</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> x) { <span style="color:#fb660a;font-weight:bold">return</span> x + <span style="color:#0086f7;font-weight:bold">5</span>;}
+<span style="color:#fb660a;font-weight:bold">auto</span> ss = K&lt;getValue(<span style="color:#0086f7;font-weight:bold">3</span>)&gt;(); <span style="color:#080;background-color:#0f140f;font-style:italic">// pass !!
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <h4 id="null-pointer-constant">Null pointer constant</h4>
 
 <p>過去 C++ 標準並沒有定義空指標的代表關鍵字，而常用的 <code>NULL</code> 表示式也常常只是使用 macro 將 NULL 定義為 <code>0</code> 而已，因此 C++11 在標準中加入了 <code>nullptr</code> 關鍵字來定義空指標。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++03
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">int</span>* p03 = NULL;
 
-<pre><code class="language-c++">// C++03
-int* p03 = NULL;
-
-// C++11
-int* p11 = nullptr
-</code></pre>
-
+<span style="color:#080;background-color:#0f140f;font-style:italic">// C++11
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">int</span>* p11 = <span style="color:#fb660a;font-weight:bold">nullptr</span>
+</code></pre></div>
 <h4 id="rangebased-for-loop">Range-based for loop</h4>
-
-<pre><code class="language-c++">auto vec = vector&lt;int&gt;{1, 2, 3, 4, 5};
-// C++03
-for (int i = 0; i &lt; 5; ++i) {
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">auto</span> vec = vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;{<span style="color:#0086f7;font-weight:bold">1</span>, <span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">3</span>, <span style="color:#0086f7;font-weight:bold">4</span>, <span style="color:#0086f7;font-weight:bold">5</span>};
+<span style="color:#080;background-color:#0f140f;font-style:italic">// C++03
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">for</span> (<span style="color:#cdcaa9;font-weight:bold">int</span> i = <span style="color:#0086f7;font-weight:bold">0</span>; i &lt; <span style="color:#0086f7;font-weight:bold">5</span>; ++i) {
     cout &lt;&lt; array[i] &lt;&lt; endl;
 }
-// C++11
-for (auto&amp; r: vec) {
+<span style="color:#080;background-color:#0f140f;font-style:italic">// C++11
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">for</span> (<span style="color:#fb660a;font-weight:bold">auto</span>&amp; r: vec) {
     cout &lt;&lt; r &lt;&lt; endl;
 }
-</code></pre>
-
+</code></pre></div>
 <h4 id="initializer-lists-and-uniform-initialization">Initializer lists and uniform initialization</h4>
 
 <p>在 C++03 中，如要對 vector 等物件進行初始化時需要另外執行 <code>push_back()</code> 動作。假如想建立一個內部包含 1 ~ 3 的整數數字的 <code>vecotor&lt;int&gt;</code>，需要如下範例建立 vec 物件</p>
-
-<pre><code class="language-c++">// C++03
-vector&lt;int&gt; vec = vector&lt;int&gt;();
-vec.push_back(1);
-vec.push_back(2);
-vec.push_back(3);
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++03
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt; vec = vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;();
+vec.push_back(<span style="color:#0086f7;font-weight:bold">1</span>);
+vec.push_back(<span style="color:#0086f7;font-weight:bold">2</span>);
+vec.push_back(<span style="color:#0086f7;font-weight:bold">3</span>);
+</code></pre></div>
 <p>而在 C++11 中可利用 <code>std::initializer_list</code> ，並透過 <code>{}</code> 達成 uniform initialization。</p>
-
-<pre><code class="language-c++">// C++11, simple !
-auto vec = vector&lt;int&gt;{1, 2, 3};
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++11, simple !
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> vec = vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;{<span style="color:#0086f7;font-weight:bold">1</span>, <span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">3</span>};
+</code></pre></div>
 <p>若資料為嵌套的類型，也可用相同方式初始化</p>
-
-<pre><code class="language-c++">auto vec_in = vector&lt;vector&lt;int&gt;&gt;{ {1}, {2, 3}, {4, 5, 6} };
-auto pairs = vector&lt;tuple&lt;int, float&gt;&gt;{ {1, 1.1f}, {2, 2.2f}, {3, 3.3f} };
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">auto</span> vec_in = vector&lt;vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;&gt;{ {<span style="color:#0086f7;font-weight:bold">1</span>}, {<span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">3</span>}, {<span style="color:#0086f7;font-weight:bold">4</span>, <span style="color:#0086f7;font-weight:bold">5</span>, <span style="color:#0086f7;font-weight:bold">6</span>} };
+<span style="color:#fb660a;font-weight:bold">auto</span> pairs = vector&lt;tuple&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>, <span style="color:#cdcaa9;font-weight:bold">float</span>&gt;&gt;{ {<span style="color:#0086f7;font-weight:bold">1</span>, <span style="color:#0086f7;font-weight:bold">1.1f</span>}, {<span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">2.2f</span>}, {<span style="color:#0086f7;font-weight:bold">3</span>, <span style="color:#0086f7;font-weight:bold">3.3f</span>} };
+</code></pre></div>
 <h4 id="rvalue-reference-右值參照-與-move-semantic">R-Value Reference (右值參照) 與 Move Semantic</h4>
 
 <p>在 C++ 的定義中，左值為可以透過記憶體參照對應到的物件，其他則為右值。也可以把右值想像成一個臨時的數值，左值可以被賦值並修改但右值不行。因 C++ 為值語意程式語言，在物件的建立上常會有多餘的建構與複製動作而倒置效能上的損失。而 C++11 中加入了右值參照功能，透過關鍵字 <code>&amp;&amp;</code> 來區別右值。</p>
-
-<pre><code class="language-c++">// C++03, L-Value reference
-void ref(int&amp; x) {
-    cout &lt;&lt; &quot;Left value: &quot; &lt;&lt; x &lt;&lt; endl;
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++03, L-Value reference
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">ref</span>(<span style="color:#cdcaa9;font-weight:bold">int</span>&amp; x) {
+    cout &lt;&lt; <span style="color:#0086d2">&#34;Left value: &#34;</span> &lt;&lt; x &lt;&lt; endl;
 }
 
-x = 3;
-ref(x); // print: &quot;Left value: 3&quot;
-ref(3); // complier error !
-
-// C++11, R-Value reference
-void ref(int&amp;&amp; x) {
-    cout &lt;&lt; &quot;Right value&quot; &lt;&lt; endl;
+x = <span style="color:#0086f7;font-weight:bold">3</span>;
+ref(x); <span style="color:#080;background-color:#0f140f;font-style:italic">// print: &#34;Left value: 3&#34;
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>ref(<span style="color:#0086f7;font-weight:bold">3</span>); <span style="color:#080;background-color:#0f140f;font-style:italic">// complier error !
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
+<span style="color:#080;background-color:#0f140f;font-style:italic">// C++11, R-Value reference
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">ref</span>(<span style="color:#cdcaa9;font-weight:bold">int</span>&amp;&amp; x) {
+    cout &lt;&lt; <span style="color:#0086d2">&#34;Right value&#34;</span> &lt;&lt; endl;
 }
-x = 3;
-ref(x); // print: &quot;Left value: 3&quot;
-ref(3); // print: &quot;Right value: 3&quot;
-</code></pre>
-
+x = <span style="color:#0086f7;font-weight:bold">3</span>;
+ref(x); <span style="color:#080;background-color:#0f140f;font-style:italic">// print: &#34;Left value: 3&#34;
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>ref(<span style="color:#0086f7;font-weight:bold">3</span>); <span style="color:#080;background-color:#0f140f;font-style:italic">// print: &#34;Right value: 3&#34;
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <p>因可區別左值與右值，我們能使用右值參照達成  move semantic 的效果。右值可以想像成是個暫時的值，在達成任務後就會消失，那我們可以去將右值內部的資料直接<strong>移動</strong>到新物件中，避免過多的複製動作已增加程式效能。先定義一個簡單的<code>MoveVec</code> 結構</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">struct</span> MoveVec {
+    std::vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt; vec;
 
-<pre><code class="language-c++">struct MoveVec {
-    std::vector&lt;int&gt; vec;
-
-    MoveVec() = default;
-    MoveVec(const vector&lt;int&gt;&amp; init): vec(init) {} // Copy constructor
-    MoveVec(vector&lt;int&gt;&amp;&amp; init): vec(std::forward&lt;vector&lt;int&gt;&gt;(init)) {} // Move constructor
-};
-</code></pre>
-
+    MoveVec() = <span style="color:#fb660a;font-weight:bold">default</span>;
+    MoveVec(<span style="color:#fb660a;font-weight:bold">const</span> vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;&amp; init): vec(init) {} <span style="color:#080;background-color:#0f140f;font-style:italic">// Copy constructor
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>    MoveVec(vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;&amp;&amp; init): vec(std::forward&lt;vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;&gt;(init)) {} <span style="color:#080;background-color:#0f140f;font-style:italic">// Move constructor
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>};
+</code></pre></div>
 <p><code>MoveVec</code> 可使用一個 <code>vector&lt;int&gt;</code> 來初始化內部的 <code>vec</code> 物件。在 C++03 時需先在外部建立一個暫時的 <code>vector&lt;int&gt;</code> 物件，並使用它來初始化 <code>MoveVec</code> 時，會多出一次複製動作來將外部的 <code>vector&lt;int&gt;</code> 物件中的值複製到<code>MoveVec</code>中的<code>vec</code> 內部，無形中多增加了一次複製成本。在 C++11 可使用 move constoructor，將暫時物件的值移動到內部的<code>vector&lt;int&gt;</code> 資料中，避免多一次複製動作。</p>
-
-<pre><code class="language-c++">// C++03
-auto vec_out = vector&lt;int&gt;{1, 2, 3}; // Initial setting
-auto obj = MoveVec(vec_out); // Call copy constructor
-
-// C++11
-auto obj_move = MoveVec(vector&lt;int&gt;{1, 2, 3}); // Call move constructor
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++03
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> vec_out = vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;{<span style="color:#0086f7;font-weight:bold">1</span>, <span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">3</span>}; <span style="color:#080;background-color:#0f140f;font-style:italic">// Initial setting
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> obj = MoveVec(vec_out); <span style="color:#080;background-color:#0f140f;font-style:italic">// Call copy constructor
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
+<span style="color:#080;background-color:#0f140f;font-style:italic">// C++11
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> obj_move = MoveVec(vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;{<span style="color:#0086f7;font-weight:bold">1</span>, <span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">3</span>}); <span style="color:#080;background-color:#0f140f;font-style:italic">// Call move constructor
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <p>其中 <code>vec_out</code> 物件因為是左值，因此所呼叫的函式為 copy constructor 將物件內容複製到 <code>vec</code> 中。而建構 <code>obj_move</code> 物件時因傳入的參數為右值，因此會呼叫 move constructor  直接將傳入的 <code>vector&lt;int&gt;</code> 內部資源移動到<code>vec</code> 中，而不用在將所有資料複製一次。此外也可以使用的標準庫函式中的 <code>std::move</code> 函式，將左值物件強制轉換為右值參照以呼叫對應的函式。</p>
-
-<pre><code class="language-c++">auto obj_out = MoveVec(std::move(vec_out)); 
-cout &lt;&lt; vec_out.size(); // print: &quot;0&quot;，因 vec_out 的資料比被&quot;移動&quot;到 obj_out 中的 vec 內。
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">auto</span> obj_out = MoveVec(std::move(vec_out)); 
+cout &lt;&lt; vec_out.size(); <span style="color:#080;background-color:#0f140f;font-style:italic">// print: &#34;0&#34;，因 vec_out 的資料比被&#34;移動&#34;到 obj_out 中的 vec 內。
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <p>右值參照是 C++11 中加入的一個重要特徵，更詳細的內容可參考 <a href="https://en.wikipedia.org/wiki/C%2B%2B11#Rvalue_references_and_move_constructors">Wikipedia</a> 的詳細介紹。</p>
 
 <h4 id="lambda-functions-and-expressions">Lambda functions and expressions</h4>
 
 <p>支援 Lambda expression 也是 C++11 中的一項重大修改。C++ 標準庫中有許多需要傳入計算式的運用，過去 C++ 需要另外創建函數才能執行，會造成撰寫 code 上的麻煩。而 C++11 支援 lambda expression，可直接創建匿名函式來執行需要的功能。現建立一個資料集</p>
-
-<pre><code class="language-c++">auto vec = vector&lt;int&gt;{1, 2, 3, 4, 5};
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">auto</span> vec = vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;{<span style="color:#0086f7;font-weight:bold">1</span>, <span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">3</span>, <span style="color:#0086f7;font-weight:bold">4</span>, <span style="color:#0086f7;font-weight:bold">5</span>};
+</code></pre></div>
 <p>若要使用 <code>for_each</code> 對每個數值加ㄧ後輸出，C++03 中需要以下的方式執行</p>
-
-<pre><code class="language-c++">// C++03
-void plus(int x) { cout &lt;&lt; x + 1 &lt;&lt; endl; }
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++03
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">plus</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> x) { cout &lt;&lt; x + <span style="color:#0086f7;font-weight:bold">1</span> &lt;&lt; endl; }
 for_each(begin(vec), end(vec), plus());
-</code></pre>
-
+</code></pre></div>
 <p>由於需要另外撰寫函數或 <a href="http://www.bogotobogo.com/cplusplus/functors.php">Functor</a> ，無形中增加了實作上的麻煩，而 C++11 中的 lambda expression 可使用簡單撰寫匿名函式來傳入 <code>for_each</code> 中達成同樣的效果</p>
-
-<pre><code class="language-c++">// C++11, Lambda expression
-for_each(begin(vec), end(vec), [](auto&amp; x){ cout &lt;&lt; x + 1 &lt;&lt; &quot;,&quot;; });
-// print: 1,2,3
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++11, Lambda expression
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>for_each(begin(vec), end(vec), [](<span style="color:#fb660a;font-weight:bold">auto</span>&amp; x){ cout &lt;&lt; x + <span style="color:#0086f7;font-weight:bold">1</span> &lt;&lt; <span style="color:#0086d2">&#34;,&#34;</span>; });
+<span style="color:#080;background-color:#0f140f;font-style:italic">// print: 1,2,3
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <p>此外也可使用 <code>&amp;</code> 參數來引入外部參數</p>
-
-<pre><code class="language-c++">int factor = 42;
-std::for_each(begin(vec), end(vec), [&amp;factor](int x) { cout &lt;&lt; x + factor &lt;&lt; &quot;,&quot;;});
-// print: 43,44,45
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#cdcaa9;font-weight:bold">int</span> factor = <span style="color:#0086f7;font-weight:bold">42</span>;
+std::for_each(begin(vec), end(vec), [&amp;factor](<span style="color:#cdcaa9;font-weight:bold">int</span> x) { cout &lt;&lt; x + factor &lt;&lt; <span style="color:#0086d2">&#34;,&#34;</span>;});
+<span style="color:#080;background-color:#0f140f;font-style:italic">// print: 43,44,45
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <h4 id="variadic-template">Variadic Template</h4>
 
 <p><a href="https://en.wikipedia.org/wiki/Variadic_template">Variadic template</a> 也可翻<strong>可變參數模板</strong>，也是 C++11 中的一項重要變更。過去宣告 template  時參數數量需為固定，因此對於可變參數數量的結構就需要定義許多 template 結構。而在 C++11 中導入的 variadic template 可建立可變數量的參數結構，使用時可依照定義好的數量<strong>展開</strong>該結構。C++11 之後的可變參數 template 幾乎都使用了 variadic template 語法來接受可變數量參數。</p>
 
 <p>Variadic template 基本宣告方式如下</p>
-
-<pre><code class="language-c++">template&lt;typename... Ts&gt;
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">template</span>&lt;<span style="color:#fb660a;font-weight:bold">typename</span>... Ts&gt;
+</code></pre></div>
 <p>其中 <code>&lt;typename... Ts&gt;</code> 代表 <a href="http://en.cppreference.com/w/cpp/language/parameter_pack">Parameter Pack</a> ，也就是一連串的參數列。以此<a href="https://eli.thegreenplace.net/2014/variadic-templates-in-c/">範例</a>來說</p>
-
-<pre><code class="language-c++">template&lt;typename T&gt;
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">template</span>&lt;<span style="color:#fb660a;font-weight:bold">typename</span> T&gt;
 T adder(T v) {
-  return v;
+  <span style="color:#fb660a;font-weight:bold">return</span> v;
 }
 
-template&lt;typename T, typename... Ts&gt;
+<span style="color:#fb660a;font-weight:bold">template</span>&lt;<span style="color:#fb660a;font-weight:bold">typename</span> T, <span style="color:#fb660a;font-weight:bold">typename</span>... Ts&gt;
 T adder(T first, Ts... args) {
-    return first + adder(args...);
+    <span style="color:#fb660a;font-weight:bold">return</span> first + adder(args...);
 }
-</code></pre>
-
+</code></pre></div>
 <p>函式 <code>adder</code> 可接受不同長度的參數加總後回傳結果，下圖可為執行結果</p>
-
-<pre><code class="language-c++">cout &lt;&lt; adder(1, 2, 3); // output: 6  
-cout &lt;&lt; adder(4.2, 1, 2, 5, 7.3); // output: 19.5
-cout &lt;&lt; adder(1, 2, 1.3); // output: 4
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">cout &lt;&lt; adder(<span style="color:#0086f7;font-weight:bold">1</span>, <span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">3</span>); <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 6  
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>cout &lt;&lt; adder(<span style="color:#0086f7;font-weight:bold">4.2</span>, <span style="color:#0086f7;font-weight:bold">1</span>, <span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">5</span>, <span style="color:#0086f7;font-weight:bold">7.3</span>); <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 19.5
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>cout &lt;&lt; adder(<span style="color:#0086f7;font-weight:bold">1</span>, <span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">1.3</span>); <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 4
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <p>當 <code>adder(1, 2, 3)</code> 被呼叫時，編譯器會將 function 展開為如下的形式</p>
-
-<pre><code class="language-c++">// adder(1, 2, 3) 呼叫的 funciton
-int adder(int first, int second, int third) {
-    return first + adder(second, third);
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// adder(1, 2, 3) 呼叫的 funciton
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">int</span> <span style="color:#ff0086;font-weight:bold">adder</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> first, <span style="color:#cdcaa9;font-weight:bold">int</span> second, <span style="color:#cdcaa9;font-weight:bold">int</span> third) {
+    <span style="color:#fb660a;font-weight:bold">return</span> first + adder(second, third);
 }
 
-// 上面函式中的 adder(second, third) 會再展開為下面型式
-int adder(int first, int second) {
-    return first + adder(second);
+<span style="color:#080;background-color:#0f140f;font-style:italic">// 上面函式中的 adder(second, third) 會再展開為下面型式
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">int</span> <span style="color:#ff0086;font-weight:bold">adder</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> first, <span style="color:#cdcaa9;font-weight:bold">int</span> second) {
+    <span style="color:#fb660a;font-weight:bold">return</span> first + adder(second);
 }
 
-// 上面函示中的 add(second) 則會依照終止樣板展開為以下形式
-int adder(int first) {
-    return first;
+<span style="color:#080;background-color:#0f140f;font-style:italic">// 上面函示中的 add(second) 則會依照終止樣板展開為以下形式
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">int</span> <span style="color:#ff0086;font-weight:bold">adder</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> first) {
+    <span style="color:#fb660a;font-weight:bold">return</span> first;
 }
-</code></pre>
-
+</code></pre></div>
 <p>因此當 <code>adder(1, 2, 3)</code> 被呼叫後，會將內容參數加總後回傳。且因為回傳型態跟呼叫的順序與參數內容有關，展開的 function 也會不同。如 <code>adder(4.2, 1, 2, 5, 7.3)</code> 因第一個數字是 <code>double</code> 型態，因此加總後會可正確回傳 double 型態數字 <strong>19.5</strong>，但如果呼叫 <code>adder(1, 2, 1.3)</code> 時因為最後一個回傳的型別是 <code>int</code>，因此小數點會被無條件捨去，因此只回傳 <strong>4</strong> 而不是 <strong>4.3</strong>。</p>
 
 <p>除了 function 外，class 也可用相同的擴展方式建立 variadic template，如 <code>std::tuple</code> 就是一個例子，可建立一個內含不同參數的 tuple 結構，並透過 <code>std::get&lt;&gt;</code> 來取出內容，如下所示：</p>
-
-<pre><code class="language-c++">// 建立一 tuple 結構
-auto tp = tuple&lt;string, int, vector&lt;int&gt;&gt;(&quot;Hello&quot;, 5, {42, 2});
-cout &lt;&lt; get&lt;0&gt;(tp); // output: &quot;Hello&quot;
-cout &lt;&lt; get&lt;1&gt;(tp); // output: 5
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// 建立一 tuple 結構
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> tp = tuple&lt;string, <span style="color:#cdcaa9;font-weight:bold">int</span>, vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;&gt;(<span style="color:#0086d2">&#34;Hello&#34;</span>, <span style="color:#0086f7;font-weight:bold">5</span>, {<span style="color:#0086f7;font-weight:bold">42</span>, <span style="color:#0086f7;font-weight:bold">2</span>});
+cout &lt;&lt; get&lt;<span style="color:#0086f7;font-weight:bold">0</span>&gt;(tp); <span style="color:#080;background-color:#0f140f;font-style:italic">// output: &#34;Hello&#34;
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>cout &lt;&lt; get&lt;<span style="color:#0086f7;font-weight:bold">1</span>&gt;(tp); <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 5
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <h4 id="explicit-overrides-and-final">Explicit overrides and final</h4>
 
 <p>C++11 可透過關鍵字 <code>final</code> 顯示宣告來禁止 class 或 function 被 override</p>
-
-<pre><code class="language-c++">// Class &quot;final&quot;
-class Base final {};
-class Derive: Base {}; // compiler error!
-
-// Funcion &quot;final&quot;
-class Base {
-    virtual void show() final;
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// Class &#34;final&#34;
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">class</span> Base <span style="color:#fb660a;font-weight:bold">final</span> {};
+<span style="color:#fb660a;font-weight:bold">class</span> Derive: Base {}; <span style="color:#080;background-color:#0f140f;font-style:italic">// compiler error!
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
+<span style="color:#080;background-color:#0f140f;font-style:italic">// Funcion &#34;final&#34;
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">class</span> Base {
+    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> show() <span style="color:#fb660a;font-weight:bold">final</span>;
 };
 
-class Derive: Base {
-    virtual void show(); // compiler error
-}
-</code></pre>
-
+<span style="color:#fb660a;font-weight:bold">class</span> Derive: Base {
+    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> show(); <span style="color:#080;background-color:#0f140f;font-style:italic">// compiler error
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>}
+</code></pre></div>
 <p>此外也可使用 <code>override</code> 關鍵字來明確定義該函式為 override function</p>
-
-<pre><code class="language-c++">class Base {
-    virtual void show();
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">class</span> Base {
+    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> show();
 }
 
-class Derive: Base {
-    virtual void show2() override; // compiler error
-    virtual void show() override; // success
-}
-</code></pre>
-
+<span style="color:#fb660a;font-weight:bold">class</span> Derive: Base {
+    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> show2() <span style="color:#fb660a;font-weight:bold">override</span>; <span style="color:#080;background-color:#0f140f;font-style:italic">// compiler error
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">show</span>() <span style="color:#fb660a;font-weight:bold">override</span>; <span style="color:#080;background-color:#0f140f;font-style:italic">// success
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>}
+</code></pre></div>
 <h4 id="explicitly-defaulted-and-deleted-special-member-functions">Explicitly defaulted and deleted special member functions</h4>
 
 <p>C++ 在類別建立時，自動建立如 default constructor, copy constructor 等預設函數，但有時候我們不希望該函數被建立，在過去需要宣告該函式為 private。而在 C++11 中支援了兩個關鍵字 <code>default</code> 與 <code>delete</code> 來控制預設建構式是否要建立。</p>
-
-<pre><code class="language-c++">class Base {
-    Base() = default; // default constructor 使用預設的行為
-    Base(const Base&amp; base) = delete; // 不生成 copy constructor
-};
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">class</span> Base {
+    Base() = <span style="color:#fb660a;font-weight:bold">default</span>; <span style="color:#080;background-color:#0f140f;font-style:italic">// default constructor 使用預設的行為
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>    Base(<span style="color:#fb660a;font-weight:bold">const</span> Base&amp; base) = <span style="color:#fb660a;font-weight:bold">delete</span>; <span style="color:#080;background-color:#0f140f;font-style:italic">// 不生成 copy constructor
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>};
+</code></pre></div>
 <p>此外由於 C++ 類別中的預設函數生成條件很複雜，可參考 <a href="http://en.cppreference.com/w/cpp/language/rule_of_three">rule of five, rule of zero</a> 等方法決定是否要宣告該預設函式。</p>
 
 <h4 id="new-typedef-語法">New typedef 語法</h4>
-
-<pre><code class="language-c++">// C++03
-typedef int DefInt;
-// C++11
-using DefInt = int;
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++03
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">typedef</span> <span style="color:#cdcaa9;font-weight:bold">int</span> DefInt;
+<span style="color:#080;background-color:#0f140f;font-style:italic">// C++11
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">using</span> DefInt = <span style="color:#cdcaa9;font-weight:bold">int</span>;
+</code></pre></div>
 <h2 id="新標準庫">新標準庫</h2>
 
 <h3 id="smart-pointer">Smart Pointer</h3>
 
 <p>C++11 也新增了許多標準函式庫內容。其中一個很重要的是智慧指標（smart point）的支援。過去的 C++ 指標在建立後需手動使用 delete 來刪除該 pointer 否則會出現 memory leak。</p>
-
-<pre><code class="language-c++">// C++03
-int* p = new int(3);
-// ... do something
-delete p;  // release memory
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++03
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">int</span>* p = <span style="color:#fb660a;font-weight:bold">new</span> <span style="color:#cdcaa9;font-weight:bold">int</span>(<span style="color:#0086f7;font-weight:bold">3</span>);
+<span style="color:#080;background-color:#0f140f;font-style:italic">// ... do something
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">delete</span> p;  <span style="color:#080;background-color:#0f140f;font-style:italic">// release memory
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <p>而 Smart Pointer 則可幫助使用者管理資源且表面行為與指標的物件。以 <code>shared_ptr</code> 來說，真正的 pointer 包裝在該物件中，且可使用與一般 pointer 相同的呼叫方式使用 <code>shared_ptr</code></p>
-
-<pre><code class="language-c++">// C++11
-auto ptr = shared_ptr&lt;int&gt;(new int(2)); // Use shared point
-cout &lt;&lt; *ptr &lt;&lt; endl; // output: 2
-
-auto ptr_make = make_shared&lt;int&gt;(42);  // Use make_shared() function
-cout &lt;&lt; *ptr_make &lt;&lt; endl;  // output: 42
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++11
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> ptr = shared_ptr&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;(<span style="color:#fb660a;font-weight:bold">new</span> <span style="color:#cdcaa9;font-weight:bold">int</span>(<span style="color:#0086f7;font-weight:bold">2</span>)); <span style="color:#080;background-color:#0f140f;font-style:italic">// Use shared point
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>cout &lt;&lt; *ptr &lt;&lt; endl; <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 2
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
+<span style="color:#fb660a;font-weight:bold">auto</span> ptr_make = make_shared&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;(<span style="color:#0086f7;font-weight:bold">42</span>);  <span style="color:#080;background-color:#0f140f;font-style:italic">// Use make_shared() function
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>cout &lt;&lt; *ptr_make &lt;&lt; endl;  <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 42
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <p>此外過去在管理指標時有可能資源已經被 delete，但某些變數仍保有指摽位置，這會導致程式崩潰。而 <code>shared_ptr</code> 內部具有 reference counting 的功能，也就是能記錄有多少個物件被參照到資源，等到都沒有參照到資源時才會執行資源的 delete 動作。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">ref</span>(shared_ptr&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt; ptr) {
+    <span style="color:#080;background-color:#0f140f;font-style:italic">// reference counts = 3 (+1)
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>    <span style="color:#080;background-color:#0f140f;font-style:italic">// do something...
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>    <span style="color:#080;background-color:#0f140f;font-style:italic">// when leave block, reference counts = 2 (-1)
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>}
 
-<pre><code class="language-c++">void ref(shared_ptr&lt;int&gt; ptr) {
-    // reference counts = 3 (+1)
-    // do something...
-    // when leave block, reference counts = 2 (-1)
-}
+<span style="color:#fb660a;font-weight:bold">auto</span> pt = make_shared&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;(<span style="color:#0086f7;font-weight:bold">3</span>);  <span style="color:#080;background-color:#0f140f;font-style:italic">// reference count = 1 (+1)
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> pt2 = pt;  <span style="color:#080;background-color:#0f140f;font-style:italic">// reference counts = 2 (+1)
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>ref(pt);
 
-auto pt = make_shared&lt;int&gt;(3);  // reference count = 1 (+1)
-auto pt2 = pt;  // reference counts = 2 (+1)
-ref(pt);
-
-// When leaving block
-// Call pt2 destructor, reference count = 1 (-1)
-// Call pt destructor, reference count = 0 (-1), delete resource.
-</code></pre>
-
+<span style="color:#080;background-color:#0f140f;font-style:italic">// When leaving block
+</span><span style="color:#080;background-color:#0f140f;font-style:italic">// Call pt2 destructor, reference count = 1 (-1)
+</span><span style="color:#080;background-color:#0f140f;font-style:italic">// Call pt destructor, reference count = 0 (-1), delete resource.
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <p>C++11 新增的 Smart point 主要有  <code>shared_ptr</code>，<code>unique_ptr</code> 與 <code>weak_ptr</code>。本節只介紹 shared_ptr 的行為，<a href="http://en.cppreference.com/w/cpp/memory/unique_ptr">unique_ptr</a> 與 <a href="http://en.cppreference.com/w/cpp/memory/weak_ptr">weak_ptr</a> 可自行參考相關資料</p>
 
 <h3 id="concurrency">Concurrency</h3>
 
 <p>由於 C++03 不支援多執行緒功能，因此若要使用多執行緒執行則需要透過 <a href="http://www.openmp.org/">OpenMP</a> 或系統 API 等外部呼叫多執行緒函式。而從 C++11 之後也正式在標準庫中加入多執行緒支援，讓使用者可更簡單的使用。下圖為簡單的使用方式</p>
-
-<pre><code class="language-c++">#include &lt;thread&gt;
-
-void thread_1(int x) {
-    cout &lt;&lt; &quot;call thread_1() : &quot; &lt;&lt; x &lt;&lt; endl;
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">#include</span> <span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">&lt;thread&gt;</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">
+</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic"></span>
+<span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">thread_1</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> x) {
+    cout &lt;&lt; <span style="color:#0086d2">&#34;call thread_1() : &#34;</span> &lt;&lt; x &lt;&lt; endl;
 }
-void thread_2() {
-    cout &lt;&lt; &quot;Call thread_2()&quot; &lt;&lt; endl;
+<span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">thread_2</span>() {
+    cout &lt;&lt; <span style="color:#0086d2">&#34;Call thread_2()&#34;</span> &lt;&lt; endl;
 }
 
-int main(int argc, char *argv[]) {
-    thread th1(&amp;thread_1, 3);   // 建立 thread 物件 th1 並開始執行
-    thread th2(&amp;thread_2);  // 建立 thread 物件 th1
+<span style="color:#cdcaa9;font-weight:bold">int</span> <span style="color:#ff0086;font-weight:bold">main</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> argc, <span style="color:#cdcaa9;font-weight:bold">char</span> *argv[]) {
+    <span style="color:#fb660a;font-weight:bold">thread</span> th1(&amp;thread_1, <span style="color:#0086f7;font-weight:bold">3</span>);   <span style="color:#080;background-color:#0f140f;font-style:italic">// 建立 thread 物件 th1 並開始執行
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>    <span style="color:#fb660a;font-weight:bold">thread</span> th2(&amp;thread_2);  <span style="color:#080;background-color:#0f140f;font-style:italic">// 建立 thread 物件 th1
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
+    cout &lt;&lt; <span style="color:#0086d2">&#34;main thread&#34;</span> &lt;&lt; endl;
 
-    cout &lt;&lt; &quot;main thread&quot; &lt;&lt; endl;
-
-    th1.join(); // 一定要加入，宣告 th1() 必須執行完畢後才能往下執行。
-    th2.join(); // 同上
-}
-</code></pre>
-
+    th1.join(); <span style="color:#080;background-color:#0f140f;font-style:italic">// 一定要加入，宣告 th1() 必須執行完畢後才能往下執行。
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>    th2.join(); <span style="color:#080;background-color:#0f140f;font-style:italic">// 同上
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>}
+</code></pre></div>
 <p>當上面的資料執行時，<code>thread_1()</code> 與 <code>thread_2()</code> 可能會有不同的執行順序，或當一邊執行時會切換到另一邊，如下面的執行範例。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// Output example - 1
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>call thread_1() : Call thread_2()main thread3
 
-<pre><code class="language-c++">// Output example - 1
-call thread_1() : Call thread_2()main thread3
-
-// Output example - 2
-main thread
+<span style="color:#080;background-color:#0f140f;font-style:italic">// Output example - 2
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>main <span style="color:#fb660a;font-weight:bold">thread</span>
 call thread_1() : Call thread_2()
-3
-</code></pre>
-
+<span style="color:#0086f7;font-weight:bold">3</span>
+</code></pre></div>
 <p>可看出因是在不同執行緒中運作，因此執行順序有可能被打亂。而除了上述的基本使用法，其他進階用法可自行參考其他<a href="https://www.classes.cs.uchicago.edu/archive/2013/spring/12300-1/labs/lab6/">資訊</a>。</p>
 
 <h2 id="function-objects">Function Objects</h2>
@@ -448,45 +386,41 @@ call thread_1() : Call thread_2()
 <p>C++11 新增的 <code>std::function</code> 類別，可以將 function 當作物件般儲存操作與傳遞。而 <code>std::bind</code> 則是能將不同的 function 綁定依照特定順序綁定，重新建立一個函式物件。上面兩類可透過 <code>#include &lt;functional&gt;</code> 引入程式碼中使用。</p>
 
 <h4 id="stdfunction">std::function</h4>
-
-<pre><code class="language-c++">#include &lt;functional&gt;
-
-int sumXY(int x, int y) {
-    return x + y;
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">#include</span> <span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">&lt;functional&gt;</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">
+</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic"></span>
+<span style="color:#cdcaa9;font-weight:bold">int</span> <span style="color:#ff0086;font-weight:bold">sumXY</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> x, <span style="color:#cdcaa9;font-weight:bold">int</span> y) {
+    <span style="color:#fb660a;font-weight:bold">return</span> x + y;
 }
 
-// 使用現有函數建立 
-std::function&lt;int(int,int)&gt; sum = sumXY;
-cout &lt;&lt; sum(1, 3) &lt;&lt; endl; // output: 4
-
-// 使用 lambda expression 建立
-std::function&lt;void(int)&gt; disp = [](int x) {cout &lt;&lt; x &lt;&lt; endl;};
-disp(42);  // output: 42
-
-// 使用 auto 自動建立 function object
-auto sum_2 = [](int x, int y) -&gt; float {return x + y + 1.1; };
-cout &lt;&lt; sum_2(2, 4) &lt;&lt; endl; // output: 7.1
-</code></pre>
-
+<span style="color:#080;background-color:#0f140f;font-style:italic">// 使用現有函數建立 
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>std::function&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>(<span style="color:#cdcaa9;font-weight:bold">int</span>,<span style="color:#cdcaa9;font-weight:bold">int</span>)&gt; sum = sumXY;
+cout &lt;&lt; sum(<span style="color:#0086f7;font-weight:bold">1</span>, <span style="color:#0086f7;font-weight:bold">3</span>) &lt;&lt; endl; <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 4
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
+<span style="color:#080;background-color:#0f140f;font-style:italic">// 使用 lambda expression 建立
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>std::function&lt;<span style="color:#cdcaa9;font-weight:bold">void</span>(<span style="color:#cdcaa9;font-weight:bold">int</span>)&gt; disp = [](<span style="color:#cdcaa9;font-weight:bold">int</span> x) {cout &lt;&lt; x &lt;&lt; endl;};
+disp(<span style="color:#0086f7;font-weight:bold">42</span>);  <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 42
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
+<span style="color:#080;background-color:#0f140f;font-style:italic">// 使用 auto 自動建立 function object
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> sum_2 = [](<span style="color:#cdcaa9;font-weight:bold">int</span> x, <span style="color:#cdcaa9;font-weight:bold">int</span> y) -&gt; <span style="color:#cdcaa9;font-weight:bold">float</span> {<span style="color:#fb660a;font-weight:bold">return</span> x + y + <span style="color:#0086f7;font-weight:bold">1.1</span>; };
+cout &lt;&lt; sum_2(<span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">4</span>) &lt;&lt; endl; <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 7.1
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <h4 id="stdbind">std::bind</h4>
-
-<pre><code class="language-c++">#include &lt;fnuctional&gt;
-
-int mulXY(int x, int y) {
-    return x * y;
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">#include</span> <span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">&lt;fnuctional&gt;</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">
+</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic"></span>
+<span style="color:#cdcaa9;font-weight:bold">int</span> <span style="color:#ff0086;font-weight:bold">mulXY</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> x, <span style="color:#cdcaa9;font-weight:bold">int</span> y) {
+    <span style="color:#fb660a;font-weight:bold">return</span> x * y;
 }
 
-// sum_b(z) = sumXY(8, z)
-auto sum_b = std::bind(sumXY, 8, std::placeholders::_1);
-cout &lt;&lt; sum_b(10) &lt;&lt; endl;  // output: 18
+<span style="color:#080;background-color:#0f140f;font-style:italic">// sum_b(z) = sumXY(8, z)
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> sum_b = std::bind(sumXY, <span style="color:#0086f7;font-weight:bold">8</span>, std::placeholders::_1);
+cout &lt;&lt; sum_b(<span style="color:#0086f7;font-weight:bold">10</span>) &lt;&lt; endl;  <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 18
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
+<span style="color:#fb660a;font-weight:bold">using</span> <span style="color:#fb660a;font-weight:bold">namespace</span> std::placeholders;
 
-using namespace std::placeholders;
-
-// mul_b(x, y) = mulXY(sumXY(x, y), y)
-auto mul_b = std::bind(mulXY, std::bind(sumXY, _1, _2), _2);
-cout &lt;&lt; mul_b(2, 3) &lt;&lt; endl;    // output: 15
-</code></pre>
-
+<span style="color:#080;background-color:#0f140f;font-style:italic">// mul_b(x, y) = mulXY(sumXY(x, y), y)
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> mul_b = std::bind(mulXY, std::bind(sumXY, _1, _2), _2);
+cout &lt;&lt; mul_b(<span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">3</span>) &lt;&lt; endl;    <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 15
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span></code></pre></div>
 <h2 id="reference">Reference</h2>
 
 <ul>

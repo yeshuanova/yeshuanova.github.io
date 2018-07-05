@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -208,35 +208,32 @@ if (!doNotTrack) {
 <h3 id="code">Code</h3>
 
 <p>執行下列Python Code進行PCA降維</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;background-color:#0f140f;font-style:italic"># 匯入相關 Package</span>
+<span style="color:#fb660a;font-weight:bold">import</span> matplotlib.pyplot <span style="color:#fb660a;font-weight:bold">as</span> plt
+<span style="color:#fb660a;font-weight:bold">from</span> sklearn <span style="color:#fb660a;font-weight:bold">import</span> datasets
+<span style="color:#fb660a;font-weight:bold">from</span> sklearn.decomposition <span style="color:#fb660a;font-weight:bold">import</span> PCA
 
-<pre><code class="language-python"># 匯入相關 Package
-import matplotlib.pyplot as plt
-from sklearn import datasets
-from sklearn.decomposition import PCA
-
-# 取得 Iris data set
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 取得 Iris data set</span>
 iris = datasets.load_iris()
 iris_label = iris.target
 
-# 設定 PCA Model參數並對 data set進行降維
-pca_model = PCA(n_components=3)
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 設定 PCA Model參數並對 data set進行降維</span>
+pca_model = PCA(n_components=<span style="color:#0086f7;font-weight:bold">3</span>)
 pca_result = pca_model.fit_transform(iris.data)
 
-# 繪製資料2D表示圖，並將不同類別加上顏色標示
-for idx, label in enumerate(iris_label):
-    if label == 0:
-        color = 'ro'
-    elif label == 1:
-        color = 'go'
-    elif label == 2:
-        color = 'bo'
-    else:
-        continue
-    x = pca_result[idx, 0]
-    y = pca_result[idx, 1]
-    plt.plot(x, y, color)
-</code></pre>
-
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 繪製資料2D表示圖，並將不同類別加上顏色標示</span>
+<span style="color:#fb660a;font-weight:bold">for</span> idx, label in enumerate(iris_label):
+    <span style="color:#fb660a;font-weight:bold">if</span> label == <span style="color:#0086f7;font-weight:bold">0</span>:
+        color = <span style="color:#0086d2">&#39;ro&#39;</span>
+    <span style="color:#fb660a;font-weight:bold">elif</span> label == <span style="color:#0086f7;font-weight:bold">1</span>:
+        color = <span style="color:#0086d2">&#39;go&#39;</span>
+    <span style="color:#fb660a;font-weight:bold">elif</span> label == <span style="color:#0086f7;font-weight:bold">2</span>:
+        color = <span style="color:#0086d2">&#39;bo&#39;</span>
+    <span style="color:#fb660a;font-weight:bold">else</span>:
+        <span style="color:#fb660a;font-weight:bold">continue</span>
+    x = pca_result[idx, <span style="color:#0086f7;font-weight:bold">0</span>]
+    y = pca_result[idx, <span style="color:#0086f7;font-weight:bold">1</span>]
+    plt.plot(x, y, color)</code></pre></div>
 <h3 id="result">Result</h3>
 
 <p>下圖為將 Iris dataset 以 PCA 降到二維資料後，將不同種類花朵以不同顏色顯示出來的結果。</p>

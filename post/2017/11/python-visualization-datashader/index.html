@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -106,18 +106,12 @@ if (!doNotTrack) {
 <h3 id="安裝-datashader">安裝 datashader</h3>
 
 <p>如果有安裝<a href="https://anaconda.org/">Anaconda</a>或<a href="https://conda.io/miniconda.html">Miniconda</a>，可直接透過<code>conda</code>來安裝<code>datashader</code>套件</p>
-
-<pre><code class="language-bash">conda install -c bokeh datashader
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda install -c bokeh datashader</code></pre></div>
 <p>或是直接從<strong>GitHub</strong>上安裝最新版本的<code>datashader</code>套件</p>
-
-<pre><code class="language-bash">conda remove --force datashader
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda remove --force datashader
 git clone https://github.com/bokeh/datashader.git
 cd datashader
-pip install -e .
-</code></pre>
-
+pip install -e .</code></pre></div>
 <h2 id="dask">dask</h2>
 
 <p>一般在<strong>Python</strong>上處理資料時會使用<a href="http://pandas.pydata.org/">Pandas</a>這個套件來讀取資料並進行處理。但<strong>Pandas</strong>在使用時會先將資料完整讀取到記憶體內，當資料量非常巨大時常常會遇到<strong>out-of-memory</strong>問題。此外<strong>Pandas</strong>也因只能使用到單核心無法並行處理進而影響到效能。</p>
@@ -127,17 +121,11 @@ pip install -e .
 <h3 id="安裝-dask">安裝 dask</h3>
 
 <p>與<strong>datashader</strong>相同，<strong>dask</strong>也可透過<code>conda</code>安裝</p>
-
-<pre><code class="language-bash">conda install dask
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda install dask</code></pre></div>
 <p>或是由<code>GitHub</code>上下載安裝最新版本手動安裝</p>
-
-<pre><code class="language-bash">git clone https://github.com/dask/dask.git
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/dask/dask.git
 cd dask
-python setup.py install
-</code></pre>
-
+python setup.py install</code></pre></div>
 <h2 id="範例">範例</h2>
 
 <h3 id="dataset">Dataset</h3>
@@ -151,35 +139,29 @@ python setup.py install
 <h3 id="preprocessing">Preprocessing</h3>
 
 <p>由於GPS座標為對應球面的座標系統，若要繪製二維平面時需將<strong>GPS</strong>轉換為<strong>2D</strong>平面座標。因此須先做資料前處理使資料能正確呈現。可以使用<code>datashader.utils.lnglat_to_meters()</code>函數將<strong>GPS</strong>座標轉換為<a href="https://en.wikipedia.org/wiki/Web_Mercator">Web Mercator</a>格式。如下列範例</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> datashader
 
-<pre><code class="language-python">import datashader
-
-# New York GPS coordinator
-x, y = datashader.utils.lnglat_to_meters(longitude=-74.0059, latitude=40.7127)
-</code></pre>
-
+<span style="color:#080;background-color:#0f140f;font-style:italic"># New York GPS coordinator</span>
+x, y = datashader.utils.lnglat_to_meters(longitude=-<span style="color:#0086f7;font-weight:bold">74.0059</span>, latitude=<span style="color:#0086f7;font-weight:bold">40.7127</span>)</code></pre></div>
 <p>執行後可得到 <code>x = -8238299.103697925</code> 與 <code>y = 4970056.8929846436</code> 的結果。分別代表由<strong>Greenwich</strong>往東以及由<strong>Equator(赤道)</strong>往北的距離(公尺)。以此方式將計程車資料集中的 <code>pickup_longitude</code> 與 <code>pickup_latitude</code> 欄位轉換為 <code>pickup_x</code> 與 <code>pickup_y</code> 欄位，並與 <code>pickup_datetime</code> 欄位一起另存為 <code>nyc_taxi_data_2014_pickup.csv</code> 檔案，以方便的之後的資料繪製。</p>
 
 <h3 id="code">Code</h3>
 
 <p>這裡我們透過 Pandas 套件讀取 CSV 檔為 Dataframe</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;background-color:#0f140f;font-style:italic"># 匯入所需 Packages</span>
+<span style="color:#fb660a;font-weight:bold">import</span> dask.dataframe <span style="color:#fb660a;font-weight:bold">as</span> dd
+<span style="color:#fb660a;font-weight:bold">import</span> dask.diagnostics <span style="color:#fb660a;font-weight:bold">as</span> diag
+<span style="color:#fb660a;font-weight:bold">import</span> datashader <span style="color:#fb660a;font-weight:bold">as</span> ds
+<span style="color:#fb660a;font-weight:bold">import</span> datashader.transfer_functions <span style="color:#fb660a;font-weight:bold">as</span> ds_tf
+<span style="color:#fb660a;font-weight:bold">import</span> numpy <span style="color:#fb660a;font-weight:bold">as</span> np
+<span style="color:#fb660a;font-weight:bold">from</span> datashader.utils <span style="color:#fb660a;font-weight:bold">import</span> export_image
+<span style="color:#fb660a;font-weight:bold">from</span> matplotlib.cm <span style="color:#fb660a;font-weight:bold">import</span> hot
 
-<pre><code class="language-python"># 匯入所需 Packages
-import dask.dataframe as dd
-import dask.diagnostics as diag
-import datashader as ds
-import datashader.transfer_functions as ds_tf
-import numpy as np
-from datashader.utils import export_image
-from matplotlib.cm import hot
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 設定 NY taxi dataset 路徑</span>
+dataset = <span style="color:#0086d2">&#39;{DATASET_FOLDER_PATH}/nyc_taxi_data_2014_pickup.csv&#39;</span>
 
-# 設定 NY taxi dataset 路徑
-dataset = '{DATASET_FOLDER_PATH}/nyc_taxi_data_2014_pickup.csv'
-
-# 設定讀取的檔案
-df = dd.io.csv.read_csv(dataset)
-</code></pre>
-
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 設定讀取的檔案</span>
+df = dd.io.csv.read_csv(dataset)</code></pre></div>
 <p>使用<code>df.head(n=3)</code>可得到下列<code>dataframe</code>資料欄位</p>
 
 <table>
@@ -215,37 +197,34 @@ df = dd.io.csv.read_csv(dataset)
 </tr>
 </tbody>
 </table>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;background-color:#0f140f;font-style:italic"># 依照設定範圍，計算圖片寬度對應的高度</span>
+<span style="color:#fb660a;font-weight:bold">def</span> <span style="color:#ff0086;font-weight:bold">calcCanvasHeightPixel</span>(fix_width, x_bound, y_bound):
+    x_coff = abs(x_bound[<span style="color:#0086f7;font-weight:bold">0</span>] - x_bound[<span style="color:#0086f7;font-weight:bold">1</span>])
+    y_coff = abs(y_bound[<span style="color:#0086f7;font-weight:bold">0</span>] - y_bound[<span style="color:#0086f7;font-weight:bold">1</span>])
+    <span style="color:#fb660a;font-weight:bold">return</span> int(fix_width * y_coff / x_coff)
 
-<pre><code class="language-python"># 依照設定範圍，計算圖片寬度對應的高度
-def calcCanvasHeightPixel(fix_width, x_bound, y_bound):
-    x_coff = abs(x_bound[0] - x_bound[1])
-    y_coff = abs(y_bound[0] - y_bound[1])
-    return int(fix_width * y_coff / x_coff)
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 參數設定</span>
+bound = ds.utils.lnglat_to_meters([-<span style="color:#0086f7;font-weight:bold">74.056273</span>, -<span style="color:#0086f7;font-weight:bold">73.735558</span>], [<span style="color:#0086f7;font-weight:bold">40.686604</span>, <span style="color:#0086f7;font-weight:bold">40.916272</span>])
+x_bound = tuple(bound[<span style="color:#0086f7;font-weight:bold">0</span>])
+y_bound = tuple(bound[<span style="color:#0086f7;font-weight:bold">1</span>])
 
-# 參數設定
-bound = ds.utils.lnglat_to_meters([-74.056273, -73.735558], [40.686604, 40.916272])
-x_bound = tuple(bound[0])
-y_bound = tuple(bound[1])
-
-# 計算 Canvas 的 Pixel 寬高
-width = 800
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 計算 Canvas 的 Pixel 寬高</span>
+width = <span style="color:#0086f7;font-weight:bold">800</span>
 height = calcCanvasHeightPixel(fix_width=width, x_bound=x_bound, y_bound=y_bound)
 
-# 建立 Canvas 物件
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 建立 Canvas 物件</span>
 canvas = ds.Canvas(plot_width=width, plot_height=height, x_range=x_bound, y_range=y_bound)
 
-## 使用 dataframe 資料建立 Aggregation 物件，並使用 ProgressBar 顯示處理進度。
-with diag.ProgressBar():
-    agg = canvas.points(df, 'pickup_x', 'pickup_y')
+<span style="color:#080;background-color:#0f140f;font-style:italic">## 使用 dataframe 資料建立 Aggregation 物件，並使用 ProgressBar 顯示處理進度。</span>
+<span style="color:#fb660a;font-weight:bold">with</span> diag.ProgressBar():
+    agg = canvas.points(df, <span style="color:#0086d2">&#39;pickup_x&#39;</span>, <span style="color:#0086d2">&#39;pickup_y&#39;</span>)
 
-# 建立影像物件並設定背景為黑色
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 建立影像物件並設定背景為黑色</span>
 img = ds_tf.shade(agg, cmap=hot)
-img = ds_tf.set_background(img, color='black')
+img = ds_tf.set_background(img, color=<span style="color:#0086d2">&#39;black&#39;</span>)
 
-# 儲存為 png file
-export_image(img=img, filename='nyc_taxi_2014_pickup', fmt='.png')
-</code></pre>
-
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 儲存為 png file</span>
+export_image(img=img, filename=<span style="color:#0086d2">&#39;nyc_taxi_2014_pickup&#39;</span>, fmt=<span style="color:#0086d2">&#39;.png&#39;</span>)</code></pre></div>
 <p>開啟儲存的<strong>nyc_taxi_2014_pickup.png</strong>圖片檔可得到以下結果</p>
 
 <p><img src="/images/python-datashader/nyc_taxi_2014_pickup.png" alt="pickup" />

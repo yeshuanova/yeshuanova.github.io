@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -126,20 +126,14 @@ if (!doNotTrack) {
 <h4 id="download-nyc-taxi-trip-data">Download NYC Taxi Trip Data</h4>
 
 <p>使用 <code>wget</code> 指令取得 NYC Taxi trip data，這裡一樣使用 2016 年 5 月的計程車資料。</p>
-
-<pre><code class="language-bash">wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv</code></pre></div>
 <h4 id="將原始-csv-分割為小檔案">將原始 CSV 分割為小檔案</h4>
 
 <p>依照資料筆數切割為許多小檔案</p>
-
-<pre><code class="language-bash">mkdir split # 建立 split 資料夾
-
-# 以 1,000,000 lines 為單位，將原始 csv 檔案分割為數個檔案（不包含 header）
-tail -n +2 yellow_tripdata_2016-05.csv | split -d -l 1000000 - split/trip.csv.
-</code></pre>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir split <span style="color:#080;background-color:#0f140f;font-style:italic"># 建立 split 資料夾
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 以 1,000,000 lines 為單位，將原始 csv 檔案分割為數個檔案（不包含 header）
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#0086f7;font-weight:bold">1000000</span> - split/trip.csv.</code></pre></div>
 <p>完成後可得到 <code>split/trip.csv.00</code>，<code>split/trip.csv.01</code> 等不包含標頭的分割檔</p>
 
 <blockquote>
@@ -149,13 +143,10 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l 1000000 - split/trip.csv.
 <h3 id="轉換-csv-內容到目標格式">轉換 csv 內容到目標格式</h3>
 
 <p>將 csv 檔案轉換到包含 Web Mercator 格式座標(epsg:3857)以及所在基底 Tile 的座標資料。</p>
-
-<pre><code class="language-python">with futuresfutures.ProcessPoolExecutor() as executor:
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">with</span> futuresfutures.ProcessPoolExecutor() <span style="color:#fb660a;font-weight:bold">as</span> executor:
     datas = zip(source_cshttp://macappstore.org/coreutils/vs, epsg3857_csvs, [base_zoom] * len(source_csvs))
     fs = executor.map(convTripGpsToWebMercatorWrapper, datas)
-    futures.as_completed(fs)
-</code></pre>
-
+    futures.as_completed(fs)</code></pre></div>
 <p>轉換完成後可得到如下方格式的 csv 檔案</p>
 
 <table>
@@ -190,55 +181,46 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l 1000000 - split/trip.csv.
 <li>使用 Group 後的座標資料建立 aggregation data</li>
 <li>使用 concurrent.futures 進行平行處理，加快計算速度。</li>
 </ul>
-
-<pre><code class="language-python">def makeTilesAggregation(source, root):
-    if not os.path.exists(source):
-        raise ValueError(f'Source file {source} doesn\'t exist')
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">def</span> <span style="color:#ff0086;font-weight:bold">makeTilesAggregation</span>(source, root):
+    <span style="color:#fb660a;font-weight:bold">if</span> not os.path.exists(source):
+        <span style="color:#fb660a;font-weight:bold">raise</span> ValueError(f<span style="color:#0086d2">&#39;Source file {source} doesn</span><span style="color:#0086d2">\&#39;</span><span style="color:#0086d2">t exist&#39;</span>)
     
     os.makedirs(root, exist_ok=True)
     
     df = pd.read_csv(source,
-                     usecols=['x', 'y', 'zoom', 'xtile', 'ytile'],
-                     dtype={'x':np.float32,
-                            'y':np.float32,
-                            'zoom':np.int8,
-                            'xtile':np.int32,
-                            'ytile':np.int32})
+                     usecols=[<span style="color:#0086d2">&#39;x&#39;</span>, <span style="color:#0086d2">&#39;y&#39;</span>, <span style="color:#0086d2">&#39;zoom&#39;</span>, <span style="color:#0086d2">&#39;xtile&#39;</span>, <span style="color:#0086d2">&#39;ytile&#39;</span>],
+                     dtype={<span style="color:#0086d2">&#39;x&#39;</span>:np.float32,
+                            <span style="color:#0086d2">&#39;y&#39;</span>:np.float32,
+                            <span style="color:#0086d2">&#39;zoom&#39;</span>:np.int8,
+                            <span style="color:#0086d2">&#39;xtile&#39;</span>:np.int32,
+                            <span style="color:#0086d2">&#39;ytile&#39;</span>:np.int32})
     
-    for ((zoom, xtile, ytile), data) in df.groupby(by=['zoom', 'xtile', 'ytile']):
-        agg = mapTileCanvas(xtile, ytile, zoom).points(data, 'x', 'y')
+    <span style="color:#fb660a;font-weight:bold">for</span> ((zoom, xtile, ytile), data) in df.groupby(by=[<span style="color:#0086d2">&#39;zoom&#39;</span>, <span style="color:#0086d2">&#39;xtile&#39;</span>, <span style="color:#0086d2">&#39;ytile&#39;</span>]):
+        agg = mapTileCanvas(xtile, ytile, zoom).points(data, <span style="color:#0086d2">&#39;x&#39;</span>, <span style="color:#0086d2">&#39;y&#39;</span>)
         serializeAggToFile(agg, getAggFilePath(root, xtile, ytile, zoom))
         serializeAggYaml(agg, getAggYamlFilePath(root, xtile, ytile, zoom))
         
-def makeTilesAggregationWrapper(data):
+<span style="color:#fb660a;font-weight:bold">def</span> <span style="color:#ff0086;font-weight:bold">makeTilesAggregationWrapper</span>(data):
     source, root = data
-    makeTilesAggregation(source, root)
-</code></pre>
-
+    makeTilesAggregation(source, root)</code></pre></div>
 <ul>
 <li>平行化建立 Map tiles</li>
 </ul>
-
-<pre><code class="language-python">with futures.ProcessPoolExecutor() as executor:
-    targets_root = [os.path.join(temp_root, os.path.basename(f)) for f in epsg3857_csvs]
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">with</span> futures.ProcessPoolExecutor() <span style="color:#fb660a;font-weight:bold">as</span> executor:
+    targets_root = [os.path.join(temp_root, os.path.basename(f)) <span style="color:#fb660a;font-weight:bold">for</span> f in epsg3857_csvs]
     datas = zip(epsg3857_csvs, targets_root)
     fs = executor.map(makeTilesAggregationWrapper, datas)
-    futures.as_completed(fs)
-</code></pre>
-
+    futures.as_completed(fs)</code></pre></div>
 <h3 id="合併-aggregation-files">合併 aggregation files</h3>
 
 <p>合併所有 map tiles aggregation files，成為一個包含所有分割 csv 資料的整合 aggregation，並將其當作是基底 map tile 資料。</p>
-
-<pre><code class="language-python"># 平行化合併處理方式 
-with futures.ProcessPoolExecutor() as executor:
-    tiles = getCombineTiles(glob.glob(os.path.join(temp_root, '*')))
-    tiles_chunk = list(chunks(tiles, chunksSize(len(tiles), 4)))
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;background-color:#0f140f;font-style:italic"># 平行化合併處理方式 </span>
+<span style="color:#fb660a;font-weight:bold">with</span> futures.ProcessPoolExecutor() <span style="color:#fb660a;font-weight:bold">as</span> executor:
+    tiles = getCombineTiles(glob.glob(os.path.join(temp_root, <span style="color:#0086d2">&#39;*&#39;</span>)))
+    tiles_chunk = list(chunks(tiles, chunksSize(len(tiles), <span style="color:#0086f7;font-weight:bold">4</span>)))
     tiles_tuple = zip(tiles_chunk, [temp_root] * len(tiles_chunk), [agg_root] * len(tiles_chunk))
     fs = executor.map(combineAggregationWrapper, tiles_tuple)
-    futures.as_completed(fs)
-</code></pre>
-
+    futures.as_completed(fs)</code></pre></div>
 <h3 id="使用-bottom-up-方式合併並產生上層-zoom-的-map-tiles">使用 Bottom-Up 方式合併並產生上層 zoom 的 map tiles</h3>
 
 <ul>
@@ -256,40 +238,34 @@ with futures.ProcessPoolExecutor() as executor:
 
 <li><p>不斷往上建立 parents tiles 直到  zoom 0 為止。</p></li>
 </ul>
-
-<pre><code class="language-python">for zoom in range(base_zoom, 0, -1):
-    print(f'Make parents tiles from zoom {zoom}')
-    with futures.ProcessPoolExecutor() as executor:
-        tiles = [(agg_root, x, y, z) for x, y, z in getParentTiles(agg_root, zoom)]
-        tiles_chunk = chunks(tiles, chunksSize(len(tiles), 4))
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">for</span> zoom in range(base_zoom, <span style="color:#0086f7;font-weight:bold">0</span>, -<span style="color:#0086f7;font-weight:bold">1</span>):
+    <span style="color:#fb660a;font-weight:bold">print</span>(f<span style="color:#0086d2">&#39;Make parents tiles from zoom {zoom}&#39;</span>)
+    <span style="color:#fb660a;font-weight:bold">with</span> futures.ProcessPoolExecutor() <span style="color:#fb660a;font-weight:bold">as</span> executor:
+        tiles = [(agg_root, x, y, z) <span style="color:#fb660a;font-weight:bold">for</span> x, y, z in getParentTiles(agg_root, zoom)]
+        tiles_chunk = chunks(tiles, chunksSize(len(tiles), <span style="color:#0086f7;font-weight:bold">4</span>))
         fs = executor.map(makeTilesBottomUpWrapper, tiles_chunk)
-        futures.as_completed(fs)
-</code></pre>
-
+        futures.as_completed(fs)</code></pre></div>
 <h3 id="建立每個-zoom-中的最大點數資料">建立每個 zoom 中的最大點數資料</h3>
 
 <p>掃描 zoom 中每個 tile 的最大點位資料，並儲存進 <code>{zoom}/zoom_config.yaml</code> 中（與前篇方式相同）。</p>
-
-<pre><code class="language-python"># 計算 zoom 中的最大點數資料
-def getZoomMaxCount(zoom_root):
-    max_count = 0;
-    for root, dirs, files in os.walk(zoom_root):
-        for file in files:
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;background-color:#0f140f;font-style:italic"># 計算 zoom 中的最大點數資料</span>
+<span style="color:#fb660a;font-weight:bold">def</span> <span style="color:#ff0086;font-weight:bold">getZoomMaxCount</span>(zoom_root):
+    max_count = <span style="color:#0086f7;font-weight:bold">0</span>;
+    <span style="color:#fb660a;font-weight:bold">for</span> root, dirs, files in os.walk(zoom_root):
+        <span style="color:#fb660a;font-weight:bold">for</span> file in files:
             exts = file.split(os.extsep)
-            if os.path.splitext(file)[1] != '.yaml':
-                continue
+            <span style="color:#fb660a;font-weight:bold">if</span> os.path.splitext(file)[<span style="color:#0086f7;font-weight:bold">1</span>] != <span style="color:#0086d2">&#39;.yaml&#39;</span>:
+                <span style="color:#fb660a;font-weight:bold">continue</span>
             mc = getYamlMaxCount(os.path.join(root, file))
-            max_count = mc if max_count &lt; mc else max_count
-    return max_count
+            max_count = mc <span style="color:#fb660a;font-weight:bold">if</span> max_count &lt; mc <span style="color:#fb660a;font-weight:bold">else</span> max_count
+    <span style="color:#fb660a;font-weight:bold">return</span> max_count
 
-for zoom in os.listdir(agg_root):
+<span style="color:#fb660a;font-weight:bold">for</span> zoom in os.listdir(agg_root):
     max_count = getZoomMaxCount(os.path.join(agg_root, zoom))
-    zoom_yaml = os.path.join(agg_root, zoom, 'zoom_config.yaml')
-    with open(zoom_yaml, 'w') as file:
-        yaml_obj = {'max_count': max_count}
-        yaml.dump(yaml_obj, file, default_flow_style=False)
-</code></pre>
-
+    zoom_yaml = os.path.join(agg_root, zoom, <span style="color:#0086d2">&#39;zoom_config.yaml&#39;</span>)
+    <span style="color:#fb660a;font-weight:bold">with</span> open(zoom_yaml, <span style="color:#0086d2">&#39;w&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> file:
+        yaml_obj = {<span style="color:#0086d2">&#39;max_count&#39;</span>: max_count}
+        yaml.dump(yaml_obj, file, default_flow_style=False)</code></pre></div>
 <h3 id="產生-aggregation-檔案對應的-tile-影像">產生 Aggregation 檔案對應的 Tile 影像</h3>
 
 <ul>

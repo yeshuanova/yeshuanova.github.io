@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -111,44 +111,38 @@ if (!doNotTrack) {
 <h3 id="mnist-資料降維與復原">MNIST 資料降維與復原</h3>
 
 <p>MNIST 為一著名的手寫辨識資料集，在此範例中使用 Fully-Connection Neural Network，將 <strong>28 * 28 = 784</strong> 維的圖片轉換成 <strong>32</strong> 維的 Encoding Layer 後，再還原至原先的 <strong>28 * 28</strong> 維影像資料並比較雙方差異。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;background-color:#0f140f;font-style:italic"># 讀取 MNIST dataset 並進行前處理</span>
+<span style="color:#fb660a;font-weight:bold">from</span> keras.datasets <span style="color:#fb660a;font-weight:bold">import</span> mnist
+<span style="color:#fb660a;font-weight:bold">import</span> numpy <span style="color:#fb660a;font-weight:bold">as</span> np
 
-<pre><code class="language-python"># 讀取 MNIST dataset 並進行前處理
-from keras.datasets import mnist
-import numpy as np
-
-# x_train: Autoencoder 訓練資料
-# x_test: Autoencoder 測試資料
+<span style="color:#080;background-color:#0f140f;font-style:italic"># x_train: Autoencoder 訓練資料</span>
+<span style="color:#080;background-color:#0f140f;font-style:italic"># x_test: Autoencoder 測試資料</span>
 (x_train, _), (x_test, _) = mnist.load_data()
 
-x_train = x_train.astype('float32') / 255. # 正規化資料數值範圍至 [0, 1] 間
-x_test = x_test.astype('float32') / 255.
+x_train = x_train.astype(<span style="color:#0086d2">&#39;float32&#39;</span>) / <span style="color:#0086f7;font-weight:bold">255.</span> <span style="color:#080;background-color:#0f140f;font-style:italic"># 正規化資料數值範圍至 [0, 1] 間</span>
+x_test = x_test.astype(<span style="color:#0086d2">&#39;float32&#39;</span>) / <span style="color:#0086f7;font-weight:bold">255.</span>
 
-# 正規化資料維度，以便 Keras 處理
-x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
-x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
-</code></pre>
-
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 正規化資料維度，以便 Keras 處理</span>
+x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[<span style="color:#0086f7;font-weight:bold">1</span>:])))
+x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[<span style="color:#0086f7;font-weight:bold">1</span>:])))</code></pre></div>
 <p>資料讀取完成後，接著建立 Autoencoder Model 並使用 <code>x_train</code> 資料進行訓練。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">from</span> keras.layers <span style="color:#fb660a;font-weight:bold">import</span> Input, Dense
+<span style="color:#fb660a;font-weight:bold">from</span> keras.models <span style="color:#fb660a;font-weight:bold">import</span> Model
 
-<pre><code class="language-python">from keras.layers import Input, Dense
-from keras.models import Model
+input_img = Input(shape=(<span style="color:#0086f7;font-weight:bold">784</span>,))
+encoded = Dense(<span style="color:#0086f7;font-weight:bold">32</span>, activation=<span style="color:#0086d2">&#39;relu&#39;</span>)(input_img) <span style="color:#080;background-color:#0f140f;font-style:italic">## Encoding layer 設為 32 維</span>
+decoded = Dense(<span style="color:#0086f7;font-weight:bold">784</span>, activation=<span style="color:#0086d2">&#39;sigmoid&#39;</span>)(encoded) <span style="color:#080;background-color:#0f140f;font-style:italic">## Decoding layer 設為與 input layer 相同的 784 維</span>
 
-input_img = Input(shape=(784,))
-encoded = Dense(32, activation='relu')(input_img) ## Encoding layer 設為 32 維
-decoded = Dense(784, activation='sigmoid')(encoded) ## Decoding layer 設為與 input layer 相同的 784 維
-
-# 建立 Model 並將 loss funciton 設為 binary cross entropy
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 建立 Model 並將 loss funciton 設為 binary cross entropy</span>
 autoencoder = Model(input_img, decoded)
-autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
+autoencoder.compile(optimizer=<span style="color:#0086d2">&#39;adadelta&#39;</span>, loss=<span style="color:#0086d2">&#39;binary_crossentropy&#39;</span>)
 
 autoencoder.fit(x_train,
-                x_train,  # Label 也設為 x_train
-                epochs=25,
-                batch_size=128,
+                x_train,  <span style="color:#080;background-color:#0f140f;font-style:italic"># Label 也設為 x_train</span>
+                epochs=<span style="color:#0086f7;font-weight:bold">25</span>,
+                batch_size=<span style="color:#0086f7;font-weight:bold">128</span>,
                 shuffle=True,
-                validation_data=(x_test, x_test))
-</code></pre>
-
+                validation_data=(x_test, x_test))</code></pre></div>
 <p>訓練完後可以得到 <strong>loss</strong> 值約為 <code>0.1049</code> 以及 <strong>Validation loss</strong> 為 <code>0.1029</code> 的 Autoencoder Model。下圖為將 <code>x_test</code> 資料輸入 <code>autoencoder</code> 物件後的得到的結果圖片。</p>
 
 <p><img src="/images/autoencoder/nn_autoencoder_comparison.png" alt="nn_imaga_comparision" />
@@ -159,46 +153,40 @@ autoencoder.fit(x_train,
 <h3 id="denosing-autoencoder-dae">Denosing Autoencoder (DAE)</h3>
 
 <p>最初的 Autoencoder 為使用相同的輸入與輸出來建立 Model，但我們也可以對 Model 做一些修改來達成其他效果。如對輸入的資料 $x$ 加入的 noise 使 $\tilde{x}=noise(x)$。現在使用 $\tilde{x}$ 做為訓練資料而 $x$ 為輸出結果進行訓練。即讓 Loss function 為 $L(x, g( f( \tilde{x} )))$ 可得到一個對原始資料具有去雜訊功能的 Model。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">noise_factor = <span style="color:#0086f7;font-weight:bold">0.5</span> <span style="color:#080;background-color:#0f140f;font-style:italic"># 決定 noise 的數量，值越大 noise 越多</span>
+x_train_noisy = x_train + noise_factor * np.random.normal(loc=<span style="color:#0086f7;font-weight:bold">0.0</span>, scale=<span style="color:#0086f7;font-weight:bold">1.0</span>, size=x_train.shape)
+x_test_noisy = x_test + noise_factor * np.random.normal(loc=<span style="color:#0086f7;font-weight:bold">0.0</span>, scale=<span style="color:#0086f7;font-weight:bold">1.0</span>, size=x_test.shape)
 
-<pre><code class="language-python">noise_factor = 0.5 # 決定 noise 的數量，值越大 noise 越多
-x_train_noisy = x_train + noise_factor * np.random.normal(loc=0.0, scale=1.0, size=x_train.shape)
-x_test_noisy = x_test + noise_factor * np.random.normal(loc=0.0, scale=1.0, size=x_test.shape)
-
-# 將資料限制在 [0, 1] 之間的範圍內
-x_train_noisy = np.clip(x_train_noisy, 0., 1.)
-x_test_noisy = np.clip(x_test_noisy, 0., 1.)
-</code></pre>
-
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 將資料限制在 [0, 1] 之間的範圍內</span>
+x_train_noisy = np.clip(x_train_noisy, <span style="color:#0086f7;font-weight:bold">0.</span>, <span style="color:#0086f7;font-weight:bold">1.</span>)
+x_test_noisy = np.clip(x_test_noisy, <span style="color:#0086f7;font-weight:bold">0.</span>, <span style="color:#0086f7;font-weight:bold">1.</span>)</code></pre></div>
 <p>使用加入 Noise 的資料建立 Autoencoder Model 並進行訓練</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">input_img = Input(shape=(<span style="color:#0086f7;font-weight:bold">28</span>, <span style="color:#0086f7;font-weight:bold">28</span>, <span style="color:#0086f7;font-weight:bold">1</span>))
+x = Conv2D(<span style="color:#0086f7;font-weight:bold">32</span>, (<span style="color:#0086f7;font-weight:bold">3</span>, <span style="color:#0086f7;font-weight:bold">3</span>), activation=<span style="color:#0086d2">&#39;relu&#39;</span>, padding=<span style="color:#0086d2">&#39;same&#39;</span>)(input_img)
+x = MaxPooling2D((<span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">2</span>), padding=<span style="color:#0086d2">&#39;same&#39;</span>)(x)
+x = Conv2D(<span style="color:#0086f7;font-weight:bold">32</span>, (<span style="color:#0086f7;font-weight:bold">3</span>, <span style="color:#0086f7;font-weight:bold">3</span>), activation=<span style="color:#0086d2">&#39;relu&#39;</span>, padding=<span style="color:#0086d2">&#39;same&#39;</span>)(x)
 
-<pre><code class="language-python">input_img = Input(shape=(28, 28, 1))
-x = Conv2D(32, (3, 3), activation='relu', padding='same')(input_img)
-x = MaxPooling2D((2, 2), padding='same')(x)
-x = Conv2D(32, (3, 3), activation='relu', padding='same')(x)
+<span style="color:#080;background-color:#0f140f;font-style:italic"># encoded size = (7, 7, 32) dimension</span>
+encoded = MaxPooling2D((<span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">2</span>), padding=<span style="color:#0086d2">&#39;same&#39;</span>)(x) 
 
-# encoded size = (7, 7, 32) dimension
-encoded = MaxPooling2D((2, 2), padding='same')(x) 
+x = Conv2D(<span style="color:#0086f7;font-weight:bold">32</span>, (<span style="color:#0086f7;font-weight:bold">3</span>, <span style="color:#0086f7;font-weight:bold">3</span>), activation=<span style="color:#0086d2">&#39;relu&#39;</span>, padding=<span style="color:#0086d2">&#39;same&#39;</span>)(encoded)
+x = UpSampling2D((<span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">2</span>))(x)
+x = Conv2D(<span style="color:#0086f7;font-weight:bold">32</span>, (<span style="color:#0086f7;font-weight:bold">3</span>, <span style="color:#0086f7;font-weight:bold">3</span>), activation=<span style="color:#0086d2">&#39;relu&#39;</span>, padding=<span style="color:#0086d2">&#39;same&#39;</span>)(x)
+x = UpSampling2D((<span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">2</span>))(x)
 
-x = Conv2D(32, (3, 3), activation='relu', padding='same')(encoded)
-x = UpSampling2D((2, 2))(x)
-x = Conv2D(32, (3, 3), activation='relu', padding='same')(x)
-x = UpSampling2D((2, 2))(x)
-
-# Decoded size = (28, 28, 1) dimension (Original size)
-decoded = Conv2D(1, (3, 3), activation='sigmoid', padding='same')(x)
+<span style="color:#080;background-color:#0f140f;font-style:italic"># Decoded size = (28, 28, 1) dimension (Original size)</span>
+decoded = Conv2D(<span style="color:#0086f7;font-weight:bold">1</span>, (<span style="color:#0086f7;font-weight:bold">3</span>, <span style="color:#0086f7;font-weight:bold">3</span>), activation=<span style="color:#0086d2">&#39;sigmoid&#39;</span>, padding=<span style="color:#0086d2">&#39;same&#39;</span>)(x)
 
 autoencoder = Model(input_img, decoded)
-autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
+autoencoder.compile(optimizer=<span style="color:#0086d2">&#39;adadelta&#39;</span>, loss=<span style="color:#0086d2">&#39;binary_crossentropy&#39;</span>)
 
-# 訓練 DAE Model
-autoencoder.fit(x_train_noisy, # 加入 noise 的資料為輸入
-                x_train,  # 原始資料為 Label
-                epochs=20,
-                batch_size=256,
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 訓練 DAE Model</span>
+autoencoder.fit(x_train_noisy, <span style="color:#080;background-color:#0f140f;font-style:italic"># 加入 noise 的資料為輸入</span>
+                x_train,  <span style="color:#080;background-color:#0f140f;font-style:italic"># 原始資料為 Label</span>
+                epochs=<span style="color:#0086f7;font-weight:bold">20</span>,
+                batch_size=<span style="color:#0086f7;font-weight:bold">256</span>,
                 shuffle=True,
-                validation_data=(x_test_noisy, x_test))
-</code></pre>
-
+                validation_data=(x_test_noisy, x_test))</code></pre></div>
 <p>訓練後可得到一個 Denoising Autoencoder Model。現建立加入不同雜訊數量的 MNIST 影像資料輸入訓練完成的 DAE 中得到的 denoising 的結果。</p>
 
 <p><img src="/images/autoencoder/denoising_origin.png" alt="DAE_Origin" />
