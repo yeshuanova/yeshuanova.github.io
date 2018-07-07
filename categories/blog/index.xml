@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Xeno Universe</title>
+    <link>/categories/blog/</link>
+    <description>Recent content in Blog on Xeno Universe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 07 Jul 2018 14:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>從 Jekyll 轉移到 Hugo 心得</title>
+      <link>/post/2018/07/from-jekyll-to-hugo/</link>
+      <pubDate>Sat, 07 Jul 2018 14:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/07/from-jekyll-to-hugo/</guid>
+      <description>&lt;p&gt;由於原先使用 Jekyll 的 voyager theme 所建立的靜態 Blog 在功能上已有些不足，且 Jekyll 的過慢的編譯速度也讓人有些頭大，因此有了轉換網網頁產生器的想法。原本是想使用 Hexo 來當作新的產生器，但在找產生器的過程發現了 Hugo 這個靜態網頁產生器中的新起之秀，研究後發現相當符合個人需求，因此決定使用 Hugo 來作為新的靜態網頁產生器。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -101,15 +101,15 @@ if (!doNotTrack) {
 
 <h3 id="input-layer">Input layer</h3>
 
-<p>原始資料的輸入來源，將資料導入 hidden layer，以一張圖片 $10 \times 10$ 的灰階圖片來說，input layer 即為 $10 * 10 = 100$ 個像素的值。</p>
+<p>原始資料的輸入來源，將資料導入 hidden layer。以一張長寬為 (10, 10) 的圖片為例，input layer 即為 10 * 10 = 100 個像素的值。</p>
 
 <h3 id="hidden-layer">Hidden layer</h3>
 
 <p>Hidden layer 中的每個 neuron 會接收上一層的輸入資料，經過乘以權重並加總後，透過 <a href="https://en.wikipedia.org/wiki/Activation_function">activation function</a> 將資料輸出。假設一個 neuron 的上一層有 $i$ 個輸出，則該 neuron 的輸出可計算為</p>
 
-<p>$$output = \sigma(\sum\limits<em>{i}w</em>{i}x_{i} + b)$$</p>
+<p><span  class="math">\[output = \sigma(\sum\limits_{i}w_{i}x_{i} + b)\]</span></p>
 
-<p>其中 $x_i$ 為第 $i$ 個輸出， $w_i$ 為對第 $i$ 個輸出值該 neuron 的 weight (權重)，$b$ 為 bias 值，$\sigma$ 為所設定的 activation function 如 <a href="https://en.wikipedia.org/wiki/Sigmoid_function">Sigmoid</a>，<a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">ReLu</a> 等的函數。</p>
+<p>其中 <span  class="math">\(x_i\)</span> 為第 <span  class="math">\(i\)</span> 個輸出， <span  class="math">\(w_i\)</span> 為對第 <span  class="math">\(i\)</span> 個輸出值 neuron 的 weight (權重)，<span  class="math">\(b\)</span> 為 bias 值，<span  class="math">\(\sigma\)</span> 為所設定的 activation function 如 <a href="https://en.wikipedia.org/wiki/Sigmoid_function">Sigmoid</a>，<a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">ReLu</a> 等的函數。</p>
 
 <h3 id="output-layer">Output layer</h3>
 
@@ -117,12 +117,12 @@ if (!doNotTrack) {
 
 <p>下圖為 NN 模型的簡單結構圖，其中 input layer 包含 3 個 neuron，output layer 則包含 1 個 neuron。而 hidden layer 有兩層，且每層有 4 個 neuron。</p>
 
-<p><img src="/images/depthwise-cnn/neural_net_3_layers.jpg" alt="nn-3-layer" />
+<p><figure><img src="/images/depthwise-cnn/neural_net_3_layers.jpg" alt="nn-3-layer"></figure>
 <em>Structure of artificial neural network (<a href="(http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture5.pdf)">Source</a>)</em></p>
 
 <h2 id="training">Training</h2>
 
-<p>那要如何讓模型具有學習能力，讓 NN 模型能自動調整所有的 weight $w$，得出想要的結果? 我們可以透過 loss function 與 backpropagation (反向傳播) 演算法，讓模型去自動調整模型中的 weight 讓誤差越來越小。主要步驟為</p>
+<p>那要如何讓模型具有學習能力，讓 NN 模型能自動調整所有的 weight <span  class="math">\(w\)</span>，得出想要的結果? 我們可以透過 loss function 與 backpropagation (反向傳播) 演算法，讓模型去自動調整模型中的 weight 讓誤差越來越小。主要步驟為</p>
 
 <ol>
 <li>定義模型的 <a href="https://en.wikipedia.org/wiki/Loss_function">loss function</a> 來代表模型計算結果與真正結果之間的差異量。</li>
@@ -138,32 +138,32 @@ if (!doNotTrack) {
 
 <p>與前面提到的標準 NN 不同，CNN 運用多個 kernel 對輸入層進行 convolution (卷積) 計算後並透過 activation function 將輸入層的資料轉換到輸出層，計算得到的輸出層也可當做下一次 convolution 的輸入層，透過此方式最終將資料導向 output layer，如下圖所示</p>
 
-<p><img src="/images/depthwise-cnn/cnn_architecture_cs231n.jpg" alt="cnn-architecture" />
+<p><figure><img src="/images/depthwise-cnn/cnn_architecture_cs231n.jpg" alt="cnn-architecture"></figure>
 <em>Structure of convolutional neural network (From: <a href="(http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture5.pdf)">Stanford cs231n</a>)</em></p>
 
-<p>雖然 convolutional Neural Network 功能強大但計算成本也相當高。假設現在對<strong>輸入層</strong> feature map $F$ 透過 kernel $K$ 進行 convolution 運算後得到<strong>輸出層</strong> feature map $G$，其中</p>
+<p>雖然 convolutional Neural Network 功能強大但計算成本也相當高。假設現在對<strong>輸入層</strong> feature map <span  class="math">\(F\)</span> 透過 kernel <span  class="math">\(K\)</span> 進行 convolution 運算後得到<strong>輸出層</strong> feature map <span  class="math">\(G\)</span>，其中</p>
 
 <ul>
-<li>$D_F$：Feature map $F$ 的長寬。</li>
-<li>$M$：Feature map $F$ 的 channel 數量。</li>
-<li>$D_K$：Kernel $K$ 的長寬。</li>
-<li>$N$：Feature map $G$ 的 channel 數量。</li>
+<li><span  class="math">\(D_F\)</span>：Feature map <span  class="math">\(F\)</span> 的長寬。</li>
+<li><span  class="math">\(M\)</span>：Feature map <span  class="math">\(F\)</span> 的 channel 數量。</li>
+<li><span  class="math">\(D_K\)</span>：Kernel <span  class="math">\(K\)</span> 的長寬。</li>
+<li><span  class="math">\(N\)</span>：Feature map <span  class="math">\(G\)</span> 的 channel 數量。</li>
 </ul>
 
-<p><img src="/images/depthwise-cnn/filter_cnn.jpg" alt="cnn-filter" />
+<p><figure><img src="/images/depthwise-cnn/filter_cnn.jpg" alt="cnn-filter"></figure>
 <em>Filter of convolutional neural network</em></p>
 
 <p>該次 convolution 運算的計算量為</p>
 
-<p>$$D_K \cdot D_k \cdot M \cdot N \cdot D_F \cdot D_F$$</p>
+<p><span  class="math">\[D_K \cdot D_k \cdot M \cdot N \cdot D_F \cdot D_F\]</span></p>
 
 <blockquote>
 <p>channel 可想像影像中每個 pixel 的資料深度。例如灰階影像只需要一個維度來代表亮度則 channel 就為 <strong>1</strong>。而 RGB 影像需要三維資料來代表所以 channel 數為 <strong>3</strong>。</p>
 </blockquote>
 
-<p>假設一個 $224 \times 224$ 的灰階影像(channel = 1)，Kernel 長寬為 $3\times3$ 且輸出的 Feature Map 的 channel 數量為 $10$。則第一層總計算量約為 $3 \times 3 \times 1 \times 10 \times 224 \times 224 = 4,515,840$，可看出光是單一層的卷積計算就需要非常大量的計算成本。在更大更深的深度卷積網路中將會是非常大的負擔。</p>
+<p>假設一個 224 x 224 的灰階影像(channel = 1)，Kernel 長寬為 3 x 3 且輸出的 Feature Map 的 channel 數量為 10。則第一層總計算量約為 3 * 3 * 1 * 10 * 224 * 224 = 4,515,840，可看出光是單一層的卷積計算就需要非常大量的計算成本。在更大更深的深度卷積網路中將會是非常大的負擔。</p>
 
-<p><img src="/assets/images/depthwise-cnn/fig_filter_cnn.png" alt="cnn_filter_2" />
+<p><figure><img src="/images/depthwise-cnn/fig_filter_cnn.png" alt="cnn_filter_2"></figure>
 <em>Structure of convolutional neural network (<a href="http://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/">Source</a>)</em></p>
 
 <h2 id="depthwise-separable-convolution">Depthwise separable convolution</h2>
@@ -172,33 +172,33 @@ if (!doNotTrack) {
 
 <h3 id="depthwise-convolutions">Depthwise convolutions</h3>
 
-<p>通常 CNN 的 filter 深度會依照輸入層的 channel 大小深度變化，如寬高為 5 的 filter，假設輸入層 channel 數為 3，則 kernel 的維度大小為 $5 \times 5 \times 3$。而 depthwise convolution 層則是先對輸入層的<strong>每個 channel</strong> 建立一個 $D_K \times D_K \times 1$ 的 kernel</p>
+<p>通常 CNN 的 filter 深度會依照輸入層的 channel 大小深度變化，如寬高為 5 的 filter，假設輸入層 channel 數為 3，則 kernel 的維度大小為 <span  class="math">\(5 \times 5 \times 3\)</span>。而 depthwise convolution 層則是先對輸入層的<strong>每個 channel</strong> 建立一個 <span  class="math">\(D_K \times D_K \times 1\)</span> 的 kernel</p>
 
-<p><img src="/assets/images/depthwise-cnn/filter_depthwise.jpg" alt="depthwise-layer" />
+<p><figure><img src="/images/depthwise-cnn/filter_depthwise.jpg" alt="depthwise-layer"></figure>
 <em>Depthwise convolutional filters</em></p>
 
-<p>之後對該 channel 所有的資料進行 convolution 計算。假如輸入層有 $M$ 個 channel，則會建立 $M$ 個 kernel - $K_1$，$K_2$ 與 $K_3$，分別對三個 channel 的資料進行運算得出與輸出層相同寬高的中間層，之後將資料進行下一步的 pointwies convolutions。</p>
+<p>之後對該 channel 所有的資料進行 convolution 計算。假如輸入層有 <span  class="math">\(M\)</span> 個 channel，則會建立 <span  class="math">\(M\)</span> 個 kernel - <span  class="math">\(K_1\)</span>，<span  class="math">\(K_2\)</span> 與 <span  class="math">\(K_3\)</span>，分別對三個 channel 的資料進行運算得出與輸出層相同寬高的中間層，之後將資料進行下一步的 pointwies convolutions。</p>
 
-<p><img src="/assets/images/depthwise-cnn/fig_filter_depthwise.png" alt="depthwise-layer-2" />
+<p><figure><img src="/images/depthwise-cnn/fig_filter_depthwise.png" alt="depthwise-layer-2"></figure>
 <em>Structure of depthwise convolutions (<a href="http://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/">Source</a>)</em></p>
 
 <h3 id="pointwise-convolutions">Pointwise convolutions</h3>
 
-<p>在每個 channel 進行過 depthwise Convolution 的步驟後，下一步是對每個點的所有 channel 值進行 pointwise convolutions。先對<strong>每個輸出 channel</strong> 建立一個大小為 $1 \times 1  \times M$ 的 Kernel 後 ($M$ 為輸入層的 channel 數)，將輸入層的所有點進行 convolution 運算。假如輸出層有 $N$ 個 channel，則會建立 $N$ 個 $1 \times 1 \times M$ 的 kernel</p>
+<p>在每個 channel 進行過 depthwise Convolution 的步驟後，下一步是對每個點的所有 channel 值進行 pointwise convolutions。先對<strong>每個輸出 channel</strong> 建立一個大小為 <span  class="math">\(1 \times 1 \times M\)</span> 的 Kernel 後 (<span  class="math">\(M\)</span> 為輸入層的 channel 數)，將輸入層的所有點進行 convolution 運算。假如輸出層有 <span  class="math">\(N\)</span> 個 channel，則會建立 <span  class="math">\(N\)</span> 個 <span  class="math">\(1 \times 1 \times M\)</span> 的 kernel</p>
 
-<p><img src="/images/depthwise-cnn/filter_pointwise.jpg" alt="pointwise-layer" />
+<p><figure><img src="/images/depthwise-cnn/filter_pointwise.jpg" alt="pointwise-layer"></figure>
 <em>Pointwise convolutional filters</em></p>
 
-<p>之後將每個 kernel 對輸入層進行運算後可得到大小為 $D_G \times D_G \times N $ 的輸出層（$D_G$ 為輸出層的長寬）。該結果與原先 CNN 輸出層結構是相同的。</p>
+<p>之後將每個 kernel 對輸入層進行運算後可得到大小為 <span  class="math">\(D_G \times D_G \times N\)</span> 的輸出層（<span  class="math">\(D_G\)</span> 為輸出層的長寬）。該結果與原先 CNN 輸出層結構是相同的。</p>
 
-<p><img src="/images/depthwise-cnn/fig_filter_pointwise.png" alt="pointwise-layer-2" />
+<p><figure><img src="/images/depthwise-cnn/fig_filter_pointwise.png" alt="pointwise-layer-2"></figure>
 <em>Structure of pointwise convolutions (<a href="http://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/">Source</a>)</em></p>
 
 <h3 id="comparision">Comparision</h3>
 
 <p>下圖為標準 convolution 與 depthwise deparabel convolution 的流程比較。右方的 depthwise separable convolution 執行步驟看似比較多，但實際分析過後會發現實際計算量比使用傳統的 CNN 的模型減少相當多。</p>
 
-<p><img src="/images/depthwise-cnn/net_comparison.jpg" alt="net_comparison" />
+<p><figure><img src="/images/depthwise-cnn/net_comparison.jpg" alt="net_comparison"></figure>
 <em>(Left) Standard convolution。 (Right) Depthwise separable convolution</em></p>
 
 <blockquote>
@@ -212,25 +212,25 @@ if (!doNotTrack) {
 
 <p>由前面的討論可知 depthwise convolutions 部分的計算量為</p>
 
-<p>$$D_K \cdot D_K \cdot M \cdot D_F \cdot D_F$$</p>
+<p><span  class="math">\[D_K \cdot D_K \cdot M \cdot D_F \cdot D_F\]</span></p>
 
 <p>而 pointwise convolutions 則為</p>
 
-<p>$$M \cdot N \cdot D_F \cdot D_F$$</p>
+<p><span  class="math">\[M \cdot N \cdot D_F \cdot D_F\]</span></p>
 
 <p>因此 depthwise separable convolution 的總計算量可由 depthwise 與 pointwise 兩部份相加得到</p>
 
-<p>$$D_K \cdot D_K \cdot M \cdot D_F \cdot D_F + M \cdot N \cdot D_F \cdot D_F$$</p>
+<p><span  class="math">\[D_K \cdot D_K \cdot M \cdot D_F \cdot D_F + M \cdot N \cdot D_F \cdot D_F\]</span></p>
 
 <p>將上式與傳統 CNN 的計算量進行比較，可得到下列結果</p>
 
-<p>$$\frac{D_K \cdot D_K \cdot M \cdot D_F \cdot D_F + M \cdot N \cdot D_F \cdot D_F}{D_K \cdot D_k \cdot M \cdot N \cdot D_F \cdot D_F} $$</p>
+<p><span  class="math">\[\frac{D_K \cdot D_K \cdot M \cdot D_F \cdot D_F + M \cdot N \cdot D_F \cdot D_F}{D_K \cdot D_k \cdot M \cdot N \cdot D_F \cdot D_F} \]</span></p>
 
-<p>$$= \frac{1}{N} + \frac{1}{D_K^2}$$</p>
+<p><span  class="math">\[= \frac{1}{N} + \frac{1}{D_K^2}\]</span></p>
 
-<p>可知道原先 CNN 中的 Kernel Size 與輸出 channel 的越大，使用 depthwise separable convolution 方式所減少的計算量會更多。以一個大小 $3\times3$ 的 Kernel 來說計算量可減少到原先的 $<sup>1</sup>&frasl;<sub>8</sub>$ 到 $<sup>1</sup>&frasl;<sub>9</sub>$ 左右，對效能有非常大的幫助。以之前的 CNN 計算量範例所需的計算量為 $4,515,840$ ，而使用 Depthwise separable convolution 來計算所需的計算量為</p>
+<p>可知道原先 CNN 中的 Kernel Size 與輸出 channel 的越大，使用 depthwise separable convolution 方式所減少的計算量會更多。以一個大小 $3\times3$ 的 Kernel 來說計算量可減少到原先的 $1/8$ 到 $1/9$ 左右，對效能有非常大的幫助。以之前的 CNN 計算量範例所需的計算量為 $4,515,840$ ，而使用 Depthwise separable convolution 來計算所需的計算量為</p>
 
-<p>$$3*3*1*224*224+1*10*224*244=998,144$$</p>
+<p><span  class="math">\[3*3*1*224*224+1*10*224*244=998,144\]</span></p>
 
 <p>可看出計算成本有著非常顯著的減少了。</p>
 
@@ -279,7 +279,7 @@ if (!doNotTrack) {
 <li><a href="http://androidkt.com/tenserflow-lite/">TensorFlow Lite</a></li>
 <li><a href="https://towardsdatascience.com/types-of-convolutions-in-deep-learning-717013397f4d">An Introduction to different Types of Convolutions in Deep Learning</a></li>
 <li><a href="http://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/">Google’s MobileNets on the iPhone</a></li>
-<li><a href="https://qiita.com/yu4u/items/34cd33b944d8bdca142d">Kerasの作者@fcholletさんのCVPR&rsquo;17論文XceptionとGoogleのMobileNets論文を読んだ</a></li>
+<li><a href="https://qiita.com/yu4u/items/34cd33b944d8bdca142d">Kerasの作者@fcholletさんのCVPR'17論文XceptionとGoogleのMobileNets論文を読んだ</a></li>
 </ul>
 		</div>
 		
@@ -334,11 +334,11 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/07/from-jekyll-to-hugo/">從 Jekyll 轉移到 Hugo 心得</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/06/strava-how-to-generate-heatmap/">Strava 建立全球運動熱點圖的方式</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/05/implement-osm-map-tiles-parallel/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/05/thinkbayes-ch1/">ThinkBayes 心得筆記 - Chapter 1</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/04/implement-osm-map-tiles/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/03/learning-commons/">京都大學的 Learning Commons (學習共享空間) 參訪感想</a></li>
 		</ul>
 	</div>
 </div>
@@ -347,6 +347,7 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Categories</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/categories/blog">Blog</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/deep-learning">Deep learning</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/dimension-reduction">Dimension reduction</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
@@ -396,6 +397,7 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/heatmap" title="Heatmap">Heatmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo" title="Hugo">Hugo</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/ios" title="Ios">Ios</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/iris" title="Iris">Iris</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/isomap" title="Isomap">Isomap</a>

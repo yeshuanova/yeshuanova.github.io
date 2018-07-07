@@ -866,6 +866,12 @@ img + em {
 	align-content: center
 }
 
+figure + em {
+	display: block;
+	text-align: center;
+	align-content: center
+}
+
 .img-circle {
 	border-radius: 50%;
 }
