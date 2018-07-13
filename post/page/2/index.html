@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Posts</title>
 	<meta name="description" content="">
-	<meta name="generator" content="Hugo 0.42.2" />
+	<meta name="generator" content="Hugo 0.43" />
 	<meta property="og:title" content="Posts" />
 <meta property="og:description" content="Cheng-Shiang Li&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
@@ -14,7 +14,7 @@
 
 
 
-<meta property="og:updated_time" content="2018-01-15T12:00:00&#43;08:00"/>
+<meta property="og:updated_time" content="2018-02-09T15:00:00&#43;08:00"/>
 
 
 
@@ -74,6 +74,44 @@ if (!doNotTrack) {
 		<header class="page-header">
 			<h1 class="page-header__title">Posts</h1>
 		</header><article class="list__item post">
+	<div class="list__content clearfix">
+		<header class="list__header">
+			<h3 class="list__title post__title ">
+				<a href="/post/2018/02/depthwise-separable-convolution/" rel="bookmark">高效卷積計算結構 - Depthwise Separable Convolution</a>
+			</h3><div class="list__meta meta">
+<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+<time class="post__meta-date meta-date" datetime="2018-02-09T15:00:00">2018-02-09</time>
+<span class="post__meta-categories meta-categories">
+	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/machine-learning" rel="category">Machine Learning</a>, <a class="meta-categories__link" href="/categories/deep-learning" rel="category">Deep Learning</a></span>
+</span></div>
+		</header>
+		<div class="list__excerpt post__content">
+			<p>近年來因與計算機的計算能力大幅上升，GPGPU 的支援等，使深度神經網路技術取得了非常好的效果發展。但所衍生的高計算量卻讓行動裝置以及嵌入式系統等計算能力有限的平台在執行時遇到效能的限制。因此 Google 在 MobileNets 模型中使用了新的卷積計算模型 depthwise separable convolution 來減少所需的計量。本篇將從基礎類神經網路開始介紹，說明卷積神經網路的架構與計算成本問題，並解說 depthwise separable convolution 的技術內容與計算成本。</p>
+
+<p></p>
+		</div>
+	</div>
+</article><article class="list__item post">
+	<div class="list__content clearfix">
+		<header class="list__header">
+			<h3 class="list__title post__title ">
+				<a href="/post/2018/02/modern-cpp-changing/" rel="bookmark">Modern C&#43;&#43; changing</a>
+			</h3><div class="list__meta meta">
+<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+<time class="post__meta-date meta-date" datetime="2018-02-03T16:00:00">2018-02-03</time>
+<span class="post__meta-categories meta-categories">
+	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/programming" rel="category">Programming</a></span>
+</span></div>
+		</header>
+		<div class="list__excerpt post__content">
+			<p>C++ 標準自從建立後到現在已經經過了許多次改版，其中最重要的版本除了 C++98 外，當在2011 年正式發佈的 C++11 標準了。該標準加入了許多新特性，不但讓程式撰寫更為精簡，在執行時效率也更加上升，可說是之後 C++14 與 C++17 等標準的基石。本篇文章簡單整理了一些關於 C++11 重要標準變更與概念，若要詳細了解相關內容以及 C++14/17 的相關變更可參考 <a href="https://en.wikipedia.org/wiki/C%2B%2B11">Wikipedia</a> 等網站。</p>
+
+<p></p>
+		</div>
+	</div>
+</article><article class="list__item post">
 	<div class="list__content clearfix">
 		<header class="list__header">
 			<h3 class="list__title post__title ">
@@ -190,46 +228,6 @@ if (!doNotTrack) {
 <p></p>
 		</div>
 	</div>
-</article><article class="list__item post">
-	<div class="list__content clearfix">
-		<header class="list__header">
-			<h3 class="list__title post__title ">
-				<a href="/post/2017/08/multidimensional-scaling/" rel="bookmark">Multidimensional Scaling</a>
-			</h3><div class="list__meta meta">
-<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2017-08-10T20:00:00">2017-08-10</time>
-<span class="post__meta-categories meta-categories">
-	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/dimension-reduction" rel="category">Dimension Reduction</a></span>
-</span></div>
-		</header>
-		<div class="list__excerpt post__content">
-			<p>在<a href="{{ site.baseurl }}/posts/dimension-reduction-tutorial/">之前</a>已經介紹過資料降維的基礎概念
-以及使用進行PCA示範，因此這篇要來談的是另一種降維方式
-<a href="https://en.wikipedia.org/wiki/Multidimensional_scaling">MDS</a>，並敘述相關理論推導。</p>
-
-<p></p>
-		</div>
-	</div>
-</article><article class="list__item post">
-	<div class="list__content clearfix">
-		<header class="list__header">
-			<h3 class="list__title post__title ">
-				<a href="/post/2017/08/dimension-reduction-tutorial/" rel="bookmark">Introduction to Dimension Reduction</a>
-			</h3><div class="list__meta meta">
-<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2017-08-07T20:00:00">2017-08-07</time>
-<span class="post__meta-categories meta-categories">
-	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/dimension-reduction" rel="category">Dimension Reduction</a></span>
-</span></div>
-		</header>
-		<div class="list__excerpt post__content">
-			<p>在現實生活中，一筆資料可能會有許多欄位，如交易資料會有交易日期，時間，數量等欄位，而天氣資料會有氣溫，氣壓，濕度等，視資料屬性而定還會有超高維度資料存在（如100x100大小的灰階圖片資料可以看成是10,000維的資料，若為RGB彩色圖片就是高達30,000維的高維資料）在處理這些高維資料時會需要耗費許多時間與空間進行處理資料，且時常會包含較不重要的維度資料在其中，並增加資料複雜度。因此在進行高維資料處理時，常使用被稱為<strong>資料降維（Dimension Reduction）</strong>的技術，將高維資料轉換為低維資料，以利後續的資料處理。</p>
-
-<p></p>
-		</div>
-	</div>
 </article>
 
 		
@@ -248,11 +246,11 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch4/">ThinkBayes 心得筆記 - Chapter 4</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch2-to-3/">ThinkBayes 心得筆記 - Chapter 2 ~ 3</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/from-jekyll-to-hugo/">從 Jekyll 轉移到 Hugo 心得</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/06/strava-how-to-generate-heatmap/">Strava 建立全球運動熱點圖的方式</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/05/implement-osm-map-tiles-parallel/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/05/thinkbayes-ch1/">ThinkBayes 心得筆記 - Chapter 1</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/04/implement-osm-map-tiles/">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</a></li>
 		</ul>
 	</div>
 </div>

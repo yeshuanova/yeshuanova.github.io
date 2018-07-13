@@ -4,17 +4,20 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Travel</title>
-	<meta name="description" content="">
+	<title>ThinkBayes 心得筆記 - Chapter 2 ~ 3</title>
+	<meta name="description" content="ThinkBayes Note - Chapter 2 ~ 3">
 	<meta name="generator" content="Hugo 0.43" />
-	<meta property="og:title" content="Travel" />
-<meta property="og:description" content="Cheng-Shiang Li&#39;s Personal blog about everything" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/categories/travel/" />
+	<meta property="og:title" content="ThinkBayes 心得筆記 - Chapter 2 ~ 3" />
+<meta property="og:description" content="ThinkBayes Note - Chapter 2 ~ 3" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018/07/thinkbayes-ch2-to-3/" />
 
 
 
-<meta property="og:updated_time" content="2018-03-05T16:00:00&#43;08:00"/>
+<meta property="article:published_time" content="2018-07-13T10:00:00&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-07-13T10:00:00&#43;08:00"/>
+
 
 
 
@@ -26,12 +29,11 @@
 
 
 	<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Travel"/>
-<meta name="twitter:description" content="Cheng-Shiang Li&#39;s Personal blog about everything"/>
+<meta name="twitter:title" content="ThinkBayes 心得筆記 - Chapter 2 ~ 3"/>
+<meta name="twitter:description" content="ThinkBayes Note - Chapter 2 ~ 3"/>
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="alternate" type="application/rss" href="/categories/travel/index.xml">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 	<link rel="stylesheet" href="/css/style.css">
 	<script type="text/javascript" src="/js/scripts.js"></script>
@@ -70,32 +72,175 @@ if (!doNotTrack) {
 		</header>
 		<div class="wrapper clearfix">
 
-	<main class="main list content" role="main">
-		<header class="page-header">
-			<h1 class="page-header__title">Travel</h1>
-		</header><article class="list__item post">
-	<div class="list__content clearfix">
-		<header class="list__header">
-			<h3 class="list__title post__title ">
-				<a href="/post/2018/03/learning-commons/" rel="bookmark">京都大學的 Learning Commons (學習共享空間) 參訪感想</a>
-			</h3><div class="list__meta meta">
+<main class="main content">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">ThinkBayes 心得筆記 - Chapter 2 ~ 3</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2018-03-05T16:00:00">2018-03-05</time>
+<time class="post__meta-date meta-date" datetime="2018-07-13T10:00:00">2018-07-13</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/travel" rel="category">Travel</a></span>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/mathematics" rel="category">Mathematics</a></span>
 </span></div>
-		</header>
-		<div class="list__excerpt post__content">
-			<p>這次到京都自助旅行時因行程有經過<a href="http://www.kyoto-u.ac.jp/zh-tw">京都大學</a>，因此特別抽空參觀了校園以及圖書館，而在其中最讓我覺得有趣的是圖書館中的 Learning Commons（ラーニング・コモンズ，學習共享空間）的概念與功能。因此整理了一些 Learning Commons 的相關資料以及將參訪心得記錄下來。</p>
+		</header><div class="post__content clearfix">
+			<p>介紹 ThinkBayes Chapter 2 與 Chapter 3 讀書心得與筆記。Chapter 2 主要為作者的機率運算程式碼運作方式，這部分將簡單帶過。Chapter 3 則為如何透過 Chpater 1 的 Bayes' theorem 與 Chapter 2 的程式碼結合，示範如何對問題使用 Bayes' theorem 計算結果。</p>
 
 <p></p>
-		</div>
-	</div>
-</article>
 
+<h1 id="thinkbayes-note">ThinkBayes Note</h1>
+
+<h2 id="chapter-2--computational-statistics">Chapter 2 - Computational Statistics</h2>
+
+<p>在 ThinkBayes Chapter 2 中，作者提供了自己撰寫的 Python 原始碼，展示如何用該程式碼進行機率與統計分析，並以 chapter 1 的 cookie 與 Monty Hall 問題(三門問題)做為範例並使用 Probability Mass Function(PMF)來計算結果。因涉及較多的 Python 程式概念這邊就不多描述，詳細可自行閱讀，此外之後的章節都會使用該 Library 來計算範例，可以先了解一下 Python 與該程式內容。</p>
+
+<ul>
+<li><a href="https://github.com/AllenDowney/ThinkBayes2">ThinkBayes2 - Code</a></li>
+</ul>
+
+<h2 id="chapter-3--estimation">Chapter 3 - Estimation</h2>
+
+<p>在第三章中，作者提出一些範例，進一步說明如何使用 Bayes' theorem 將問題轉化為計算 model，並使用 python 計算結果。並舉出一些計算範例，說明以及在設定 prior 數值時如何影響最終結果。</p>
+
+<h3 id="the-dice-problem">The dice problem</h3>
+
+<p>以遊戲 Dungeons &amp; Dragons 為例，先給定數個骰子，面數分別 4, 6, 8, 12 與 20。假如現在開始擲骰子得到一個結果 <strong>D</strong> 後，從 <strong>D</strong> 計算出最有可能使用哪個骰子。</p>
+
+<p>在使用 Bayes 解決問題時通常會有三個步驟</p>
+
+<ol>
+<li>選擇 Hypotheses 的表示方式</li>
+<li>選擇 Data 的表示方式</li>
+<li>建立 Likelihood function</li>
+</ol>
+
+<p>因此對該問題，Hypotheses 為 [4, 6, 8, 12, 20] 五種，而 Data 為觀測到的骰子數值，從整數 1 到 20。因此 Likelihood function 可設定為</p>
+
+<p><span  class="math">\[P(D|H) = \begin{cases} 0 & H < D \\ 1/H & H \ge D \end{cases}\]</span></p>
+
+<p>Hypotheses &lt; Data 代表該 Hypotheses 不可能出現（ex. 六面骰不可能擲出數字 8），因此機率為 0。而 Data 在 Hypothesie 的範圍內時機率為均勻分佈(假定為公平的骰子)。因此對一連續擲出數值 Data = [6, 8, 7, 7, 5, 4] 時，Posterior probability 為</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Hypothesis(Dice)</th>
+<th align="center">Posterior</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">4</td>
+<td align="center">0.0</td>
+</tr>
+
+<tr>
+<td align="center">6</td>
+<td align="center">0.0</td>
+</tr>
+
+<tr>
+<td align="center">8</td>
+<td align="center">0.9432</td>
+</tr>
+
+<tr>
+<td align="center">12</td>
+<td align="center">0.0552</td>
+</tr>
+
+<tr>
+<td align="center">20</td>
+<td align="center">0.0015</td>
+</tr>
+</tbody>
+</table>
+
+<p>因此 8 面骰為最有可能使用的骰子。</p>
+
+<h3 id="the-locomotive-problem-火車頭問題">The locomotive problem (火車頭問題)</h3>
+
+<p>給定一個軌道上有編號從 1 到 N 個火車在跑，當觀察到現有一台火車頭編號為 60 時，求出最有可能的 N 數值。上述問題可分為兩部分</p>
+
+<ol>
+<li>再見到火車頭編號(Data)前，N (Hypothsis) 的分佈為何? (Prior)</li>
+<li>在給定 N 的情況下，所觀測到的 Data 的 Likelihood 為何?</li>
+</ol>
+
+<p>可先假定 Hypotheses 的分佈為 uniform distribution 且 <strong>N = 1001</strong>，即</p>
+
+<p><span  class="math">\[P(H=1) = P(H=2) = \dots = P(H=1001)\]</span></p>
+
+<p>而 Likelihood 為</p>
+
+<p><span  class="math">\[P(D|H) = \begin{cases} 0 & H < D \\ 1/H & H \ge D \end{cases}\]</span></p>
+
+<p>可看出 Prior 與 Likelihood Model 與 Dice 問題是相同的，可由此得出 Posterior distribution。但這答案也許不是所要的結果，另一個因此可計算所有 Hypothese 的平均值，得到平均值為 333，這也是方法之一。</p>
+
+<blockquote>
+<p>另一個為使用 power law 作為 prior，可自行參考 Chapter 3.3 與 3.4</p>
+</blockquote>
+
+<h3 id="credible-intervals">Credible intervals</h3>
+
+<p>在機率分佈中給定一個範圍，在範圍中的機率加總後會等於給定的數值，如 90% credible interval 代表範圍內 的 probability distribution 加總為 90%，不在範圍內的變數加總為 10%。而計算 90% credible intervals 的方式，可計算機率累計分佈 5% 與 95% 的位置作為左右區間。以前面的火車頭問題來說，以 power law prior 以及觀測到火車頭編號為 [60, 30, 90] 的資料為例，credible interval 為 <strong>[91, 243]</strong>，也就是真正的火車頭數量有 90% 的機率落在該範圍內。</p>
+
+<blockquote>
+<p>注意與 <a href="https://en.wikipedia.org/wiki/Credible_interval">Credible interval</a> 與 <a href="https://en.wikipedia.org/wiki/Confidence_interval">Confidence Interval</a> 之間的不同</p>
+</blockquote>
+
+<h3 id="the-german-tank-problem">The German tank problem</h3>
+
+<p>著名的德國坦克問題(<a href="https://en.wikipedia.org/wiki/German_tank_problem">German tanke problem</a>)。該問題為在二次世界大戰時盟軍利用在戰場上繳獲或取得的德國坦克與零件的製造編號，利用 Bayes 分析成功推論出的德軍坦克實際的數量比情報預估的要少，幫助推估真正的德軍戰力，而戰後真正的統計量也和 Bayes 得出的結果非常接近。該問題利用 Bayes 分析，成功達到了傳統分析上無法達成的預估精確度，是一個非常有趣且著名的問題，展示了 Bayes 用在現實生活上的應用，值得去多了解相關內容。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="http://greenteapress.com/wp/think-bayes/">ThinkBayes</a></li>
+</ul>
+		</div>
 		
-	</main>
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/bayes/" rel="tag">Bayes</a></li>
+	</ul>
+</div>
+	</article>
+	
+	
+<nav class="post-nav row clearfix">
+	<div class="post-nav__item post-nav__item--prev mr-col-1-2">
+		<a class="post-nav__link" href="/post/2018/07/from-jekyll-to-hugo/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">從 Jekyll 轉移到 Hugo 心得</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next mr-col-1-2">
+		<a class="post-nav__link" href="/post/2018/07/thinkbayes-ch4/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">ThinkBayes 心得筆記 - Chapter 4</p></a>
+	</div>
+</nav>
+	
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yeshuanova" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+</main>
 
 <aside class="sidebar">
 	
@@ -198,5 +343,12 @@ if (!doNotTrack) {
 	var navigation = responsiveNav(".menu", {
 		navClass: "menu--collapse",
 	});
-</script></body>
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+
+</body>
 </html>

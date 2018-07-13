@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/2018/07/thinkbayes-ch4/</loc>
+    <lastmod>2018-07-13T15:30:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2018/07/thinkbayes-ch2-to-3/</loc>
+    <lastmod>2018-07-13T10:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018/07/from-jekyll-to-hugo/</loc>
     <lastmod>2018-07-07T14:00:00+08:00</lastmod>
   </url>
@@ -99,7 +109,7 @@
   
   <url>
     <loc>/tags/bayes/</loc>
-    <lastmod>2018-05-16T15:00:00+08:00</lastmod>
+    <lastmod>2018-07-13T15:30:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -219,7 +229,7 @@
   
   <url>
     <loc>/categories/mathematics/</loc>
-    <lastmod>2018-05-16T15:00:00+08:00</lastmod>
+    <lastmod>2018-07-13T15:30:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -261,7 +271,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-07-07T14:00:00+08:00</lastmod>
+    <lastmod>2018-07-13T15:30:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -325,7 +335,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-07-07T14:00:00+08:00</lastmod>
+    <lastmod>2018-07-13T15:30:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   

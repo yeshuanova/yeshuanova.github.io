@@ -4,17 +4,20 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Travel</title>
-	<meta name="description" content="">
+	<title>ThinkBayes 心得筆記 - Chapter 4</title>
+	<meta name="description" content="ThinkBayes Note - Chapter 4">
 	<meta name="generator" content="Hugo 0.43" />
-	<meta property="og:title" content="Travel" />
-<meta property="og:description" content="Cheng-Shiang Li&#39;s Personal blog about everything" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/categories/travel/" />
+	<meta property="og:title" content="ThinkBayes 心得筆記 - Chapter 4" />
+<meta property="og:description" content="ThinkBayes Note - Chapter 4" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018/07/thinkbayes-ch4/" />
 
 
 
-<meta property="og:updated_time" content="2018-03-05T16:00:00&#43;08:00"/>
+<meta property="article:published_time" content="2018-07-13T15:30:00&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-07-13T15:30:00&#43;08:00"/>
+
 
 
 
@@ -26,12 +29,11 @@
 
 
 	<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Travel"/>
-<meta name="twitter:description" content="Cheng-Shiang Li&#39;s Personal blog about everything"/>
+<meta name="twitter:title" content="ThinkBayes 心得筆記 - Chapter 4"/>
+<meta name="twitter:description" content="ThinkBayes Note - Chapter 4"/>
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="alternate" type="application/rss" href="/categories/travel/index.xml">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 	<link rel="stylesheet" href="/css/style.css">
 	<script type="text/javascript" src="/js/scripts.js"></script>
@@ -70,32 +72,135 @@ if (!doNotTrack) {
 		</header>
 		<div class="wrapper clearfix">
 
-	<main class="main list content" role="main">
-		<header class="page-header">
-			<h1 class="page-header__title">Travel</h1>
-		</header><article class="list__item post">
-	<div class="list__content clearfix">
-		<header class="list__header">
-			<h3 class="list__title post__title ">
-				<a href="/post/2018/03/learning-commons/" rel="bookmark">京都大學的 Learning Commons (學習共享空間) 參訪感想</a>
-			</h3><div class="list__meta meta">
+<main class="main content">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">ThinkBayes 心得筆記 - Chapter 4</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2018-03-05T16:00:00">2018-03-05</time>
+<time class="post__meta-date meta-date" datetime="2018-07-13T15:30:00">2018-07-13</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/travel" rel="category">Travel</a></span>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/mathematics" rel="category">Mathematics</a></span>
 </span></div>
-		</header>
-		<div class="list__excerpt post__content">
-			<p>這次到京都自助旅行時因行程有經過<a href="http://www.kyoto-u.ac.jp/zh-tw">京都大學</a>，因此特別抽空參觀了校園以及圖書館，而在其中最讓我覺得有趣的是圖書館中的 Learning Commons（ラーニング・コモンズ，學習共享空間）的概念與功能。因此整理了一些 Learning Commons 的相關資料以及將參訪心得記錄下來。</p>
+		</header><div class="post__content clearfix">
+			<p>在 Chpater 4 中作者用 Euro Problem (硬幣投擲問題) 作為範例計算並檢定<strong>硬幣</strong>是否<strong>公平</strong>。並介紹使用 Beta Distribution 快速計算 Posterior 的方法。</p>
 
 <p></p>
-		</div>
-	</div>
-</article>
 
+<h1 id="thinkbayes-note">ThinkBayes Note</h1>
+
+<h2 id="chapter-4--more-estimation">Chapter 4 - More Estimation</h2>
+
+<h3 id="the-euro-problem">The Euro Problem</h3>
+
+<p>投擲一個歐元硬幣 250 次，統計得出的 Head 和 Tail 數量分別為 140 次與 110 次，試問是否能資料判斷這枚硬幣是否<strong>公平（Fair)</strong>。</p>
+
+<p>對於該問題可用兩步驟加以求解</p>
+
+<ol>
+<li>計算硬幣擲出 Head 的機率分佈。</li>
+<li>驗證前面的投擲結果資料，是否能說明硬幣為<strong>公平</strong>。</li>
+</ol>
+
+<p>定義 Hypothesis <span  class="math">\(H_x\)</span> 來代表該硬幣擲出 Head 的機率為 <span  class="math">\(x\)</span> (也代表擲出 Tail 的機率為 <span  class="math">\(100-x\)</span>)。也就是共有 <span  class="math">\(H_0\)</span> 到 <span  class="math">\(H_{100}\)</span> 共 101 個 Hypothesis，假如硬幣為 fair，那結果應該接近 <span  class="math">\(H_{50}\)</span>。</p>
+
+<p>假設 Prior 為 Uniform Prior，因此</p>
+
+<p><span  class="math">\[P(H_0) = P(H_1) = \cdots = P(H_{100})\]</span></p>
+
+<p>而硬幣擲出 Head 的 Likelihood 為</p>
+
+<p><span  class="math">\[P(D=Head \mid H_{x})=\frac{x}{100}\]</span></p>
+
+<p>則擲出 Tail 的 Likelihood</p>
+
+<p><span  class="math">\[P(D=Tail \mid H_x)=1-P(D=Head \mid H_{x})\]</span></p>
+
+<p>現有 Data 中 Head 出現 140 次而 Tail 為 110 次，即 D = [&quot;Head&quot; * 140 + &quot;Tail&quot; * 110]，計算 Posterior Probability distrubution 後可得到下圖結果 (原書中 <a href="https://github.com/AllenDowney/ThinkBayes/blob/master/book/figs/euro1.pdf">Fig.4.1</a> 的圖)</p>
+
+<p><figure><img src="/images/2018/thinkbayes/ch4-posterior.png" alt="thinkbayes-ch4-posterior"></figure></p>
+
+<p>可得知 Maximum Likelihood 為 <span  class="math">\(P(H_{56} \mid D)\)</span>，也就是擲出該結果的硬幣，本身擲出 Head 的機率最有可能是 <strong>56%</strong>。計算該機率分佈 <strong>90%</strong> 的 Credible interval 後得到範圍為 (51, 56)。而 50 並不在信賴區間中，因此可判斷該硬幣為<strong>不公平</strong>（<strong>unfair</strong>）。</p>
+
+<h3 id="swamping-the-priors">Swamping the priors</h3>
+
+<p>在許多問題中 Prior 通常會被設為 Uniform Distribution，但可能影響計算結果的好壞。因此作者嘗試在該問題中使用 Triangular 作為 Prior Distribution，如下圖所示</p>
+
+<p><figure><img src="/images/2018/thinkbayes/ch4-triangular-prior.png" alt="ch4-triangular-prior"></figure></p>
+
+<p>並使用新的 Triangular Prior 重新計算 Posterior 得出來的結果與 Uniform Prior 所得出的分佈非常接近。因此可知道在<strong>資料足夠</strong>的情況下，就算使用不同的 Prior 分佈，Posterior 也會收斂到近似的結果。</p>
+
+<h3 id="optimization--the-beta-distribution">Optimization - The beta distribution</h3>
+
+<p>若 Hypotheses 與 Data 越多，則計算時間會越來越長，這時就需要將演算法最佳化以提升計算效率。除了在程式部分外，我們可以把機率模型由離散分佈轉換成連續分佈，如 <a href="https://en.wikipedia.org/wiki/Beta_distribution">Beta 分佈 (Beta distribution)</a> 的連續機率模型。</p>
+
+<p><span  class="math">\[
+f(x;\alpha,\beta) = \frac{1}{B(\alpha, \beta)}x^{\alpha - 1}(1-x)^{\beta - 1}
+\]</span></p>
+
+<p><span  class="math">\[
+0 \le x \le 1, \alpha > 0, \beta > 0
+\]</span></p>
+
+<p><span  class="math">\(\alpha\)</span> (<strong>alpha</strong>) 和 <span  class="math">\(\beta\)</span> (<strong>beta</strong>)為 shape parameters。</p>
+
+<p>假如使用 Binomial Likelihood Function 來更新模型，則 Beta Distribution 為 <strong>conjugate prior</strong> - 即 Prior Distribution 為 Beta 分佈時，Posterior 也是 Beta 分佈。</p>
+
+<p>以硬幣問題為例，假設 Prior 為由 <span  class="math">\(\alpha\)</span> 與 <span  class="math">\(\beta\)</span> 組成的 Beta Distribution，投擲結果為 H 個 <strong>Heads</strong> 與 T 個 <strong>Tails</strong> 的，則 Posterior 為由 <span  class="math">\(\alpha + H\)</span> 與 <span  class="math">\(\beta + T\)</span> 所組成的 Beta Distrubution。這個結果顯示我們可以非常快速的計算出 Posterior 數值而不需要在像之前一樣不斷更新 PMF，大幅減少計算時間。</p>
+
+<p>因當 <span  class="math">\(\alpha = 1\)</span> 且 <span  class="math">\(\beta = 1\)</span> 時 Beta distribution 即為 <strong>Uniform distribution</strong>，與原先的 Prior 假設相符。因此我們可直接以 <span  class="math">\(\alpha + 140\)</span> 與 <span  class="math">\(\beta + 110\)</span> 的參數作為 Posterior Beta Distribution 的參數，計算出最大可能機率約為 <strong>56%</strong>。</p>
+
+<blockquote>
+<p>避免設定 Prior 的值為被設為 0，詳情可參考 <a href="https://en.wikipedia.org/wiki/Cromwell's_rule">Cromwell's rule</a>。</p>
+</blockquote>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="http://greenteapress.com/wp/think-bayes/">ThinkBayes</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Beta_distribution">Beta distribution</a></li>
+</ul>
+		</div>
 		
-	</main>
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/bayes/" rel="tag">Bayes</a></li>
+	</ul>
+</div>
+	</article>
+	
+	
+<nav class="post-nav row clearfix">
+	<div class="post-nav__item post-nav__item--prev mr-col-1-2">
+		<a class="post-nav__link" href="/post/2018/07/thinkbayes-ch2-to-3/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">ThinkBayes 心得筆記 - Chapter 2 ~ 3</p></a>
+	</div>
+</nav>
+	
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yeshuanova" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+</main>
 
 <aside class="sidebar">
 	
@@ -198,5 +303,12 @@ if (!doNotTrack) {
 	var navigation = responsiveNav(".menu", {
 		navClass: "menu--collapse",
 	});
-</script></body>
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+
+</body>
 </html>
