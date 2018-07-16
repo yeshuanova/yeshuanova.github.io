@@ -6,10 +6,21 @@
     <description>Recent content in Mathematics on Xeno Universe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 13 Jul 2018 15:30:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 13 Jul 2018 15:50:00 +0800</lastBuildDate>
     
 	<atom:link href="/categories/mathematics/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ThinkBayes 心得筆記 - Chapter 5</title>
+      <link>/post/2018/07/thinkbayes-ch5/</link>
+      <pubDate>Fri, 13 Jul 2018 15:50:00 +0800</pubDate>
+      
+      <guid>/post/2018/07/thinkbayes-ch5/</guid>
+      <description>&lt;p&gt;Chapter 5 在介紹 Ratio 形式的機率表示法，並轉換成 Bayes&#39;s theorem 的形式，並以 Oliver&#39;s Blood 為範例展示不需計算 Posterior 也能從 Likelihood Ratio 得出結果。此外也介紹了 Mixture Distribution 以及如何使用 Python 計算該分佈的方式。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 4</title>
@@ -28,7 +39,7 @@
       <pubDate>Fri, 13 Jul 2018 10:00:00 +0800</pubDate>
       
       <guid>/post/2018/07/thinkbayes-ch2-to-3/</guid>
-      <description>&lt;p&gt;介紹 ThinkBayes Chapter 2 與 Chapter 3 讀書心得與筆記。Chapter 2 主要為作者的機率運算程式碼運作方式，這部分將簡單帶過。Chapter 3 則為如何透過 Chpater 1 的 Bayes&#39; theorem 與 Chapter 2 的程式碼結合，示範如何對問題使用 Bayes&#39; theorem 計算結果。&lt;/p&gt;
+      <description>&lt;p&gt;Chapter 2 主要為作者的機率運算程式碼運作方式，這部分將簡單帶過。Chapter 3 則為如何透過 Chpater 1 的 Bayes&#39; theorem 與 Chapter 2 的程式碼結合，示範如何對問題使用 Bayes&#39; theorem 計算結果。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>

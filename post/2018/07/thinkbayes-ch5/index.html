@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>ThinkBayes 心得筆記 - Chapter 5</title>
 	<meta name="description" content="ThinkBayes Note - Chapter 5">
-	<meta name="generator" content="Hugo 0.42.2" />
+	<meta name="generator" content="Hugo 0.44" />
 	<meta property="og:title" content="ThinkBayes 心得筆記 - Chapter 5" />
 <meta property="og:description" content="ThinkBayes Note - Chapter 5" />
 <meta property="og:type" content="article" />
@@ -14,9 +14,9 @@
 
 
 
-<meta property="article:published_time" content="2018-07-09T20:00:00&#43;08:00"/>
+<meta property="article:published_time" content="2018-07-13T15:50:00&#43;08:00"/>
 
-<meta property="article:modified_time" content="2018-07-09T20:00:00&#43;08:00"/>
+<meta property="article:modified_time" content="2018-07-13T15:50:00&#43;08:00"/>
 
 
 
@@ -77,88 +77,87 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">ThinkBayes 心得筆記 - Chapter 5</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2018-07-09T20:00:00">2018-07-09</time>
+<time class="post__meta-date meta-date" datetime="2018-07-13T15:50:00">2018-07-13</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/mathematics" rel="category">Mathematics</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
-			<h1 id="thinkbayes-note">ThinkBayes Note</h1>
+			<p>Chapter 5 在介紹 Ratio 形式的機率表示法，並轉換成 Bayes's theorem 的形式，並以 Oliver's Blood 為範例展示不需計算 Posterior 也能從 Likelihood Ratio 得出結果。此外也介紹了 Mixture Distribution 以及如何使用 Python 計算該分佈的方式。</p>
+
+<p></p>
+
+<h1 id="thinkbayes-note">ThinkBayes Note</h1>
 
 <h2 id="chapter-5--odds-and-addends">Chapter 5 - Odds and Addends</h2>
 
-<p>原本的機率表示法 [0, 1]，另一種機率表示法 odds</p>
+<h3 id="odds-in-favor-and-odds-against">Odds in favor and odds against</h3>
 
-<p>ex. 賽馬勝率 3:1(three to one)</p>
+<p>機率表示法除了一般 <strong>[0..1]</strong> 與<strong>百分比</strong>外，還有另一種 <strong>odds</strong> 表示法。如有人說 &quot;<strong>the odds are three to one</strong>&quot;，這種稱呼法被稱為 <strong>odds in favor</strong>，代表<strong>發生機率</strong>與<strong>不發生機率</strong>的比例 (Ratio)。假如玩一個遊戲有 80% 的勝率，代表玩五次可能贏四次輸一次，因此可說 &quot;the odds are four to one&quot;，並寫成 &quot;4:1&quot; 這樣的比例表示式，也可用 0.8/0.2 = 4 來代表 odds。</p>
 
-<p>The odds in favor of an event are the ratio of the probability it will occur to the probability that it will not.</p>
+<p>相對於 odds in favor，還有另一種表示法稱為 <strong>odds against</strong> 的表示法，在機率較小時常用。該方式就是 odds in favor 的相反，先寫<strong>不發生的機率</strong>再寫<strong>發生的機率</strong>。以前面 80% 勝率為例， <strong>odds against</strong> 可寫成 &quot;1:4&quot; 的格式。</p>
 
-<h3 id="odds-in-favor-and-odds-against"><strong>odds in favor</strong> and <strong>odds against</strong></h3>
+<h3 id="odds-form-of-bayess-theorem">Odds form of bayes's theorem</h3>
 
-<p>對於相同敘述的不同 odds 寫法，假如我方勝率為 75%，則</p>
+<p>假設在 Bayes's Theorem 中，Hypothesis 只有 A 與 B 兩種，則 Posterior Probability 的比例為</p>
 
-<ul>
-<li><strong>odds in favor</strong>: 寫成 3:1</li>
-<li><strong>odds against</strong>: 寫成 1:3</li>
-</ul>
+<p><span  class="math">\[P(A \mid D) : P(B \mid D)\]</span></p>
 
-<h3 id="odds-form-of-bayess-theorem">odds form of bayes's theorem</h3>
+<p>Odds 形式為</p>
 
-<p>假設在 bayes's theorem 中，hypothesis 只有 A 與 B 兩種，posterior probabilities 的比例可寫為</p>
+<p><span  class="math">\[\frac{P(A \mid D)}{P(B \mid D)}=\frac{P(A)P(D \mid A)}{P(B)P(D \mid B)}\]</span></p>
 
-<p><span  class="math">\[\frac{P(A|D)}{P(B|D)}=\frac{P(A)P(D|A)}{P(B)P(B|D|B)}\]</span></p>
+<p>若 A, B 為互斥事件，則可知 <span  class="math">\(P(B) = 1 - P(A)\)</span>。設 <span  class="math">\(o(A)\)</span> 為 A 的 odds in favor 的 odds</p>
 
-<p>另 $o(A)$ 為 A 的 odds in favor，則上式可重寫為</p>
+<p><span  class="math">\[o(A) = \frac{P(A)}{P(B)}\]</span></p>
 
-<p><span  class="math">\[o(A|D) = o(A)\frac{P(D|A)}{P(D|B)}\]</span></p>
+<p>則</p>
 
-<p>因此可知 posterior odds $o(A|D)$ 為 prior odds $o(A)$ 乘上 likelihood ratio。也被稱為 bayes's theorem 的 odds form。
-該特性可以讓人更容易理解以及幫助我們很快的計算出結果。以之前 Cookie Problem 為例，因 prior 為 50% (1:1)，
-Likelihood Ratio 為 (3/4) / (1/2) = 3/2，因此 posterior odds 為 3:2，機率為 3/5</p>
+<p><span  class="math">\[o(A \mid D) = o(A)\frac{P(D \mid A)}{P(D \mid B)}\]</span></p>
+
+<p>可知 Posterior 的 odds 為 Prior 的 odds 乘上 Likelihood Ratio，上式也被是 Bayes's theorem 的 odds form。該特性可以幫助我們更快的計算出結果。以之前 Cookie Problem 為例，因 Likelihood Ratio 為 (3/4):(1/2) = 3/2，因此 Posterior odds 為 3:2，機率為 3/(3+2) = 0.6。</p>
 
 <h3 id="olivers-blood">Olivers' blood</h3>
 
-<p>在命案現場有兩灘血跡，一灘為 O 型血( 人口比例為 60% )而另一灘為 AB 型 (人口比例為 1 %)，現在嫌疑犯 Oliver 被檢驗出為 O 型血。則資料是否足夠證明為 Oliver 為其中一灘血跡的遺留人。</p>
+<p>假設在命案現場有兩灘血跡，一灘為 O 型血而另一灘為 AB 型。在統計結果中， 0 型血人數約佔總人口 60%，而 AB 型則是 1%。假設嫌疑犯 <strong>Oliver</strong> 被檢驗出為 O 型血。則資料是否足夠證明為 Oliver 為其中一灘血跡的遺留人。</p>
 
-<p>在前面的公式</p>
-
-<p><span  class="math">\[o(A|D) = o(A)\frac{P(D|A)}{P(D|B)}\]</span></p>
-
-<p>可轉換為</p>
+<p>由先前的公式移項後可得</p>
 
 <p><span  class="math">\[\frac{o(A|D)}{o(A)} = \frac{P(D|A)}{P(D|B)}\]</span></p>
 
-<p>右邊為 Likelihood ratio，也被稱為 <strong>Bayes Factor</strong>，可由 Bayes Factor 的數值大於小於一來判斷資料更以可能為 A 或 B。</p>
-
-<p>現考慮 Oliver 是否到達現場的機率，可分為兩種狀態</p>
+<p>左項為 Posterior 與 Prior 的 odds，右項為 Likelihood Ratio，也被稱為 <strong>Bayes Factor</strong>。假設 Bayes Factor 大於 1，可知資料 D 更可能出現在 A 事件中。現考慮 Oliver 是否到達現場的情況</p>
 
 <ul>
-<li>假如 Oliver 有到現場，則兩灘血之中的 O 型血反應必定是他所遺留下，則另一灘代表大眾中隨機一人留下 AB 型血的機率為 1 %。</li>
-<li>假如 Oliver 沒有到達現場，則從兩灘血中一個為 O 型血而另一個為 AB 型，則機率總和為 $2<em>0.6</em>0.1 = 1.2\% $（）</li>
+<li><p><strong>Oliver 有到現場</strong>，則兩灘血之中的 O 型必定由 Oliver 所留下，而另一灘 AB 型血則由另一人留下。而由先前的統計可知留下 AB 型血的機率為 1%，因此在 Oliver 有在現場時出現該狀況的機率為 1%。</p></li>
+
+<li><p><strong>Oliver 沒有到達現場</strong>，則會有另外兩人在現場。而兩灘血中一個為 O 型而另一為 AB 型，因此發生機率為第一人為 O 型且第二人為 AB 型的機率，與第一人為 AB 而第二人為 O 的機率的加總，即</p></li>
 </ul>
 
-<p>因 Oliver 沒有到達現場出現的該血跡狀況的機率較高，所以 Oliver 未到達現場的 Likelihood 較有可能。</p>
+<p><span  class="math">\[0.6*0.1 + 0.1*0.6 = 1.2\%\]</span></p>
+
+<p>若以 E 代表 Oliver 有到現場而 E' 為沒有到現場的機率，從前面的 Bayes Factor 推斷可知 Likelihodd Ratio 為</p>
+
+<p><span  class="math">\[P(D \mid E) = 0.01, P(D \mid E') = 0.012\]</span></p>
+
+<p>Likelihood Ratio 為</p>
+
+<p><span  class="math">\[\frac{P(D \mid E)}{P(D \mid E')} = \frac{0.01}{0.012} < 1\]</span></p>
+
+<p>就算不計算 Posterior <span  class="math">\(P(D \mid E)\)</span>的數值，也可從 Likelihood Ratio 得知 Oliver <strong>沒有到達現場</strong>出現的該血跡狀況的機率較高。</p>
 
 <blockquote>
 <p>結果似乎反直覺但並沒有錯。</p>
 </blockquote>
 
-<h3 id="addends-and-maxima">Addends and Maxima</h3>
+<h3 id="mixtures--addends-and-maxima">Mixtures - Addends and Maxima</h3>
 
-<p>因機率操作可能更複雜，因此作者給了另外兩個操作 Add 與 Maxima，並以遊戲 <strong>Dungeons &amp; Dragons</strong>  以擲骰子覺點角色初始數值當範例</p>
+<p>之前的機率很單純是由單一模型構成，但實際的機率模型可能是由多種機率分佈混合 (Mixtures) 合成，因此作者在城市中給出了另外兩種計算方式 - <strong>Add</strong> 與 <strong>Maxima</strong>，並以遊戲 <strong>Dungeons &amp; Dragons</strong> 擲骰子建立角色初始數值當範例。詳細內容可自行參照該書內容。</p>
 
-<ul>
-<li>Add - 三個骰子數值總和的機率分佈為範例</li>
-<li>Maxima - 三個骰子的最大值(?) 為範例</li>
-</ul>
-
-<p>前兩者差比在於</p>
+<h2 id="reference">Reference</h2>
 
 <ul>
-<li>Add - 三數值加總後數值的機率分佈</li>
-<li>Maxima - D&amp;D 中各個屬性經過 Add 加總後，所出現的最大值的分佈</li>
+<li><a href="http://greenteapress.com/wp/think-bayes/">ThinkBayes</a></li>
 </ul>
-
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -172,10 +171,7 @@ Likelihood Ratio 為 (3/4) / (1/2) = 3/2，因此 posterior odds 為 3:2，機�
 	
 <nav class="post-nav row clearfix">
 	<div class="post-nav__item post-nav__item--prev mr-col-1-2">
-		<a class="post-nav__link" href="/post/2018/07/from-jekyll-to-hugo/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">從 Jekyll 轉移到 Hugo 心得</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next mr-col-1-2">
-		<a class="post-nav__link" href="/post/2018/07/thinkbayes-ch4/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">ThinkBayes 心得筆記 - Chapter 4</p></a>
+		<a class="post-nav__link" href="/post/2018/07/thinkbayes-ch4/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">ThinkBayes 心得筆記 - Chapter 4</p></a>
 	</div>
 </nav>
 	
@@ -211,9 +207,9 @@ Likelihood Ratio 為 (3/4) / (1/2) = 3/2，因此 posterior odds 為 3:2，機�
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch2-to-3/">ThinkBayes 心得筆記 - Chapter 2 to 3</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch4/">ThinkBayes 心得筆記 - Chapter 4</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch5/">ThinkBayes 心得筆記 - Chapter 5</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch4/">ThinkBayes 心得筆記 - Chapter 4</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch2-to-3/">ThinkBayes 心得筆記 - Chapter 2 ~ 3</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/from-jekyll-to-hugo/">從 Jekyll 轉移到 Hugo 心得</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/06/strava-how-to-generate-heatmap/">Strava 建立全球運動熱點圖的方式</a></li>
 		</ul>
