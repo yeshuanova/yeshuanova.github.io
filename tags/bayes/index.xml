@@ -6,7 +6,7 @@
     <description>Recent content in Bayes on Xeno Universe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 13 Jul 2018 15:50:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Jul 2018 17:00:00 +0800</lastBuildDate>
     
 	<atom:link href="/tags/bayes/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 5</title>
       <link>/post/2018/07/thinkbayes-ch5/</link>
-      <pubDate>Fri, 13 Jul 2018 15:50:00 +0800</pubDate>
+      <pubDate>Mon, 16 Jul 2018 17:00:00 +0800</pubDate>
       
       <guid>/post/2018/07/thinkbayes-ch5/</guid>
       <description>&lt;p&gt;Chapter 5 在介紹 Ratio 形式的機率表示法，並轉換成 Bayes&#39;s theorem 的形式，並以 Oliver&#39;s Blood 為範例展示不需計算 Posterior 也能從 Likelihood Ratio 得出結果。此外也介紹了 Mixture Distribution 以及如何使用 Python 計算該分佈的方式。&lt;/p&gt;
