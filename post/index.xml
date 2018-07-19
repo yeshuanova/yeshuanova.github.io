@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Xeno Universe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 16 Jul 2018 17:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 19 Jul 2018 10:00:00 +0800</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ThinkBayes 心得筆記 - Chapter 6</title>
+      <link>/post/2018/07/thinkbayes-ch6/</link>
+      <pubDate>Thu, 19 Jul 2018 10:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/07/thinkbayes-ch6/</guid>
+      <description>&lt;p&gt;Chapter 6 介紹了一個猜價格遊戲，並從歷史資料 dataset 中，求出得出要如何才能有最高的期望回饋。本範例中介紹如何使用 KDE 建立 PDF 以及 Likelihood 並得出 Posterior，最後以該數值建立最佳的期望回饋值分佈以得出如何得出最佳 Bid。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 5</title>
