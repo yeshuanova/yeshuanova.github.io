@@ -6,10 +6,21 @@
     <description>Recent content in Mathematics on Xeno Universe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 23 Jul 2018 16:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 Aug 2018 12:00:00 +0800</lastBuildDate>
     
 	<atom:link href="/categories/mathematics/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ThinkBayes 心得筆記 - Chapter 8</title>
+      <link>/post/2018/08/thinkbayes-ch8/</link>
+      <pubDate>Tue, 07 Aug 2018 12:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/08/thinkbayes-ch8/</guid>
+      <description>&lt;p&gt;Chapter 8 作者介紹了自己實際通勤的案例，並從地鐵班表建立一個數據模型，由月台上的等車人數推測是否應該繼續等待下去，或是轉搭計程車前往目的地。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 7</title>
