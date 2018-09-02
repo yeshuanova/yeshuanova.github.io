@@ -67,7 +67,10 @@ if (!doNotTrack) {
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/visualization" rel="category">Visualization</a></span>
 </span></div>
-		</header><div class="post__content clearfix">
+		</header>
+		<figure class="post__thumbnail">
+			<img src="/images/2018/keplergl-note/keplergl-overall.jpg" alt="Kepler.gl 使用簡介">
+		</figure><div class="post__content clearfix">
 			<p>過去在做地理資訊是視覺化的時候，通常需要專業的軟體與操作技能，增加了一般使用者的進入障礙。Uber 在今年五月時開放了內部使用的地理資料視覺化軟體 Kepler.gl，提供一般使用者能在瀏覽器上輕易地匯入與操作資料進行地理資訊視覺化操作與檢視。本文章將簡單介紹 Kepler.gl 的用法，讓剛使用者能了解其基礎用法。</p>
 
 <p></p>
@@ -75,9 +78,6 @@ if (!doNotTrack) {
 <h1 id="kepler-gl">Kepler.gl</h1>
 
 <p><a href="http://kepler.gl/#/">Kepler.gl</a> 是由 Uber 公司所釋出的一套在瀏覽器上執行的開放原始碼專案。過去進行地理資訊視覺化時需要使用 <a href="https://qgis.org/en/site/#">QGIS</a> 等專門的地理資訊系統軟體，現在只需要把想要視覺化的資料匯出成適當的文字格式(如csv)，即可在瀏覽器上直接進行檢視地理資料的視覺化呈現，使用上非常方便。本文章將簡介 Kepler 的各項構成與使用方式，以及使用所提供的 NYC Taxi 範例介紹，提供有興趣的讀者參考。</p>
-
-<p><img src="/images/2018/keplergl-note/keplergl-overall.jpg" alt="keplergl-overall" />
-<em>Kepler.gl 畫面</em></p>
 
 <h2 id="開始使用">開始使用</h2>
 
