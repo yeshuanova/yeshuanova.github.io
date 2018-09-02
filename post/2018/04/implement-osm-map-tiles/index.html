@@ -6,28 +6,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</title>
 	<meta name="description" content="Implement OSM map tiles using datashader and mercantile">
-	<meta name="generator" content="Hugo 0.46" />
+	<meta name="generator" content="Hugo 0.48" />
 	<meta property="og:title" content="使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統" />
 <meta property="og:description" content="Implement OSM map tiles using datashader and mercantile" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/2018/04/implement-osm-map-tiles/" />
-
-
-
-<meta property="article:published_time" content="2018-04-24T18:00:00&#43;08:00"/>
-
+<meta property="og:url" content="/post/2018/04/implement-osm-map-tiles/" /><meta property="article:published_time" content="2018-04-24T18:00:00&#43;08:00"/>
 <meta property="article:modified_time" content="2018-04-24T18:00:00&#43;08:00"/>
-
-
-
-
-
-
-
-
-
-
-
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統"/>
 <meta name="twitter:description" content="Implement OSM map tiles using datashader and mercantile"/>
@@ -39,7 +23,7 @@
 	<script type="text/javascript" src="/js/scripts.js"></script>
 	<link rel="shortcut icon" href="/favicon.ico">
 	
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -66,6 +50,7 @@ if (!doNotTrack) {
 <nav class="menu">
 	<ul class="menu__list">
 		<li class="menu__item"><a class="menu__link" href="/about/">ABOUT</a></li>
+		<li class="menu__item"><a class="menu__link" href="/competitions/">COMPETITIONS</a></li>
 	</ul>
 </nav>
 
@@ -330,7 +315,7 @@ agg_path = <span style="color:#080;background-color:#0f140f;font-style:italic">#
         f.write(img.to_bytesio(format=<span style="color:#0086d2">&#39;png&#39;</span>).read())</code></pre></div>
 <p>完成後 map tile 會儲存在 <strong>{tile_root}/{z}/{x}/{y}.png</strong> 的位置中，我們可以將檔案放到 server 上讓其他地圖服務使用圖磚資料。這我們使用 GitHub 來存放 map tiles 讓 Folium 直接使用圖檔資料。</p>
 
-<p><figure><img src="/images/nyc_taxi_trip_map/769.png" alt="nyc_taxi_map_tile_11_603_769"></figure>
+<p><figure><img src="/images/2018/nyc_taxi_trip_map/769.png" alt="nyc_taxi_map_tile_11_603_769"></figure>
 <em>位置為 /11/603/769.png 的 map tile（背景為透明）</em></p>
 
 <h3 id="使用-folium-顯示-map-tile">使用 Folium 顯示 map tile</h3>
@@ -355,7 +340,7 @@ fmap.save(<span style="color:#0086d2">&#39;map.html&#39;</span>)
 fmap</code></pre></div>
 <p>最後可得到如下的顯示結果，可看出地圖有正確顯示出上車熱點，</p>
 
-<p><figure><img src="/images/nyc_taxi_trip_map/nyc_taxi_layer_map.jpg" alt="folium_taxi_layer"></figure></p>
+<p><figure><img src="/images/2018/nyc_taxi_trip_map/nyc_taxi_layer_map.jpg" alt="folium_taxi_layer"></figure></p>
 
 <p>若要嘗試操作，也可由<a href="https://yeshuanova.github.io/nyc_taxi_trip_map/map.html">此連結</a>檢視<strong>互動式地圖</strong>。</p>
 
@@ -397,7 +382,7 @@ fmap</code></pre></div>
 	
 <section class="comments">
 	<div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -427,11 +412,11 @@ fmap</code></pre></div>
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/09/kepler-gl/">Kepler.gl 使用簡介</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/08/thinkbayes-ch8/">ThinkBayes 心得筆記 - Chapter 8</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch7/">ThinkBayes 心得筆記 - Chapter 7</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch6/">ThinkBayes 心得筆記 - Chapter 6</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch5/">ThinkBayes 心得筆記 - Chapter 5</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch4/">ThinkBayes 心得筆記 - Chapter 4</a></li>
 		</ul>
 	</div>
 </div>
@@ -496,6 +481,7 @@ fmap</code></pre></div>
 		<a class="widget-taglist__link widget__link btn" href="/tags/isomap" title="Isomap">Isomap</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/japan" title="Japan">Japan</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kaggle" title="Kaggle">Kaggle</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kepler.gl" title="Kepler.gl">Kepler.gl</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mds" title="Mds">Mds</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mercatile" title="Mercatile">Mercatile</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mobilenet" title="Mobilenet">Mobilenet</a>

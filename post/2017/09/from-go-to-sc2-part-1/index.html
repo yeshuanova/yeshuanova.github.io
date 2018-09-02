@@ -6,28 +6,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)</title>
 	<meta name="description" content="AI challenge from board game to StarCraft 2">
-	<meta name="generator" content="Hugo 0.46" />
+	<meta name="generator" content="Hugo 0.48" />
 	<meta property="og:title" content="從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)" />
 <meta property="og:description" content="AI challenge from board game to StarCraft 2" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/2017/09/from-go-to-sc2-part-1/" />
-
-
-
-<meta property="article:published_time" content="2017-09-05T14:00:00&#43;08:00"/>
-
+<meta property="og:url" content="/post/2017/09/from-go-to-sc2-part-1/" /><meta property="article:published_time" content="2017-09-05T14:00:00&#43;08:00"/>
 <meta property="article:modified_time" content="2017-09-05T14:00:00&#43;08:00"/>
-
-
-
-
-
-
-
-
-
-
-
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)"/>
 <meta name="twitter:description" content="AI challenge from board game to StarCraft 2"/>
@@ -39,7 +23,7 @@
 	<script type="text/javascript" src="/js/scripts.js"></script>
 	<link rel="shortcut icon" href="/favicon.ico">
 	
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -66,6 +50,7 @@ if (!doNotTrack) {
 <nav class="menu">
 	<ul class="menu__list">
 		<li class="menu__item"><a class="menu__link" href="/about/">ABOUT</a></li>
+		<li class="menu__item"><a class="menu__link" href="/competitions/">COMPETITIONS</a></li>
 	</ul>
 </nav>
 
@@ -87,7 +72,7 @@ if (!doNotTrack) {
 
 <p></p>
 
-<p><figure><img src="/images/ai-challenge/Kasparov-DeepBlue.png" alt="Kasparov-DeepBlue"></figure>
+<p><figure><img src="/images/2017/ai-challenge/Kasparov-DeepBlue.png" alt="Kasparov-DeepBlue"></figure>
 <em>Garry Kasparov與Deep Blue的西洋棋競賽(From: Stanford CS221 Page)</em></p>
 
 <p>雖然西洋棋已被Deep Blue攻克，但圍棋領域仍然屹立不搖。和西洋棋相比，圍棋的複雜度高上太多，如果以19x19的圍棋盤面大小來說狀態變化就有約<span  class="math">\(10^{172}\)</span>種可能性。這是一個非常龐大的數量，即使是使用現代的Super Computer也在有限時間內列舉所有可能性。也因此圍棋一直被認為是電腦無法短時間內到達人類的頂尖水準。</p>
@@ -96,7 +81,7 @@ if (!doNotTrack) {
 
 <p>當各大公司如Facebook都推出自己的圍棋程式<a href="https://en.wikipedia.org/wiki/Darkforest">Darkforest</a>時，一家被Google收購的英國AI公司<a href="https://deepmind.com/">DeepMind</a>，卻以自家開發的<a href="https://deepmind.com/research/alphago/">AlphaGo</a>直接對圍棋界頂尖的韓國棋手<a href="https://en.wikipedia.org/wiki/Lee_Sedol">李世乭(Lee Sedol)</a>發出了對弈挑戰，最後敲定2016年3月在韓國舉行比賽。</p>
 
-<p><figure><img src="/images/ai-challenge/alphago_vs_lee.jpg" alt="AlphaGo_vs_Lee"></figure>
+<p><figure><img src="/images/2017/ai-challenge/alphago_vs_lee.jpg" alt="AlphaGo_vs_Lee"></figure>
 <em>AlphaGo與李世乭在首爾的人機大戰(From: Go Game Guru)</em></p>
 
 <p>一開始許多<a href="http://sports.sina.com.cn/go/2016-03-01/doc-ifxpvysv5028824.shtml">圍棋界人士</a>認為，AlphaGo為要在圍棋領域<a href="https://www.inside.com.tw/2016/02/24/google-alphago-lee-se-dol">擊敗人類世界頂尖棋手</a>，現階段來說非常困難。但許多資訊領域的人士則認為AlphaGo有很大的勝率<a href="https://www.hksilicon.com/articles/1030548">擊敗李世乭</a>。但最後結果卻大出賽前的圍棋專家預料，AlphaGo以4：1擊敗李世乭。且在對弈的過程中AlphaGo展現出來許多令人無法理解，但卻能有效地達到獲勝的目的棋步。</p>
@@ -105,7 +90,7 @@ if (!doNotTrack) {
 
 <p>在與AlphaGo對弈後一年，2017年1月<a href="http://www.foxwq.com/">中國圍棋網</a>忽然出現了一位神秘棋手<a href="https://en.wikipedia.org/wiki/Master_(software)">Master</a>，在快棋規則下交出了驚人的60戰全勝，其中還包含了古力，井山裕太等知名圍棋棋士。也因為與圍棋漫畫棋魂中，藤原佐為藉由主角近藤光下網路圍棋打敗重大高手的情節相仿，因此Master也在網路上被戲稱是Sai再現(Sai是漫畫中藤原佐為使用的網路名稱)。在60勝後DeepMind也公布了Master就是升級版的AlphaGo，之後更在2017年5月的<a href="https://en.wikipedia.org/wiki/Future_of_Go_Summit">中國烏鎮圍棋峰會</a>以3:0擊敗了當時世界排名第一的<a href="https://en.wikipedia.org/wiki/Ke_Jie">柯潔</a>。</p>
 
-<p><figure><img src="/images/ai-challenge/alphago_vs_kejie.jpg" alt="AlphaGo_vs_KeJie"></figure>
+<p><figure><img src="/images/2017/ai-challenge/alphago_vs_kejie.jpg" alt="AlphaGo_vs_KeJie"></figure>
 <em>AlphaGo(Master)與柯潔的比賽</em></p>
 
 <p>而比賽結束後DeepMind也宣布AlphaGo將<a href="https://www.engadget.com/2017/05/27/googles-alphago-retires-from-competition/">引退</a>不再參加圍棋比賽，並在網路上開放Master版AlphaGo的<a href="https://deepmind.com/research/alphago/alphago-vs-alphago-self-play-games/">自我對弈棋譜</a>，十足意味著AI已在圍棋領域<strong>封頂</strong>了。</p>
@@ -116,7 +101,7 @@ if (!doNotTrack) {
 
 <p>有別專注在單一輸出結果的<a href="https://en.wikipedia.org/wiki/Supervised_learning">監督式學習</a>(Supervised learning)與<a href="https://en.wikipedia.org/wiki/Unsupervised_learning">非監督式學習</a>(Unsupervised learning)，棋類遊戲中則是使用到<a href="https://en.wikipedia.org/wiki/Reinforcement_learning">強化學習</a>(Reinforcement Learning)的概念。監督式學習的模型從輸入資料中得出得出一個結果，我們可以用那個結果檢證是否正確。但在強化學習中，單一輸出並不像監督式學習中那麼重要，真正重要的是<strong>&quot;一連串輸出後所得到的結果&quot;</strong>。因此強化學習注重的是，所有動作(Action)執行完後的結果是否符合預期，而棋類遊戲正好符合這樣的概念 - <strong>&quot;觀察盤面狀態，決定下一手直到結束&quot;</strong>。</p>
 
-<p><figure><img src="/images/ai-challenge/RF_diagram.png" alt="rf_diagram"></figure>
+<p><figure><img src="/images/2017/ai-challenge/RF_diagram.png" alt="rf_diagram"></figure>
 <em>強化學習概念圖(From: Wikipedia)</em></p>
 
 <p>從途中可看出，觀察者觀察整個<strong>環境(Environment)</strong>後，將現在的<strong>狀態(State)</strong>與<strong>回饋值(Reward)</strong>傳給<strong>代理人(Agent)</strong>依照<strong>策略(Policy)</strong>決定下一步驟動作，不斷重複直到結束為止。</p>
@@ -131,7 +116,7 @@ if (!doNotTrack) {
 <li><p>值網路(Value Network)：輸入現在盤面狀態，得出目前盤面勝率，可用來減少搜尋深度。</p></li>
 </ul>
 
-<p><figure><img src="/images/ai-challenge/alphago_network.jpg" alt="Alpha_Go_Network"></figure>
+<p><figure><img src="/images/2017/ai-challenge/alphago_network.jpg" alt="Alpha_Go_Network"></figure>
 <em>策略網路(Policy Network)與值網路(Value Network))</em></p>
 
 <h3 id="訓練步驟">訓練步驟</h3>
@@ -144,7 +129,7 @@ if (!doNotTrack) {
 <li><p>由強化學習策略網路不斷的自我對弈，來學習價值網路<span  class="math">\(\nu_{\theta}\)</span></p></li>
 </ul>
 
-<p><figure><img src="/images/ai-challenge/alphago_training_piple.jpg" alt="Alpha_Go_Pipeline"></figure>
+<p><figure><img src="/images/2017/ai-challenge/alphago_training_piple.jpg" alt="Alpha_Go_Pipeline"></figure>
 <em>AlphaGo 訓練流程</em></p>
 
 <h3 id="落子決策">落子決策</h3>
@@ -163,7 +148,7 @@ if (!doNotTrack) {
 
 <p>AlphaGo則將訓練好的策略網路<span  class="math">\(P_\sigma\)</span>，<span  class="math">\(P_\pi\)</span>與值網路<span  class="math">\(\nu_{\theta}\)</span>應用到MCTS中的<strong>Expansion</strong>與<strong>Simulation</strong>步驟，作為落子預測以及結果估計用函數，用以搜尋最佳落子位置。如下圖所示</p>
 
-<p><figure><img src="/images/ai-challenge/alphago_mcts.jpg" alt="Alpha_Go_Pipeline"></figure>
+<p><figure><img src="/images/2017/ai-challenge/alphago_mcts.jpg" alt="Alpha_Go_Pipeline"></figure>
 <em>AlphaGo的蒙地卡羅樹狀搜尋架構</em></p>
 
 <p>之後的<strong>Master</strong>版本仍延續了這個基礎架構，但不同的是DeepMind改善了演算法，效能前一版高出10倍，且並用新一代的<a href="https://en.wikipedia.org/wiki/Tensor_processing_unit">TPU</a>來進行運算(與李世乭對弈時用了50台併聯TPU，而與柯潔對弈只用了單機版TPU)。而最重要的改變，就是使用<a href="https://www.wired.com/2017/05/googles-alphago-levels-board-games-power-grids/">AlphaGo自我對弈</a>的棋譜來進行策略網路的訓練，而不依賴人類初始結果，讓AlphaGo在不斷自我對弈中修正策略網路與值網路，進而達到更好的效果。</p>
@@ -221,7 +206,7 @@ if (!doNotTrack) {
 	
 <section class="comments">
 	<div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -251,11 +236,11 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/09/kepler-gl/">Kepler.gl 使用簡介</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/08/thinkbayes-ch8/">ThinkBayes 心得筆記 - Chapter 8</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch7/">ThinkBayes 心得筆記 - Chapter 7</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch6/">ThinkBayes 心得筆記 - Chapter 6</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch5/">ThinkBayes 心得筆記 - Chapter 5</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch4/">ThinkBayes 心得筆記 - Chapter 4</a></li>
 		</ul>
 	</div>
 </div>
@@ -320,6 +305,7 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/isomap" title="Isomap">Isomap</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/japan" title="Japan">Japan</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kaggle" title="Kaggle">Kaggle</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kepler.gl" title="Kepler.gl">Kepler.gl</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mds" title="Mds">Mds</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mercatile" title="Mercatile">Mercatile</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mobilenet" title="Mobilenet">Mobilenet</a>

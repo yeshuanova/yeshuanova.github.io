@@ -6,10 +6,21 @@
     <description>Recent content in Visualization on Xeno Universe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 02 Jun 2018 20:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 02 Sep 2018 16:00:00 +0800</lastBuildDate>
     
 	<atom:link href="/categories/visualization/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kepler.gl 使用簡介</title>
+      <link>/post/2018/09/kepler-gl/</link>
+      <pubDate>Sun, 02 Sep 2018 16:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/09/kepler-gl/</guid>
+      <description>&lt;p&gt;過去在做地理資訊是視覺化的時候，通常需要專業的軟體與操作技能，增加了一般使用者的進入障礙。Uber 在今年五月時開放了內部使用的地理資料視覺化軟體 Kepler.gl，提供一般使用者能在瀏覽器上輕易地匯入與操作資料進行地理資訊視覺化操作與檢視。本文章將簡單介紹 Kepler.gl 的用法，讓剛使用者能了解其基礎用法。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Strava 建立全球運動熱點圖的方式</title>

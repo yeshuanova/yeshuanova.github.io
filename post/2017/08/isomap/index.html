@@ -6,28 +6,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Isomap - Isometric Mapping</title>
 	<meta name="description" content="Isomap - Isometric Mapping">
-	<meta name="generator" content="Hugo 0.46" />
+	<meta name="generator" content="Hugo 0.48" />
 	<meta property="og:title" content="Isomap - Isometric Mapping" />
 <meta property="og:description" content="Isomap - Isometric Mapping" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/2017/08/isomap/" />
-
-
-
-<meta property="article:published_time" content="2017-08-13T14:00:00&#43;08:00"/>
-
+<meta property="og:url" content="/post/2017/08/isomap/" /><meta property="article:published_time" content="2017-08-13T14:00:00&#43;08:00"/>
 <meta property="article:modified_time" content="2017-08-13T14:00:00&#43;08:00"/>
-
-
-
-
-
-
-
-
-
-
-
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Isomap - Isometric Mapping"/>
 <meta name="twitter:description" content="Isomap - Isometric Mapping"/>
@@ -39,7 +23,7 @@
 	<script type="text/javascript" src="/js/scripts.js"></script>
 	<link rel="shortcut icon" href="/favicon.ico">
 	
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -66,6 +50,7 @@ if (!doNotTrack) {
 <nav class="menu">
 	<ul class="menu__list">
 		<li class="menu__item"><a class="menu__link" href="/about/">ABOUT</a></li>
+		<li class="menu__item"><a class="menu__link" href="/competitions/">COMPETITIONS</a></li>
 	</ul>
 </nav>
 
@@ -92,15 +77,15 @@ if (!doNotTrack) {
 
 <p>如下圖資料分佈呈現螺旋狀，被稱為瑞士卷（Swiss Roll）的資料型態，</p>
 
-<p><img src="/images/isomap/swiss-roll.png" alt="swiss-roll" /></p>
+<p><img src="/images/2017/isomap/swiss-roll.png" alt="swiss-roll" /></p>
 
 <p>使用PCA對該資料集進行降維後可得到下圖的結果。</p>
 
-<p><img src="/images/isomap/swiss-roll-pca.png" alt="swiss-roll" /></p>
+<p><img src="/images/2017/isomap/swiss-roll-pca.png" alt="swiss-roll" /></p>
 
 <p>可以看出降到二維後，並沒有正確表現出資料的分佈狀態。而使用MDS進行降維，也產生同樣的問題。</p>
 
-<p><img src="/images/isomap/swiss-roll-mds.png" alt="swiss-roll" /></p>
+<p><img src="/images/2017/isomap/swiss-roll-mds.png" alt="swiss-roll" /></p>
 
 <p>主要因為PCA與MDS演算法所考慮到的是Global資料分佈，沒有辦法處理像Swiss Roll這樣螺旋分佈的非線性資料狀態。
 因此我們可以知道，資料分佈特性對降維演算法效果有著非常大的影響。</p>
@@ -113,7 +98,7 @@ if (!doNotTrack) {
 
 <p>將這個想法應用到MDS演算法時，可以將資料實際分佈與距離看成是可由局部建立出整體的Manifold結構。</p>
 
-<p><img src="/images/isomap/isomap-concept.png" alt="isomap-concept" /></p>
+<p><img src="/images/2017/isomap/isomap-concept.png" alt="isomap-concept" /></p>
 
 <p><strong>圖(A)</strong>顯示在Swiss roll data set中，兩點的實際距離並非藍色虛線所表示的的高維歐式距離，而是的低維度上的藍色實線（Geodesic distance）。<strong>圖(B)</strong>中的紅線爲以Neighborhood Graph所建立出來的兩點間最短路徑。<strong>圖&copy;</strong>為用Isomap降到二維後，兩點間的歐式距離（藍線）與Shortest Path路徑（紅線）的差異。</p>
 
@@ -156,7 +141,7 @@ isomap_result = isomap_model.fit_transform(data)
 plt.scatter(x=isomap_result[:, <span style="color:#0086f7;font-weight:bold">0</span>], y=isomap_result[:, <span style="color:#0086f7;font-weight:bold">1</span>], c=rel)</code></pre></div>
 <p>在<strong>K=8</strong>時的降維結果如下，</p>
 
-<p><img src="/images/isomap/swiss-roll-isomap-n8.png" alt="isomap-n8" /></p>
+<p><img src="/images/2017/isomap/swiss-roll-isomap-n8.png" alt="isomap-n8" /></p>
 
 <p>可看出原本Swiss Roll資料集，被<strong>攤開</strong>成二維平面，並沒有向之前的PCA或MDS一樣使資料混在一起，
 在降維到2D後仍保有原先資料分佈關係。</p>
@@ -166,9 +151,9 @@ plt.scatter(x=isomap_result[:, <span style="color:#0086f7;font-weight:bold">0</s
 <p>由於Isomap是由每點之間的Neighbors來建立出整個連結距離網路，因此鄰近點數量會大幅影響到降維結構。
 若是太少會無法使結構無法正確展現，太多則會有可能產生Shortcut狀況，下圖為使用$$K=3$$以及$$K=15$$時的降維結果</p>
 
-<p><img src="/images/isomap/swiss-roll-isomap-n3.png" alt="isomap-n3" /></p>
+<p><img src="/images/2017/isomap/swiss-roll-isomap-n3.png" alt="isomap-n3" /></p>
 
-<p><img src="/images/isomap/swiss-roll-isomap-n15.png" alt="isomap-n8" /></p>
+<p><img src="/images/2017/isomap/swiss-roll-isomap-n15.png" alt="isomap-n8" /></p>
 
 <p>可看出在鄰近點過多過少的，都會使降維結果受到影響，因此在使用Isomap時需要測試不同的Neighbor參數，
 已找到最佳降維的參數與結果。</p>
@@ -204,7 +189,7 @@ plt.scatter(x=isomap_result[:, <span style="color:#0086f7;font-weight:bold">0</s
 	
 <section class="comments">
 	<div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -234,11 +219,11 @@ plt.scatter(x=isomap_result[:, <span style="color:#0086f7;font-weight:bold">0</s
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/09/kepler-gl/">Kepler.gl 使用簡介</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/08/thinkbayes-ch8/">ThinkBayes 心得筆記 - Chapter 8</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch7/">ThinkBayes 心得筆記 - Chapter 7</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch6/">ThinkBayes 心得筆記 - Chapter 6</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch5/">ThinkBayes 心得筆記 - Chapter 5</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch4/">ThinkBayes 心得筆記 - Chapter 4</a></li>
 		</ul>
 	</div>
 </div>
@@ -303,6 +288,7 @@ plt.scatter(x=isomap_result[:, <span style="color:#0086f7;font-weight:bold">0</s
 		<a class="widget-taglist__link widget__link btn" href="/tags/isomap" title="Isomap">Isomap</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/japan" title="Japan">Japan</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kaggle" title="Kaggle">Kaggle</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kepler.gl" title="Kepler.gl">Kepler.gl</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mds" title="Mds">Mds</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mercatile" title="Mercatile">Mercatile</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mobilenet" title="Mobilenet">Mobilenet</a>

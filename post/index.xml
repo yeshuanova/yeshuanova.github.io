@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Xeno Universe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 07 Aug 2018 12:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 02 Sep 2018 16:00:00 +0800</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kepler.gl 使用簡介</title>
+      <link>/post/2018/09/kepler-gl/</link>
+      <pubDate>Sun, 02 Sep 2018 16:00:00 +0800</pubDate>
+      
+      <guid>/post/2018/09/kepler-gl/</guid>
+      <description>&lt;p&gt;過去在做地理資訊是視覺化的時候，通常需要專業的軟體與操作技能，增加了一般使用者的進入障礙。Uber 在今年五月時開放了內部使用的地理資料視覺化軟體 Kepler.gl，提供一般使用者能在瀏覽器上輕易地匯入與操作資料進行地理資訊視覺化操作與檢視。本文章將簡單介紹 Kepler.gl 的用法，讓剛使用者能了解其基礎用法。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 8</title>
@@ -182,7 +193,7 @@
       <pubDate>Thu, 04 Jan 2018 18:00:00 +0800</pubDate>
       
       <guid>/post/2018/01/autoencoder-tutorial/</guid>
-      <description>&lt;p&gt;Autoencoder(自動編碼器)是一種是透過 &lt;a href=&#34;https://en.wikipedia.org/wiki/Artificial_neural_network&#34;&gt;Artificial Neural Network&lt;/a&gt;，來進行資料自動學習與編碼的技術。本文將使用機器學習函式庫 &lt;a href=&#34;https://keras.io/&#34;&gt;Keras&lt;/a&gt; 建立 Autoencoder Model，並使用 MNIST Datatset 來展示兩個 Autoencoder 範例 - &lt;strong&gt;資料降維回復&lt;/strong&gt;與&lt;strong&gt;去雜訊(Denoising)&lt;/strong&gt;的Model。&lt;/p&gt;
+      <description>&lt;p&gt;Autoencoder(自動編碼器)是一種是透過 &lt;a href=&#34;https://en.wikipedia.org/wiki/Artificial_neural_network&#34;&gt;Artificial Neural Network&lt;/a&gt;，來進行資料自動學習與編碼的技術。本文將使用機器學習函式庫 &lt;a href=&#34;https://keras.io/&#34;&gt;Keras&lt;/a&gt; 建立 Autoencoder Model，並使用 MNIST Datatset 來展示兩個 Autoencoder 範例 - &lt;strong&gt;資料降維回復&lt;/strong&gt;與&lt;strong&gt;去雜訊(Denoising)&lt;/strong&gt;的 Model。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
