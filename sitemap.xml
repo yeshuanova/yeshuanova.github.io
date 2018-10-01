@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/2018/10/dataset-iris/</loc>
+    <lastmod>2018-10-01T00:18:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018/09/kepler-gl/</loc>
     <lastmod>2018-09-02T16:00:00+08:00</lastmod>
   </url>
@@ -167,6 +172,12 @@
   </url>
   
   <url>
+    <loc>/tags/dataset/</loc>
+    <lastmod>2018-10-01T00:18:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/datashader/</loc>
     <lastmod>2018-05-24T18:00:00+08:00</lastmod>
     <priority>0</priority>
@@ -258,7 +269,7 @@
   
   <url>
     <loc>/categories/machine-learning/</loc>
-    <lastmod>2018-02-09T15:00:00+08:00</lastmod>
+    <lastmod>2018-10-01T00:18:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -306,7 +317,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-09-02T16:00:00+08:00</lastmod>
+    <lastmod>2018-10-01T00:18:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -370,7 +381,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-09-02T16:00:00+08:00</lastmod>
+    <lastmod>2018-10-01T00:18:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
