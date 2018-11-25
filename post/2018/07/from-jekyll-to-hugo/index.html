@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>從 Jekyll 轉移到 Hugo 心得</title>
 	<meta name="description" content="From Jekyll to Hugo">
-	<meta name="generator" content="Hugo 0.49" />
+	<meta name="generator" content="Hugo 0.51" />
 	<meta property="og:title" content="從 Jekyll 轉移到 Hugo 心得" />
 <meta property="og:description" content="From Jekyll to Hugo" />
 <meta property="og:type" content="article" />
@@ -71,8 +71,6 @@ if (!doNotTrack) {
 		</header><div class="post__content clearfix">
 			<p>由於原先使用 Jekyll 的 voyager theme 所建立的靜態 Blog 在功能上已有些不足，且 Jekyll 的過慢的編譯速度也讓人有些頭大，因此有了轉換網網頁產生器的想法。原本是想使用 Hexo 來當作新的產生器，但在找產生器的過程發現了 Hugo 這個靜態網頁產生器中的新起之秀，研究後發現相當符合個人需求，因此決定使用 Hugo 來作為新的靜態網頁產生器。</p>
 
-<p></p>
-
 <h2 id="hugo">Hugo</h2>
 
 <p><a href="https://gohugo.io/">Hugo</a> 是一套由 <a href="https://golang.org/">Go</a> 語言開發的 Static Site Generator (靜態網頁產生器，以下簡稱 SSG)，可讓使用者透過 Markdown 語法撰寫內容後建立靜態網頁並發佈，讓使用者能專注在內容上。除了 Hugo 外，也有其他如 <a href="https://jekyllrb.com/">Jekyll</a>，<a href="https://hexo.io/zh-tw/index.html">Hexo</a> 等知名 SSG。和其他 SSG 比起來，Hugo 包含許多不同的特點，如</p>
@@ -128,8 +126,8 @@ if (!doNotTrack) {
 <h3 id="import-hugo-themes">Import Hugo themes</h3>
 
 <p>Hugo 並沒有預設的 theme，所以在建立好內容資料夾後，需自行建立 theme 或使用其他 theme，在這我們已 <a href="https://github.com/Vimux/mainroad">Mainroad</a> theme 做範例。</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash"><span style="color:#080;background-color:#0f140f;font-style:italic"># 將 mainroid theme 加入 themes/ 中
-</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>git clone https://github.com/Vimux/Mainroad.git themes/mainroad</code></pre></div>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash"><span style="color:#080;background-color:#0f140f;font-style:italic"># 將 mainroid theme 加入 themes/ 中</span>
+git clone https://github.com/Vimux/Mainroad.git themes/mainroad</code></pre></div>
 <blockquote>
 <p>除了使用 git 指令外，直接從 Github 上下載最新原始檔案壓縮檔，解壓縮後放到 themes 資料夾中。此外對 git 熟悉的是使用者也可用 <code>git submodule</code> 或 <code>git subtree</code> 等方式管理外部引入的 theme repo。</p>
 </blockquote>
@@ -137,8 +135,8 @@ if (!doNotTrack) {
 <h3 id="configuration">Configuration</h3>
 
 <p>Hugo 在生成 SSG 時會使用到 config.toml 檔案的設定內容。我們可以將之前 Mainroad theme 中的 config.toml 修改後加以使用</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;background-color:#0f140f;font-style:italic"># 將 mainroid 的 config.toml 覆蓋原先的預設值
-</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>cp themes/mainroad/exampleSite/config.toml .</code></pre></div>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;background-color:#0f140f;font-style:italic"># 將 mainroid 的 config.toml 覆蓋原先的預設值</span>
+cp themes/mainroad/exampleSite/config.toml .</code></pre></div>
 <p>之後編輯 config.toml 內容，將其修改為自己想要的內容。更詳細的 configuration 設定可參考 <a href="https://gohugo.io/getting-started/configuration/">Hugo 官方文件</a></p>
 
 <h3 id="新增-blog-文章">新增 Blog 文章</h3>
@@ -306,11 +304,11 @@ pygmentsStyle = <span style="color:#0086d2">&#34;fruity&#34;</span> <span style=
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/11/git-learning-tips/">Git 學習要點</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/10/dataset-iris/">機器學習資料集 - Iris dataset</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/09/kepler-gl/">Kepler.gl 使用簡介</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/08/thinkbayes-ch8/">ThinkBayes 心得筆記 - Chapter 8</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch7/">ThinkBayes 心得筆記 - Chapter 7</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch6/">ThinkBayes 心得筆記 - Chapter 6</a></li>
 		</ul>
 	</div>
 </div>
@@ -322,6 +320,7 @@ pygmentsStyle = <span style="color:#0086d2">&#34;fruity&#34;</span> <span style=
 			<li class="widget__item"><a class="widget__link" href="/categories/blog">Blog</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/deep-learning">Deep learning</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/dimension-reduction">Dimension reduction</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/git">Git</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
@@ -368,6 +367,7 @@ pygmentsStyle = <span style="color:#0086d2">&#34;fruity&#34;</span> <span style=
 		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git" title="Git">Git</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/heatmap" title="Heatmap">Heatmap</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hugo" title="Hugo">Hugo</a>

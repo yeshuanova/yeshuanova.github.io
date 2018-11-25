@@ -17,9 +17,7 @@
       <pubDate>Mon, 01 Oct 2018 00:18:00 +0800</pubDate>
       
       <guid>/post/2018/10/dataset-iris/</guid>
-      <description>&lt;p&gt;當我們有一個新的機器學習演算法時，為展現其效果以及與其他演算法的差異，我們可以使用共通的資料集(Dataset)來進行測試與比較，才有一個共同的標準。本篇將簡單介紹 Iris dataset 內容與結構，之後也會持續介紹許多常用的 Dataset 相關內容。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;當我們有一個新的機器學習演算法時，為展現其效果以及與其他演算法的差異，我們可以使用共通的資料集(Dataset)來進行測試與比較，才有一個共同的標準。本篇將簡單介紹 Iris dataset 內容與結構，之後也會持續介紹許多常用的 Dataset 相關內容。&lt;/p&gt;</description>
     </item>
     
   </channel>

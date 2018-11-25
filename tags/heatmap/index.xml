@@ -17,9 +17,7 @@
       <pubDate>Sat, 02 Jun 2018 20:00:00 +0800</pubDate>
       
       <guid>/post/2018/06/strava-how-to-generate-heatmap/</guid>
-      <description>&lt;p&gt;因之前研究了有關 map tile 的建立的方式，因此進一步了解 Strava 如何建立熱點圖的方式，因此在本篇中在這篇文章 &lt;a href=&#34;https://medium.com/strava-engineering/the-global-heatmap-now-6x-hotter-23fc01d301de&#34;&gt;Building the Global Heatmap&lt;/a&gt; 中 Strava 官方說明了建立 &lt;a href=&#34;https://www.strava.com/heatmap&#34;&gt;Strava Global Heatmap&lt;/a&gt; 的過程，在看完後覺得很有趣因此分享一下心得。本篇將專注在建立熱度圖的演算法上，並不涉及如何在 Cluster 上大量運算的方法。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;因之前研究了有關 map tile 的建立的方式，因此進一步了解 Strava 如何建立熱點圖的方式，因此在本篇中在這篇文章 &lt;a href=&#34;https://medium.com/strava-engineering/the-global-heatmap-now-6x-hotter-23fc01d301de&#34;&gt;Building the Global Heatmap&lt;/a&gt; 中 Strava 官方說明了建立 &lt;a href=&#34;https://www.strava.com/heatmap&#34;&gt;Strava Global Heatmap&lt;/a&gt; 的過程，在看完後覺得很有趣因此分享一下心得。本篇將專注在建立熱度圖的演算法上，並不涉及如何在 Cluster 上大量運算的方法。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -28,9 +26,7 @@
       <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
       
       <guid>/post/2018/05/implement-osm-map-tiles-parallel/</guid>
-      <description>&lt;p&gt;在&lt;a href=&#34;https://yeshuanova.github.io/blog/posts/implement-OSM-map-tiles/&#34;&gt;上一篇文章&lt;/a&gt;中已展示過了已展示如何從 NYC taxi trip dataset 中建立 map tiles 的基本方式。本篇將進一步改進該演算法，加速產生速度以及大檔案方式。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;在&lt;a href=&#34;https://yeshuanova.github.io/blog/posts/implement-OSM-map-tiles/&#34;&gt;上一篇文章&lt;/a&gt;中已展示過了已展示如何從 NYC taxi trip dataset 中建立 map tiles 的基本方式。本篇將進一步改進該演算法，加速產生速度以及大檔案方式。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -39,9 +35,7 @@
       <pubDate>Tue, 24 Apr 2018 18:00:00 +0800</pubDate>
       
       <guid>/post/2018/04/implement-osm-map-tiles/</guid>
-      <description>&lt;p&gt;在先前的文章 &lt;a href=&#34;https://yeshuanova.github.io/blog/posts/python-visualization-datashader/&#34;&gt;Python 地圖視覺化 - 使用 Folium&lt;/a&gt; 中，我們已經介紹過如何使用 Python 與 datashader 套件將 GPS 資料繪製成圖片。本篇文章將進一步示範如何使用 NYC Taxi Trip Data 來建立 New York City 的計程車上車位置的 Heatmap，並把繪製出的 map tile 資料與 &lt;a href=&#34;https://github.com/python-visualization/folium&#34;&gt;Folium&lt;/a&gt; 地圖元件整合以達到互動的效果。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;在先前的文章 &lt;a href=&#34;https://yeshuanova.github.io/blog/posts/python-visualization-datashader/&#34;&gt;Python 地圖視覺化 - 使用 Folium&lt;/a&gt; 中，我們已經介紹過如何使用 Python 與 datashader 套件將 GPS 資料繪製成圖片。本篇文章將進一步示範如何使用 NYC Taxi Trip Data 來建立 New York City 的計程車上車位置的 Heatmap，並把繪製出的 map tile 資料與 &lt;a href=&#34;https://github.com/python-visualization/folium&#34;&gt;Folium&lt;/a&gt; 地圖元件整合以達到互動的效果。&lt;/p&gt;</description>
     </item>
     
   </channel>

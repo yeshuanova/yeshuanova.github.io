@@ -6,12 +6,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Xeno Universe</title>
 	<meta name="description" content="Cheng-Shiang Li&#39;s Personal blog about everything">
-	<meta name="generator" content="Hugo 0.49" />
+	<meta name="generator" content="Hugo 0.51" />
 	<meta property="og:title" content="Xeno Universe" />
 <meta property="og:description" content="Cheng-Shiang Li&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
-<meta property="og:updated_time" content="2018-01-15T12:00:00&#43;08:00"/>
+<meta property="og:updated_time" content="2018-02-03T16:00:00&#43;08:00"/>
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Xeno Universe"/>
@@ -63,6 +63,23 @@ if (!doNotTrack) {
 	<div class="list__content clearfix">
 		<header class="list__header">
 			<h3 class="list__title post__title ">
+				<a href="/post/2018/02/modern-cpp-changing/" rel="bookmark">Modern C&#43;&#43; changing</a>
+			</h3><div class="list__meta meta">
+<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+<time class="post__meta-date meta-date" datetime="2018-02-03T16:00:00">2018-02-03</time>
+<span class="post__meta-categories meta-categories">
+	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/programming" rel="category">Programming</a></span>
+</span></div>
+		</header>
+		<div class="list__excerpt post__content">
+			<p>C++ 標準自從建立後到現在已經經過了許多次改版，其中最重要的版本除了 C++98 外，當在2011 年正式發佈的 C++11 標準了。該標準加入了許多新特性，不但讓程式撰寫更為精簡，在執行時效率也更加上升，可說是之後 C++14 與 C++17 等標準的基石。本篇文章簡單整理了一些關於 C++11 重要標準變更與概念，若要詳細了解相關內容以及 C++14/17 的相關變更可參考 <a href="https://en.wikipedia.org/wiki/C%2B%2B11">Wikipedia</a> 等網站。</p>
+		</div>
+	</div>
+</article><article class="list__item post">
+	<div class="list__content clearfix">
+		<header class="list__header">
+			<h3 class="list__title post__title ">
 				<a href="/post/2018/01/tensorflow-lite-in-ios-device/" rel="bookmark">使用 TensorFlow Lite 在 iOS 裝置上進行圖片分類</a>
 			</h3><div class="list__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
@@ -74,8 +91,6 @@ if (!doNotTrack) {
 		</header>
 		<div class="list__excerpt post__content">
 			<p>近幾年來由 Google 推出的 TensorFlow 在深度學習等領域有著大量的發展，但也因為由 TensorFlow 所訓練出的 Model 容量大且本身執行時也會佔用較多資源，並不適合在行動裝置上執行。因此 Google 推出了 TensorFlow Lite 讓在行動裝置上執行 TensorFlow  更為方便。本文章將簡單介紹如何在 iOS 裝置上執行 TensorFlow Lite 並進行圖像分類的方法。</p>
-
-<p></p>
 		</div>
 	</div>
 </article><article class="list__item post">
@@ -93,8 +108,6 @@ if (!doNotTrack) {
 		</header>
 		<div class="list__excerpt post__content">
 			<p>Autoencoder(自動編碼器)是一種是透過 <a href="https://en.wikipedia.org/wiki/Artificial_neural_network">Artificial Neural Network</a>，來進行資料自動學習與編碼的技術。本文將使用機器學習函式庫 <a href="https://keras.io/">Keras</a> 建立 Autoencoder Model，並使用 MNIST Datatset 來展示兩個 Autoencoder 範例 - <strong>資料降維回復</strong>與<strong>去雜訊(Denoising)</strong>的 Model。</p>
-
-<p></p>
 		</div>
 	</div>
 </article><article class="list__item post">
@@ -112,8 +125,6 @@ if (!doNotTrack) {
 		</header>
 		<div class="list__excerpt post__content">
 			<p>在做資料視覺化時，經常會遇到因資料量過大而無法簡單進行處理，或是執行速度過慢的問題。本文章將介紹一套<strong>Python</strong>上的資料視覺化工具<strong>datashader</strong>，能將數億個點的大資料快速生成視覺化圖形，並以<strong>New York Taxi Trip</strong>資料集為範例說明如何使用<strong>datashader</strong>繪製乘車位置分佈圖。</p>
-
-<p></p>
 		</div>
 	</div>
 </article><article class="list__item post">
@@ -131,8 +142,6 @@ if (!doNotTrack) {
 		</header>
 		<div class="list__excerpt post__content">
 			<p><a href="https://github.com/python-visualization/folium">Folium</a>是一套Python上的地圖視覺化工具。透過<a href="http://leafletjs.com/">Leaflet</a>這個JavaScript Library以及<a href="https://www.openstreetmap.org/">OpenStreetMap</a>地圖服務，可在Jupyter Notebook上實現互動式地圖繪製。本篇將簡單介紹<strong>Folium</strong>的使用方式以及繪製效果。</p>
-
-<p></p>
 		</div>
 	</div>
 </article><article class="list__item post">
@@ -150,8 +159,6 @@ if (!doNotTrack) {
 		</header>
 		<div class="list__excerpt post__content">
 			<p>從AI黎明期開始，如<a href="https://en.wikipedia.org/wiki/Chess">西洋棋(chess)</a>，<a href="https://en.wikipedia.org/wiki/Go_(game)">圍棋(Go)</a>或<a href="https://en.wikipedia.org/wiki/Xiangqi">象棋</a>等棋類遊戲一直是人工智慧的研究與測試領域。但由於早期的計算機的能力限制以及演算法的發展，較為複雜的棋類遊戲仍無法打敗世界級水準的棋手。直到1997年時IBM的<a href="https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)">深藍(Deep Blue)</a>在西洋棋比賽中打敗了世界棋王<a href="https://en.wikipedia.org/wiki/Garry_Kasparov">Garry Kasparov</a>，展現了電腦也能夠在西洋棋上打敗人類世界頂尖棋手的實力。</p>
-
-<p></p>
 		</div>
 	</div>
 </article><article class="list__item post">
@@ -172,8 +179,6 @@ if (!doNotTrack) {
 是一種基於Classical MDS所產生的<strong>非線性降維演算法</strong>（Nonlinear Dimensional Reduction）。
 一般來說，如果資料有著線性分佈的性質，如PCA與MDS這類計算整體資料（Global）之間的關係後再進行降維的線性演算法，
 都會有不錯的效果。但如果資料本身為非線性分佈，古典PCA與MDS則時常無法在降維後正確展現出資料間的關係。</p>
-
-<p></p>
 		</div>
 	</div>
 </article><article class="list__item post">
@@ -193,27 +198,6 @@ if (!doNotTrack) {
 			<p>在<a href="{{ site.baseurl }}/posts/dimension-reduction-tutorial/">之前</a>已經介紹過資料降維的基礎概念
 以及使用進行PCA示範，因此這篇要來談的是另一種降維方式
 <a href="https://en.wikipedia.org/wiki/Multidimensional_scaling">MDS</a>，並敘述相關理論推導。</p>
-
-<p></p>
-		</div>
-	</div>
-</article><article class="list__item post">
-	<div class="list__content clearfix">
-		<header class="list__header">
-			<h3 class="list__title post__title ">
-				<a href="/post/2017/08/dimension-reduction-tutorial/" rel="bookmark">Introduction to Dimension Reduction</a>
-			</h3><div class="list__meta meta">
-<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2017-08-07T20:00:00">2017-08-07</time>
-<span class="post__meta-categories meta-categories">
-	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/dimension-reduction" rel="category">Dimension Reduction</a></span>
-</span></div>
-		</header>
-		<div class="list__excerpt post__content">
-			<p>在現實生活中，一筆資料可能會有許多欄位，如交易資料會有交易日期，時間，數量等欄位，而天氣資料會有氣溫，氣壓，濕度等，視資料屬性而定還會有超高維度資料存在（如100x100大小的灰階圖片資料可以看成是10,000維的資料，若為RGB彩色圖片就是高達30,000維的高維資料）在處理這些高維資料時會需要耗費許多時間與空間進行處理資料，且時常會包含較不重要的維度資料在其中，並增加資料複雜度。因此在進行高維資料處理時，常使用被稱為<strong>資料降維（Dimension Reduction）</strong>的技術，將高維資料轉換為低維資料，以利後續的資料處理。</p>
-
-<p></p>
 		</div>
 	</div>
 </article>
@@ -235,11 +219,11 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/11/git-learning-tips/">Git 學習要點</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/10/dataset-iris/">機器學習資料集 - Iris dataset</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/09/kepler-gl/">Kepler.gl 使用簡介</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/08/thinkbayes-ch8/">ThinkBayes 心得筆記 - Chapter 8</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch7/">ThinkBayes 心得筆記 - Chapter 7</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch6/">ThinkBayes 心得筆記 - Chapter 6</a></li>
 		</ul>
 	</div>
 </div>
@@ -251,6 +235,7 @@ if (!doNotTrack) {
 			<li class="widget__item"><a class="widget__link" href="/categories/blog">Blog</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/deep-learning">Deep learning</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/dimension-reduction">Dimension reduction</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/git">Git</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
@@ -297,6 +282,7 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git" title="Git">Git</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/heatmap" title="Heatmap">Heatmap</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hugo" title="Hugo">Hugo</a>

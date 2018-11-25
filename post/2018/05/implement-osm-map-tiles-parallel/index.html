@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</title>
 	<meta name="description" content="Implement OSM map tiles using datashader and mercantile (version 2)">
-	<meta name="generator" content="Hugo 0.49" />
+	<meta name="generator" content="Hugo 0.51" />
 	<meta property="og:title" content="使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)" />
 <meta property="og:description" content="Implement OSM map tiles using datashader and mercantile (version 2)" />
 <meta property="og:type" content="article" />
@@ -71,8 +71,6 @@ if (!doNotTrack) {
 		</header><div class="post__content clearfix">
 			<p>在<a href="https://yeshuanova.github.io/blog/posts/implement-OSM-map-tiles/">上一篇文章</a>中已展示過了已展示如何從 NYC taxi trip dataset 中建立 map tiles 的基本方式。本篇將進一步改進該演算法，加速產生速度以及大檔案方式。</p>
 
-<p></p>
-
 <h2 id="concept">Concept</h2>
 
 <p>和前篇的 map tiles 建立方式方式相比，新方法著重在</p>
@@ -116,10 +114,10 @@ if (!doNotTrack) {
 <h4 id="將原始-csv-分割為小檔案">將原始 CSV 分割為小檔案</h4>
 
 <p>依照資料筆數切割為許多小檔案</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir split <span style="color:#080;background-color:#0f140f;font-style:italic"># 建立 split 資料夾
-</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
-<span style="color:#080;background-color:#0f140f;font-style:italic"># 以 1,000,000 lines 為單位，將原始 csv 檔案分割為數個檔案（不包含 header）
-</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#0086f7;font-weight:bold">1000000</span> - split/trip.csv.</code></pre></div>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir split <span style="color:#080;background-color:#0f140f;font-style:italic"># 建立 split 資料夾</span>
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 以 1,000,000 lines 為單位，將原始 csv 檔案分割為數個檔案（不包含 header）</span>
+tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#0086f7;font-weight:bold">1000000</span> - split/trip.csv.</code></pre></div>
 <p>完成後可得到 <code>split/trip.csv.00</code>，<code>split/trip.csv.01</code> 等不包含標頭的分割檔</p>
 
 <blockquote>
@@ -339,11 +337,11 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2018/11/git-learning-tips/">Git 學習要點</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/10/dataset-iris/">機器學習資料集 - Iris dataset</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/09/kepler-gl/">Kepler.gl 使用簡介</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/08/thinkbayes-ch8/">ThinkBayes 心得筆記 - Chapter 8</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch7/">ThinkBayes 心得筆記 - Chapter 7</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/07/thinkbayes-ch6/">ThinkBayes 心得筆記 - Chapter 6</a></li>
 		</ul>
 	</div>
 </div>
@@ -355,6 +353,7 @@ if (!doNotTrack) {
 			<li class="widget__item"><a class="widget__link" href="/categories/blog">Blog</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/deep-learning">Deep learning</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/dimension-reduction">Dimension reduction</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/git">Git</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
@@ -401,6 +400,7 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git" title="Git">Git</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/heatmap" title="Heatmap">Heatmap</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hugo" title="Hugo">Hugo</a>

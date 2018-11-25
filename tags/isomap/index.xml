@@ -20,9 +20,7 @@
       <description>&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Isomap&#34;&gt;&lt;strong&gt;Isomap&lt;/strong&gt;&lt;/a&gt;，全名為&lt;strong&gt;Isometric Mapping&lt;/strong&gt;，
 是一種基於Classical MDS所產生的&lt;strong&gt;非線性降維演算法&lt;/strong&gt;（Nonlinear Dimensional Reduction）。
 一般來說，如果資料有著線性分佈的性質，如PCA與MDS這類計算整體資料（Global）之間的關係後再進行降維的線性演算法，
-都會有不錯的效果。但如果資料本身為非線性分佈，古典PCA與MDS則時常無法在降維後正確展現出資料間的關係。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+都會有不錯的效果。但如果資料本身為非線性分佈，古典PCA與MDS則時常無法在降維後正確展現出資料間的關係。&lt;/p&gt;</description>
     </item>
     
   </channel>
