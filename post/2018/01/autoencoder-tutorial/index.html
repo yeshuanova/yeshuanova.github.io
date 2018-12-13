@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Autoencoder 簡介與應用範例</title>
 	<meta name="description" content="About Autoencoder theory and examples using MNIST dataset">
-	<meta name="generator" content="Hugo 0.51" />
+	<meta name="generator" content="Hugo 0.52" />
 	<meta property="og:title" content="Autoencoder 簡介與應用範例" />
 <meta property="og:description" content="About Autoencoder theory and examples using MNIST dataset" />
 <meta property="og:type" content="article" />
@@ -136,7 +136,7 @@ autoencoder.fit(x_train,
 
 <h3 id="denosing-autoencoder-dae">Denosing Autoencoder (DAE)</h3>
 
-<p>最初的 Autoencoder 為使用相同的輸入與輸出來建立 Model，但我們也可以對 Model 做一些修改來達成其他效果。如對輸入的資料 $x$ 加入的 noise 使 $\tilde{x}=noise(x)$。現在使用 $\tilde{x}$ 做為訓練資料而 $x$ 為輸出結果進行訓練。即讓 Loss function 為 $L(x, g( f( \tilde{x} )))$ 可得到一個對原始資料具有去雜訊功能的 Model。</p>
+<p>最初的 Autoencoder 為使用相同的輸入與輸出來建立 Model，但我們也可以對 Model 做一些修改來達成其他效果。如對輸入的資料 <span  class="math">\(x\)</span> 加入的 noise 使 <span  class="math">\(\tilde{x}=noise(x)\)</span>。現在使用 <span  class="math">\(\tilde{x}\)</span> 做為訓練資料而 <span  class="math">\(x\)</span> 為輸出結果進行訓練。即讓 Loss function 為 <span  class="math">\(L(x, g( f( \tilde{x} )))\)</span> 可得到一個對原始資料具有去雜訊功能的 Model。</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">noise_factor = <span style="color:#0086f7;font-weight:bold">0.5</span> <span style="color:#080;background-color:#0f140f;font-style:italic"># 決定 noise 的數量，值越大 noise 越多</span>
 x_train_noisy = x_train + noise_factor * np.random.normal(loc=<span style="color:#0086f7;font-weight:bold">0.0</span>, scale=<span style="color:#0086f7;font-weight:bold">1.0</span>, size=x_train.shape)
 x_test_noisy = x_test + noise_factor * np.random.normal(loc=<span style="color:#0086f7;font-weight:bold">0.0</span>, scale=<span style="color:#0086f7;font-weight:bold">1.0</span>, size=x_test.shape)
