@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-tw">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ThinkBayes 心得筆記 - Chapter 7 - Xeno Universe</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="ThinkBayes Note - Chapter 7">
+	<meta name="generator" content="Hugo 0.54.0" />
+	<meta property="og:title" content="ThinkBayes 心得筆記 - Chapter 7" />
+<meta property="og:description" content="ThinkBayes Note - Chapter 7" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018/thinkbayes-ch7/" />
+<meta property="article:published_time" content="2018-07-23T16:00:00&#43;08:00"/>
+<meta property="article:modified_time" content="2018-07-23T16:00:00&#43;08:00"/>
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104710641-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+				<div class="logo__title">Xeno Universe</div>
+				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">About</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/competitions/">Competitions</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">ThinkBayes 心得筆記 - Chapter 7</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2018-07-23T16:00:00">July 23, 2018</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/mathematics" rel="category">Mathematics</a></span>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			<p>Chapter 7 介紹了如何使用 Bayes 預測比賽結果。作者以 2010-2011 NHL 的冠軍賽為範例，以 Poisson 分佈來計算 Boston Bruins 的比賽勝率，並進一步預測系列賽結果。</p>
+
+<h1 id="thinkbayes-note">ThinkBayes Note</h1>
+
+<h2 id="chapter-7--prediction">Chapter 7 - Prediction</h2>
+
+<h3 id="the-boston-bruins-problem">The Boston Bruins problem</h3>
+
+<p>在 2010-11 年的 National Hockey League (NHL，國家冰球聯盟) 總決賽上，Boston Bruins (波士頓棕熊隊) 與 Vancouver Canucks (溫哥華加人隊)的比賽，Boston 先輸兩場 (0-1, 2-3) 後再贏兩場 (8-1, 4-0)。在目前狀況下，Boston 贏得一場的機率以及兩對贏得總冠軍的機率為何?</p>
+
+<p>作者對上述該問題設定了一些假設</p>
+
+<ol>
+<li>每場比賽的得分狀況為 <a href="https://en.wikipedia.org/wiki/Poisson_point_process">Poisson Process</a></li>
+<li>每場比賽平均得分為 λ</li>
+</ol>
+
+<p>因此下列步驟計算 Bruins 的獲勝機率</p>
+
+<ol>
+<li><p>統計先前所有比賽的平均得分與標準差以建立 Gaussian distribution 作為 Prior。</p></li>
+
+<li><p>使用前四場比賽的得分得出兩隊的 λ。</p></li>
+
+<li><p>使用 λ 的 Posterior 分佈去計算兩隊的得分分佈，分數差異分佈以及勝率分佈。</p></li>
+
+<li><p>計算每個隊伍在系列賽獲勝的機率。</p></li>
+</ol>
+
+<h3 id="poisson-process">Poisson process</h3>
+
+<p>在統計上，Poisson Distribution 表示單位時間內隨機事件發生率的離散機率分佈。</p>
+
+<p><span  class="math">\[P(X=k;\lambda)=e^{-\lambda}\frac{\lambda^k}{k!}\]</span></p>
+
+<p>其中 λ 為單位時間（或範圍）內事件的<strong>平均發生次數</strong>，<strong><em>k</em></strong> 為事件<strong>真正的發生次數</strong>。如 <strong>P(X=4;λ)</strong> 代表在單位時間內事件發生 <strong>4</strong> 次的機率，而 Poisson process 則代表一系列的 Poisson distribution 過程。因 Poisson 分佈很適合描述單位時間內的隨機事件發生機率，如公車站等車人數變化，顧客到達店鋪數量等（當然現實情況可能會由集中特性而不是任何時間都是相同機率)，在此可用來表示冰球比賽得分的 的機率分佈。</p>
+
+<blockquote>
+<p>球賽結果符合 Poisson proceess 的 model 已有相關研究，如<a href="https://www.cimat.mx/Eventos/vpec10/img/poisson.pdf">此篇文章</a>對足球比賽結果的研究也支持相同假設。</p>
+</blockquote>
+
+<h3 id="estimation">Estimation</h3>
+
+<p>對於 Prior distribution，作者從 NHL <a href="https://www.nhl.com/">官方網站</a>上獲得所有隊伍在賽季中每場比賽的得分，得出平均得分為 2.8 而標準差為 0.3，可用此兩數值建立 Gaussian distribution 作為 <strong>Prior</strong>。</p>
+
+<p>之後假設 Poisson distribution 為比賽得分的 Likelihood function，其中平均得分 λ 為 Hypothesis 而冠軍賽前四場得分為 Data，其中 Bruins = [0, 2, 8, 4] 而 Canucks = [1, 3, 1, 0]，則計算出來的 Posterior distribution 為即兩隊在總決賽的平均得分機率分佈。如下圖所示</p>
+
+<p><figure><img src="/images/2018/thinkbayes/ch7-posterior.png" alt="posterior"></figure>
+<em>Bruins 與 Canucks 兩隊的 λ 的 Posterior</em></p>
+
+<p>其中兩隊最有可能的得分數值為</p>
+
+<p><span  class="math">\[\lambda_{canucks}=2.6, \lambda_{bruins}=2.9\]</span></p>
+
+<h3 id="the-distribution-of-goals">The distribution of goals</h3>
+
+<p>得出兩隊的平均得分機率分佈後，接下來使用 Posterior 的平均得分機率所形成機率分佈，來建立 Mixture of Poisson 並得出得分(Goals)的 Poisson 機率分佈。</p>
+
+<p><span  class="math">\[Goals = Normalize(\sum_{\lambda}\sum_{k}P(\lambda)Poisson(k;\lambda))\]</span></p>
+
+<p>其中 <span  class="math">\(k = [1, 2, \dots, 10]\)</span>，<span  class="math">\(Normalize()\)</span> 為對結果機率分佈做正規化(使其加總為 1)。兩隊計算結果如下</p>
+
+<p><figure><img src="/images/2018/thinkbayes/ch7-goals.png" alt="goals"></figure>
+<em>兩隊下一場比賽的得分機率分佈</em></p>
+
+<blockquote>
+<p>k 的 UpperBound 設為 10，因每場比賽得超過 10 分的機率已經非常低了。</p>
+</blockquote>
+
+<h3 id="the-probability-of-winning">The probability of winning</h3>
+
+<p>得出兩隊得分的機率分佈後，接著可計算 Bruins 的獲勝機率。方法為將 Bruins 與 Canucks 的得分機率分佈相減得到差異結果，並計算差異為正(獲勝)，負(失敗)，零(平手)時的機率分佈</p>
+
+<p><span  class="math">\[\text{Diff}_{Bruins} = Goal_{Bruins} - Goal_{Canucks}\]</span></p>
+
+<p>後依照 Bruins 在該項目對應的機率加總後，可得到 Bruins 獲勝(Win)，失敗(Loss)與平手(Tie)的機率為</p>
+
+<p><span  class="math">\[P_{win} = 46\%, P_{lose}=37\%, P_{tie}=17\%\]</span></p>
+
+<p>若兩方面平手則會進入驟死賽規則(先得分的隊伍獲勝)，此情況不適用之前的 Poisson 分佈情形，需另外處理。</p>
+
+<h4 id="sudden-death">Sudden Death</h4>
+
+<p>因平手時會進入延長賽且先進球的隊伍會直接獲勝，因此需要計算兩隊先得分的機率。在此作者假設進球時間間隔分佈為 <a href="https://en.wikipedia.org/wiki/Exponential_distribution">Exponential distribution</a>，可計算出 Bruins 再延長賽先進球獲勝的機率為 52%，因此 Bruins 的整體勝率為</p>
+
+<p><span  class="math">\[P_{win\_overall} = P_{win} + P_{tie}*P_{win\_in\_overtime}\]</span></p>
+
+<p>可得出下一場比賽的勝率為 55%。</p>
+
+<h3 id="win-the-series">Win the Series</h3>
+
+<p>在前面以得出下一場比賽的勝率，而整個系列賽要獲勝必須連贏兩場，或是一勝一敗後贏得第三場。因此可計算連勝兩場的機率</p>
+
+<p><span  class="math">\[P_{series}=P_{win} * P_{win}\]</span></p>
+
+<p>並加上前兩場平手並在第三場獲勝的狀況</p>
+
+<p><span  class="math">\[P_{series}+=2*p_{win}*(1-P_{win})*P_{win}\]</span></p>
+
+<p>可算出 Bruins 贏的系列賽的機率為 57%。</p>
+
+<blockquote>
+<p>Boston Bruins 在2011年也獲得了系列賽勝利。</p>
+</blockquote>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="http://greenteapress.com/wp/think-bayes/">ThinkBayes</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Poisson_point_process">Poisson Process</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Exponential_distribution">Exponential distribution</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/bayes/" rel="tag">Bayes</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/2018/thinkbayes-ch6/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">ThinkBayes 心得筆記 - Chapter 6</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/2018/thinkbayes-ch8/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">ThinkBayes 心得筆記 - Chapter 8</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yeshuanova" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Xeno Universe.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+</body>
+</html>

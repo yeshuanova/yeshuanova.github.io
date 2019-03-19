@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-tw">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Introduction to Dimension Reduction - Xeno Universe</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Introduction to Dimension Reduction">
+	<meta name="generator" content="Hugo 0.54.0" />
+	<meta property="og:title" content="Introduction to Dimension Reduction" />
+<meta property="og:description" content="Introduction to Dimension Reduction" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2017/dimension-reduction-tutorial/" />
+<meta property="article:published_time" content="2017-08-07T20:00:00&#43;08:00"/>
+<meta property="article:modified_time" content="2017-08-07T20:00:00&#43;08:00"/>
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104710641-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+				<div class="logo__title">Xeno Universe</div>
+				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">About</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/competitions/">Competitions</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Introduction to Dimension Reduction</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2017-08-07T20:00:00">August 07, 2017</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/dimension-reduction" rel="category">Dimension Reduction</a></span>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			<p>在現實生活中，一筆資料可能會有許多欄位，如交易資料會有交易日期，時間，數量等欄位，而天氣資料會有氣溫，氣壓，濕度等，視資料屬性而定還會有超高維度資料存在（如100x100大小的灰階圖片資料可以看成是10,000維的資料，若為RGB彩色圖片就是高達30,000維的高維資料）在處理這些高維資料時會需要耗費許多時間與空間進行處理資料，且時常會包含較不重要的維度資料在其中，並增加資料複雜度。因此在進行高維資料處理時，常使用被稱為<strong>資料降維（Dimension Reduction）</strong>的技術，將高維資料轉換為低維資料，以利後續的資料處理。</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>為了處理因資料維度過高而產生的問題（Curse of dimension）所產生的降維技術，可大致上分為 <a href="https://en.wikipedia.org/wiki/Feature_selection">Feature Selection</a> 與 <a href="https://en.wikipedia.org/wiki/Feature_extraction">Feature Extraction</a>兩種類型的方法。</p>
+
+<ul>
+<li><p><strong>Feature Selection</strong>（特徵選擇）：直接從原始資料集中挑選適合的特徵維度進行分析，即直接捨棄部分原始資料維度。</p></li>
+
+<li><p><strong>Feature Extraction</strong>（特徵擷取）：透過演算法將原始資料轉換為新資料，即將所有資料維度當成輸入，並透過演算法產生降維過的資料集。</p></li>
+</ul>
+
+<p>兩個方法各有不同的應用領域，而往後的主題將主要集中在討論Feature Extraction的部分。</p>
+
+<h2 id="concept">Concept</h2>
+
+<p>假設資料<span  class="math">\(X\)</span>包含<span  class="math">\(n\)</span>維資料，即<span  class="math">\(X=\{x_1, x_2, \ldots, x_n\}\)</span>，我們希望將<span  class="math">\(X\)</span>降維成
+<span  class="math">\(k\)</span>維的資料<span  class="math">\(Z\)</span>，即<span  class="math">\(Z=\{z_1, z_2, \ldots, z_k\}\)</span>，<span  class="math">\(k \leq n\)</span>，如<span  class="math">\(Z\)</span>能保留高維資料<span  class="math">\(X\)</span>的某些關係性，我們即可稱<span  class="math">\(Z\)</span>為<span  class="math">\(X\)</span>的降維資料。</p>
+
+<p><figure><img src="/images/2017/dr-tutorial/dr-overview.svg" alt="overview"></figure></p>
+
+<p>降維後的<span  class="math">\(Z\)</span>資料因資料維度低，且經過演算法分析去除影響力低，凸顯出更為本質的部分，對往後資料計算的負荷量，保存的空間大小，資料視覺化等都有相當程度的助益。</p>
+
+<h2 id="example">Example</h2>
+
+<p>在之後的範例將使用<a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">Iris flower data set</a>
+（鳶尾花卉數據集），並用<a href="https://en.wikipedia.org/wiki/Principal_component_analysis">PCA</a>演算法進行一個簡單的降維資料示範。由於使用的程式語言工具是Python以及相關套件做示範，未安裝人員可先參考以下網站簡介了解並安裝相關套件。</p>
+
+<ul>
+<li><a href="https://www.python.org/">Python</a>：一套直譯式程式語言，有許多統計或機器學習的套件可使用。</li>
+<li><a href="http://scikit-learn.org/">Sciki-learn</a>：Python的一套機器學習套件，提供了許多函式庫可供使用。</li>
+<li><a href="https://matplotlib.org/">Matplotlib</a>：Python上的繪圖函式庫。</li>
+</ul>
+
+<h3 id="iris-flower-data-set">Iris flower data set</h3>
+
+<p>Iris data set 是英國統計學家 <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">Ronald Fisher</a> 爵士在1936年時，對加斯帕半島上的鳶尾屬花朵所提取的Petal（花瓣）與Sepal（花萼）的長寬數據，類別分別為setosa（山鳶尾），versicolor（變色鳶尾）與virginica（維吉尼亞鳶尾）等三類共150筆的資料。資料內容如下表所示</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Sepal Length</th>
+<th align="center">Sepal Width</th>
+<th align="center">Petal Length</th>
+<th align="center">Petal Width</th>
+<th>Label</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">5.1</td>
+<td align="center">3.5</td>
+<td align="center">1.4</td>
+<td align="center">0.2</td>
+<td>setosa</td>
+<td></td>
+</tr>
+
+<tr>
+<td align="center">4.9</td>
+<td align="center">3.0</td>
+<td align="center">1.4</td>
+<td align="center">0.2</td>
+<td>setosa</td>
+<td></td>
+</tr>
+
+<tr>
+<td align="center">7.0</td>
+<td align="center">3.2</td>
+<td align="center">4.7</td>
+<td align="center">1.4</td>
+<td>versicolor</td>
+<td></td>
+</tr>
+
+<tr>
+<td align="center">6.4</td>
+<td align="center">3.2</td>
+<td align="center">4.5</td>
+<td align="center">1.5</td>
+<td>versicolor</td>
+<td></td>
+</tr>
+
+<tr>
+<td align="center">6.3</td>
+<td align="center">3.3</td>
+<td align="center">6.0</td>
+<td align="center">2.5</td>
+<td>virginica</td>
+<td></td>
+</tr>
+
+<tr>
+<td align="center">5.8</td>
+<td align="center">2.7</td>
+<td align="center">5.1</td>
+<td align="center">1.9</td>
+<td>virginica</td>
+<td></td>
+</tr>
+
+<tr>
+<td align="center">...</td>
+<td align="center">...</td>
+<td align="center">...</td>
+<td align="center">...</td>
+<td>...</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>時至今日，該資料集以成為經典的數據資料並常作為為範例來使用。由於該資料集已包含在Sciki-learn的套件中，可直接由套件中讀取使用，也可自行下載<a href="http://archive.ics.uci.edu/ml/datasets/Iris">原始資料集</a>。</p>
+
+<p>因 Iris dataset 為四維資料，無法直接進行資料視覺化，以下使用 PCA 將該資料降低至二維，並以 Matplotlib 繪製二維資料展示降維結果。</p>
+
+<h3 id="code">Code</h3>
+
+<p>執行下列Python Code進行PCA降維</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;background-color:#0f140f;font-style:italic"># 匯入相關 Package</span>
+<span style="color:#fb660a;font-weight:bold">import</span> matplotlib.pyplot <span style="color:#fb660a;font-weight:bold">as</span> plt
+<span style="color:#fb660a;font-weight:bold">from</span> sklearn <span style="color:#fb660a;font-weight:bold">import</span> datasets
+<span style="color:#fb660a;font-weight:bold">from</span> sklearn.decomposition <span style="color:#fb660a;font-weight:bold">import</span> PCA
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 取得 Iris data set</span>
+iris = datasets.load_iris()
+iris_label = iris.target
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 設定 PCA Model參數並對 data set進行降維</span>
+pca_model = PCA(n_components=<span style="color:#0086f7;font-weight:bold">3</span>)
+pca_result = pca_model.fit_transform(iris.data)
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 繪製資料2D表示圖，並將不同類別加上顏色標示</span>
+<span style="color:#fb660a;font-weight:bold">for</span> idx, label in enumerate(iris_label):
+    <span style="color:#fb660a;font-weight:bold">if</span> label == <span style="color:#0086f7;font-weight:bold">0</span>:
+        color = <span style="color:#0086d2">&#39;ro&#39;</span>
+    <span style="color:#fb660a;font-weight:bold">elif</span> label == <span style="color:#0086f7;font-weight:bold">1</span>:
+        color = <span style="color:#0086d2">&#39;go&#39;</span>
+    <span style="color:#fb660a;font-weight:bold">elif</span> label == <span style="color:#0086f7;font-weight:bold">2</span>:
+        color = <span style="color:#0086d2">&#39;bo&#39;</span>
+    <span style="color:#fb660a;font-weight:bold">else</span>:
+        <span style="color:#fb660a;font-weight:bold">continue</span>
+    x = pca_result[idx, <span style="color:#0086f7;font-weight:bold">0</span>]
+    y = pca_result[idx, <span style="color:#0086f7;font-weight:bold">1</span>]
+    plt.plot(x, y, color)</code></pre></div>
+<h3 id="result">Result</h3>
+
+<p>下圖為將 Iris dataset 以 PCA 降到二維資料後，將不同種類花朵以不同顏色顯示出來的結果。</p>
+
+<p><figure><img src="/images/2017/dr-tutorial/iris_pca_2d_label.svg" alt="PCA-2D"></figure></p>
+
+<p>其中紅色代表 <strong>setosa</strong>，綠色代表 <strong>versicolor</strong>，藍色為 <strong>virginica</strong>。
+可以看出使用PCA轉換將原始資料從4維降低到2維後，不同種類的花朵仍有不同的分布區域。代表即使資料維度降低了但資料間關係性仍然存在，達到了資料降維的目的。</p>
+
+<p>而除了 PCA 外，也有其他如 <a href="https://en.wikipedia.org/wiki/Multidimensional_scaling">MDS</a>，<a href="https://en.wikipedia.org/wiki/Isomap">Isomap</a>，<a href="https://en.wikipedia.org/wiki/Linear_discriminant_analysis">LDA</a>與<a href="https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction#Locally-linear_embedding">LLE</a>等，以及透過 Neural Network的<a href="https://en.wikipedia.org/wiki/Autoencoder">Autoencode</a>等相關技術。由於不同資料有著不同的特性，可使用多種方式互相比較，找出最適合該資料集的演算法。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://www.amazon.com/Introduction-Machine-Learning-Adaptive-Computation/dp/0262028182/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1502299202&amp;sr=1-1">Introduction to Machine Learning</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/python/" rel="tag">Python</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/iris/" rel="tag">Iris</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/2017/gans-tutorial/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Generative Adversarial Networks Tutorial</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/2017/multidimensional-scaling/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Multidimensional Scaling</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yeshuanova" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Xeno Universe.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+</body>
+</html>

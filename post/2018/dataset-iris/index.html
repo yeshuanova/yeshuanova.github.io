@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-tw">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>機器學習資料集 - Iris dataset - Xeno Universe</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Machine Learning Dataset">
+	<meta name="generator" content="Hugo 0.54.0" />
+	<meta property="og:title" content="機器學習資料集 - Iris dataset" />
+<meta property="og:description" content="Machine Learning Dataset" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018/dataset-iris/" />
+<meta property="article:published_time" content="2018-10-01T00:18:00&#43;08:00"/>
+<meta property="article:modified_time" content="2018-10-01T00:18:00&#43;08:00"/>
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104710641-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+				<div class="logo__title">Xeno Universe</div>
+				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">About</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/competitions/">Competitions</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">機器學習資料集 - Iris dataset</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2018-10-01T00:18:00">October 01, 2018</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/machine-learning" rel="category">Machine Learning</a></span>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			<p>當我們有一個新的機器學習演算法時，為展現其效果以及與其他演算法的差異，我們可以使用共通的資料集(Dataset)來進行測試與比較，才有一個共同的標準。本篇將簡單介紹 Iris dataset 內容與結構，之後也會持續介紹許多常用的 Dataset 相關內容。</p>
+
+<p><a href="https://archive.ics.uci.edu/ml/datasets/iris">Iris dataset</a> 是一個古典的花朵資料集，由英國統計學家 <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">Ronald Fisher</a> 爵士在1936年時，對加斯帕半島上的鳶尾屬花朵所提取的花瓣花萼的長寬數據資料，依照山鳶尾，變色鳶尾，維吉尼亞鳶尾三類進行標示，共150筆資料。</p>
+
+<h2 id="attributes-and-labels">Attributes and Labels</h2>
+
+<p>Iris dataset 中包含四種屬性 (Atrributes) 與三種花卉標籤 (Labels)</p>
+
+<h3 id="attributes">Attributes</h3>
+
+<ul>
+<li>Sepal length: <strong>花萼長度</strong> (cm)</li>
+<li>Sepal width: <strong>花萼寬度</strong> (cm)</li>
+<li>Petal length: <strong>花瓣長度</strong> (cm)</li>
+<li>Petal width: <strong>花瓣寬度</strong> (cm)</li>
+</ul>
+
+<h3 id="labels">Labels</h3>
+
+<ul>
+<li>setosa: <strong>山鳶尾</strong></li>
+<li>versicolor: <strong>變色鳶尾</strong></li>
+<li>virginica: <strong>維吉尼亞鳶尾</strong></li>
+</ul>
+
+<p>表格顯示如下</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Sepal Length</th>
+<th align="center">Sepal Width</th>
+<th align="center">Petal Length</th>
+<th align="center">Petal Width</th>
+<th align="center">Label</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">5.1</td>
+<td align="center">3.5</td>
+<td align="center">1.4</td>
+<td align="center">0.2</td>
+<td align="center">setosa</td>
+</tr>
+
+<tr>
+<td align="center">4.9</td>
+<td align="center">3.0</td>
+<td align="center">1.4</td>
+<td align="center">0.2</td>
+<td align="center">setosa</td>
+</tr>
+
+<tr>
+<td align="center">7.0</td>
+<td align="center">3.2</td>
+<td align="center">4.7</td>
+<td align="center">1.4</td>
+<td align="center">versicolor</td>
+</tr>
+
+<tr>
+<td align="center">6.4</td>
+<td align="center">3.2</td>
+<td align="center">4.5</td>
+<td align="center">1.5</td>
+<td align="center">versicolor</td>
+</tr>
+
+<tr>
+<td align="center">6.3</td>
+<td align="center">3.3</td>
+<td align="center">6.0</td>
+<td align="center">2.5</td>
+<td align="center">virginica</td>
+</tr>
+
+<tr>
+<td align="center">5.8</td>
+<td align="center">2.7</td>
+<td align="center">5.1</td>
+<td align="center">1.9</td>
+<td align="center">virginica</td>
+</tr>
+
+<tr>
+<td align="center">&hellip;</td>
+<td align="center">&hellip;</td>
+<td align="center">&hellip;</td>
+<td align="center">&hellip;</td>
+<td align="center">&hellip;</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="how-to-use">How to use</h2>
+
+<p>因 Iris dataset 已經常被拿來使用作為資料科學的範例，因此有許多 Machine Learning 套件已經包含該資料集，或有需求時可直接下載到 Local
+端加以使用。我們以 Python 機器學習資料集 <a href="http://scikit-learn.org/stable/index.html">Scikit-learn</a> 為例，</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">from</span> sklearn <span style="color:#fb660a;font-weight:bold">import</span> datasets
+
+iris = datasets.load_iris()</code></pre></div>
+<p>即可讀入 Iris dataset，而輸入 <code>print(iris.DESCR)</code> 可顯示該資料集詳細描述</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">Iris plants dataset
+--------------------
+
+**Data Set Characteristics:**
+
+    :Number of Instances: 150 (50 in each of three classes)
+    :Number of Attributes: 4 numeric, predictive attributes and the class
+...
+...</code></pre></div>
+<p>其中 Attribute 資料在 <code>iris.data</code>，而 Label 在 <code>iris.target</code> 中</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">print</span>(iris.data[:<span style="color:#0086f7;font-weight:bold">2</span>])
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># show [[5.1 3.5 1.4 0.2], [4.9 3.0 1.4 0.2]]</span>
+
+<span style="color:#fb660a;font-weight:bold">print</span>(iris.target[:<span style="color:#0086f7;font-weight:bold">2</span>])
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># show [0, 0]</span></code></pre></div>
+<p>代表第一筆資料 <code>[5.1, 3.5, 1.4, 0.2]</code> 與第二筆資料 <code>[4.9 3.0 1.4 0.2]</code> 對應到的 Label 為 0。而每個 feature 與 label 對應到的特徵內容可使用 <code>feature_names</code> 與 <code>target_names</code> 來顯示</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">print</span>(iris.feature_names)
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># [&#39;sepal length (cm)&#39;,</span>
+<span style="color:#080;background-color:#0f140f;font-style:italic">#  &#39;sepal width (cm)&#39;,</span>
+<span style="color:#080;background-color:#0f140f;font-style:italic">#  &#39;petal length (cm)&#39;,</span>
+<span style="color:#080;background-color:#0f140f;font-style:italic">#  &#39;petal width (cm)&#39;]</span>
+
+<span style="color:#fb660a;font-weight:bold">print</span>(iris.target_names)
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># [&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;]</span></code></pre></div>
+<p>feature 顯示代表 <code>iris.data[0][0] = 5.1</code> 為 <strong>sepal lenght</strong>，而 <code>iris.data[0][1] = 3.5</code> 代表 <strong>sepal width</strong> 等。而 Label <code>0</code> 代表 <strong>setosa</strong>。</p>
+
+<p>了解該資料集的結構後，我們就可以對該資料進行一些簡單的應用，如 K-mean 分群 (Clustering) 等，方法可參考 Scikit-learn 上的<a href="http://scikit-learn.org/stable/auto_examples/cluster/plot_cluster_iris.html#sphx-glr-auto-examples-cluster-plot-cluster-iris-py">範例</a>。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">Wikipeida</a></li>
+<li><a href="http://archive.ics.uci.edu/ml/datasets/Iris">UCI</a></li>
+<li><a href="http://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html">Scikit-learn - The Iris Dataset</a></li>
+<li><a href="http://scikit-learn.org/stable/auto_examples/cluster/plot_cluster_iris.html#sphx-glr-auto-examples-cluster-plot-cluster-iris-py">Scikit-learn - K-means clustering</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/dataset/" rel="tag">Dataset</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/2018/kepler-gl/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Kepler.gl 使用簡介</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/2018/git-learning-tips/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Git 學習要點</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yeshuanova" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Xeno Universe.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+</body>
+</html>

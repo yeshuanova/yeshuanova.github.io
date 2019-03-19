@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-tw">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ThinkBayes 心得筆記 - Chapter 1 - Xeno Universe</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="ThinkBayes Note - Chapter 1">
+	<meta name="generator" content="Hugo 0.54.0" />
+	<meta property="og:title" content="ThinkBayes 心得筆記 - Chapter 1" />
+<meta property="og:description" content="ThinkBayes Note - Chapter 1" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018/thinkbayes-ch1/" />
+<meta property="article:published_time" content="2018-05-16T15:00:00&#43;08:00"/>
+<meta property="article:modified_time" content="2018-05-16T15:00:00&#43;08:00"/>
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104710641-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+				<div class="logo__title">Xeno Universe</div>
+				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">About</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/competitions/">Competitions</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">ThinkBayes 心得筆記 - Chapter 1</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2018-05-16T15:00:00">May 16, 2018</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/mathematics" rel="category">Mathematics</a></span>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			<p>本筆記主要紀錄閱讀 <a href="http://greenteapress.com/wp/think-bayes/">ThinkBayes</a> 一書內各章節的心得筆記，提供往後參考與複習。</p>
+
+<h2 id="bayess-theorem">Bayes's Theorem</h2>
+
+<h3 id="conditional-probability-條件機率">Conditional probability (條件機率)</h3>
+
+<p>假定有兩個事件 A 與 B，給定一機率函數 <span  class="math">\(P(A)\)</span> 代表 A 事件的發生機率，而 <span  class="math">\(P(A \mid B)\)</span> 代表 B 事件發生後 A 事件的發生機率。此外 <span  class="math">\(P(A \cap B)\)</span> 代表 A 與 B 事件同時發生的機率，則當事件 A 與 B 是相互獨立時，<span  class="math">\(P(A \cap B) = P(A)P(B)\)</span></p>
+
+<h3 id="bayess-theorem-1">Bayes's theorem</h3>
+
+<p>因 <span  class="math">\(P(A \cap B) = P(B \cap A)\)</span>，所以可知 <span  class="math">\(P(A)P(A \mid B) = P(B)P(B \mid A)\)</span>，因此</p>
+
+<p><span  class="math">\[P(A \mid B) = \frac{P(A)P(B \mid A)}{P(B)}\]</span></p>
+
+<p>上式可進一步一般化，也就是從觀測到的 Data $D$ 中，求出 Hypothesis $H$ 的機率。上面公式可轉化為</p>
+
+<p><span  class="math">\[P(H \mid D) = \frac{P(H)P(D \mid H)}{P(D)}\]</span></p>
+
+<p>該公式為 Bayes equation，其中</p>
+
+<ul>
+<li><p><span  class="math">\(P(H)\)</span>: 觀察到資料之前 Hypothesis <span  class="math">\(H\)</span> 的機率，稱為 <strong>Prior</strong> (先驗機率)。</p></li>
+
+<li><p><span  class="math">\(P(D \mid H)\)</span>: 在 Hypothesis <span  class="math">\(H\)</span> 下，Data <span  class="math">\(D\)</span> 的分佈機率，稱為 <strong>Likelihood</strong>。</p></li>
+
+<li><p><span  class="math">\(P(D)\)</span> : 在所有 Hypothesis 下，Data <span  class="math">\(D\)</span> 出現的機率，稱為 <strong>Normalizing Constant</strong>。</p></li>
+
+<li><p><span  class="math">\(P(H \mid D)\)</span>: 觀察到資料 <span  class="math">\(D\)</span> 之後的出現 Hypothesis <span  class="math">\(H\)</span> 的機率，稱為 <strong>Posterior</strong> (後驗機率)。</p></li>
+</ul>
+
+<h3 id="steps">Steps</h3>
+
+<p>當使用 Bayes's theorem 來解決問題時，可分為幾個主要步驟</p>
+
+<ul>
+<li><p><strong>建立 Prior</strong> <span  class="math">\(P(H)\)</span> 的機率分佈。可假設為 uniform（即每個事件機率都相同）或依照歷史資料建立機率分佈。</p></li>
+
+<li><p><strong>建立 Likelihood</strong> <span  class="math">\(P(D \mid H)\)</span> 的機率分佈。可依照資料或問題特性來建立 Likelihood 機率函數。</p></li>
+
+<li><p><strong>計算 P(D)</strong> 數值。但因 <span  class="math">\(P(D)\)</span> 數值是常數，因此經常只計算 <span  class="math">\(P(H)P(D \mid H)\)</span> 的部分在將所有數值正規劃。</p></li>
+
+<li><p>使用 Bayes's equation <strong>計算 Posterior</strong> <span  class="math">\(P(H \mid D)\)</span> 的數值。</p></li>
+</ul>
+
+<h2 id="example--cookie-problem">Example - Cookie Problem</h2>
+
+<p>現有兩袋餅乾分別為 <strong>Bowl 1</strong> ( <span  class="math">\(B_1\)</span>) 與 <strong>Bowl 2</strong> (<span  class="math">\(B_2\)</span>) ，口味有 vanilla 與 chocolate 兩種。<strong>Bowl 1</strong> 有 30 個 vanilla ( <strong>V</strong> ) 與 10 個 chocolate ( <strong>C</strong> )，而 <strong>Bow 2</strong> 則有 20 個 vanilla 與 20 個 chocolate。現在拿出一顆 vanilla 口味的餅乾，則最有可能是從哪一個袋子拿出來的?</p>
+
+<p>根據 Bayes 思考方式，問題可轉化為當觀察到 vaniila 口味的 cookie 時，拿出的袋子為 Bowl 1 或 Bowl 2 的機率何者較大。也就是比較 <span  class="math">\(P(H = B_1 \mid D = vaniila)\)</span> 與 <span  class="math">\(P(H=B_2 \mid D = vanilla)\)</span> 的數值大小。</p>
+
+<h3 id="prior">Prior</h3>
+
+<p>先設定 Hypothesis 為拿出 Cookie 的袋子，包含 <span  class="math">\(B_1\)</span> 或 <span  class="math">\(B_2\)</span> 兩者。我們假定 Hypothesis 的分布為 uniform distribution，則 Prior 為</p>
+
+<p><span  class="math">\[P(B_1) = P(B_2) = 0.5\]</span></p>
+
+<h3 id="likelihood">Likelihood</h3>
+
+<p>因問題敘述中已經告知每個袋子中包含的 Cookie 種類，即 Likelihood <span  class="math">\(P(D \mid H)\)</span> 的機率分布為</p>
+
+<p><span  class="math">\[P(V \mid B_1)=3/4, P(C \mid B_1)=1/4\]</span></p>
+
+<p><span  class="math">\[P(V \mid B_2)=1/2, P(C \mid B_2)=1/2\]</span></p>
+
+<h3 id="normalizing-constant">Normalizing Constant</h3>
+
+<p>正規化常數 $P(V) 可計算如下</p>
+
+<p><span  class="math">\[P(V) = P(B_1)P(V \mid B_1) + P(B_2)P(V \mid B_2) = (1/2)(3/4)+(1/2)(1/2)=5/8\]</span></p>
+
+<p>因 Prior * Likelihood 都會除以相同的 Normalizing Constant，因此時常可忽略不計算。</p>
+
+<h3 id="posterior">Posterior</h3>
+
+<p>當 Prior 與 Likelihood 都建立完成後，即可計算 Posterior <span  class="math">\(P(H \mid D)\)</span> 為</p>
+
+<p><span  class="math">\[P(B_1 \mid V) = \frac{P(V)P(V \mid B_1)}{P(V)} = \frac{(1/2)(3/4)}{5/8} = \frac{3}{5}\]</span></p>
+
+<p><span  class="math">\[P(B_2 \mid V) = \frac{P(V)P(V \mid B_2)}{P(V)} = \frac{(1/2)(1/2)}{5/8} = \frac{2}{5}\]</span></p>
+
+<p>依照 Posterir 結果，我們可知 <span  class="math">\(P(B_1 \mid V) > P(B_2 \mid V)\)</span>，因此當觀察到 Cookie 為 Vanilla 時，<strong>Bowl 1</strong> 為最有可能拿出的袋子。</p>
+
+<p>之後作者以 M&amp;M problem 與 <a href="https://en.wikipedia.org/wiki/Monty_Hall_problem"><strong>Monty Hall problem</strong></a> (三門問題) 展示如何建模並求出結果，以及與為何 Bayes's theorem 有時會違反直覺的情況。詳細可自行參考 ThinkBayes 一書。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="http://greenteapress.com/wp/think-bayes/">ThinkBayes - Book</a></li>
+<li><a href="https://github.com/AllenDowney/ThinkBayes2">ThinkBayes - Github</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes' theorem</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/probability/" rel="tag">Probability</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/bayes/" rel="tag">Bayes</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/2018/implement-osm-map-tiles/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/2018/implement-osm-map-tiles-parallel/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yeshuanova" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Xeno Universe.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-tw">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 - Xeno Universe</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Implement OSM map tiles using datashader and mercantile">
+	<meta name="generator" content="Hugo 0.54.0" />
+	<meta property="og:title" content="使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統" />
+<meta property="og:description" content="Implement OSM map tiles using datashader and mercantile" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018/implement-osm-map-tiles/" />
+<meta property="article:published_time" content="2018-04-24T18:00:00&#43;08:00"/>
+<meta property="article:modified_time" content="2018-04-24T18:00:00&#43;08:00"/>
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104710641-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+				<div class="logo__title">Xeno Universe</div>
+				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">About</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/competitions/">Competitions</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2018-04-24T18:00:00">April 24, 2018</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/visualization" rel="category">Visualization</a></span>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			<p>在先前的文章 <a href="https://yeshuanova.github.io/blog/posts/python-visualization-datashader/">Python 地圖視覺化 - 使用 Folium</a> 中，我們已經介紹過如何使用 Python 與 datashader 套件將 GPS 資料繪製成圖片。本篇文章將進一步示範如何使用 NYC Taxi Trip Data 來建立 New York City 的計程車上車位置的 Heatmap，並把繪製出的 map tile 資料與 <a href="https://github.com/python-visualization/folium">Folium</a> 地圖元件整合以達到互動的效果。</p>
+
+<h2 id="openstreetmap-tiles-system">OpenStreetMap tiles system</h2>
+
+<p><a href="https://www.openstreetmap.org/#map=8/23.611/120.768">OpenStreetMap</a> 是一個由 <a href="https://en.wikipedia.org/wiki/Steve_Coast">Steve Coast</a> 所發起網路協作地圖計畫，目的是建立一個由使用者所共同建立的開放地圖服務。除了所有人都能免費使用該地圖服務外，使用者也可協助編輯地圖內容，上傳 GPS 路徑等資料，以完善地圖品質。現在著名的手機遊戲 Pokemon Go，也在 2017年底時將遊戲內的地圖資料，由先前所使用的 Google Map <a href="https://pokemongohub.net/post/news/game-map-updated-openstreetmap-data-imported-notable-changes-around-globe/">轉移到 OpenStreetMap 上</a>。</p>
+
+<p>在建立地圖資料前，先介紹現在 <strong>OpenStreetMap</strong> 所使用的 <a href="https://wiki.openstreetmap.org/wiki/Slippy_Map">Map tile system （圖磚系統）</a>。由於地圖所包含的資料量非常龐大，所以地圖資料會依照所涵蓋區域的大小，分成許多小型的<strong>正方形區域</strong>，該區域稱為 tile（圖磚），每個區域的大小為 <strong>256x256 pixels</strong>。</p>
+
+<h4 id="map-tile-coordinate">Map tile coordinate</h4>
+
+<p>每個圖磚座標主要由三個部分組成，<strong>Zoom</strong>，<strong>X</strong> 與 <strong>Y</strong>。</p>
+
+<ul>
+<li><strong>Zoom</strong>：地圖涵蓋區域的大小，數值最大代表範圍越廣（ 0 為整個世界地圖範圍），最大範圍為 0 ~ 19</li>
+<li><strong>X</strong>：地圖 X 座標軸，依照 Zoom 大小變化。範圍為 0 到 <span  class="math">\(2^{zoom}-1\)</span>。</li>
+<li><strong>Y</strong>：地圖 X 座標軸，依照 Zoom 大小變化。範圍為 0 到 <span  class="math">\(2^{zoom}-1\)</span>。</li>
+</ul>
+
+<p>可知當 zoom 越大時，tiles 的數量也會越來多，如當 zoom = 2 時，tiles 數量只有<span  class="math">\(2^2*2^2=16\)</span>個。而當 zoom = 12 時，tiles 數量就會有<span  class="math">\(2^{12}*2^{12}=16,777,216\)</span> 個。當 zoom 每增加一層，tiles 數就會增加四倍。</p>
+
+<p>使用地圖服務時，OpenStreetmap 會去設定的 tile server 拿取對應位置的圖片。如標準 OpenStreetMap 的 Tile Server URL 為</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-http" data-lang="http">http://tile.openstreetmap.org/${zoom}/${x}/${y}.png</code></pre></div>
+<p>當移動到對應的範圍時，OpenStreetMap 就回去拿取對應位置的圖磚資料。如下圖所示，左圖為 zoom=0, x=0, y=0 的圖磚，可直接下列網址取得，如下表左方的圖片</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-http" data-lang="http">http://tile.openstreetmap.org/0/0/0.png</code></pre></div>
+<p>而 zoom = 7, x = 63, y = 42 的圖磚則可由下列 URL 取得，如下表右方的圖片</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-http" data-lang="http">http://tile.openstreetmap.org/7/63/42.png</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="center">OSM (.../0/0/0.png)</th>
+<th align="center">OSM (.../7/63/42.png)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><figure><img src="https://tile.openstreetmap.org/0/0/0.png" alt="OSM-tile-0-0-0"></figure></td>
+<td align="center"><figure><img src="https://tile.openstreetmap.org/7/63/42.png" alt="OSM-tile-7-63-42"></figure></td>
+</tr>
+</tbody>
+</table>
+
+<p>除了標準 OpenStreetMap 的 tiles 外，也可由不同的 Tile Server 取得不同的<a href="https://wiki.openstreetmap.org/wiki/Tiles">圖磚</a>加以應用，或<a href="https://switch2osm.org/the-basics/">自行建立 Tile Server</a> 來使用自訂的圖磚。</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Stamen Toner</th>
+<th align="center">Stamen Watercolor</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><figure><img src="http://tile.stamen.com/toner/7/63/42.png" alt="ST-tile-7-63-42"></figure></td>
+<td align="center"><figure><img src="http://c.tile.stamen.com/watercolor/7/63/42.jpg" alt="SW-tile-7-63-42"></figure></td>
+</tr>
+</tbody>
+</table>
+
+<p>關於 map tile 更詳細的解說可參考<a href="http://www.liedman.net/tiled-maps/">本篇文章</a>。</p>
+
+<h2 id="mercantile-package">Mercantile Package</h2>
+
+<p>除了前篇所提過的 <a href="http://datashader.org/">datashader</a>，<a href="https://pandas.pydata.org/">Pandas</a>，<a href="https://dask.pydata.org/en/latest/">Dask</a> 等之外 ，這次使用 <a href="https://github.com/mapbox/mercantile">Ｍercantile</a> 這套由 <a href="https://www.mapbox.com/">Mapbox</a> 所開源的 Spherical mercator coordinate 工具，來幫助我們從 tile 座標產生對應的經緯度或 web mercator 座標，或反過來產生包含特定座標的 map tiles 。</p>
+
+<h3 id="安裝">安裝</h3>
+
+<p>直接使用 python 的 pip 套件管理工具即可安裝 mercantile</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install mercantile</code></pre></div>
+<h3 id="使用範例">使用範例</h3>
+
+<h4 id="從-map-tile-座標取得對應的經緯度範圍">從 map tile 座標，取得對應的經緯度範圍</h4>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> mercatile
+
+mercantile.bounds(<span style="color:#0086f7;font-weight:bold">603</span>, <span style="color:#0086f7;font-weight:bold">769</span>, <span style="color:#0086f7;font-weight:bold">11</span>) <span style="color:#080;background-color:#0f140f;font-style:italic"># x=603, y=769, z=11</span>
+<span style="color:#080;background-color:#0f140f;font-style:italic"># LngLatBbox(west=-74.00390625, south=40.713955826286046, east=-73.828125, north=40.84706035607122)</span></code></pre></div>
+<h4 id="從-gps-座標產生對應的單一-tile-物件">從 GPS 座標產生對應的單一 Tile 物件</h4>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">mercantile.tile(-<span style="color:#0086f7;font-weight:bold">74.00390625</span>, -<span style="color:#0086f7;font-weight:bold">73.828125</span>, <span style="color:#0086f7;font-weight:bold">11</span>)
+<span style="color:#080;background-color:#0f140f;font-style:italic"># Tile(x=603, y=769, z=11)</span></code></pre></div>
+<h4 id="從-gps-座標與-zoom-範圍產生包含在內的-tile-列表">從 GPS 座標與 zoom 範圍產生包含在內的 tile 列表</h4>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;background-color:#0f140f;font-style:italic"># 建立地圖範圍 (west, south, east, north)</span>
+bound_nyc = (-<span style="color:#0086f7;font-weight:bold">74.029495</span>, <span style="color:#0086f7;font-weight:bold">40.697930</span>, -<span style="color:#0086f7;font-weight:bold">73.946411</span>, <span style="color:#0086f7;font-weight:bold">40.817817</span>) 
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 產生 zoom 範圍為 0 到 15 的所有 tile 的 generator</span>
+mercantile.tiles(*bound_nyc, zooms=list(range(<span style="color:#0086f7;font-weight:bold">0</span>, <span style="color:#0086f7;font-weight:bold">16</span>)))
+<span style="color:#080;background-color:#0f140f;font-style:italic"># len(list(tile_list)) = 212, 共有 212 個圖磚</span></code></pre></div>
+<h4 id="從-tile-物件取得-web-mercator-座標">從 Tile 物件取得 Web Mercator 座標</h4>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">from</span> mercantile <span style="color:#fb660a;font-weight:bold">import</span> Tile
+bound_xy = mercantile.xy_bounds(Tile(x=<span style="color:#0086f7;font-weight:bold">603</span>, y=<span style="color:#0086f7;font-weight:bold">769</span>, z=<span style="color:#0086f7;font-weight:bold">11</span>))
+<span style="color:#080;background-color:#0f140f;font-style:italic"># bound_xy = Bbox(left=-8238077.160463155, bottom=4970241.327215301, right=-8218509.281222151, top=4989809.2064563045)</span></code></pre></div>
+<p>之後將使用 <strong>mercantile</strong> 工具來建立所需產生的圖磚資料。</p>
+
+<h2 id="使用-nyc-taxi-trip-data-建立-map-tiles">使用 NYC Taxi Trip Data 建立 Map Tiles</h2>
+
+<p>完整程式碼可至 <a href="https://github.com/yeshuanova/nyc_taxi_trip_map/blob/master/generate_nyc_map_tiles_blog.ipynb">GitHub</a> 參考。</p>
+
+<h3 id="演算法概念">演算法概念</h3>
+
+<ul>
+<li>建立要繪製的 map tile 列表
+
+<ul>
+<li>使用 Mercantile 套件，對設定的範圍自動產生所有的 Tile 列表。</li>
+</ul></li>
+<li>統計 map tile 範圍內每個點的資料數量
+
+<ul>
+<li>使用 <strong>datashader.Canvas.point</strong> 函數，對 map tile 範圍內進行統計。</li>
+<li>將統計結果使用 pickle 與 gzip 序列化成壓縮檔儲存（*<strong>.pkl.gz</strong>）。</li>
+<li>將每個點中的最大值儲存在 *<strong>.pkl.yaml</strong> 檔中方檢視。</li>
+<li>不儲存無資料（全為零）的統計結果以節省空間。</li>
+</ul></li>
+<li>尋找 zoom 中的最大值
+
+<ul>
+<li>統計 zoom 中的所有 tile 的最大值，並儲存在 <strong>_config.yaml</strong> 中。</li>
+</ul></li>
+<li>依照統計資料，繪製每個 tile 圖片。
+
+<ul>
+<li>讀取 *<strong>.pkl.gz</strong> 並還原為統計物件來進行繪圖。</li>
+<li>繪圖時使用 <strong>log</strong> 方法來進行內差計算，避免資料過於集中導致較少的點位看不出資料的問題。</li>
+<li>繪圖時將範圍設為 <strong>[0, zoom_agg__max]</strong>，避免不同 tile 做 interpolate 後得出的顏色範圍不統一的問題。</li>
+<li>儲存圖片到指定路徑。</li>
+</ul></li>
+<li>使用 Folium 套件來呈現結果。</li>
+</ul>
+
+<h3 id="下載-nyc-taxi-trip-data">下載 NYC taxi trip data</h3>
+
+<p>前篇的 datashader 視覺化使用 kaggle 上整理完畢的 dataset，這次我們直<a href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">原始資料網站</a>下載資料集。進入官網後可下載個年度的統計資料（使用 *.csv 格式），這裡我們使用 Yellow Taxi 在 2016 年 5 月份的<a href="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv">資料</a>。</p>
+
+<blockquote>
+<p>目前有上下車 GPS 位置的資料中最多只到 2016 年 6 月。</p>
+</blockquote>
+
+<p>也可在 Command Line 直接使用 <code>wget</code> 指令下載（該資料集約 1.8 GB）</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv</code></pre></div>
+<p>也可直接在 Python 中使用 <code>os</code> package來下達 <code>wget</code> 指令</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> os
+os.system(<span style="color:#0086d2">&#34;wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv&#34;</span>)</code></pre></div>
+<blockquote>
+<p>其他在 Python 中下載檔案的方式可參考這篇文章 - <a href="http://stackabuse.com/download-files-with-python/">Download Files with Python</a></p>
+</blockquote>
+
+<h3 id="讀取-dataset">讀取 dataset</h3>
+
+<p>因我們只需要 GPS 座標，因此只需要讀取特定欄位的資料即可，這邊我們只讀取上車位置的經緯度欄位 <strong>pickup_longitude</strong>  與  <strong>pickup_latitude</strong> 即可。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> pandas <span style="color:#fb660a;font-weight:bold">as</span> pd
+<span style="color:#fb660a;font-weight:bold">import</span> numpy <span style="color:#fb660a;font-weight:bold">as</span> np
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 讀取 pickup_longitude 與 pickup_latitude 兩欄位</span>
+df = pd.read_csv(<span style="color:#0086d2">&#34;yellow_tripdata_2016-05.csv&#34;</span>,
+                 usecols=[<span style="color:#0086d2">&#39;pickup_longitude&#39;</span>, <span style="color:#0086d2">&#34;pickup_latitude&#34;</span>],
+                 dtype={<span style="color:#0086d2">&#39;pickup_longitude&#39;</span>:np.float32,
+                        <span style="color:#0086d2">&#34;pickup_latitude&#34;</span>:np.float32})</code></pre></div>
+<h3 id="轉換-gps-座標至-web-mercator-coordinate">轉換 GPS 座標至 Web Mercator coordinate</h3>
+
+<p>因原始資料的座標使用的 GPS 為球面座標，因此須先轉換為 Web mercator coordinate 才能使用在 map tiles 的座標系統中。我們使用 <a href="https://pypi.org/project/pyproj/">pyproj</a> 套件來轉換座標，將 <strong>pickup_longitude</strong> 與 <strong>pickup_latitude</strong> 的數值分別轉換到 <strong>pickup_x</strong> 與 <strong>pickup_y</strong> 欄位中。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;background-color:#0f140f;font-style:italic"># 定義轉換函數</span>
+<span style="color:#fb660a;font-weight:bold">from</span> pyproj <span style="color:#fb660a;font-weight:bold">import</span> transform, Proj
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># Set project function</span>
+source = Proj(init=<span style="color:#0086d2">&#34;epsg:4326&#34;</span>) <span style="color:#080;background-color:#0f140f;font-style:italic"># WGS84</span>
+target = Proj(init=<span style="color:#0086d2">&#34;epsg:3857&#34;</span>) <span style="color:#080;background-color:#0f140f;font-style:italic"># Web mercator </span>
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 轉換 Longitude 到 Web Mercator - X coordinate</span>
+<span style="color:#fb660a;font-weight:bold">def</span> <span style="color:#ff0086;font-weight:bold">lngToX</span>(lng):
+    <span style="color:#fb660a;font-weight:bold">return</span> transform(source, target, lng, <span style="color:#0086f7;font-weight:bold">0</span>)[<span style="color:#0086f7;font-weight:bold">0</span>]
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 轉換 Latitude 到 Web Mercator - Y coordinate</span>
+<span style="color:#fb660a;font-weight:bold">def</span> <span style="color:#ff0086;font-weight:bold">latToY</span>(lat):
+    <span style="color:#fb660a;font-weight:bold">return</span> transform(source, target, <span style="color:#0086f7;font-weight:bold">0</span>, lat)[<span style="color:#0086f7;font-weight:bold">1</span>]</code></pre></div>
+<p>之後將 dataframe 中的 Longitude 與 Latitude 轉換到 Web Mercator 中的 X, Y 座標中</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df[<span style="color:#0086d2">&#39;pickup_x&#39;</span>] = df.pickup_longitude.apply(lngToX)
+df[<span style="color:#0086d2">&#39;pickup_y&#39;</span>] = df.pickup_latitude.apply(latToY)</code></pre></div>
+<blockquote>
+<p>注意，GPS 所使用的 WGS84 能投影轉換到 Web Mercator 的範圍有限制，Longitude 為 ，而Latitude 為 ，使用前須先過過濾掉超出範圍的數值資料。</p>
+</blockquote>
+
+<h3 id="使用-dask-平行處理-dataframe">使用 Dask 平行處理 Dataframe</h3>
+
+<p>因 Pandas 是 single thread 架構，無法發揮多處理器的功能，因此我們使用 Dask 來讓 dataframe 能使用多處理器平行處理，以增加處理速度。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> dask.dataframe <span style="color:#fb660a;font-weight:bold">as</span> dd
+<span style="color:#fb660a;font-weight:bold">import</span> multiprocessing <span style="color:#fb660a;font-weight:bold">as</span> mp
+
+dask_df = dd.from_pandas(df, npartitions=mp.cpu_count())
+dask_df.persist()</code></pre></div>
+<h3 id="建立所要產生的-map-tile-列表">建立所要產生的 Map Tile 列表</h3>
+
+<p>使用 <strong>Mercantile</strong> 建立所要產生的 map tiles。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> mercantile
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># New York City 周邊範圍</span>
+bound_nyc = (-<span style="color:#0086f7;font-weight:bold">74.029495</span>, <span style="color:#0086f7;font-weight:bold">40.697930</span>, -<span style="color:#0086f7;font-weight:bold">73.946411</span>, <span style="color:#0086f7;font-weight:bold">40.817817</span>) 
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 產生 zoom 範圍為 [0, 15]，在 bounds_nyc 中的所有 tiles</span>
+tile_list = list(mercantile.tiles(*bounds_nyc, zooms=list(range(<span style="color:#0086f7;font-weight:bold">0</span>, <span style="color:#0086f7;font-weight:bold">16</span>))))</code></pre></div>
+<h3 id="建立-aggregation-資料並寫入檔案中">建立 Aggregation 資料並寫入檔案中</h3>
+
+<p>當資料準備好後對每個 tile 範圍進行統計，並依照 tile 位置將 aggregation 資料寫入指定位置的檔案中。這步驟會產生兩個檔案，一個為該 tile 進行 aggregate 後產生的資料進行序列化並壓縮後的檔案，以 <code>*.pkl.gz</code> 表示。另一個則為記錄該 tile 中最大點數資料的 yaml 檔，以 <code>*.pkl.yaml</code> 表示。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> gzip, pickle
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 由 tile 資訊產生 Canvas 物件，並使用 pickup_x 與 pickup_y 的資料進行統計後產生 aggregation 物件</span>
+cvs = mapTilesCanvas(*tile)
+agg = cvs.points(dask_df, <span style="color:#0086d2">&#39;pickup_x&#39;</span>, <span style="color:#0086d2">&#39;pickup_y&#39;</span>)
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 將 aggregation 物件內容用 gzip 壓縮後寫入檔案</span>
+agg_file = <span style="color:#080;background-color:#0f140f;font-style:italic"># *.pkl.gz</span>
+<span style="color:#fb660a;font-weight:bold">with</span> gzip.open(agg_file, mode=<span style="color:#0086d2">&#39;wb&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> f:
+    pickle.dump(agg, f)
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 將 aggregation 中的最大值寫入 yaml 檔案中</span>
+agg_yaml_file = <span style="color:#080;background-color:#0f140f;font-style:italic"># *.pkl.yaml</span>
+<span style="color:#fb660a;font-weight:bold">with</span> open(agg_yaml_file, mode=<span style="color:#0086d2">&#39;w&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> f:
+    yaml_obj = {<span style="color:#0086d2">&#34;max_count&#34;</span>: int(agg.values.max())}
+    yaml.dump(yaml_obj, f, default_flow_style=False)</code></pre></div>
+<h3 id="建立每個-zoom-中的最大點數資料">建立每個 zoom 中的最大點數資料</h3>
+
+<p>尋訪每個 zoom 中的 *<strong>.pkl.yaml</strong> 檔案，取得 <strong>max_count</strong> 的數值並與目前 zoom 中的最大值進行比較，若比現有最大值大則以該數值取代現有最大值。全部尋訪完畢可取得現有 zoom 中的最大點數值並寫入 <strong>_config.yaml</strong> 檔中。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">zoom_yaml_file = <span style="color:#080;background-color:#0f140f;font-style:italic"># 每個 zoom 資料夾位置下都有一個 _config.yaml 檔案</span>
+<span style="color:#fb660a;font-weight:bold">with</span> open(zoom_yaml_file, <span style="color:#0086d2">&#39;w&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> file:
+    yaml_obj = {<span style="color:#0086d2">&#39;zoom_max_count&#39;</span>: max_count}
+    yaml.dump(yaml_obj, file, default_flow_style=False)</code></pre></div>
+<h3 id="產生每個-aggregation-檔案對應的-tile-image">產生每個 Aggregation 檔案對應的 Tile Image</h3>
+
+<p>在相關資料都產生完後，接著我們開始產生所需要使用的 Map tile 圖檔。主要步驟為取出每個 aggregation 的檔案並使用其繪製 png 圖檔並儲存至對應的 folder 中。繪圖方式使用 <code>log</code> 且最大最小值範圍為 0 到 <strong>zoom_max</strong>， 使相同 zoom 中不同 tile 的顯示狀況能盡量一致。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> datashader.transfer_functions <span style="color:#fb660a;font-weight:bold">as</span> tf
+<span style="color:#fb660a;font-weight:bold">from</span> matplotlib.cm <span style="color:#fb660a;font-weight:bold">import</span> hot 
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 取出每個 zoom 的最大統計</span>
+max_dict = getMaxCountDict(agg_root)
+agg_path = <span style="color:#080;background-color:#0f140f;font-style:italic"># aggregation 檔案位置</span>
+
+<span style="color:#fb660a;font-weight:bold">with</span> gzip.open(agg_path, <span style="color:#0086d2">&#39;rb&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> f:
+    agg = pickle.load(f)
+    zoom, xtile, ytile = getMapTileCoord(agg_path)
+    img = tf.shade(agg, cmap=hot, how=<span style="color:#0086d2">&#39;log&#39;</span>, span=[<span style="color:#0086f7;font-weight:bold">0</span>, max_dict[zoom]])
+
+    tile_path = <span style="color:#080;background-color:#0f140f;font-style:italic"># 影像儲存位置</span>
+    <span style="color:#fb660a;font-weight:bold">with</span> open(tile_path, mode=<span style="color:#0086d2">&#39;wb&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> f:
+        f.write(img.to_bytesio(format=<span style="color:#0086d2">&#39;png&#39;</span>).read())</code></pre></div>
+<p>完成後 map tile 會儲存在 <strong>{tile_root}/{z}/{x}/{y}.png</strong> 的位置中，我們可以將檔案放到 server 上讓其他地圖服務使用圖磚資料。這我們使用 GitHub 來存放 map tiles 讓 Folium 直接使用圖檔資料。</p>
+
+<p><figure><img src="/images/2018/nyc_taxi_trip_map/769.png" alt="nyc_taxi_map_tile_11_603_769"></figure>
+<em>位置為 /11/603/769.png 的 map tile（背景為透明）</em></p>
+
+<h3 id="使用-folium-顯示-map-tile">使用 Folium 顯示 map tile</h3>
+
+<p>在前篇已經介紹過如何使用  <a href="https://github.com/python-visualization/folium">Folium</a> 地圖套件顯示地圖資料，因此我們可使用 <strong>Folium</strong> 來加入放在 GitHub 上的圖層資料，並將地圖匯出成 html 檔案以供檢視。</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> folium
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 使用 Carto Dark 建立底圖</span>
+fmap = folium.Map(location=[<span style="color:#0086f7;font-weight:bold">40.772562</span>, -<span style="color:#0086f7;font-weight:bold">73.974039</span>],
+                  tiles=<span style="color:#0086d2">&#39;https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png&#39;</span>,
+                  zoom_start=<span style="color:#0086f7;font-weight:bold">12</span>,
+                  attr=<span style="color:#0086d2">&#39;Carto Dark&#39;</span>)
+, 
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 加入放在 GitHub 存放的 map tiles 位置</span>
+fmap.add_tile_layer(tiles=<span style="color:#0086d2">&#39;https://raw.githubusercontent.com/yeshuanova/nyc_taxi_trip_map/master/map/tile/{z}/{x}/{y}.png&#39;</span>,
+                    attr=<span style="color:#0086d2">&#39;NYC taxi pickup Heatmap&#39;</span>)
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 儲存地圖為 html 檔，可直接用瀏覽器打開檢視地圖資訊</span>
+fmap.save(<span style="color:#0086d2">&#39;map.html&#39;</span>)
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># 直接在 ipython 中顯示地圖</span>
+fmap</code></pre></div>
+<p>最後可得到如下的顯示結果，可看出地圖有正確顯示出上車熱點，</p>
+
+<p><figure><img src="/images/2018/nyc_taxi_trip_map/nyc_taxi_layer_map.jpg" alt="folium_taxi_layer"></figure></p>
+
+<p>若要嘗試操作，也可由<a href="https://yeshuanova.github.io/nyc_taxi_trip_map/map.html">此連結</a>檢視<strong>互動式地圖</strong>。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://www.openstreetmap.org/">OpenStreetMap</a></li>
+<li><a href="https://github.com/mapbox/mercantile">Mercatile</a></li>
+<li><a href="https://github.com/bokeh/datashader">Datashader</a></li>
+<li><a href="https://github.com/dask/dask">Dask</a></li>
+<li><a href="https://anaconda.org/jbednar/nyc_taxi/notebook">NY-Taxi Notebook</a></li>
+<li><a href="https://wiki.openstreetmap.org/wiki/Slippy_Map">OpenStreetMap - Slippy Map</a></li>
+<li><a href="http://www.liedman.net/tiled-maps/">The Hitchhacker’s Guide To Tiled Maps</a></li>
+<li><a href="https://yeshuanova.github.io/blog/posts/python-visulization-folium/">Python 地圖視覺化 - 使用 Folium</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/python/" rel="tag">Python</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/datashader/" rel="tag">datashader</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/mercatile/" rel="tag">mercatile</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/openstreetmap/" rel="tag">OpenStreetMap</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/heatmap/" rel="tag">Heatmap</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/2018/learning-commons/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">京都大學的 Learning Commons (學習共享空間) 參訪感想</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/2018/thinkbayes-ch1/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">ThinkBayes 心得筆記 - Chapter 1</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yeshuanova" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Xeno Universe.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+</body>
+</html>

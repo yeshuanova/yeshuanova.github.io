@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-tw">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Kepler.gl 使用簡介 - Xeno Universe</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Kepler.gl Note">
+	<meta name="generator" content="Hugo 0.54.0" />
+	<meta property="og:title" content="Kepler.gl 使用簡介" />
+<meta property="og:description" content="Kepler.gl Note" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018/kepler-gl/" />
+<meta property="article:published_time" content="2018-09-02T16:00:00&#43;08:00"/>
+<meta property="article:modified_time" content="2018-09-02T16:00:00&#43;08:00"/>
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104710641-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+				<div class="logo__title">Xeno Universe</div>
+				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">About</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/competitions/">Competitions</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Kepler.gl 使用簡介</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2018-09-02T16:00:00">September 02, 2018</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/visualization" rel="category">Visualization</a></span>
+</div>
+</div>
+		</header>
+		<figure class="post__thumbnail">
+			<img src="/images/2018/keplergl-note/keplergl-overall.jpg" alt="Kepler.gl 使用簡介">
+		</figure><div class="content post__content clearfix">
+			<p>過去在做地理資訊是視覺化的時候，通常需要專業的軟體與操作技能，增加了一般使用者的進入障礙。Uber 在今年五月時開放了內部使用的地理資料視覺化軟體 Kepler.gl，提供一般使用者能在瀏覽器上輕易地匯入與操作資料進行地理資訊視覺化操作與檢視。本文章將簡單介紹 Kepler.gl 的用法，讓剛使用者能了解其基礎用法。</p>
+
+<h1 id="kepler-gl">Kepler.gl</h1>
+
+<p><a href="http://kepler.gl/#/">Kepler.gl</a> 是由 Uber 公司所釋出的一套在瀏覽器上執行的開放原始碼專案。過去進行地理資訊視覺化時需要使用 <a href="https://qgis.org/en/site/#">QGIS</a> 等專門的地理資訊系統軟體，現在只需要把想要視覺化的資料匯出成適當的文字格式(如csv)，即可在瀏覽器上直接進行檢視地理資料的視覺化呈現，使用上非常方便。本文章將簡介 Kepler 的各項構成與使用方式，以及使用所提供的 NYC Taxi 範例介紹，提供有興趣的讀者參考。</p>
+
+<h2 id="開始使用">開始使用</h2>
+
+<p>由 <a href="http://kepler.gl/">http://kepler.gl/</a> 可連結到官方網站中，並點選 <strong>Get Start</strong> 選項進入，或直接進入 <a href="http://kepler.gl/#/demo">Demo 網頁</a> 即可進入專案畫面。kepler.gl 主要分成幾個部分 - <strong>Dataset</strong>，<strong>Layer</strong>，<strong>Filter</strong>，<strong>Interactions</strong> 以及 <strong>Basemap</strong></p>
+
+<h3 id="dataset">Dataset</h3>
+
+<p><strong>Dataset</strong> 是 kepler.gl 所有顯示資料的來源，不論是之後介紹的 Layer 或 Filters 等元件，都要選擇所對應的 Dataset 項目。Dataset 接受 csv 資料或是符合格式的 JSON/GeoJson 檔案。我們可先由右上的 <strong>Try sample data</strong> 進入</p>
+
+<p><img src="/images/2018/keplergl-note/import-data.jpg" alt="import" />
+<em>匯入資料</em></p>
+
+<p>選擇 NYC Taxi trip 範例資料</p>
+
+<p><img src="/images/2018/keplergl-note/sample-nyc.jpg" alt="example" />
+<em>選擇 NYC taxi trip 範例</em></p>
+
+<p>匯入成功後應該會出現如下畫面</p>
+
+<p><img src="/images/2018/keplergl-note/sample-result.jpg" alt="example" /></p>
+
+<p>而左上出現的 <strong>new dataset</strong> 代表 dataset 的名稱以及資料數量。下圖表示名稱為 <strong>new dataset</strong> 的資料表包含 97,986 筆資料。</p>
+
+<p><img src="/images/2018/keplergl-note/data.png" alt="data" /></p>
+
+<p>也可點選資料表顯示表單展開詳細內容以及欄位所屬的型態。</p>
+
+<p><img src="/images/2018/keplergl-note/data-table.png" alt="data-table" />
+<em>NYC Taxi Trips 一部分資料內容</em></p>
+
+<p>此外 Dataset 每個欄位有相關屬性還定義其格式，如 Int(整數)，time(時間)，Float(浮點數)，String(字串)，Bool(布林) 等。Kepler.gl 會在加入 Dataset 時自動偵測欄位資料格式。</p>
+
+<h3 id="layers-圖層">Layers (圖層)</h3>
+
+<p>Layer 是 kepler.gl 顯示的基本單位，可想像成 Photoshop 的圖層功能。每個 Layer 可設定使用的 Dataset，顯示方式，對應欄位，是否可視以及顯示顏色等資訊。而 NYC Taxi trips 範例匯入後會顯示如下預設 Layer</p>
+
+<p><img src="/images/2018/keplergl-note/layers.png" alt="layer" /></p>
+
+<p>該範例包含三個名稱為  <strong>pickup -&gt; dropoff</strong>，<strong>pickup</strong> 與 <strong>dropoff</strong> 的 Layers</p>
+
+<ul>
+<li><strong>pickup -&gt; dropoff</strong> : 在地圖上的以弧線方式，將上車地點與下車地點連接在一起(預設為隱藏(Hide)狀態，要檢視需將左邊的眼睛標示打開)</li>
+<li><strong>pickup</strong> : 以圓點方式顯示上車位置。</li>
+<li><strong>dropoff</strong> : 以圓點方式顯示下車位置。</li>
+</ul>
+
+<p>每個 Layer 都可展開以進行更詳細的設定，以 <strong>pickup</strong> Layer 為例</p>
+
+<p><img src="/images/2018/keplergl-note/layer-detail.jpg" alt="layer-detail" /></p>
+
+<p>可看出使用了 Point Type 來顯示，而 <strong>Latitude</strong>(緯度, <strong>Lat</strong>) 與 <strong>Longitude</strong>(經度, <strong>Lng</strong>) 分別對應欄位 <strong>pickup_latitude</strong> 與 <strong>pickup_longitude</strong>。也可進一步調整 Point 的 color 為特定顏色或依照特定欄位數值變化，半徑長度，是否挖空等屬性。</p>
+
+<p><img src="/images/2018/keplergl-note/layer-pickup-s.jpg" alt="layer-pickup" />
+<em>單獨顯示 Pickup layer</em></p>
+
+<h4 id="layer-type">Layer Type</h4>
+
+<p>Kepler.gl 提供許多不同的顯示方式，如 Point，Arc，Line 等。可依照所需選擇適合的 Layer Type。</p>
+
+<p><img src="/images/2018/keplergl-note/layer-type.png" alt="layer-pickup" />
+<em>Layer 視覺化型態顯示</em></p>
+
+<ul>
+<li>Point: 每筆資料位置以圓形範圍顯示。</li>
+<li>Arc: 以三維弧線連結兩點座標。</li>
+<li>Line: 以平面直線連結兩點座標。</li>
+<li>Grid: 以正方形呈現範圍內的點位資料內容，如點數數量或是對應的欄位數量統計資料等。</li>
+<li>Hexbin: 以六角形呈現範圍內的點位資料內容，如點數數量或是對應的欄位數量統計資料等。</li>
+<li>Polygon: 使用 GeoJson 格式呈現不規則的形狀。</li>
+<li>Cluster: 統計一定範圍內的點位數量並以二維圓形呈現。</li>
+<li>Icon: 可在畫面上標示特定類別的 Icon。</li>
+<li>Heatmap: 以熱度圖方式呈現資料。</li>
+</ul>
+
+<p>詳細使用方式與效果可參考 Kepler.gl 官方網站的展示與範例資料。</p>
+
+<h3 id="filters">Filters</h3>
+
+<p>Filter 也是 Kepler.gl 中一項強大的功能，可以照不同需求設定資料的範圍，而不同類型的資料有不同的設定方式。</p>
+
+<blockquote>
+<p>目前還無法對同一欄位進行多種過濾法，因此一個欄位只能設定一個 Filter</p>
+</blockquote>
+
+<h4 id="float-符點數-與-int-整數">Float (符點數) 與 Int(整數)</h4>
+
+<p>顯示的數值範圍區間。</p>
+
+<p><img src="/images/2018/keplergl-note/filter-float-int.png" alt="filter-float-int" /></p>
+
+<h4 id="string">String</h4>
+
+<p>設定一個或多個特定字串當過濾條件，也有字串搜尋功能以快速找到所需功能。</p>
+
+<p><img src="/images/2018/keplergl-note/filter-string.png" alt="filter-string" /></p>
+
+<h4 id="bool">Bool</h4>
+
+<p>Boolean 型態選擇使用 <strong>True</strong> 或 <strong>False</strong> 型態資料。</p>
+
+<p><img src="/images/2018/keplergl-note/filter-bool.png" alt="filter-bool" /></p>
+
+<h4 id="time">Time</h4>
+
+<p>Time 型態資料會有一特殊的 Filter 調整視窗。除了可以手動調整範圍外，也可用 Playback 功能產生動態播放效果，來讓資料更生動。</p>
+
+<p><img src="/images/2018/keplergl-note/filter-time.png" alt="filter-time" /></p>
+
+<h3 id="interactions">Interactions</h3>
+
+<p>Interactions 項目可讓使用者設定與地圖上的資料或 Layer 顯示項目互動的方式，目前有兩種 - <strong>Tooltip</strong> 與 <strong>Brush</strong></p>
+
+<h4 id="tooltip">Tooltip</h4>
+
+<p>決定當使用者打上點擊 Layer 資料顯示內容時，要出現的對應欄位內容。以 NYC taxi trip 範例來看，預設的內容如下</p>
+
+<p><img src="/images/2018/keplergl-note/inter-tooltip-config.png" alt="inter-tooltip-config" /></p>
+
+<p>代表設定了 <strong>VendorID</strong>，<strong>tpep_pickup_datetime</strong>，<strong>tpep_dropoff_datetime</strong>，<strong>passenger_count</strong>，<strong>trip_distance</strong> 五個欄位資料來顯示。當點擊畫面上 Layer 所繪製的畫面時，會出現以下視窗</p>
+
+<p><img src="/images/2018/keplergl-note/inter-tooltip-map.jpg" alt="inter-tooltip-map" /></p>
+
+<p>上圖代表所點擊資料是 <strong>Pickup</strong> layer，下方則是該資料點對應的欄位內容。</p>
+
+<h4 id="brush">Brush</h4>
+
+<p>一個特殊的顯示功能，能只顯示設定範圍內，滑鼠所在位置周圍的資料點。該功能與 Tooltip 只能選擇一種方式，
+當選擇 Brush 功能後會強制關閉 Tooltip，並顯示範圍設定</p>
+
+<p><img src="/images/2018/keplergl-note/inter-brush-config.png" alt="inter-brush-config" /></p>
+
+<p>而當滑鼠移動到地圖上時只會顯示在範圍內的資料點</p>
+
+<p><img src="/images/2018/keplergl-note/inter-brush-map.jpg" alt="inter-brush-map" />
+<em>Brush 地圖效果</em></p>
+
+<h3 id="basemap">Basemap</h3>
+
+<p>除了使用 Kepler.gl 所預設的 Mapbox 地圖外，也可以使用 Base map 功能修改地圖格式如 Dark 或 Light 等風格，或自行引入再 Mapbox 自建的地圖。</p>
+
+<p><img src="/images/2018/keplergl-note/basemap.jpg" alt="base-map" /></p>
+
+<h2 id="資料匯出">資料匯出</h2>
+
+<p>建立好所有要檢視的 Layer 或 Filter 後如果離開了瀏覽器，那所有之前編輯的內容就會消失。我們可以透過 Share 中的 Export 功能將資料匯出至 Json 檔案中，以便下次快速匯入上次結果。匯出功能可直接點選左上的 Share 按鈕，就會出現三種不同的匯出功能</p>
+
+<p><img src="/images/2018/keplergl-note/share-map.png" alt="share-map" /></p>
+
+<h3 id="export-image">Export Image</h3>
+
+<p>匯出畫面為圖片檔，可設定對應的解析度，長寬比等資訊。</p>
+
+<p><img src="/images/2018/keplergl-note/share-export-image.jpg" alt="share-export-image" /></p>
+
+<blockquote>
+<p>目前在 Chrome 和 Safari 上似乎有問題無法正確匯出，只有 Firefox 可以(但 Firefox 執行效能較低)</p>
+</blockquote>
+
+<h3 id="export-data">Export data</h3>
+
+<p>匯出原始的 Dataset 或經過 Filter 過濾的資料內容</p>
+
+<p><img src="/images/2018/keplergl-note/share-export-data.jpg" alt="share-export-data" /></p>
+
+<h3 id="export-config">Export config</h3>
+
+<p>匯出目前的地圖設定檔為 Json 格式檔案，可分為單純設定檔(匯入時需已有原始資料) 或包含原始資料的 Json 檔案(該檔案可能很大)。</p>
+
+<p><img src="/images/2018/keplergl-note/share-export-config.jpg" alt="share-export-config" /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>上文簡單介紹了 Kepler.gl 的基礎功能與用法，對初學者應已足夠。但如果想進一步開發自己想要的視覺化效果，因該工具為開源，因此也可自行開發相關功能。此外 Kepler.gl 可以現在仍在發展中可能會有些問題，事實上個人在嘗試時也遇到了部分問題與 Bug，如圖片匯出功能在 Mac 的 Chrome 無法正確執行，這部分仍須等待時間解決。</p>
+
+<h2 id="link">Link</h2>
+
+<ul>
+<li><a href="http://kepler.gl/#/">Kepler.gl - Website</a></li>
+<li><a href="https://github.com/uber/kepler.gl">Kepler.gl - Github</a></li>
+<li><a href="https://www.ithome.com.tw/news/123534">iThome - Uber開源地理資訊視覺化工具kepler.gl</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/kepler.gl/" rel="tag">Kepler.gl</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/2018/thinkbayes-ch8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">ThinkBayes 心得筆記 - Chapter 8</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/2018/dataset-iris/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">機器學習資料集 - Iris dataset</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yeshuanova" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Xeno Universe.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-tw">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>高效卷積計算結構 - Depthwise Separable Convolution - Xeno Universe</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Effective convolutional computing method">
+	<meta name="generator" content="Hugo 0.54.0" />
+	<meta property="og:title" content="高效卷積計算結構 - Depthwise Separable Convolution" />
+<meta property="og:description" content="Effective convolutional computing method" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018/depthwise-separable-convolution/" />
+<meta property="article:published_time" content="2018-02-09T15:00:00&#43;08:00"/>
+<meta property="article:modified_time" content="2018-02-09T15:00:00&#43;08:00"/>
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104710641-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Xeno Universe" rel="home">
+				<div class="logo__title">Xeno Universe</div>
+				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">About</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/competitions/">Competitions</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">高效卷積計算結構 - Depthwise Separable Convolution</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2018-02-09T15:00:00">February 09, 2018</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/machine-learning" rel="category">Machine Learning</a>, <a class="meta__link" href="/categories/deep-learning" rel="category">Deep Learning</a></span>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			<p>近年來因與計算機的計算能力大幅上升，GPGPU 的支援等，使深度神經網路技術取得了非常好的效果發展。但所衍生的高計算量卻讓行動裝置以及嵌入式系統等計算能力有限的平台在執行時遇到效能的限制。因此 Google 在 MobileNets 模型中使用了新的卷積計算模型 depthwise separable convolution 來減少所需的計量。本篇將從基礎類神經網路開始介紹，說明卷積神經網路的架構與計算成本問題，並解說 depthwise separable convolution 的技術內容與計算成本。</p>
+
+<h1 id="mobilenets">MobileNets</h1>
+
+<p>自從 Google 在 2015 釋出 <a href="https://www.tensorflow.org/">TensorFlow</a> 機器學習工具後，使 Machine Learning 包含 Deep Learning 等研究與實作更為方便。但 TensorFlow 程式庫需要大量的資源與空間，如要在嵌入式系統上有許多的限制。因此之後 Google 接續提出了 <a href="https://www.tensorflow.org/mobile/">TensorFlow Mobile</a>  以及 <a href="https://www.tensorflow.org/mobile/tflite/">TensorFlow Lite</a> 等來減少執行所需的資源花費。</p>
+
+<p>此外經由 TensorFlow 深度學習模型所需的儲存空間非常大，如其中 <a href="https://github.com/tensorflow/models/tree/master/research/inception">Inception v3</a> 模型本身約有 91 MB，內部包含 2500 萬個參數與 50 億次乘法加法運算，因此也可以透過 <a href="https://www.tensorflow.org/extend/tool_developers/#freezing">Freeze Graph</a> 以及 <a href="https://www.tensorflow.org/performance/quantization">Quantization</a> 的步驟來縮小模型。</p>
+
+<p>雖然可以透過上面所提的技減少執行空間，但執行深度學習模型所需的運算量仍然非常巨大，因此 Google 也在 2017 年提出了 <a href="https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md">MobileNets</a> 模型並使用 depthwise separable convolution 技術，從根本上減少在原先的 convolutional neural network (CNN) 中所需要的巨大運算複雜度。以下會從基本的 artificial neural network (NN) 談起，再介紹 CNN 網路架構與問題，最後說明 MobileNets 中的 depthwise separable convolution 架構。</p>
+
+<h2 id="artificial-neural-network">Artificial neural network</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Artificial_neural_network">Artificial neural network</a> (或稱 Multi-layer perceptrons) 是一個經典的機器學習模型，主要的概念來自於人類大腦的神經元結構。標準的 neural network 主要包含下面三部分 - <strong>input layer (輸入層)</strong>，<strong>hidden layer (隱藏層)</strong> 以及 <strong>output layer (輸出層)</strong>，每一層都有不同的任務與功能。</p>
+
+<h3 id="input-layer">Input layer</h3>
+
+<p>原始資料的輸入來源，將資料導入 hidden layer。以一張長寬為 (10, 10) 的圖片為例，input layer 即為 10 * 10 = 100 個像素的值。</p>
+
+<h3 id="hidden-layer">Hidden layer</h3>
+
+<p>Hidden layer 中的每個 neuron 會接收上一層的輸入資料，經過乘以權重並加總後，透過 <a href="https://en.wikipedia.org/wiki/Activation_function">activation function</a> 將資料輸出。假設一個 neuron 的上一層有 $i$ 個輸出，則該 neuron 的輸出可計算為</p>
+
+<p><span  class="math">\[output = \sigma(\sum\limits_{i}w_{i}x_{i} + b)\]</span></p>
+
+<p>其中 <span  class="math">\(x_i\)</span> 為第 <span  class="math">\(i\)</span> 個輸出， <span  class="math">\(w_i\)</span> 為對第 <span  class="math">\(i\)</span> 個輸出值 neuron 的 weight (權重)，<span  class="math">\(b\)</span> 為 bias 值，<span  class="math">\(\sigma\)</span> 為所設定的 activation function 如 <a href="https://en.wikipedia.org/wiki/Sigmoid_function">Sigmoid</a>，<a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">ReLu</a> 等的函數。</p>
+
+<h3 id="output-layer">Output layer</h3>
+
+<p>在經過所有 hidden layers 計算後得到的輸出結果，在不同的問題有不同表述，如在圖像分類時 output layer 的每個  neuron 可代表不同類別的評分，我們可以取最高值的 neuron 所代表的類別當作輸入圖像的類別。</p>
+
+<p>下圖為 NN 模型的簡單結構圖，其中 input layer 包含 3 個 neuron，output layer 則包含 1 個 neuron。而 hidden layer 有兩層，且每層有 4 個 neuron。</p>
+
+<p><figure><img src="/images/2018/depthwise-cnn/neural_net_3_layers.jpg" alt="nn-3-layer"></figure>
+<em>Structure of artificial neural network (<a href="(http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture5.pdf)">Source</a>)</em></p>
+
+<h2 id="training">Training</h2>
+
+<p>那要如何讓模型具有學習能力，讓 NN 模型能自動調整所有的 weight <span  class="math">\(w\)</span>，得出想要的結果? 我們可以透過 loss function 與 backpropagation (反向傳播) 演算法，讓模型去自動調整模型中的 weight 讓誤差越來越小。主要步驟為</p>
+
+<ol>
+<li>定義模型的 <a href="https://en.wikipedia.org/wiki/Loss_function">loss function</a> 來代表模型計算結果與真正結果之間的差異量。</li>
+<li>將資料集中的資料放入模型中，經過運算可得到 loss function 的值，再透過 <a href="https://en.wikipedia.org/wiki/Backpropagation">backpropagation</a> 演算法不斷的調整每個 weight 的值，讓得出的 loss function 值越來越小。</li>
+<li>不斷的重複第二步驟直到達到停止條件為止。</li>
+</ol>
+
+<p>更詳細的說明可參考 <a href="http://cs231n.github.io/neural-networks-1/">Standard cs231n</a> 課程中的介紹。</p>
+
+<h2 id="convolutional-neural-network">Convolutional neural network</h2>
+
+<p>除了傳統的 NN 外，還有另一種被稱為 <a href="http://cs231n.github.io/convolutional-networks/">Convolutional neural network</a> (CNN) 的神經網路演算法，此方法考慮到空間結構並使用了多個 kernel (filter) 來對樣本空間進行計算，在影像辨識與自然語言處理等領域均已經取得了重大成效。如在<a href="/blog/posts/from-go-to-sc2-part-1/">圍棋領域戰勝世界冠軍</a>的 <a href="https://deepmind.com/research/alphago/">AlphaGo</a>，其背後演算法也採用了 CNN 架構來進行推論。</p>
+
+<p>與前面提到的標準 NN 不同，CNN 運用多個 kernel 對輸入層進行 convolution (卷積) 計算後並透過 activation function 將輸入層的資料轉換到輸出層，計算得到的輸出層也可當做下一次 convolution 的輸入層，透過此方式最終將資料導向 output layer，如下圖所示</p>
+
+<p><figure><img src="/images/2018/depthwise-cnn/cnn_architecture_cs231n.jpg" alt="cnn-architecture"></figure>
+<em>Structure of convolutional neural network (From: <a href="(http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture5.pdf)">Stanford cs231n</a>)</em></p>
+
+<p>雖然 convolutional Neural Network 功能強大但計算成本也相當高。假設現在對<strong>輸入層</strong> feature map <span  class="math">\(F\)</span> 透過 kernel <span  class="math">\(K\)</span> 進行 convolution 運算後得到<strong>輸出層</strong> feature map <span  class="math">\(G\)</span>，其中</p>
+
+<ul>
+<li><span  class="math">\(D_F\)</span>：Feature map <span  class="math">\(F\)</span> 的長寬。</li>
+<li><span  class="math">\(M\)</span>：Feature map <span  class="math">\(F\)</span> 的 channel 數量。</li>
+<li><span  class="math">\(D_K\)</span>：Kernel <span  class="math">\(K\)</span> 的長寬。</li>
+<li><span  class="math">\(N\)</span>：Feature map <span  class="math">\(G\)</span> 的 channel 數量。</li>
+</ul>
+
+<p><figure><img src="/images/2018/depthwise-cnn/filter_cnn.jpg" alt="cnn-filter"></figure>
+<em>Filter of convolutional neural network</em></p>
+
+<p>該次 convolution 運算的計算量為</p>
+
+<p><span  class="math">\[D_K \cdot D_k \cdot M \cdot N \cdot D_F \cdot D_F\]</span></p>
+
+<blockquote>
+<p>channel 可想像影像中每個 pixel 的資料深度。例如灰階影像只需要一個維度來代表亮度則 channel 就為 <strong>1</strong>。而 RGB 影像需要三維資料來代表所以 channel 數為 <strong>3</strong>。</p>
+</blockquote>
+
+<p>假設一個 224 x 224 的灰階影像(channel = 1)，Kernel 長寬為 3 x 3 且輸出的 Feature Map 的 channel 數量為 10。則第一層總計算量約為 3 * 3 * 1 * 10 * 224 * 224 = 4,515,840，可看出光是單一層的卷積計算就需要非常大量的計算成本。在更大更深的深度卷積網路中將會是非常大的負擔。</p>
+
+<p><figure><img src="/images/2018/depthwise-cnn/fig_filter_cnn.png" alt="cnn_filter_2"></figure>
+<em>Structure of convolutional neural network (<a href="http://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/">Source</a>)</em></p>
+
+<h2 id="depthwise-separable-convolution">Depthwise separable convolution</h2>
+
+<p>為了減少 CNN 本身所需要的高度計算量問題，Google 在 <a href="https://arxiv.org/abs/1704.04861">MobileNet</a> 中使用了一種對卷積神經網路的新計算結構 - <strong>depthwise separable convolution</strong>，以降低 CNN 模型所衍生的計算成本。該方式主要將原先的卷積計算方式拆成兩個部分 - <em>depthwise convolutions</em> 與 <em>pointwise convolutions</em> ，分別進行在不影響輸出結構的狀況下減少運算量。</p>
+
+<h3 id="depthwise-convolutions">Depthwise convolutions</h3>
+
+<p>通常 CNN 的 filter 深度會依照輸入層的 channel 大小深度變化，如寬高為 5 的 filter，假設輸入層 channel 數為 3，則 kernel 的維度大小為 <span  class="math">\(5 \times 5 \times 3\)</span>。而 depthwise convolution 層則是先對輸入層的<strong>每個 channel</strong> 建立一個 <span  class="math">\(D_K \times D_K \times 1\)</span> 的 kernel</p>
+
+<p><figure><img src="/images/2018/depthwise-cnn/filter_depthwise.jpg" alt="depthwise-layer"></figure>
+<em>Depthwise convolutional filters</em></p>
+
+<p>之後對該 channel 所有的資料進行 convolution 計算。假如輸入層有 <span  class="math">\(M\)</span> 個 channel，則會建立 <span  class="math">\(M\)</span> 個 kernel - <span  class="math">\(K_1\)</span>，<span  class="math">\(K_2\)</span> 與 <span  class="math">\(K_3\)</span>，分別對三個 channel 的資料進行運算得出與輸出層相同寬高的中間層，之後將資料進行下一步的 pointwies convolutions。</p>
+
+<p><figure><img src="/images/2018/depthwise-cnn/fig_filter_depthwise.png" alt="depthwise-layer-2"></figure>
+<em>Structure of depthwise convolutions (<a href="http://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/">Source</a>)</em></p>
+
+<h3 id="pointwise-convolutions">Pointwise convolutions</h3>
+
+<p>在每個 channel 進行過 depthwise Convolution 的步驟後，下一步是對每個點的所有 channel 值進行 pointwise convolutions。先對<strong>每個輸出 channel</strong> 建立一個大小為 <span  class="math">\(1 \times 1 \times M\)</span> 的 Kernel 後 (<span  class="math">\(M\)</span> 為輸入層的 channel 數)，將輸入層的所有點進行 convolution 運算。假如輸出層有 <span  class="math">\(N\)</span> 個 channel，則會建立 <span  class="math">\(N\)</span> 個 <span  class="math">\(1 \times 1 \times M\)</span> 的 kernel</p>
+
+<p><figure><img src="/images/2018/depthwise-cnn/filter_pointwise.jpg" alt="pointwise-layer"></figure>
+<em>Pointwise convolutional filters</em></p>
+
+<p>之後將每個 kernel 對輸入層進行運算後可得到大小為 <span  class="math">\(D_G \times D_G \times N\)</span> 的輸出層（<span  class="math">\(D_G\)</span> 為輸出層的長寬）。該結果與原先 CNN 輸出層結構是相同的。</p>
+
+<p><figure><img src="/images/2018/depthwise-cnn/fig_filter_pointwise.png" alt="pointwise-layer-2"></figure>
+<em>Structure of pointwise convolutions (<a href="http://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/">Source</a>)</em></p>
+
+<h3 id="comparision">Comparision</h3>
+
+<p>下圖為標準 convolution 與 depthwise deparabel convolution 的流程比較。右方的 depthwise separable convolution 執行步驟看似比較多，但實際分析過後會發現實際計算量比使用傳統的 CNN 的模型減少相當多。</p>
+
+<p><figure><img src="/images/2018/depthwise-cnn/net_comparison.jpg" alt="net_comparison"></figure>
+<em>(Left) Standard convolution。 (Right) Depthwise separable convolution</em></p>
+
+<blockquote>
+<ul>
+<li><a href="https://arxiv.org/abs/1502.03167">Batch Normalization(BN)</a>：一種在 Neural Network 中用來進行參數正規化的技術。</li>
+<li><a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">ReLU</a>：時常在 NN 上使用的 Activition Function。</li>
+</ul>
+</blockquote>
+
+<h4 id="performance">Performance</h4>
+
+<p>由前面的討論可知 depthwise convolutions 部分的計算量為</p>
+
+<p><span  class="math">\[D_K \cdot D_K \cdot M \cdot D_F \cdot D_F\]</span></p>
+
+<p>而 pointwise convolutions 則為</p>
+
+<p><span  class="math">\[M \cdot N \cdot D_F \cdot D_F\]</span></p>
+
+<p>因此 depthwise separable convolution 的總計算量可由 depthwise 與 pointwise 兩部份相加得到</p>
+
+<p><span  class="math">\[D_K \cdot D_K \cdot M \cdot D_F \cdot D_F + M \cdot N \cdot D_F \cdot D_F\]</span></p>
+
+<p>將上式與傳統 CNN 的計算量進行比較，可得到下列結果</p>
+
+<p><span  class="math">\[\frac{D_K \cdot D_K \cdot M \cdot D_F \cdot D_F + M \cdot N \cdot D_F \cdot D_F}{D_K \cdot D_k \cdot M \cdot N \cdot D_F \cdot D_F} \]</span></p>
+
+<p><span  class="math">\[= \frac{1}{N} + \frac{1}{D_K^2}\]</span></p>
+
+<p>可知道原先 CNN 中的 Kernel Size 與輸出 channel 的越大，使用 depthwise separable convolution 方式所減少的計算量會更多。以一個大小 $3\times3$ 的 Kernel 來說計算量可減少到原先的 $1/8$ 到 $1/9$ 左右，對效能有非常大的幫助。以之前的 CNN 計算量範例所需的計算量為 $4,515,840$ ，而使用 Depthwise separable convolution 來計算所需的計算量為</p>
+
+<p><span  class="math">\[3*3*1*224*224+1*10*224*244=998,144\]</span></p>
+
+<p>可看出計算成本有著非常顯著的減少了。</p>
+
+<h4 id="experiments">Experiments</h4>
+
+<p>Google 也在該<a href="https://arxiv.org/abs/1704.04861">論文</a>中將使用了 depthwise separable convolution 方式的 MobileNet 與使用傳統 CNN 方式的模型進行比較，從結果可看出使用了使用該方式的 MobileNet 能在再稍微減低正確率的情況下，大幅改善計算效能。如下表所示：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Model</th>
+<th align="center">ImageNet Accuracy</th>
+<th align="center">Milliion Mult-Adds</th>
+<th align="center">Million Parametes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">Conv MobileNet</td>
+<td align="center">71.7%</td>
+<td align="center">4866</td>
+<td align="center">29.3</td>
+</tr>
+
+<tr>
+<td align="center">MobileNet</td>
+<td align="center">70.6%</td>
+<td align="center">569</td>
+<td align="center">4.2</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>本篇文章從最基礎的 artificial neural network 的概念與架構開始介紹，並說明如何訓練  neural network，之後說明簡單的 convolutional neural network 架構與執行方式，並分析了在 convolution 計算上所需要花費的成本。之後說明 depthwise neural network 的兩層架構 - depthwise convolution 與 point wise convolution 的結構，最後比較了雙方計算架構，計算成本差異以及實驗結果比較。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://arxiv.org/abs/1704.04861">MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications</a></li>
+<li><a href="http://cs231n.github.io/convolutional-networks/">Stanford CS231n - Convolutional Neural Networks for Visual Recognition</a></li>
+<li><a href="https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md">MobileNet - Tensorflow</a></li>
+<li><a href="https://github.com/Zehaos/MobileNet">MobileNet - build with tensorflow</a></li>
+<li><a href="http://androidkt.com/tenserflow-lite/">TensorFlow Lite</a></li>
+<li><a href="https://towardsdatascience.com/types-of-convolutions-in-deep-learning-717013397f4d">An Introduction to different Types of Convolutions in Deep Learning</a></li>
+<li><a href="http://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/">Google’s MobileNets on the iPhone</a></li>
+<li><a href="https://qiita.com/yu4u/items/34cd33b944d8bdca142d">Kerasの作者@fcholletさんのCVPR'17論文XceptionとGoogleのMobileNets論文を読んだ</a></li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/neural-network/" rel="tag">Neural Network</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/mobilenet/" rel="tag">MobileNet</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/2018/modern-cpp-changing/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Modern C&#43;&#43; changing</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/2018/learning-commons/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">京都大學的 Learning Commons (學習共享空間) 參訪感想</p></a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yeshuanova" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 Xeno Universe.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/contrib/auto-render.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>renderMathInElement(document.body);</script>
+</body>
+</html>
