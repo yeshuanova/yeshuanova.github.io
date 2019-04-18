@@ -6,35 +6,17 @@
     <description>Recent content in Categories on Xeno Universe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 07 Jul 2018 14:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Apr 2019 10:00:00 +0800</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Blog</title>
-      <link>/categories/blog/</link>
-      <pubDate>Sat, 07 Jul 2018 14:00:00 +0800</pubDate>
+      <title>mathamatic</title>
+      <link>/categories/mathamatic/</link>
+      <pubDate>Thu, 18 Apr 2019 10:00:00 +0800</pubDate>
       
-      <guid>/categories/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Deep Learning</title>
-      <link>/categories/deep-learning/</link>
-      <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
-      
-      <guid>/categories/deep-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dimension Reduction</title>
-      <link>/categories/dimension-reduction/</link>
-      <pubDate>Sun, 13 Aug 2017 14:00:00 +0800</pubDate>
-      
-      <guid>/categories/dimension-reduction/</guid>
+      <guid>/categories/mathamatic/</guid>
       <description></description>
     </item>
     
@@ -66,6 +48,15 @@
     </item>
     
     <item>
+      <title>Visualization</title>
+      <link>/categories/visualization/</link>
+      <pubDate>Sun, 02 Sep 2018 16:00:00 +0800</pubDate>
+      
+      <guid>/categories/visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Mathematics</title>
       <link>/categories/mathematics/</link>
       <pubDate>Tue, 07 Aug 2018 12:00:00 +0800</pubDate>
@@ -75,20 +66,11 @@
     </item>
     
     <item>
-      <title>Mobile Device</title>
-      <link>/categories/mobile-device/</link>
-      <pubDate>Mon, 15 Jan 2018 12:00:00 +0800</pubDate>
+      <title>Blog</title>
+      <link>/categories/blog/</link>
+      <pubDate>Sat, 07 Jul 2018 14:00:00 +0800</pubDate>
       
-      <guid>/categories/mobile-device/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Programming</title>
-      <link>/categories/programming/</link>
-      <pubDate>Sat, 03 Feb 2018 16:00:00 +0800</pubDate>
-      
-      <guid>/categories/programming/</guid>
+      <guid>/categories/blog/</guid>
       <description></description>
     </item>
     
@@ -102,11 +84,38 @@
     </item>
     
     <item>
-      <title>Visualization</title>
-      <link>/categories/visualization/</link>
-      <pubDate>Sun, 02 Sep 2018 16:00:00 +0800</pubDate>
+      <title>Deep Learning</title>
+      <link>/categories/deep-learning/</link>
+      <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
       
-      <guid>/categories/visualization/</guid>
+      <guid>/categories/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Programming</title>
+      <link>/categories/programming/</link>
+      <pubDate>Sat, 03 Feb 2018 16:00:00 +0800</pubDate>
+      
+      <guid>/categories/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mobile Device</title>
+      <link>/categories/mobile-device/</link>
+      <pubDate>Mon, 15 Jan 2018 12:00:00 +0800</pubDate>
+      
+      <guid>/categories/mobile-device/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dimension Reduction</title>
+      <link>/categories/dimension-reduction/</link>
+      <pubDate>Sun, 13 Aug 2017 14:00:00 +0800</pubDate>
+      
+      <guid>/categories/dimension-reduction/</guid>
       <description></description>
     </item>
     

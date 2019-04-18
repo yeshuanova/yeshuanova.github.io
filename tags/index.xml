@@ -6,17 +6,53 @@
     <description>Recent content in Tags on Xeno Universe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 04 Jan 2018 18:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Apr 2019 10:00:00 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Autoencoder</title>
-      <link>/tags/autoencoder/</link>
-      <pubDate>Thu, 04 Jan 2018 18:00:00 +0800</pubDate>
+      <title>FFT</title>
+      <link>/tags/fft/</link>
+      <pubDate>Thu, 18 Apr 2019 10:00:00 +0800</pubDate>
       
-      <guid>/tags/autoencoder/</guid>
+      <guid>/tags/fft/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Comic</title>
+      <link>/tags/comic/</link>
+      <pubDate>Mon, 08 Apr 2019 15:00:00 +0800</pubDate>
+      
+      <guid>/tags/comic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>/tags/git/</link>
+      <pubDate>Sun, 25 Nov 2018 00:20:00 +0800</pubDate>
+      
+      <guid>/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dataset</title>
+      <link>/tags/dataset/</link>
+      <pubDate>Mon, 01 Oct 2018 00:18:00 +0800</pubDate>
+      
+      <guid>/tags/dataset/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kepler.gl</title>
+      <link>/tags/kepler.gl/</link>
+      <pubDate>Sun, 02 Sep 2018 16:00:00 +0800</pubDate>
+      
+      <guid>/tags/kepler.gl/</guid>
       <description></description>
     </item>
     
@@ -26,6 +62,105 @@
       <pubDate>Tue, 07 Aug 2018 12:00:00 +0800</pubDate>
       
       <guid>/tags/bayes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>/tags/hugo/</link>
+      <pubDate>Sat, 07 Jul 2018 14:00:00 +0800</pubDate>
+      
+      <guid>/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Heatmap</title>
+      <link>/tags/heatmap/</link>
+      <pubDate>Sat, 02 Jun 2018 20:00:00 +0800</pubDate>
+      
+      <guid>/tags/heatmap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Strava</title>
+      <link>/tags/strava/</link>
+      <pubDate>Sat, 02 Jun 2018 20:00:00 +0800</pubDate>
+      
+      <guid>/tags/strava/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OpenStreetMap</title>
+      <link>/tags/openstreetmap/</link>
+      <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
+      
+      <guid>/tags/openstreetmap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>/tags/python/</link>
+      <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
+      
+      <guid>/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>datashader</title>
+      <link>/tags/datashader/</link>
+      <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
+      
+      <guid>/tags/datashader/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mercatile</title>
+      <link>/tags/mercatile/</link>
+      <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
+      
+      <guid>/tags/mercatile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Probability</title>
+      <link>/tags/probability/</link>
+      <pubDate>Wed, 16 May 2018 15:00:00 +0800</pubDate>
+      
+      <guid>/tags/probability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Japan</title>
+      <link>/tags/japan/</link>
+      <pubDate>Mon, 05 Mar 2018 16:00:00 +0800</pubDate>
+      
+      <guid>/tags/japan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MobileNet</title>
+      <link>/tags/mobilenet/</link>
+      <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
+      
+      <guid>/tags/mobilenet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Neural Network</title>
+      <link>/tags/neural-network/</link>
+      <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
+      
+      <guid>/tags/neural-network/</guid>
       <description></description>
     </item>
     
@@ -48,38 +183,38 @@
     </item>
     
     <item>
-      <title>Comic</title>
-      <link>/tags/comic/</link>
-      <pubDate>Mon, 08 Apr 2019 15:00:00 +0800</pubDate>
+      <title>TensorFlow</title>
+      <link>/tags/tensorflow/</link>
+      <pubDate>Mon, 15 Jan 2018 12:00:00 +0800</pubDate>
       
-      <guid>/tags/comic/</guid>
+      <guid>/tags/tensorflow/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Dataset</title>
-      <link>/tags/dataset/</link>
-      <pubDate>Mon, 01 Oct 2018 00:18:00 +0800</pubDate>
+      <title>iOS</title>
+      <link>/tags/ios/</link>
+      <pubDate>Mon, 15 Jan 2018 12:00:00 +0800</pubDate>
       
-      <guid>/tags/dataset/</guid>
+      <guid>/tags/ios/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Datashader</title>
-      <link>/tags/datashader/</link>
-      <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
+      <title>Autoencoder</title>
+      <link>/tags/autoencoder/</link>
+      <pubDate>Thu, 04 Jan 2018 18:00:00 +0800</pubDate>
       
-      <guid>/tags/datashader/</guid>
+      <guid>/tags/autoencoder/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Deepmind</title>
-      <link>/tags/deepmind/</link>
-      <pubDate>Tue, 05 Sep 2017 14:00:00 +0800</pubDate>
+      <title>kaggle</title>
+      <link>/tags/kaggle/</link>
+      <pubDate>Mon, 20 Nov 2017 14:00:00 +0800</pubDate>
       
-      <guid>/tags/deepmind/</guid>
+      <guid>/tags/kaggle/</guid>
       <description></description>
     </item>
     
@@ -93,20 +228,11 @@
     </item>
     
     <item>
-      <title>Gans</title>
-      <link>/tags/gans/</link>
-      <pubDate>Wed, 26 Jul 2017 14:00:00 +0800</pubDate>
+      <title>DeepMind</title>
+      <link>/tags/deepmind/</link>
+      <pubDate>Tue, 05 Sep 2017 14:00:00 +0800</pubDate>
       
-      <guid>/tags/gans/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Git</title>
-      <link>/tags/git/</link>
-      <pubDate>Sun, 25 Nov 2018 00:20:00 +0800</pubDate>
-      
-      <guid>/tags/git/</guid>
+      <guid>/tags/deepmind/</guid>
       <description></description>
     </item>
     
@@ -120,38 +246,11 @@
     </item>
     
     <item>
-      <title>Heatmap</title>
-      <link>/tags/heatmap/</link>
-      <pubDate>Sat, 02 Jun 2018 20:00:00 +0800</pubDate>
+      <title>StarCraft</title>
+      <link>/tags/starcraft/</link>
+      <pubDate>Tue, 05 Sep 2017 14:00:00 +0800</pubDate>
       
-      <guid>/tags/heatmap/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hugo</title>
-      <link>/tags/hugo/</link>
-      <pubDate>Sat, 07 Jul 2018 14:00:00 +0800</pubDate>
-      
-      <guid>/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ios</title>
-      <link>/tags/ios/</link>
-      <pubDate>Mon, 15 Jan 2018 12:00:00 +0800</pubDate>
-      
-      <guid>/tags/ios/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Iris</title>
-      <link>/tags/iris/</link>
-      <pubDate>Mon, 07 Aug 2017 20:00:00 +0800</pubDate>
-      
-      <guid>/tags/iris/</guid>
+      <guid>/tags/starcraft/</guid>
       <description></description>
     </item>
     
@@ -165,34 +264,7 @@
     </item>
     
     <item>
-      <title>Japan</title>
-      <link>/tags/japan/</link>
-      <pubDate>Mon, 05 Mar 2018 16:00:00 +0800</pubDate>
-      
-      <guid>/tags/japan/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kaggle</title>
-      <link>/tags/kaggle/</link>
-      <pubDate>Mon, 20 Nov 2017 14:00:00 +0800</pubDate>
-      
-      <guid>/tags/kaggle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kepler.gl</title>
-      <link>/tags/kepler.gl/</link>
-      <pubDate>Sun, 02 Sep 2018 16:00:00 +0800</pubDate>
-      
-      <guid>/tags/kepler.gl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mds</title>
+      <title>MDS</title>
       <link>/tags/mds/</link>
       <pubDate>Thu, 10 Aug 2017 20:00:00 +0800</pubDate>
       
@@ -201,83 +273,20 @@
     </item>
     
     <item>
-      <title>Mercatile</title>
-      <link>/tags/mercatile/</link>
-      <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
+      <title>Iris</title>
+      <link>/tags/iris/</link>
+      <pubDate>Mon, 07 Aug 2017 20:00:00 +0800</pubDate>
       
-      <guid>/tags/mercatile/</guid>
+      <guid>/tags/iris/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Mobilenet</title>
-      <link>/tags/mobilenet/</link>
-      <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
+      <title>GANs</title>
+      <link>/tags/gans/</link>
+      <pubDate>Wed, 26 Jul 2017 14:00:00 +0800</pubDate>
       
-      <guid>/tags/mobilenet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Neural Network</title>
-      <link>/tags/neural-network/</link>
-      <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
-      
-      <guid>/tags/neural-network/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Openstreetmap</title>
-      <link>/tags/openstreetmap/</link>
-      <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
-      
-      <guid>/tags/openstreetmap/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Probability</title>
-      <link>/tags/probability/</link>
-      <pubDate>Wed, 16 May 2018 15:00:00 +0800</pubDate>
-      
-      <guid>/tags/probability/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python</title>
-      <link>/tags/python/</link>
-      <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
-      
-      <guid>/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Starcraft</title>
-      <link>/tags/starcraft/</link>
-      <pubDate>Tue, 05 Sep 2017 14:00:00 +0800</pubDate>
-      
-      <guid>/tags/starcraft/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Strava</title>
-      <link>/tags/strava/</link>
-      <pubDate>Sat, 02 Jun 2018 20:00:00 +0800</pubDate>
-      
-      <guid>/tags/strava/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tensorflow</title>
-      <link>/tags/tensorflow/</link>
-      <pubDate>Mon, 15 Jan 2018 12:00:00 +0800</pubDate>
-      
-      <guid>/tags/tensorflow/</guid>
+      <guid>/tags/gans/</guid>
       <description></description>
     </item>
     

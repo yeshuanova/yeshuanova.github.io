@@ -7,7 +7,7 @@
 	<title>從 Jekyll 轉移到 Hugo 心得 - Xeno Universe</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="From Jekyll to Hugo">
-	<meta name="generator" content="Hugo 0.54.0" />
+	<meta name="generator" content="Hugo 0.55.0" />
 	<meta property="og:title" content="從 Jekyll 轉移到 Hugo 心得" />
 <meta property="og:description" content="From Jekyll to Hugo" />
 <meta property="og:type" content="article" />
@@ -45,21 +45,7 @@ if (!doNotTrack) {
 				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
 			</a>
 		</div>
-		
-<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1">Menu</span>
-	</button>
-	<ul class="menu__list">
-		<li class="menu__item">
-			<a class="menu__link" href="/about/">About</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/competitions/">Competitions</a>
-		</li>
-	</ul>
-</nav>
-
+		<div class="divider"></div>
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -170,8 +156,8 @@ tags:
 draft: true
 ---
 
-<span style="font-weight:bold">#</span> Hello World.
-
+<span style="font-weight:bold"># Hello World.
+</span><span style="font-weight:bold"></span>
 Post example</code></pre></div>
 <p>之後執行以下指令</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo server --buildDrafts</code></pre></div>
@@ -344,11 +330,11 @@ pygmentsStyle = <span style="color:#0086d2">&#34;fruity&#34;</span> <span style=
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2019/04/fft_intro/">從傅立葉級數到快速傅立葉轉換</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2019/04/comic_qed_cmb/">非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/11/git-learning-tips/">Git 學習要點</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/10/dataset-iris/">機器學習資料集 - Iris dataset</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/09/kepler-gl/">Kepler.gl 使用簡介</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/08/thinkbayes-ch8/">ThinkBayes 心得筆記 - Chapter 8</a></li>
 		</ul>
 	</div>
 </div>
@@ -362,6 +348,7 @@ pygmentsStyle = <span style="color:#0086d2">&#34;fruity&#34;</span> <span style=
 			<li class="widget__item"><a class="widget__link" href="/categories/entertainment">Entertainment</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/git">Git</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/mathamatic">Mathamatic</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>
@@ -381,6 +368,7 @@ pygmentsStyle = <span style="color:#0086d2">&#34;fruity&#34;</span> <span style=
 		<a class="widget-taglist__link widget__link btn" href="/tags/dataset" title="Dataset">Dataset (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/datashader" title="Datashader">Datashader (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fft" title="Fft">Fft (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/git" title="Git">Git (1)</a>
