@@ -7,7 +7,6 @@
 	<title>Posts - Xeno Universe</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta name="generator" content="Hugo 0.55.0" />
 	<meta property="og:title" content="Posts" />
 <meta property="og:description" content="Cheng-Shiang Li&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
@@ -46,7 +45,21 @@ if (!doNotTrack) {
 				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
 			</a>
 		</div>
-		<div class="divider"></div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">About</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/competitions/">Competitions</a>
+		</li>
+	</ul>
+</nav>
+
 	</div>
 </header>
 		<div class="wrapper flex">
@@ -62,17 +75,7 @@ if (!doNotTrack) {
 			京都大學的 Learning Commons (學習共享空間) 參訪感想
 			</a>
 		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2018-03-05T16:00:00">March 05, 2018</time>
-</div>
-
-<div class="meta__item-categories meta__item">
-	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/travel" rel="category">Travel</a></span>
-</div>
-</div>
+		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		<p>這次到京都自助旅行時因行程有經過<a href="http://www.kyoto-u.ac.jp/zh-tw">京都大學</a>，因此特別抽空參觀了校園以及圖書館，而在其中最讓我覺得有趣的是圖書館中的 Learning Commons（ラーニング・コモンズ，學習共享空間）的概念與功能。因此整理了一些 Learning Commons 的相關資料以及將參訪心得記錄下來。</p>
@@ -84,17 +87,7 @@ if (!doNotTrack) {
 			高效卷積計算結構 - Depthwise Separable Convolution
 			</a>
 		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2018-02-09T15:00:00">February 09, 2018</time>
-</div>
-
-<div class="meta__item-categories meta__item">
-	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/machine-learning" rel="category">Machine Learning</a>, <a class="meta__link" href="/categories/deep-learning" rel="category">Deep Learning</a></span>
-</div>
-</div>
+		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		<p>近年來因與計算機的計算能力大幅上升，GPGPU 的支援等，使深度神經網路技術取得了非常好的效果發展。但所衍生的高計算量卻讓行動裝置以及嵌入式系統等計算能力有限的平台在執行時遇到效能的限制。因此 Google 在 MobileNets 模型中使用了新的卷積計算模型 depthwise separable convolution 來減少所需的計量。本篇將從基礎類神經網路開始介紹，說明卷積神經網路的架構與計算成本問題，並解說 depthwise separable convolution 的技術內容與計算成本。</p>
@@ -106,17 +99,7 @@ if (!doNotTrack) {
 			Modern C&#43;&#43; changing
 			</a>
 		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2018-02-03T16:00:00">February 03, 2018</time>
-</div>
-
-<div class="meta__item-categories meta__item">
-	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/programming" rel="category">Programming</a></span>
-</div>
-</div>
+		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		<p>C++ 標準自從建立後到現在已經經過了許多次改版，其中最重要的版本除了 C++98 外，當在2011 年正式發佈的 C++11 標準了。該標準加入了許多新特性，不但讓程式撰寫更為精簡，在執行時效率也更加上升，可說是之後 C++14 與 C++17 等標準的基石。本篇文章簡單整理了一些關於 C++11 重要標準變更與概念，若要詳細了解相關內容以及 C++14/17 的相關變更可參考 <a href="https://en.wikipedia.org/wiki/C%2B%2B11">Wikipedia</a> 等網站。</p>
@@ -128,17 +111,7 @@ if (!doNotTrack) {
 			使用 TensorFlow Lite 在 iOS 裝置上進行圖片分類
 			</a>
 		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2018-01-15T12:00:00">January 15, 2018</time>
-</div>
-
-<div class="meta__item-categories meta__item">
-	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/mobile-device" rel="category">Mobile Device</a></span>
-</div>
-</div>
+		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		<p>近幾年來由 Google 推出的 TensorFlow 在深度學習等領域有著大量的發展，但也因為由 TensorFlow 所訓練出的 Model 容量大且本身執行時也會佔用較多資源，並不適合在行動裝置上執行。因此 Google 推出了 TensorFlow Lite 讓在行動裝置上執行 TensorFlow  更為方便。本文章將簡單介紹如何在 iOS 裝置上執行 TensorFlow Lite 並進行圖像分類的方法。</p>
@@ -150,17 +123,7 @@ if (!doNotTrack) {
 			Autoencoder 簡介與應用範例
 			</a>
 		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2018-01-04T18:00:00">January 04, 2018</time>
-</div>
-
-<div class="meta__item-categories meta__item">
-	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/machine-learning" rel="category">Machine Learning</a>, <a class="meta__link" href="/categories/deep-learning" rel="category">Deep Learning</a></span>
-</div>
-</div>
+		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		<p>Autoencoder(自動編碼器)是一種是透過 <a href="https://en.wikipedia.org/wiki/Artificial_neural_network">Artificial Neural Network</a>，來進行資料自動學習與編碼的技術。本文將使用機器學習函式庫 <a href="https://keras.io/">Keras</a> 建立 Autoencoder Model，並使用 MNIST Datatset 來展示兩個 Autoencoder 範例 - <strong>資料降維回復</strong>與<strong>去雜訊(Denoising)</strong>的 Model。</p>
@@ -172,17 +135,7 @@ if (!doNotTrack) {
 			Python 資料視覺化 - 使用 datashader
 			</a>
 		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2017-11-20T14:00:00">November 20, 2017</time>
-</div>
-
-<div class="meta__item-categories meta__item">
-	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/visualization" rel="category">Visualization</a></span>
-</div>
-</div>
+		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		<p>在做資料視覺化時，經常會遇到因資料量過大而無法簡單進行處理，或是執行速度過慢的問題。本文章將介紹一套<strong>Python</strong>上的資料視覺化工具<strong>datashader</strong>，能將數億個點的大資料快速生成視覺化圖形，並以<strong>New York Taxi Trip</strong>資料集為範例說明如何使用<strong>datashader</strong>繪製乘車位置分佈圖。</p>
@@ -194,17 +147,7 @@ if (!doNotTrack) {
 			Python 地圖視覺化 - 使用 Folium
 			</a>
 		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2017-10-08T08:00:00">October 08, 2017</time>
-</div>
-
-<div class="meta__item-categories meta__item">
-	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/visualization" rel="category">Visualization</a></span>
-</div>
-</div>
+		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		<p><a href="https://github.com/python-visualization/folium">Folium</a>是一套Python上的地圖視覺化工具。透過<a href="http://leafletjs.com/">Leaflet</a>這個JavaScript Library以及<a href="https://www.openstreetmap.org/">OpenStreetMap</a>地圖服務，可在Jupyter Notebook上實現互動式地圖繪製。本篇將簡單介紹<strong>Folium</strong>的使用方式以及繪製效果。</p>
@@ -216,17 +159,7 @@ if (!doNotTrack) {
 			從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)
 			</a>
 		</h3>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2017-09-05T14:00:00">September 05, 2017</time>
-</div>
-
-<div class="meta__item-categories meta__item">
-	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/machine-learning" rel="category">Machine Learning</a>, <a class="meta__link" href="/categories/deep-learning" rel="category">Deep Learning</a></span>
-</div>
-</div>
+		
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		<p>從AI黎明期開始，如<a href="https://en.wikipedia.org/wiki/Chess">西洋棋(chess)</a>，<a href="https://en.wikipedia.org/wiki/Go_(game)">圍棋(Go)</a>或<a href="https://en.wikipedia.org/wiki/Xiangqi">象棋</a>等棋類遊戲一直是人工智慧的研究與測試領域。但由於早期的計算機的能力限制以及演算法的發展，較為複雜的棋類遊戲仍無法打敗世界級水準的棋手。直到1997年時IBM的<a href="https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)">深藍(Deep Blue)</a>在西洋棋比賽中打敗了世界棋王<a href="https://en.wikipedia.org/wiki/Garry_Kasparov">Garry Kasparov</a>，展現了電腦也能夠在西洋棋上打敗人類世界頂尖棋手的實力。</p>
@@ -249,25 +182,19 @@ if (!doNotTrack) {
 	<div class="widget-social__content widget__content">
 		<div class="widget-social__item widget__item">
 			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/cheng-shiang-li" target="_blank">
-				<svg class="widget-social__link-icon icon-linkedin" viewBox="0 0 352 352" width="24" height="24" fill="#fff"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
 				<span>LinkedIn</span>
 			</a>
 		</div>
 		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="Telegram" rel="noopener noreferrer" href="https://t.me/YeshuaLi" target="_blank">
-				<svg class="widget-social__link-icon icon-telegram" viewBox="0 0 132 110" width="24" height="24"><path fill="#ddd" d="M50 103c-4 0-3-1-5-5L34 60l88-52"/><path fill="#aaa" d="M50 103c3 0 4-1 6-3l16-16-20-12"/><path fill="#fff" d="M52 72l48 36c6 3 10 2 11-5l20-93c2-8-3-11-8-9L7 45c-8 4-8 8-1 10l29 9 69-43c3-2 6-1 4 1"/></svg>
-				<span>Telegram</span>
-			</a>
-		</div>
-		<div class="widget-social__item widget__item">
 			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/yeshuanova" target="_blank">
-				<svg class="widget-social__link-icon icon-github" viewBox="0 0 384 374" width="24" height="24" fill="#fff"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
 				<span>GitHub</span>
 			</a>
 		</div>
 		<div class="widget-social__item widget__item">
 			<a class="widget-social__link widget__link btn" title="Email" href="mailto:yeshuanova@gmail.com">
-				<svg class="widget-social__link-icon icon-mail" viewBox="0 0 416 288" width="24" height="24" fill="#fff"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
 				<span>yeshuanova@gmail.com</span>
 			</a>
 		</div>
@@ -295,7 +222,6 @@ if (!doNotTrack) {
 			<li class="widget__item"><a class="widget__link" href="/categories/entertainment">Entertainment</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/git">Git</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/machine-learning">Machine learning</a></li>
-			<li class="widget__item"><a class="widget__link" href="/categories/mathamatic">Mathamatic</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>

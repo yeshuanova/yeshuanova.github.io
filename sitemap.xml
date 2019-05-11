@@ -15,6 +15,12 @@
   </url>
   
   <url>
+    <loc>/categories/mathematics/</loc>
+    <lastmod>2019-04-18T10:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/post/</loc>
     <lastmod>2019-04-18T10:00:00+08:00</lastmod>
     <priority>0</priority>
@@ -28,12 +34,6 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-04-18T10:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/mathamatic/</loc>
     <lastmod>2019-04-18T10:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -113,12 +113,6 @@
   
   <url>
     <loc>/tags/bayes/</loc>
-    <lastmod>2018-08-07T12:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/mathematics/</loc>
     <lastmod>2018-08-07T12:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -430,10 +424,6 @@
   
   <url>
     <loc>/competitions/</loc>
-  </url>
-  
-  <url>
-    <loc>/project/</loc>
   </url>
   
 </urlset>
