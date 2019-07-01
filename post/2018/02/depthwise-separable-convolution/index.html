@@ -68,7 +68,17 @@ if (!doNotTrack) {
 	<article class="post">
 		<header class="post__header">
 			<h1 class="post__title">高效卷積計算結構 - Depthwise Separable Convolution</h1>
-			
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2018-02-09T15:00:00">February 09, 2018</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/machine-learning" rel="category">Machine Learning</a>, <a class="meta__link" href="/categories/deep-learning" rel="category">Deep Learning</a></span>
+</div>
+</div>
 		</header><div class="content post__content clearfix">
 			<p>近年來因與計算機的計算能力大幅上升，GPGPU 的支援等，使深度神經網路技術取得了非常好的效果發展。但所衍生的高計算量卻讓行動裝置以及嵌入式系統等計算能力有限的平台在執行時遇到效能的限制。因此 Google 在 MobileNets 模型中使用了新的卷積計算模型 depthwise separable convolution 來減少所需的計量。本篇將從基礎類神經網路開始介紹，說明卷積神經網路的架構與計算成本問題，並解說 depthwise separable convolution 的技術內容與計算成本。</p>
 

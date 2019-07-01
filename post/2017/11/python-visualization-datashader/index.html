@@ -68,7 +68,17 @@ if (!doNotTrack) {
 	<article class="post">
 		<header class="post__header">
 			<h1 class="post__title">Python 資料視覺化 - 使用 datashader</h1>
-			
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2017-11-20T14:00:00">November 20, 2017</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/visualization" rel="category">Visualization</a></span>
+</div>
+</div>
 		</header><div class="content post__content clearfix">
 			<p>在做資料視覺化時，經常會遇到因資料量過大而無法簡單進行處理，或是執行速度過慢的問題。本文章將介紹一套<strong>Python</strong>上的資料視覺化工具<strong>datashader</strong>，能將數億個點的大資料快速生成視覺化圖形，並以<strong>New York Taxi Trip</strong>資料集為範例說明如何使用<strong>datashader</strong>繪製乘車位置分佈圖。</p>
 
