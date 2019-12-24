@@ -1,41 +1,50 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2019-04-18T10:00:00+08:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-12-22T12:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/fluentd/</loc>
+    <lastmod>2019-12-22T12:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2019/12/fluentd_basic/</loc>
+    <lastmod>2019-12-22T12:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2019-12-22T12:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/software/</loc>
+    <lastmod>2019-12-22T12:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-12-22T12:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-12-22T12:00:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/fft/</loc>
     <lastmod>2019-04-18T10:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/mathematics/</loc>
     <lastmod>2019-04-18T10:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2019-04-18T10:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2019-04-18T10:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2019-04-18T10:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -46,13 +55,11 @@
   <url>
     <loc>/tags/comic/</loc>
     <lastmod>2019-04-08T15:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/entertainment/</loc>
     <lastmod>2019-04-08T15:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -63,13 +70,11 @@
   <url>
     <loc>/tags/git/</loc>
     <lastmod>2018-11-25T00:20:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/git/</loc>
     <lastmod>2018-11-25T00:20:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -80,13 +85,11 @@
   <url>
     <loc>/tags/dataset/</loc>
     <lastmod>2018-10-01T00:18:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/machine-learning/</loc>
     <lastmod>2018-10-01T00:18:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -97,7 +100,6 @@
   <url>
     <loc>/tags/kepler.gl/</loc>
     <lastmod>2018-09-02T16:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -108,13 +110,11 @@
   <url>
     <loc>/categories/visualization/</loc>
     <lastmod>2018-09-02T16:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/bayes/</loc>
     <lastmod>2018-08-07T12:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -150,13 +150,11 @@
   <url>
     <loc>/categories/blog/</loc>
     <lastmod>2018-07-07T14:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/hugo/</loc>
     <lastmod>2018-07-07T14:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -167,13 +165,11 @@
   <url>
     <loc>/tags/heatmap/</loc>
     <lastmod>2018-06-02T20:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/strava/</loc>
     <lastmod>2018-06-02T20:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -182,27 +178,23 @@
   </url>
   
   <url>
-    <loc>/tags/openstreetmap/</loc>
-    <lastmod>2018-05-24T18:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/python/</loc>
-    <lastmod>2018-05-24T18:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/datashader/</loc>
     <lastmod>2018-05-24T18:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/mercatile/</loc>
     <lastmod>2018-05-24T18:00:00+08:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/openstreetmap/</loc>
+    <lastmod>2018-05-24T18:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/python/</loc>
+    <lastmod>2018-05-24T18:00:00+08:00</lastmod>
   </url>
   
   <url>
@@ -213,7 +205,6 @@
   <url>
     <loc>/tags/probability/</loc>
     <lastmod>2018-05-16T15:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -229,13 +220,11 @@
   <url>
     <loc>/tags/japan/</loc>
     <lastmod>2018-03-05T16:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/travel/</loc>
     <lastmod>2018-03-05T16:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -246,19 +235,16 @@
   <url>
     <loc>/categories/deep-learning/</loc>
     <lastmod>2018-02-09T15:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/mobilenet/</loc>
     <lastmod>2018-02-09T15:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/neural-network/</loc>
     <lastmod>2018-02-09T15:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -269,7 +255,6 @@
   <url>
     <loc>/tags/c&#43;&#43;/</loc>
     <lastmod>2018-02-03T16:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -280,31 +265,26 @@
   <url>
     <loc>/categories/programming/</loc>
     <lastmod>2018-02-03T16:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/classification/</loc>
     <lastmod>2018-01-15T12:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/mobile-device/</loc>
-    <lastmod>2018-01-15T12:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/tensorflow/</loc>
-    <lastmod>2018-01-15T12:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/ios/</loc>
     <lastmod>2018-01-15T12:00:00+08:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/mobile-device/</loc>
+    <lastmod>2018-01-15T12:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/tensorflow/</loc>
+    <lastmod>2018-01-15T12:00:00+08:00</lastmod>
   </url>
   
   <url>
@@ -315,7 +295,6 @@
   <url>
     <loc>/tags/autoencoder/</loc>
     <lastmod>2018-01-04T18:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -324,20 +303,18 @@
   </url>
   
   <url>
+    <loc>/tags/kaggle/</loc>
+    <lastmod>2017-11-20T14:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2017/11/python-visualization-datashader/</loc>
     <lastmod>2017-11-20T14:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/kaggle/</loc>
-    <lastmod>2017-11-20T14:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/folium/</loc>
     <lastmod>2017-10-08T08:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -348,19 +325,16 @@
   <url>
     <loc>/tags/deepmind/</loc>
     <lastmod>2017-09-05T14:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/go/</loc>
     <lastmod>2017-09-05T14:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/starcraft/</loc>
     <lastmod>2017-09-05T14:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -371,13 +345,11 @@
   <url>
     <loc>/categories/dimension-reduction/</loc>
     <lastmod>2017-08-13T14:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/isomap/</loc>
     <lastmod>2017-08-13T14:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -388,7 +360,6 @@
   <url>
     <loc>/tags/mds/</loc>
     <lastmod>2017-08-10T20:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -404,13 +375,11 @@
   <url>
     <loc>/tags/iris/</loc>
     <lastmod>2017-08-07T20:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/gans/</loc>
     <lastmod>2017-07-26T14:00:00+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

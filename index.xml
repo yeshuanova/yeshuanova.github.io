@@ -1,15 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Xeno Universe</title>
+    <title>Xeno Universe - The Dark Forest</title>
     <link>/</link>
-    <description>Recent content on Xeno Universe</description>
+    <description>Recent content on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 18 Apr 2019 10:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 22 Dec 2019 12:00:00 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Fluentd 基礎使用方式</title>
+      <link>/post/2019/12/fluentd_basic/</link>
+      <pubDate>Sun, 22 Dec 2019 12:00:00 +0800</pubDate>
+      
+      <guid>/post/2019/12/fluentd_basic/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.fluentd.org/&#34;&gt;Fluentd&lt;/a&gt; 是一套開源資料蒐集軟體 (Data Collection Software)。通常在專案中我們會需要將各種資料傳遞到不同服務，如 Apache, MySQL, elasticsearch 等服務，但不同服務間的資料傳遞方式卻各自不同，常會造成混亂。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>從傅立葉級數到快速傅立葉轉換</title>
@@ -279,8 +288,8 @@ Machine Learning界大師&lt;a href=&#34;http://yann.lecun.com/&#34;&gt;Yann LeC
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>-- Cheng-Shiang Li Senior software engineer, mastering Android application development, data science and machine learning algorithm.
-Education National Taiwan University of Science and Technology Master&amp;rsquo;s Degree in computer science and information engineering
+      <description>Cheng-Shiang Li Senior software engineer, mastering Android application development, data science and machine learning algorithm.
+Education National Taiwan University of Science and Technology Master&#39;s Degree in computer science and information engineering
  Curriculum focusing on machine learning theory and algorithm. Research areas concentrating on computer vision and image processing.  Background  Computer science and information engineering. Android/iOS platform. Machine learning and data science researcher.  Skills  Program Language - C/C++, Java, Kotlin, Swift, Objective-C and Python.</description>
     </item>
     

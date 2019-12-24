@@ -4,15 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Modern C&#43;&#43; changing - Xeno Universe</title>
+	<title>Modern C&#43;&#43; changing - Xeno Universe - The Dark Forest</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="Modern C&#43;&#43; changing">
 	<meta property="og:title" content="Modern C&#43;&#43; changing" />
 <meta property="og:description" content="Modern C&#43;&#43; changing" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/2018/02/modern-cpp-changing/" />
-<meta property="article:published_time" content="2018-02-03T16:00:00&#43;08:00"/>
-<meta property="article:modified_time" content="2018-02-03T16:00:00&#43;08:00"/>
+<meta property="article:published_time" content="2018-02-03T16:00:00+08:00" />
+<meta property="article:modified_time" content="2018-02-03T16:00:00+08:00" />
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -39,8 +39,8 @@ if (!doNotTrack) {
 		<header class="header">
 	<div class="container">
 		<div class="logo">
-			<a class="logo__link" href="/" title="Xeno Universe" rel="home">
-				<div class="logo__title">Xeno Universe</div>
+			<a class="logo__link" href="/" title="Xeno Universe - The Dark Forest" rel="home">
+				<div class="logo__title">Xeno Universe - The Dark Forest</div>
 				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
 			</a>
 		</div>
@@ -103,7 +103,7 @@ vector&lt;string&gt; vec = vector&lt;string&gt;();
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">template</span>&lt;<span style="color:#fb660a;font-weight:bold">class</span> Fun, <span style="color:#fb660a;font-weight:bold">class</span>... Args&gt;
 <span style="color:#fb660a;font-weight:bold">decltype</span>(<span style="color:#fb660a;font-weight:bold">auto</span>) Example(Fun fun, Args&amp;&amp;... args)
 {
-    <span style="color:#fb660a;font-weight:bold">return</span> fun(std::forward&lt;Args&gt;(args)...);
+    <span style="color:#fb660a;font-weight:bold">return</span> <span style="color:#ff0086;font-weight:bold">fun</span>(std::forward&lt;Args&gt;(args)...);
 }
 </code></pre></div>
 <h4 id="constexpr">Constexpr</h4>
@@ -161,7 +161,7 @@ vec.push_back(<span style="color:#0086f7;font-weight:bold">3</span>);
 <p>在 C++ 的定義中，左值為可以透過記憶體參照對應到的物件，其他則為右值。也可以把右值想像成一個臨時的數值，左值可以被賦值並修改但右值不行。因 C++ 為值語意程式語言，在物件的建立上常會有多餘的建構與複製動作而倒置效能上的損失。而 C++11 中加入了右值參照功能，透過關鍵字 <code>&amp;&amp;</code> 來區別右值。</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++03, L-Value reference
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">ref</span>(<span style="color:#cdcaa9;font-weight:bold">int</span>&amp; x) {
-    cout &lt;&lt; <span style="color:#0086d2">&#34;Left value: &#34;</span> &lt;&lt; x &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">Left value: </span><span style="color:#0086d2">&#34;</span> &lt;&lt; x &lt;&lt; endl;
 }
 
 x = <span style="color:#0086f7;font-weight:bold">3</span>;
@@ -170,7 +170,7 @@ ref(x); <span style="color:#080;background-color:#0f140f;font-style:italic">// p
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
 <span style="color:#080;background-color:#0f140f;font-style:italic">// C++11, R-Value reference
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">ref</span>(<span style="color:#cdcaa9;font-weight:bold">int</span>&amp;&amp; x) {
-    cout &lt;&lt; <span style="color:#0086d2">&#34;Right value&#34;</span> &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">Right value</span><span style="color:#0086d2">&#34;</span> &lt;&lt; endl;
 }
 x = <span style="color:#0086f7;font-weight:bold">3</span>;
 ref(x); <span style="color:#080;background-color:#0f140f;font-style:italic">// print: &#34;Left value: 3&#34;
@@ -211,12 +211,12 @@ for_each(begin(vec), end(vec), plus());
 </code></pre></div>
 <p>由於需要另外撰寫函數或 <a href="http://www.bogotobogo.com/cplusplus/functors.php">Functor</a> ，無形中增加了實作上的麻煩，而 C++11 中的 lambda expression 可使用簡單撰寫匿名函式來傳入 <code>for_each</code> 中達成同樣的效果</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// C++11, Lambda expression
-</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>for_each(begin(vec), end(vec), [](<span style="color:#fb660a;font-weight:bold">auto</span>&amp; x){ cout &lt;&lt; x + <span style="color:#0086f7;font-weight:bold">1</span> &lt;&lt; <span style="color:#0086d2">&#34;,&#34;</span>; });
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>for_each(begin(vec), end(vec), [](<span style="color:#fb660a;font-weight:bold">auto</span>&amp; x){ cout &lt;&lt; x + <span style="color:#0086f7;font-weight:bold">1</span> &lt;&lt; <span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">,</span><span style="color:#0086d2">&#34;</span>; });
 <span style="color:#080;background-color:#0f140f;font-style:italic">// print: 1,2,3
 </span></code></pre></div>
 <p>此外也可使用 <code>&amp;</code> 參數來引入外部參數</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#cdcaa9;font-weight:bold">int</span> factor = <span style="color:#0086f7;font-weight:bold">42</span>;
-std::for_each(begin(vec), end(vec), [&amp;factor](<span style="color:#cdcaa9;font-weight:bold">int</span> x) { cout &lt;&lt; x + factor &lt;&lt; <span style="color:#0086d2">&#34;,&#34;</span>;});
+std::for_each(begin(vec), end(vec), [&amp;factor](<span style="color:#cdcaa9;font-weight:bold">int</span> x) { cout &lt;&lt; x + factor &lt;&lt; <span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">,</span><span style="color:#0086d2">&#34;</span>;});
 <span style="color:#080;background-color:#0f140f;font-style:italic">// print: 43,44,45
 </span></code></pre></div>
 <h4 id="variadic-template">Variadic Template</h4>
@@ -262,7 +262,7 @@ T adder(T first, Ts... args) {
 
 <p>除了 function 外，class 也可用相同的擴展方式建立 variadic template，如 <code>std::tuple</code> 就是一個例子，可建立一個內含不同參數的 tuple 結構，並透過 <code>std::get&lt;&gt;</code> 來取出內容，如下所示：</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#080;background-color:#0f140f;font-style:italic">// 建立一 tuple 結構
-</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> tp = tuple&lt;string, <span style="color:#cdcaa9;font-weight:bold">int</span>, vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;&gt;(<span style="color:#0086d2">&#34;Hello&#34;</span>, <span style="color:#0086f7;font-weight:bold">5</span>, {<span style="color:#0086f7;font-weight:bold">42</span>, <span style="color:#0086f7;font-weight:bold">2</span>});
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">auto</span> tp = tuple&lt;string, <span style="color:#cdcaa9;font-weight:bold">int</span>, vector&lt;<span style="color:#cdcaa9;font-weight:bold">int</span>&gt;&gt;(<span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">Hello</span><span style="color:#0086d2">&#34;</span>, <span style="color:#0086f7;font-weight:bold">5</span>, {<span style="color:#0086f7;font-weight:bold">42</span>, <span style="color:#0086f7;font-weight:bold">2</span>});
 cout &lt;&lt; get&lt;<span style="color:#0086f7;font-weight:bold">0</span>&gt;(tp); <span style="color:#080;background-color:#0f140f;font-style:italic">// output: &#34;Hello&#34;
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>cout &lt;&lt; get&lt;<span style="color:#0086f7;font-weight:bold">1</span>&gt;(tp); <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 5
 </span></code></pre></div>
@@ -275,20 +275,20 @@ cout &lt;&lt; get&lt;<span style="color:#0086f7;font-weight:bold">0</span>&gt;(t
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
 <span style="color:#080;background-color:#0f140f;font-style:italic">// Funcion &#34;final&#34;
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#fb660a;font-weight:bold">class</span> Base {
-    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> show() <span style="color:#fb660a;font-weight:bold">final</span>;
+    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">show</span>() <span style="color:#fb660a;font-weight:bold">final</span>;
 };
 
 <span style="color:#fb660a;font-weight:bold">class</span> Derive: Base {
-    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> show(); <span style="color:#080;background-color:#0f140f;font-style:italic">// compiler error
+    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">show</span>(); <span style="color:#080;background-color:#0f140f;font-style:italic">// compiler error
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>}
 </code></pre></div>
 <p>此外也可使用 <code>override</code> 關鍵字來明確定義該函式為 override function</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#fb660a;font-weight:bold">class</span> Base {
-    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> show();
+    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">show</span>();
 }
 
 <span style="color:#fb660a;font-weight:bold">class</span> Derive: Base {
-    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> show2() <span style="color:#fb660a;font-weight:bold">override</span>; <span style="color:#080;background-color:#0f140f;font-style:italic">// compiler error
+    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">show2</span>() <span style="color:#fb660a;font-weight:bold">override</span>; <span style="color:#080;background-color:#0f140f;font-style:italic">// compiler error
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>    <span style="color:#fb660a;font-weight:bold">virtual</span> <span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">show</span>() <span style="color:#fb660a;font-weight:bold">override</span>; <span style="color:#080;background-color:#0f140f;font-style:italic">// success
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>}
 </code></pre></div>
@@ -338,28 +338,28 @@ cout &lt;&lt; get&lt;<span style="color:#0086f7;font-weight:bold">0</span>&gt;(t
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>ref(pt);
 
 <span style="color:#080;background-color:#0f140f;font-style:italic">// When leaving block
-</span><span style="color:#080;background-color:#0f140f;font-style:italic">// Call pt2 destructor, reference count = 1 (-1)
-</span><span style="color:#080;background-color:#0f140f;font-style:italic">// Call pt destructor, reference count = 0 (-1), delete resource.
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#080;background-color:#0f140f;font-style:italic">// Call pt2 destructor, reference count = 1 (-1)
+</span><span style="color:#080;background-color:#0f140f;font-style:italic"></span><span style="color:#080;background-color:#0f140f;font-style:italic">// Call pt destructor, reference count = 0 (-1), delete resource.
 </span></code></pre></div>
 <p>C++11 新增的 Smart point 主要有  <code>shared_ptr</code>，<code>unique_ptr</code> 與 <code>weak_ptr</code>。本節只介紹 shared_ptr 的行為，<a href="http://en.cppreference.com/w/cpp/memory/unique_ptr">unique_ptr</a> 與 <a href="http://en.cppreference.com/w/cpp/memory/weak_ptr">weak_ptr</a> 可自行參考相關資料</p>
 
 <h3 id="concurrency">Concurrency</h3>
 
 <p>由於 C++03 不支援多執行緒功能，因此若要使用多執行緒執行則需要透過 <a href="http://www.openmp.org/">OpenMP</a> 或系統 API 等外部呼叫多執行緒函式。而從 C++11 之後也正式在標準庫中加入多執行緒支援，讓使用者可更簡單的使用。下圖為簡單的使用方式</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">#include</span> <span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">&lt;thread&gt;</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">#</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">include</span> <span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">&lt;thread&gt;</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">
 </span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic"></span>
 <span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">thread_1</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> x) {
-    cout &lt;&lt; <span style="color:#0086d2">&#34;call thread_1() : &#34;</span> &lt;&lt; x &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">call thread_1() : </span><span style="color:#0086d2">&#34;</span> &lt;&lt; x &lt;&lt; endl;
 }
 <span style="color:#cdcaa9;font-weight:bold">void</span> <span style="color:#ff0086;font-weight:bold">thread_2</span>() {
-    cout &lt;&lt; <span style="color:#0086d2">&#34;Call thread_2()&#34;</span> &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">Call thread_2()</span><span style="color:#0086d2">&#34;</span> &lt;&lt; endl;
 }
 
 <span style="color:#cdcaa9;font-weight:bold">int</span> <span style="color:#ff0086;font-weight:bold">main</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> argc, <span style="color:#cdcaa9;font-weight:bold">char</span> *argv[]) {
     <span style="color:#fb660a;font-weight:bold">thread</span> th1(&amp;thread_1, <span style="color:#0086f7;font-weight:bold">3</span>);   <span style="color:#080;background-color:#0f140f;font-style:italic">// 建立 thread 物件 th1 並開始執行
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>    <span style="color:#fb660a;font-weight:bold">thread</span> th2(&amp;thread_2);  <span style="color:#080;background-color:#0f140f;font-style:italic">// 建立 thread 物件 th1
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>
-    cout &lt;&lt; <span style="color:#0086d2">&#34;main thread&#34;</span> &lt;&lt; endl;
+    cout &lt;&lt; <span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">main thread</span><span style="color:#0086d2">&#34;</span> &lt;&lt; endl;
 
     th1.join(); <span style="color:#080;background-color:#0f140f;font-style:italic">// 一定要加入，宣告 th1() 必須執行完畢後才能往下執行。
 </span><span style="color:#080;background-color:#0f140f;font-style:italic"></span>    th2.join(); <span style="color:#080;background-color:#0f140f;font-style:italic">// 同上
@@ -381,7 +381,7 @@ call thread_1() : Call thread_2()
 <p>C++11 新增的 <code>std::function</code> 類別，可以將 function 當作物件般儲存操作與傳遞。而 <code>std::bind</code> 則是能將不同的 function 綁定依照特定順序綁定，重新建立一個函式物件。上面兩類可透過 <code>#include &lt;functional&gt;</code> 引入程式碼中使用。</p>
 
 <h4 id="stdfunction">std::function</h4>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">#include</span> <span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">&lt;functional&gt;</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">#</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">include</span> <span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">&lt;functional&gt;</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">
 </span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic"></span>
 <span style="color:#cdcaa9;font-weight:bold">int</span> <span style="color:#ff0086;font-weight:bold">sumXY</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> x, <span style="color:#cdcaa9;font-weight:bold">int</span> y) {
     <span style="color:#fb660a;font-weight:bold">return</span> x + y;
@@ -400,7 +400,7 @@ disp(<span style="color:#0086f7;font-weight:bold">42</span>);  <span style="colo
 cout &lt;&lt; sum_2(<span style="color:#0086f7;font-weight:bold">2</span>, <span style="color:#0086f7;font-weight:bold">4</span>) &lt;&lt; endl; <span style="color:#080;background-color:#0f140f;font-style:italic">// output: 7.1
 </span></code></pre></div>
 <h4 id="stdbind">std::bind</h4>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">#include</span> <span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">&lt;fnuctional&gt;</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">#</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">include</span> <span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">&lt;fnuctional&gt;</span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">
 </span><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic"></span>
 <span style="color:#cdcaa9;font-weight:bold">int</span> <span style="color:#ff0086;font-weight:bold">mulXY</span>(<span style="color:#cdcaa9;font-weight:bold">int</span> x, <span style="color:#cdcaa9;font-weight:bold">int</span> y) {
     <span style="color:#fb660a;font-weight:bold">return</span> x * y;
@@ -496,11 +496,11 @@ cout &lt;&lt; mul_b(<span style="color:#0086f7;font-weight:bold">2</span>, <span
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2019/12/fluentd_basic/">Fluentd 基礎使用方式</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2019/04/fft_intro/">從傅立葉級數到快速傅立葉轉換</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2019/04/comic_qed_cmb/">非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/11/git-learning-tips/">Git 學習要點</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/10/dataset-iris/">機器學習資料集 - Iris dataset</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/09/kepler-gl/">Kepler.gl 使用簡介</a></li>
 		</ul>
 	</div>
 </div>
@@ -517,6 +517,7 @@ cout &lt;&lt; mul_b(<span style="color:#0086f7;font-weight:bold">2</span>, <span
 			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/software">Software</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/travel">Travel</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/visualization">Visualization</a></li>
 		</ul>
@@ -534,6 +535,7 @@ cout &lt;&lt; mul_b(<span style="color:#0086f7;font-weight:bold">2</span>, <span
 		<a class="widget-taglist__link widget__link btn" href="/tags/datashader" title="Datashader">Datashader (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/fft" title="Fft">Fft (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fluentd" title="Fluentd">Fluentd (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/git" title="Git">Git (1)</a>
@@ -564,7 +566,7 @@ cout &lt;&lt; mul_b(<span style="color:#0086f7;font-weight:bold">2</span>, <span
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2019 Xeno Universe.
+			&copy; 2019 Xeno Universe - The Dark Forest.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

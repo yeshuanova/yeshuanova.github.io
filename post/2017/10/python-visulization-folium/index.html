@@ -4,15 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Python 地圖視覺化 - 使用 Folium - Xeno Universe</title>
+	<title>Python 地圖視覺化 - 使用 Folium - Xeno Universe - The Dark Forest</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="Python visualization with real Map">
 	<meta property="og:title" content="Python 地圖視覺化 - 使用 Folium" />
 <meta property="og:description" content="Python visualization with real Map" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/2017/10/python-visulization-folium/" />
-<meta property="article:published_time" content="2017-10-08T08:00:00&#43;08:00"/>
-<meta property="article:modified_time" content="2017-10-08T08:00:00&#43;08:00"/>
+<meta property="article:published_time" content="2017-10-08T08:00:00+08:00" />
+<meta property="article:modified_time" content="2017-10-08T08:00:00+08:00" />
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -39,8 +39,8 @@ if (!doNotTrack) {
 		<header class="header">
 	<div class="container">
 		<div class="logo">
-			<a class="logo__link" href="/" title="Xeno Universe" rel="home">
-				<div class="logo__title">Xeno Universe</div>
+			<a class="logo__link" href="/" title="Xeno Universe - The Dark Forest" rel="home">
+				<div class="logo__title">Xeno Universe - The Dark Forest</div>
 				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
 			</a>
 		</div>
@@ -81,116 +81,94 @@ if (!doNotTrack) {
 </div>
 		</header><div class="content post__content clearfix">
 			<p><a href="https://github.com/python-visualization/folium">Folium</a>是一套Python上的地圖視覺化工具。透過<a href="http://leafletjs.com/">Leaflet</a>這個JavaScript Library以及<a href="https://www.openstreetmap.org/">OpenStreetMap</a>地圖服務，可在Jupyter Notebook上實現互動式地圖繪製。本篇將簡單介紹<strong>Folium</strong>的使用方式以及繪製效果。</p>
-
 <blockquote>
 <p><a href="https://www.openstreetmap.org/">OpenStreetMap</a>是由<a href="https://stevecoast.com/">Steve Coast</a>所創立的一個開放地圖協助計畫(類似維基百科)，標榜自由且開源的地圖資訊，使用者均可自由使用與加入新內容，目前全球總共有<a href="http://www.openstreetmap.org/stats/data_stats.html">四百多萬</a>名用戶參與<strong>OpenStreetMap</strong>計畫。</p>
 </blockquote>
-
-<h2 id="安裝folium">安裝Folium</h2>
-
+<h2 id="folium">安裝Folium</h2>
 <p>本篇文章範例均透過Jupyter Notebook實作，因此建議先安裝相關套件並開啟Notebook直接在瀏覽器上操作較為方便。</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;background-color:#0f140f;font-style:italic"># 使用pip3安裝Jupyter</span>
 pip3 install --upgrade pip
-pip3 install jupyter</code></pre></div>
-<p>安裝完成後輸入<code>jupyter notebook</code>在瀏覽器上開啟操作介面。接著安裝<strong>Folium</strong>套件</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip3 install folium <span style="color:#080;background-color:#0f140f;font-style:italic"># 安裝 Folium package</span></code></pre></div>
-<p>更詳細安裝方式可參考官方網站</p>
-
+pip3 install jupyter
+</code></pre></div><p>安裝完成後輸入<code>jupyter notebook</code>在瀏覽器上開啟操作介面。接著安裝<strong>Folium</strong>套件</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip3 install folium <span style="color:#080;background-color:#0f140f;font-style:italic"># 安裝 Folium package</span>
+</code></pre></div><p>更詳細安裝方式可參考官方網站</p>
 <ul>
 <li><a href="http://jupyter.readthedocs.io/en/latest/index.html">Jupyter</a></li>
 <li><a href="https://github.com/python-visualization/folium">Folium</a></li>
 </ul>
-
 <blockquote>
 <p>以下範例基於<strong>Folium 0.5.0</strong>，後續若有更新可能使用法會有不同。</p>
 </blockquote>
-
-<h2 id="顯示地圖">顯示地圖</h2>
-
+<h2 id="heading">顯示地圖</h2>
 <p>在Jupyter Notebook中輸入以下程式碼並執行</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> folium <span style="color:#080;background-color:#0f140f;font-style:italic"># 匯入 folium 套件</span>
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 建立地圖與設定位置</span>
 fmap = folium.Map(location=[<span style="color:#0086f7;font-weight:bold">35.709635</span>, <span style="color:#0086f7;font-weight:bold">139.810851</span>], zoom_start=<span style="color:#0086f7;font-weight:bold">16</span>)
-fmap  <span style="color:#080;background-color:#0f140f;font-style:italic"># 在notebook中顯示地圖</span></code></pre></div>
-<p>即可直接在Jupyter Notebook顯示地圖資訊。其中<code>location=[35.709635, 139.810851]</code>表示中心經緯度位置，<code>zoom_start=16</code>代表畫面細節為<code>16</code>。</p>
-
-<p><img src="/images/2018/python-folium/map-osm.jpg" alt="map-osm" />
+fmap  <span style="color:#080;background-color:#0f140f;font-style:italic"># 在notebook中顯示地圖</span>
+</code></pre></div><p>即可直接在Jupyter Notebook顯示地圖資訊。其中<code>location=[35.709635, 139.810851]</code>表示中心經緯度位置，<code>zoom_start=16</code>代表畫面細節為<code>16</code>。</p>
+<p><img src="/images/2018/python-folium/map-osm.jpg" alt="map-osm">
 <em>Folium顯示的地圖範例</em></p>
-
 <p><strong>Folium</strong>預設使用OpenStreetMap，此外也可以使用如<a href="http://maps.stamen.com/">Stamen</a>或<a href="https://www.mapbox.com/">Mapbox</a>等地圖服務(Mapbox須申請並匯入API key)。</p>
-
-<p><img src="/images/2018/python-folium/map-stamen-toner.jpg" alt="map-stamen-toner" />
+<p><img src="/images/2018/python-folium/map-stamen-toner.jpg" alt="map-stamen-toner">
 <em>使用 Stamen Toner 圖層</em></p>
-
-<p><img src="/images/2018/python-folium/map-stamen-terrain.jpg" alt="map-stamen-terrain" />
+<p><img src="/images/2018/python-folium/map-stamen-terrain.jpg" alt="map-stamen-terrain">
 <em>使用 Stamen Terrain 圖層</em></p>
-
-<h2 id="匯出html檔案">匯出HTML檔案</h2>
-
+<h2 id="html">匯出HTML檔案</h2>
 <p><strong>Folium</strong>也可將繪製好的地圖匯出成HTML檔案，並直接使用瀏覽器開啟觀看結果。</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fmap.save(<span style="color:#0086d2">&#39;map.html&#39;</span>)</code></pre></div>
-<p>執行後會在Python檔案所在資料夾建立一個名為<code>map.html</code>的檔案，可直接用瀏覽器開啟觀看結果。</p>
-
-<h2 id="加入marker標記">加入Marker標記</h2>
-
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fmap.save(<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">map.html</span><span style="color:#0086d2">&#39;</span>)
+</code></pre></div><p>執行後會在Python檔案所在資料夾建立一個名為<code>map.html</code>的檔案，可直接用瀏覽器開啟觀看結果。</p>
+<h2 id="marker">加入Marker標記</h2>
 <p>將Marker套用在地圖上，並點擊後顯示<code>popup</code>參數所設定的文字。</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fmap = folium.Map(location=[<span style="color:#0086f7;font-weight:bold">35.709635</span>, <span style="color:#0086f7;font-weight:bold">139.810851</span>], zoom_start=<span style="color:#0086f7;font-weight:bold">17</span>)
 
 fmap.add_child(folium.Marker(location=[<span style="color:#0086f7;font-weight:bold">35.709635</span>, <span style="color:#0086f7;font-weight:bold">139.810851</span>],
-                             popup=<span style="color:#0086d2">&#39;Skytree&#39;</span>))</code></pre></div>
-<p><img src="/images/2018/python-folium/map-marker.jpg" alt="map-marker" /></p>
-
+                             popup=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">Skytree</span><span style="color:#0086d2">&#39;</span>))
+</code></pre></div><p><img src="/images/2018/python-folium/map-marker.jpg" alt="map-marker"></p>
 <p>此外也可設定各個Marker的顏色，屬性與Icon類型</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fmap = folium.Map(location=[<span style="color:#0086f7;font-weight:bold">35.712326</span>, <span style="color:#0086f7;font-weight:bold">139.804037</span>],
                   zoom_start=<span style="color:#0086f7;font-weight:bold">15</span>)
 
 m1 = folium.Marker(location=[<span style="color:#0086f7;font-weight:bold">35.709635</span>, <span style="color:#0086f7;font-weight:bold">139.810851</span>],
-                   popup=<span style="color:#0086d2">&#39;&lt;b&gt;Skytree&lt;/b&gt;&#39;</span>)
+                   popup=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">&lt;b&gt;Skytree&lt;/b&gt;</span><span style="color:#0086d2">&#39;</span>)
 
 m2 = folium.Marker(location=[<span style="color:#0086f7;font-weight:bold">35.707595</span>, <span style="color:#0086f7;font-weight:bold">139.795530</span>],
-                   popup=<span style="color:#0086d2">&#39;&lt;i&gt;Hotel&lt;/i&gt;&#39;</span>,
-                   icon=folium.Icon(icon=<span style="color:#0086d2">&#39;bed&#39;</span>, <span style="color:#080;background-color:#0f140f;font-style:italic"># Icon類型</span>
-                                    color=<span style="color:#0086d2">&#39;green&#39;</span>, <span style="color:#080;background-color:#0f140f;font-style:italic"># Marker顏色</span>
-                                    prefix=<span style="color:#0086d2">&#39;fa&#39;</span>)) <span style="color:#080;background-color:#0f140f;font-style:italic"># 使用Font Awesome Icons</span>
+                   popup=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">&lt;i&gt;Hotel&lt;/i&gt;</span><span style="color:#0086d2">&#39;</span>,
+                   icon=folium.Icon(icon=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">bed</span><span style="color:#0086d2">&#39;</span>, <span style="color:#080;background-color:#0f140f;font-style:italic"># Icon類型</span>
+                                    color=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">green</span><span style="color:#0086d2">&#39;</span>, <span style="color:#080;background-color:#0f140f;font-style:italic"># Marker顏色</span>
+                                    prefix=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">fa</span><span style="color:#0086d2">&#39;</span>)) <span style="color:#080;background-color:#0f140f;font-style:italic"># 使用Font Awesome Icons</span>
 
 m3 = folium.Marker(location=[<span style="color:#0086f7;font-weight:bold">35.715092</span>, <span style="color:#0086f7;font-weight:bold">139.796666</span>],
-                   popup=<span style="color:#0086d2">&#39;Asakusa Temple&#39;</span>,
-                   icon=folium.Icon(icon=<span style="color:#0086d2">&#39;info-sign&#39;</span>,
-                                    color=<span style="color:#0086d2">&#39;red&#39;</span>))
+                   popup=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">Asakusa Temple</span><span style="color:#0086d2">&#39;</span>,
+                   icon=folium.Icon(icon=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">info-sign</span><span style="color:#0086d2">&#39;</span>,
+                                    color=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">red</span><span style="color:#0086d2">&#39;</span>))
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 將各Marker加入地圖。</span>
 fmap.add_child(child=m1)
 fmap.add_child(child=m2)
-fmap.add_child(child=m3)</code></pre></div>
-<p><img src="/images/2018/python-folium/map-markers.jpg" alt="map-markers" /></p>
-
-<h2 id="circle-圖示">Circle 圖示</h2>
-
+fmap.add_child(child=m3)
+</code></pre></div><p><img src="/images/2018/python-folium/map-markers.jpg" alt="map-markers"></p>
+<h2 id="circle-">Circle 圖示</h2>
 <p>若要加入圓形標記，可使用<code>folium.Circle</code>物件</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">center_pos = [<span style="color:#0086f7;font-weight:bold">35.709635</span>, <span style="color:#0086f7;font-weight:bold">139.810851</span>]
 fmap = folium.Map(location=center_pos, zoom_start=<span style="color:#0086f7;font-weight:bold">17</span>)
 fmap.add_child(folium.Circle(location=center_pos,
-                             color=<span style="color:#0086d2">&#39;green&#39;</span>, <span style="color:#080;background-color:#0f140f;font-style:italic"># Circle 顏色</span>
+                             color=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">green</span><span style="color:#0086d2">&#39;</span>, <span style="color:#080;background-color:#0f140f;font-style:italic"># Circle 顏色</span>
                              radius=<span style="color:#0086f7;font-weight:bold">30</span>, <span style="color:#080;background-color:#0f140f;font-style:italic"># Circle 寬度</span>
-                             popup=<span style="color:#0086d2">&#39;Skytree&#39;</span>, <span style="color:#080;background-color:#0f140f;font-style:italic"># 彈出視窗內容</span>
+                             popup=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">Skytree</span><span style="color:#0086d2">&#39;</span>, <span style="color:#080;background-color:#0f140f;font-style:italic"># 彈出視窗內容</span>
                              fill=True, <span style="color:#080;background-color:#0f140f;font-style:italic"># 填滿中間區域</span>
                              fill_opacity=<span style="color:#0086f7;font-weight:bold">0.5</span> <span style="color:#080;background-color:#0f140f;font-style:italic"># 設定透明度</span>
-                             ))</code></pre></div>
-<p><img src="/images/2018/python-folium/map-circle.jpg" alt="map-markers" /></p>
-
-<h2 id="繪製線條">繪製線條</h2>
-
+                             ))
+</code></pre></div><p><img src="/images/2018/python-folium/map-circle.jpg" alt="map-markers"></p>
+<h2 id="heading-1">繪製線條</h2>
 <p>要使用<strong>Folium</strong>繪製地圖線條，可使用提供<code>PolyLine</code>這個函數，並可設定線條顏色，寬度，透明度等屬性。</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">points = [[<span style="color:#0086f7;font-weight:bold">35.709635</span>, <span style="color:#0086f7;font-weight:bold">139.810851</span>],
           [<span style="color:#0086f7;font-weight:bold">35.707595</span>, <span style="color:#0086f7;font-weight:bold">139.795530</span>],
           [<span style="color:#0086f7;font-weight:bold">35.715092</span>, <span style="color:#0086f7;font-weight:bold">139.796666</span>]]
 
 fmap.add_child(folium.PolyLine(locations=points, <span style="color:#080;background-color:#0f140f;font-style:italic"># 座標List</span>
-                               weight=<span style="color:#0086f7;font-weight:bold">8</span>)) <span style="color:#080;background-color:#0f140f;font-style:italic"># 線條寬度</span></code></pre></div>
-<p><img src="/images/2018/python-folium/map-poly-line.jpg" alt="map-poly-lines" /></p>
-
-<h2 id="heatmap-熱度圖">HeatMap(熱度圖)</h2>
-
+                               weight=<span style="color:#0086f7;font-weight:bold">8</span>)) <span style="color:#080;background-color:#0f140f;font-style:italic"># 線條寬度</span>
+</code></pre></div><p><img src="/images/2018/python-folium/map-poly-line.jpg" alt="map-poly-lines"></p>
+<h2 id="heatmap">HeatMap(熱度圖)</h2>
 <p>若要在<strong>Folium</strong>繪製熱度圖，可使用<code>folium.plugins</code>中的<code>HeatMap</code>物件</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> numpy <span style="color:#fb660a;font-weight:bold">as</span> np
 <span style="color:#fb660a;font-weight:bold">from</span> folium.plugins <span style="color:#fb660a;font-weight:bold">import</span> HeatMap
@@ -202,9 +180,8 @@ data = (np.random.normal(size=(<span style="color:#0086f7;font-weight:bold">100<
         np.array([[<span style="color:#0086f7;font-weight:bold">1</span>, <span style="color:#0086f7;font-weight:bold">1</span>, <span style="color:#0086f7;font-weight:bold">1</span>]]) +
         np.array([[<span style="color:#0086f7;font-weight:bold">35.712326</span>, <span style="color:#0086f7;font-weight:bold">139.804037</span>, <span style="color:#0086f7;font-weight:bold">1</span>]])).tolist()
 
-fmap.add_child(HeatMap(data=data))</code></pre></div>
-<p><img src="/images/2018/python-folium/map-heatmap.jpg" alt="map-heatmap" /></p>
-
+fmap.add_child(HeatMap(data=data))
+</code></pre></div><p><img src="/images/2018/python-folium/map-heatmap.jpg" alt="map-heatmap"></p>
 <p>除了單張熱度圖外，也可以使用<code>HeatMapWithTime</code>元件來顯示連續的時間軸。</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> numpy <span style="color:#fb660a;font-weight:bold">as</span> np
 <span style="color:#fb660a;font-weight:bold">from</span> folium.plugins <span style="color:#fb660a;font-weight:bold">import</span> HeatMapWithTime
@@ -222,19 +199,14 @@ data = [initial_data.tolist()]
     data.append((data[i] + np.random.normal(size=(<span style="color:#0086f7;font-weight:bold">200</span>, <span style="color:#0086f7;font-weight:bold">2</span>)) * <span style="color:#0086f7;font-weight:bold">0.001</span>).tolist())
 
 fmap = folium.Map(center_pos, zoom_start=<span style="color:#0086f7;font-weight:bold">11</span>)
-fmap.add_child(HeatMapWithTime(data)) <span style="color:#080;background-color:#0f140f;font-style:italic"># 顯示連續熱度圖</span></code></pre></div>
-<p><img src="/images/2018/python-folium/map-heatmap-time-1.jpg" alt="map-heatmap-time-1" />
+fmap.add_child(HeatMapWithTime(data)) <span style="color:#080;background-color:#0f140f;font-style:italic"># 顯示連續熱度圖</span>
+</code></pre></div><p><img src="/images/2018/python-folium/map-heatmap-time-1.jpg" alt="map-heatmap-time-1">
 <em>第 1 筆資料的熱度圖</em></p>
-
-<p><img src="/images/2018/python-folium/map-heatmap-time-11.jpg" alt="map-heatmap-time-11" />
+<p><img src="/images/2018/python-folium/map-heatmap-time-11.jpg" alt="map-heatmap-time-11">
 <em>第 11 筆資料的熱度圖</em></p>
-
 <p>可使用內部元件控制要顯示的資料筆數，以及執行連續往前或往後播放資料等功能。</p>
-
-<h2 id="geojson-與-topojson-匯入">GeoJson 與 TopoJson 匯入</h2>
-
+<h2 id="geojson--topojson-">GeoJson 與 TopoJson 匯入</h2>
 <p>Folium也提供<a href="http://geojson.org/">GeoJson</a>以及<a href="https://github.com/johan/world.geo.json">TopJson</a>檔案的匯入並繪圖的功能。下面展示使用GeoJson繪製澳洲地圖的範例，相關檔案可由<a href="https://github.com/johan/world.geo.json">Github</a>下載GeoJson檔案，並放入與Python檔案相同的資料夾中。</p>
-
 <blockquote>
 <p><a href="https://en.wikipedia.org/wiki/GeoJSON">GeoJson</a>是一種開放地圖繪製標準，可透過Json格式的文件在地圖上繪製所想要的點，線，面積等效果。<a href="https://github.com/topojson/topojson">TopoJson</a>則是GeoJson的擴展，可繪製更複雜的地圖效果。</p>
 </blockquote>
@@ -242,12 +214,10 @@ fmap.add_child(HeatMapWithTime(data)) <span style="color:#080;background-color:#
     location=[-<span style="color:#0086f7;font-weight:bold">24.908886</span>, <span style="color:#0086f7;font-weight:bold">132.388750</span>],
     zoom_start=<span style="color:#0086f7;font-weight:bold">4</span>)
 
-fmap.add_child(folium.GeoJson(<span style="color:#0086d2">&#39;AUS.geo.json&#39;</span>, name=<span style="color:#0086d2">&#39;geojson&#39;</span>)) <span style="color:#080;background-color:#0f140f;font-style:italic"># 使用&#34;AUS.geo.json&#34;檔案來繪製地圖</span></code></pre></div>
-<p><img src="/images/2018/python-folium/map-geojson.jpg" alt="map-geojson" />
+fmap.add_child(folium.GeoJson(<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">AUS.geo.json</span><span style="color:#0086d2">&#39;</span>, name=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">geojson</span><span style="color:#0086d2">&#39;</span>)) <span style="color:#080;background-color:#0f140f;font-style:italic"># 使用&#34;AUS.geo.json&#34;檔案來繪製地圖</span>
+</code></pre></div><p><img src="/images/2018/python-folium/map-geojson.jpg" alt="map-geojson">
 <em>Australia 地圖輪廓</em></p>
-
 <h2 id="reference">Reference</h2>
-
 <ul>
 <li><a href="https://www.openstreetmap.org/">OpenStreetMap</a></li>
 <li><a href="http://openstreetmap.tw/">OpenStreetMap TW</a></li>
@@ -331,11 +301,11 @@ fmap.add_child(folium.GeoJson(<span style="color:#0086d2">&#39;AUS.geo.json&#39;
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2019/12/fluentd_basic/">Fluentd 基礎使用方式</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2019/04/fft_intro/">從傅立葉級數到快速傅立葉轉換</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2019/04/comic_qed_cmb/">非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/11/git-learning-tips/">Git 學習要點</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/10/dataset-iris/">機器學習資料集 - Iris dataset</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/09/kepler-gl/">Kepler.gl 使用簡介</a></li>
 		</ul>
 	</div>
 </div>
@@ -352,6 +322,7 @@ fmap.add_child(folium.GeoJson(<span style="color:#0086d2">&#39;AUS.geo.json&#39;
 			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/software">Software</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/travel">Travel</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/visualization">Visualization</a></li>
 		</ul>
@@ -369,6 +340,7 @@ fmap.add_child(folium.GeoJson(<span style="color:#0086d2">&#39;AUS.geo.json&#39;
 		<a class="widget-taglist__link widget__link btn" href="/tags/datashader" title="Datashader">Datashader (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/fft" title="Fft">Fft (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fluentd" title="Fluentd">Fluentd (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/git" title="Git">Git (1)</a>
@@ -399,7 +371,7 @@ fmap.add_child(folium.GeoJson(<span style="color:#0086d2">&#39;AUS.geo.json&#39;
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2019 Xeno Universe.
+			&copy; 2019 Xeno Universe - The Dark Forest.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

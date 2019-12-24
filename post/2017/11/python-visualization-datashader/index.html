@@ -4,15 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Python 資料視覺化 - 使用 datashader - Xeno Universe</title>
+	<title>Python 資料視覺化 - 使用 datashader - Xeno Universe - The Dark Forest</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="Python visualization with datashader">
 	<meta property="og:title" content="Python 資料視覺化 - 使用 datashader" />
 <meta property="og:description" content="Python visualization with datashader" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/2017/11/python-visualization-datashader/" />
-<meta property="article:published_time" content="2017-11-20T14:00:00&#43;08:00"/>
-<meta property="article:modified_time" content="2017-11-20T14:00:00&#43;08:00"/>
+<meta property="article:published_time" content="2017-11-20T14:00:00+08:00" />
+<meta property="article:modified_time" content="2017-11-20T14:00:00+08:00" />
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -39,8 +39,8 @@ if (!doNotTrack) {
 		<header class="header">
 	<div class="container">
 		<div class="logo">
-			<a class="logo__link" href="/" title="Xeno Universe" rel="home">
-				<div class="logo__title">Xeno Universe</div>
+			<a class="logo__link" href="/" title="Xeno Universe - The Dark Forest" rel="home">
+				<div class="logo__title">Xeno Universe - The Dark Forest</div>
 				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
 			</a>
 		</div>
@@ -81,67 +81,48 @@ if (!doNotTrack) {
 </div>
 		</header><div class="content post__content clearfix">
 			<p>在做資料視覺化時，經常會遇到因資料量過大而無法簡單進行處理，或是執行速度過慢的問題。本文章將介紹一套<strong>Python</strong>上的資料視覺化工具<strong>datashader</strong>，能將數億個點的大資料快速生成視覺化圖形，並以<strong>New York Taxi Trip</strong>資料集為範例說明如何使用<strong>datashader</strong>繪製乘車位置分佈圖。</p>
-
 <h2 id="datashader">datashader</h2>
-
 <p><a href="https://github.com/bokeh/datashader">datashader</a>是Python上一套基於<a href="https://bokeh.pydata.org/en/latest/">Bokeh</a>的圖形繪製Pipeline，並使用了<a href="https://numba.pydata.org/">numba</a>套件以加速繪製效率，因此可以快速將大量資料轉換成視覺化圖形。</p>
-
 <p><strong>datashader</strong> 繪製圖片的過程主要可分為三個步驟:</p>
-
 <ul>
 <li><strong>Projection</strong> - 選擇所要處理的資料，並設定繪製的圖片大小與資料範圍等。</li>
 <li><strong>Aggregation</strong> - 統計原始資料並計算所對應的Grid性質。</li>
 <li><strong>Transformation</strong> - 將統計完成後的資料以圖片方式呈現出來。</li>
 </ul>
-
 <p>下圖為<strong>datashader</strong>的<a href="https://anaconda.org/jbednar/pipeline/notebook">Pipeline</a>）</p>
-
-<p><img src="/images/2018/python-datashader/ds-pipeline.png" alt="pipeline" /></p>
-
-<h3 id="安裝-datashader">安裝 datashader</h3>
-
+<p><img src="/images/2018/python-datashader/ds-pipeline.png" alt="pipeline"></p>
+<h3 id="-datashader">安裝 datashader</h3>
 <p>如果有安裝<a href="https://anaconda.org/">Anaconda</a>或<a href="https://conda.io/miniconda.html">Miniconda</a>，可直接透過<code>conda</code>來安裝<code>datashader</code>套件</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda install -c bokeh datashader</code></pre></div>
-<p>或是直接從<strong>GitHub</strong>上安裝最新版本的<code>datashader</code>套件</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda install -c bokeh datashader
+</code></pre></div><p>或是直接從<strong>GitHub</strong>上安裝最新版本的<code>datashader</code>套件</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda remove --force datashader
 git clone https://github.com/bokeh/datashader.git
 cd datashader
-pip install -e .</code></pre></div>
-<h2 id="dask">dask</h2>
-
+pip install -e .
+</code></pre></div><h2 id="dask">dask</h2>
 <p>一般在<strong>Python</strong>上處理資料時會使用<a href="http://pandas.pydata.org/">Pandas</a>這個套件來讀取資料並進行處理。但<strong>Pandas</strong>在使用時會先將資料完整讀取到記憶體內，當資料量非常巨大時常常會遇到<strong>out-of-memory</strong>問題。此外<strong>Pandas</strong>也因只能使用到單核心無法並行處理進而影響到效能。</p>
-
 <p>因此若有上敘資源問題時，可以使用<a href="https://github.com/dask/dask">dask</a>取代<strong>Pandas</strong>進行資料處理。<strong>Dask</strong>支援資料平行處理，將資料分成小部分執行，可避免出現記憶體不足的問題。此外因<strong>dask</strong>使用<strong>Pandas</strong>相似的使用者介面，熟悉<strong>Pandas</strong>的人很能很輕易熟悉<strong>dask</strong>的使用方式。</p>
-
-<h3 id="安裝-dask">安裝 dask</h3>
-
+<h3 id="-dask">安裝 dask</h3>
 <p>與<strong>datashader</strong>相同，<strong>dask</strong>也可透過<code>conda</code>安裝</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda install dask</code></pre></div>
-<p>或是由<code>GitHub</code>上下載安裝最新版本手動安裝</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda install dask
+</code></pre></div><p>或是由<code>GitHub</code>上下載安裝最新版本手動安裝</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/dask/dask.git
 cd dask
-python setup.py install</code></pre></div>
-<h2 id="範例">範例</h2>
-
+python setup.py install
+</code></pre></div><h2 id="heading">範例</h2>
 <h3 id="dataset">Dataset</h3>
-
 <p>以下將使用Kaggle上的 <a href="https://www.kaggle.com/kentonnlp/2014-new-york-city-taxi-trips">2014 NYC Taxi Trip Dataset</a>來當作展示展示範例。該資料集為2014年紐約的計程車乘車資訊，包含上下車時間與<strong>GPS</strong>座標等，在本範例中只使用乘客上車時的資料來展示。</p>
-
 <blockquote>
 <p>若要從直接從 Linux terminal 上下載 Kaggle 上的檔案需附帶瀏覽器的Cookie資訊，方法可參照<a href="https://npatta01.github.io/2015/07/29/kaggle_getting_data">相關連結</a></p>
 </blockquote>
-
 <h3 id="preprocessing">Preprocessing</h3>
-
 <p>由於GPS座標為對應球面的座標系統，若要繪製二維平面時需將<strong>GPS</strong>轉換為<strong>2D</strong>平面座標。因此須先做資料前處理使資料能正確呈現。可以使用<code>datashader.utils.lnglat_to_meters()</code>函數將<strong>GPS</strong>座標轉換為<a href="https://en.wikipedia.org/wiki/Web_Mercator">Web Mercator</a>格式。如下列範例</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> datashader
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># New York GPS coordinator</span>
-x, y = datashader.utils.lnglat_to_meters(longitude=-<span style="color:#0086f7;font-weight:bold">74.0059</span>, latitude=<span style="color:#0086f7;font-weight:bold">40.7127</span>)</code></pre></div>
-<p>執行後可得到 <code>x = -8238299.103697925</code> 與 <code>y = 4970056.8929846436</code> 的結果。分別代表由<strong>Greenwich</strong>往東以及由<strong>Equator(赤道)</strong>往北的距離(公尺)。以此方式將計程車資料集中的 <code>pickup_longitude</code> 與 <code>pickup_latitude</code> 欄位轉換為 <code>pickup_x</code> 與 <code>pickup_y</code> 欄位，並與 <code>pickup_datetime</code> 欄位一起另存為 <code>nyc_taxi_data_2014_pickup.csv</code> 檔案，以方便的之後的資料繪製。</p>
-
+x, y = datashader.utils.lnglat_to_meters(longitude=-<span style="color:#0086f7;font-weight:bold">74.0059</span>, latitude=<span style="color:#0086f7;font-weight:bold">40.7127</span>)
+</code></pre></div><p>執行後可得到 <code>x = -8238299.103697925</code> 與 <code>y = 4970056.8929846436</code> 的結果。分別代表由<strong>Greenwich</strong>往東以及由**Equator(赤道)**往北的距離(公尺)。以此方式將計程車資料集中的 <code>pickup_longitude</code> 與 <code>pickup_latitude</code> 欄位轉換為 <code>pickup_x</code> 與 <code>pickup_y</code> 欄位，並與 <code>pickup_datetime</code> 欄位一起另存為 <code>nyc_taxi_data_2014_pickup.csv</code> 檔案，以方便的之後的資料繪製。</p>
 <h3 id="code">Code</h3>
-
 <p>這裡我們透過 Pandas 套件讀取 CSV 檔為 Dataframe</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;background-color:#0f140f;font-style:italic"># 匯入所需 Packages</span>
 <span style="color:#fb660a;font-weight:bold">import</span> dask.dataframe <span style="color:#fb660a;font-weight:bold">as</span> dd
@@ -153,12 +134,11 @@ x, y = datashader.utils.lnglat_to_meters(longitude=-<span style="color:#0086f7;f
 <span style="color:#fb660a;font-weight:bold">from</span> matplotlib.cm <span style="color:#fb660a;font-weight:bold">import</span> hot
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 設定 NY taxi dataset 路徑</span>
-dataset = <span style="color:#0086d2">&#39;{DATASET_FOLDER_PATH}/nyc_taxi_data_2014_pickup.csv&#39;</span>
+dataset = <span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">{DATASET_FOLDER_PATH}/nyc_taxi_data_2014_pickup.csv</span><span style="color:#0086d2">&#39;</span>
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 設定讀取的檔案</span>
-df = dd.io.csv.read_csv(dataset)</code></pre></div>
-<p>使用<code>df.head(n=3)</code>可得到下列<code>dataframe</code>資料欄位</p>
-
+df = dd.io.csv.read_csv(dataset)
+</code></pre></div><p>使用<code>df.head(n=3)</code>可得到下列<code>dataframe</code>資料欄位</p>
 <table>
 <thead>
 <tr>
@@ -168,7 +148,6 @@ df = dd.io.csv.read_csv(dataset)</code></pre></div>
 <th align="center">pickup_y</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>0</td>
@@ -176,14 +155,12 @@ df = dd.io.csv.read_csv(dataset)</code></pre></div>
 <td align="center">-8237059.5</td>
 <td align="center">4973602.5</td>
 </tr>
-
 <tr>
 <td>1</td>
 <td align="center">2014-01-09 20:46:12</td>
 <td align="center">-8235682.0</td>
 <td align="center">4978972.5</td>
 </tr>
-
 <tr>
 <td>2</td>
 <td align="center">2014-01-09 20:44:47</td>
@@ -212,21 +189,18 @@ canvas = ds.Canvas(plot_width=width, plot_height=height, x_range=x_bound, y_rang
 
 <span style="color:#080;background-color:#0f140f;font-style:italic">## 使用 dataframe 資料建立 Aggregation 物件，並使用 ProgressBar 顯示處理進度。</span>
 <span style="color:#fb660a;font-weight:bold">with</span> diag.ProgressBar():
-    agg = canvas.points(df, <span style="color:#0086d2">&#39;pickup_x&#39;</span>, <span style="color:#0086d2">&#39;pickup_y&#39;</span>)
+    agg = canvas.points(df, <span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">pickup_x</span><span style="color:#0086d2">&#39;</span>, <span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">pickup_y</span><span style="color:#0086d2">&#39;</span>)
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 建立影像物件並設定背景為黑色</span>
 img = ds_tf.shade(agg, cmap=hot)
-img = ds_tf.set_background(img, color=<span style="color:#0086d2">&#39;black&#39;</span>)
+img = ds_tf.set_background(img, color=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">black</span><span style="color:#0086d2">&#39;</span>)
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 儲存為 png file</span>
-export_image(img=img, filename=<span style="color:#0086d2">&#39;nyc_taxi_2014_pickup&#39;</span>, fmt=<span style="color:#0086d2">&#39;.png&#39;</span>)</code></pre></div>
-<p>開啟儲存的<strong>nyc_taxi_2014_pickup.png</strong>圖片檔可得到以下結果</p>
-
-<p><img src="/images/2018/python-datashader/nyc_taxi_2014_pickup.png" alt="pickup" />
+export_image(img=img, filename=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">nyc_taxi_2014_pickup</span><span style="color:#0086d2">&#39;</span>, fmt=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">.png</span><span style="color:#0086d2">&#39;</span>)
+</code></pre></div><p>開啟儲存的<strong>nyc_taxi_2014_pickup.png</strong>圖片檔可得到以下結果</p>
+<p><img src="/images/2018/python-datashader/nyc_taxi_2014_pickup.png" alt="pickup">
 <em>New York City 2014年乘車地點分佈圖</em></p>
-
 <h2 id="reference">Reference</h2>
-
 <ul>
 <li><a href="http://dask.pydata.org/en/latest/">dask</a></li>
 <li><a href="https://bokeh.pydata.org/en/latest/">bokeh</a></li>
@@ -310,11 +284,11 @@ export_image(img=img, filename=<span style="color:#0086d2">&#39;nyc_taxi_2014_pi
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2019/12/fluentd_basic/">Fluentd 基礎使用方式</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2019/04/fft_intro/">從傅立葉級數到快速傅立葉轉換</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2019/04/comic_qed_cmb/">非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/11/git-learning-tips/">Git 學習要點</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/10/dataset-iris/">機器學習資料集 - Iris dataset</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/09/kepler-gl/">Kepler.gl 使用簡介</a></li>
 		</ul>
 	</div>
 </div>
@@ -331,6 +305,7 @@ export_image(img=img, filename=<span style="color:#0086d2">&#39;nyc_taxi_2014_pi
 			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/software">Software</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/travel">Travel</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/visualization">Visualization</a></li>
 		</ul>
@@ -348,6 +323,7 @@ export_image(img=img, filename=<span style="color:#0086d2">&#39;nyc_taxi_2014_pi
 		<a class="widget-taglist__link widget__link btn" href="/tags/datashader" title="Datashader">Datashader (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/fft" title="Fft">Fft (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fluentd" title="Fluentd">Fluentd (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/git" title="Git">Git (1)</a>
@@ -378,7 +354,7 @@ export_image(img=img, filename=<span style="color:#0086d2">&#39;nyc_taxi_2014_pi
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2019 Xeno Universe.
+			&copy; 2019 Xeno Universe - The Dark Forest.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

@@ -4,15 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 - Xeno Universe</title>
+	<title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 - Xeno Universe - The Dark Forest</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="Implement OSM map tiles using datashader and mercantile">
 	<meta property="og:title" content="使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統" />
 <meta property="og:description" content="Implement OSM map tiles using datashader and mercantile" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/2018/04/implement-osm-map-tiles/" />
-<meta property="article:published_time" content="2018-04-24T18:00:00&#43;08:00"/>
-<meta property="article:modified_time" content="2018-04-24T18:00:00&#43;08:00"/>
+<meta property="article:published_time" content="2018-04-24T18:00:00+08:00" />
+<meta property="article:modified_time" content="2018-04-24T18:00:00+08:00" />
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -39,8 +39,8 @@ if (!doNotTrack) {
 		<header class="header">
 	<div class="container">
 		<div class="logo">
-			<a class="logo__link" href="/" title="Xeno Universe" rel="home">
-				<div class="logo__title">Xeno Universe</div>
+			<a class="logo__link" href="/" title="Xeno Universe - The Dark Forest" rel="home">
+				<div class="logo__title">Xeno Universe - The Dark Forest</div>
 				<div class="logo__tagline">A fearless adventure in knowing what to do when no one’s there telling you what to do</div>
 			</a>
 		</div>
@@ -221,7 +221,7 @@ bound_xy = mercantile.xy_bounds(Tile(x=<span style="color:#0086f7;font-weight:bo
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv</code></pre></div>
 <p>也可直接在 Python 中使用 <code>os</code> package來下達 <code>wget</code> 指令</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> os
-os.system(<span style="color:#0086d2">&#34;wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv&#34;</span>)</code></pre></div>
+os.system(<span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv</span><span style="color:#0086d2">&#34;</span>)</code></pre></div>
 <blockquote>
 <p>其他在 Python 中下載檔案的方式可參考這篇文章 - <a href="http://stackabuse.com/download-files-with-python/">Download Files with Python</a></p>
 </blockquote>
@@ -233,10 +233,10 @@ os.system(<span style="color:#0086d2">&#34;wget https://s3.amazonaws.com/nyc-tlc
 <span style="color:#fb660a;font-weight:bold">import</span> numpy <span style="color:#fb660a;font-weight:bold">as</span> np
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 讀取 pickup_longitude 與 pickup_latitude 兩欄位</span>
-df = pd.read_csv(<span style="color:#0086d2">&#34;yellow_tripdata_2016-05.csv&#34;</span>,
-                 usecols=[<span style="color:#0086d2">&#39;pickup_longitude&#39;</span>, <span style="color:#0086d2">&#34;pickup_latitude&#34;</span>],
-                 dtype={<span style="color:#0086d2">&#39;pickup_longitude&#39;</span>:np.float32,
-                        <span style="color:#0086d2">&#34;pickup_latitude&#34;</span>:np.float32})</code></pre></div>
+df = pd.read_csv(<span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">yellow_tripdata_2016-05.csv</span><span style="color:#0086d2">&#34;</span>,
+                 usecols=[<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">pickup_longitude</span><span style="color:#0086d2">&#39;</span>, <span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">pickup_latitude</span><span style="color:#0086d2">&#34;</span>],
+                 dtype={<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">pickup_longitude</span><span style="color:#0086d2">&#39;</span>:np.float32,
+                        <span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">pickup_latitude</span><span style="color:#0086d2">&#34;</span>:np.float32})</code></pre></div>
 <h3 id="轉換-gps-座標至-web-mercator-coordinate">轉換 GPS 座標至 Web Mercator coordinate</h3>
 
 <p>因原始資料的座標使用的 GPS 為球面座標，因此須先轉換為 Web mercator coordinate 才能使用在 map tiles 的座標系統中。我們使用 <a href="https://pypi.org/project/pyproj/">pyproj</a> 套件來轉換座標，將 <strong>pickup_longitude</strong> 與 <strong>pickup_latitude</strong> 的數值分別轉換到 <strong>pickup_x</strong> 與 <strong>pickup_y</strong> 欄位中。</p>
@@ -244,8 +244,8 @@ df = pd.read_csv(<span style="color:#0086d2">&#34;yellow_tripdata_2016-05.csv&#3
 <span style="color:#fb660a;font-weight:bold">from</span> pyproj <span style="color:#fb660a;font-weight:bold">import</span> transform, Proj
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># Set project function</span>
-source = Proj(init=<span style="color:#0086d2">&#34;epsg:4326&#34;</span>) <span style="color:#080;background-color:#0f140f;font-style:italic"># WGS84</span>
-target = Proj(init=<span style="color:#0086d2">&#34;epsg:3857&#34;</span>) <span style="color:#080;background-color:#0f140f;font-style:italic"># Web mercator </span>
+source = Proj(init=<span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">epsg:4326</span><span style="color:#0086d2">&#34;</span>) <span style="color:#080;background-color:#0f140f;font-style:italic"># WGS84</span>
+target = Proj(init=<span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">epsg:3857</span><span style="color:#0086d2">&#34;</span>) <span style="color:#080;background-color:#0f140f;font-style:italic"># Web mercator </span>
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 轉換 Longitude 到 Web Mercator - X coordinate</span>
 <span style="color:#fb660a;font-weight:bold">def</span> <span style="color:#ff0086;font-weight:bold">lngToX</span>(lng):
@@ -255,8 +255,8 @@ target = Proj(init=<span style="color:#0086d2">&#34;epsg:3857&#34;</span>) <span
 <span style="color:#fb660a;font-weight:bold">def</span> <span style="color:#ff0086;font-weight:bold">latToY</span>(lat):
     <span style="color:#fb660a;font-weight:bold">return</span> transform(source, target, <span style="color:#0086f7;font-weight:bold">0</span>, lat)[<span style="color:#0086f7;font-weight:bold">1</span>]</code></pre></div>
 <p>之後將 dataframe 中的 Longitude 與 Latitude 轉換到 Web Mercator 中的 X, Y 座標中</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df[<span style="color:#0086d2">&#39;pickup_x&#39;</span>] = df.pickup_longitude.apply(lngToX)
-df[<span style="color:#0086d2">&#39;pickup_y&#39;</span>] = df.pickup_latitude.apply(latToY)</code></pre></div>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df[<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">pickup_x</span><span style="color:#0086d2">&#39;</span>] = df.pickup_longitude.apply(lngToX)
+df[<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">pickup_y</span><span style="color:#0086d2">&#39;</span>] = df.pickup_latitude.apply(latToY)</code></pre></div>
 <blockquote>
 <p>注意，GPS 所使用的 WGS84 能投影轉換到 Web Mercator 的範圍有限制，Longitude 為 ，而Latitude 為 ，使用前須先過過濾掉超出範圍的數值資料。</p>
 </blockquote>
@@ -286,24 +286,24 @@ tile_list = list(mercantile.tiles(*bounds_nyc, zooms=list(range(<span style="col
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 由 tile 資訊產生 Canvas 物件，並使用 pickup_x 與 pickup_y 的資料進行統計後產生 aggregation 物件</span>
 cvs = mapTilesCanvas(*tile)
-agg = cvs.points(dask_df, <span style="color:#0086d2">&#39;pickup_x&#39;</span>, <span style="color:#0086d2">&#39;pickup_y&#39;</span>)
+agg = cvs.points(dask_df, <span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">pickup_x</span><span style="color:#0086d2">&#39;</span>, <span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">pickup_y</span><span style="color:#0086d2">&#39;</span>)
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 將 aggregation 物件內容用 gzip 壓縮後寫入檔案</span>
 agg_file = <span style="color:#080;background-color:#0f140f;font-style:italic"># *.pkl.gz</span>
-<span style="color:#fb660a;font-weight:bold">with</span> gzip.open(agg_file, mode=<span style="color:#0086d2">&#39;wb&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> f:
+<span style="color:#fb660a;font-weight:bold">with</span> gzip.open(agg_file, mode=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">wb</span><span style="color:#0086d2">&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> f:
     pickle.dump(agg, f)
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 將 aggregation 中的最大值寫入 yaml 檔案中</span>
 agg_yaml_file = <span style="color:#080;background-color:#0f140f;font-style:italic"># *.pkl.yaml</span>
-<span style="color:#fb660a;font-weight:bold">with</span> open(agg_yaml_file, mode=<span style="color:#0086d2">&#39;w&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> f:
-    yaml_obj = {<span style="color:#0086d2">&#34;max_count&#34;</span>: int(agg.values.max())}
+<span style="color:#fb660a;font-weight:bold">with</span> open(agg_yaml_file, mode=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">w</span><span style="color:#0086d2">&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> f:
+    yaml_obj = {<span style="color:#0086d2"></span><span style="color:#0086d2">&#34;</span><span style="color:#0086d2">max_count</span><span style="color:#0086d2">&#34;</span>: int(agg.values.max())}
     yaml.dump(yaml_obj, f, default_flow_style=False)</code></pre></div>
 <h3 id="建立每個-zoom-中的最大點數資料">建立每個 zoom 中的最大點數資料</h3>
 
 <p>尋訪每個 zoom 中的 *<strong>.pkl.yaml</strong> 檔案，取得 <strong>max_count</strong> 的數值並與目前 zoom 中的最大值進行比較，若比現有最大值大則以該數值取代現有最大值。全部尋訪完畢可取得現有 zoom 中的最大點數值並寫入 <strong>_config.yaml</strong> 檔中。</p>
 <div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">zoom_yaml_file = <span style="color:#080;background-color:#0f140f;font-style:italic"># 每個 zoom 資料夾位置下都有一個 _config.yaml 檔案</span>
-<span style="color:#fb660a;font-weight:bold">with</span> open(zoom_yaml_file, <span style="color:#0086d2">&#39;w&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> file:
-    yaml_obj = {<span style="color:#0086d2">&#39;zoom_max_count&#39;</span>: max_count}
+<span style="color:#fb660a;font-weight:bold">with</span> open(zoom_yaml_file, <span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">w</span><span style="color:#0086d2">&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> file:
+    yaml_obj = {<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">zoom_max_count</span><span style="color:#0086d2">&#39;</span>: max_count}
     yaml.dump(yaml_obj, file, default_flow_style=False)</code></pre></div>
 <h3 id="產生每個-aggregation-檔案對應的-tile-image">產生每個 Aggregation 檔案對應的 Tile Image</h3>
 
@@ -315,14 +315,14 @@ agg_yaml_file = <span style="color:#080;background-color:#0f140f;font-style:ital
 max_dict = getMaxCountDict(agg_root)
 agg_path = <span style="color:#080;background-color:#0f140f;font-style:italic"># aggregation 檔案位置</span>
 
-<span style="color:#fb660a;font-weight:bold">with</span> gzip.open(agg_path, <span style="color:#0086d2">&#39;rb&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> f:
+<span style="color:#fb660a;font-weight:bold">with</span> gzip.open(agg_path, <span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">rb</span><span style="color:#0086d2">&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> f:
     agg = pickle.load(f)
     zoom, xtile, ytile = getMapTileCoord(agg_path)
-    img = tf.shade(agg, cmap=hot, how=<span style="color:#0086d2">&#39;log&#39;</span>, span=[<span style="color:#0086f7;font-weight:bold">0</span>, max_dict[zoom]])
+    img = tf.shade(agg, cmap=hot, how=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">log</span><span style="color:#0086d2">&#39;</span>, span=[<span style="color:#0086f7;font-weight:bold">0</span>, max_dict[zoom]])
 
     tile_path = <span style="color:#080;background-color:#0f140f;font-style:italic"># 影像儲存位置</span>
-    <span style="color:#fb660a;font-weight:bold">with</span> open(tile_path, mode=<span style="color:#0086d2">&#39;wb&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> f:
-        f.write(img.to_bytesio(format=<span style="color:#0086d2">&#39;png&#39;</span>).read())</code></pre></div>
+    <span style="color:#fb660a;font-weight:bold">with</span> open(tile_path, mode=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">wb</span><span style="color:#0086d2">&#39;</span>) <span style="color:#fb660a;font-weight:bold">as</span> f:
+        f.write(img.to_bytesio(format=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">png</span><span style="color:#0086d2">&#39;</span>).read())</code></pre></div>
 <p>完成後 map tile 會儲存在 <strong>{tile_root}/{z}/{x}/{y}.png</strong> 的位置中，我們可以將檔案放到 server 上讓其他地圖服務使用圖磚資料。這我們使用 GitHub 來存放 map tiles 讓 Folium 直接使用圖檔資料。</p>
 
 <p><figure><img src="/images/2018/nyc_taxi_trip_map/769.png" alt="nyc_taxi_map_tile_11_603_769"></figure>
@@ -335,16 +335,16 @@ agg_path = <span style="color:#080;background-color:#0f140f;font-style:italic">#
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 使用 Carto Dark 建立底圖</span>
 fmap = folium.Map(location=[<span style="color:#0086f7;font-weight:bold">40.772562</span>, -<span style="color:#0086f7;font-weight:bold">73.974039</span>],
-                  tiles=<span style="color:#0086d2">&#39;https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png&#39;</span>,
+                  tiles=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png</span><span style="color:#0086d2">&#39;</span>,
                   zoom_start=<span style="color:#0086f7;font-weight:bold">12</span>,
-                  attr=<span style="color:#0086d2">&#39;Carto Dark&#39;</span>)
+                  attr=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">Carto Dark</span><span style="color:#0086d2">&#39;</span>)
 , 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 加入放在 GitHub 存放的 map tiles 位置</span>
-fmap.add_tile_layer(tiles=<span style="color:#0086d2">&#39;https://raw.githubusercontent.com/yeshuanova/nyc_taxi_trip_map/master/map/tile/{z}/{x}/{y}.png&#39;</span>,
-                    attr=<span style="color:#0086d2">&#39;NYC taxi pickup Heatmap&#39;</span>)
+fmap.add_tile_layer(tiles=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">https://raw.githubusercontent.com/yeshuanova/nyc_taxi_trip_map/master/map/tile/{z}/{x}/{y}.png</span><span style="color:#0086d2">&#39;</span>,
+                    attr=<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">NYC taxi pickup Heatmap</span><span style="color:#0086d2">&#39;</span>)
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 儲存地圖為 html 檔，可直接用瀏覽器打開檢視地圖資訊</span>
-fmap.save(<span style="color:#0086d2">&#39;map.html&#39;</span>)
+fmap.save(<span style="color:#0086d2"></span><span style="color:#0086d2">&#39;</span><span style="color:#0086d2">map.html</span><span style="color:#0086d2">&#39;</span>)
 
 <span style="color:#080;background-color:#0f140f;font-style:italic"># 直接在 ipython 中顯示地圖</span>
 fmap</code></pre></div>
@@ -444,11 +444,11 @@ fmap</code></pre></div>
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2019/12/fluentd_basic/">Fluentd 基礎使用方式</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2019/04/fft_intro/">從傅立葉級數到快速傅立葉轉換</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2019/04/comic_qed_cmb/">非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/11/git-learning-tips/">Git 學習要點</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2018/10/dataset-iris/">機器學習資料集 - Iris dataset</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/2018/09/kepler-gl/">Kepler.gl 使用簡介</a></li>
 		</ul>
 	</div>
 </div>
@@ -465,6 +465,7 @@ fmap</code></pre></div>
 			<li class="widget__item"><a class="widget__link" href="/categories/mathematics">Mathematics</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/mobile-device">Mobile device</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/programming">Programming</a></li>
+			<li class="widget__item"><a class="widget__link" href="/categories/software">Software</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/travel">Travel</a></li>
 			<li class="widget__item"><a class="widget__link" href="/categories/visualization">Visualization</a></li>
 		</ul>
@@ -482,6 +483,7 @@ fmap</code></pre></div>
 		<a class="widget-taglist__link widget__link btn" href="/tags/datashader" title="Datashader">Datashader (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/deepmind" title="Deepmind">Deepmind (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/fft" title="Fft">Fft (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/fluentd" title="Fluentd">Fluentd (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/folium" title="Folium">Folium (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/gans" title="Gans">Gans (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/git" title="Git">Git (1)</a>
@@ -512,7 +514,7 @@ fmap</code></pre></div>
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2019 Xeno Universe.
+			&copy; 2019 Xeno Universe - The Dark Forest.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>
