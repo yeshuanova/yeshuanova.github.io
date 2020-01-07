@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/about/</loc>
+    <lastmod>2020-01-04T18:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-01-04T18:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
     <lastmod>2019-12-22T12:00:00+08:00</lastmod>
   </url>
@@ -13,7 +23,7 @@
   </url>
   
   <url>
-    <loc>/post/2019/12/fluentd_basic/</loc>
+    <loc>/2019/12/fluentd_basic/</loc>
     <lastmod>2019-12-22T12:00:00+08:00</lastmod>
   </url>
   
@@ -33,11 +43,6 @@
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2019-12-22T12:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/fft/</loc>
     <lastmod>2019-04-18T10:00:00+08:00</lastmod>
   </url>
@@ -48,7 +53,7 @@
   </url>
   
   <url>
-    <loc>/post/2019/04/fft_intro/</loc>
+    <loc>/2019/04/fft_intro/</loc>
     <lastmod>2019-04-18T10:00:00+08:00</lastmod>
   </url>
   
@@ -63,7 +68,7 @@
   </url>
   
   <url>
-    <loc>/post/2019/04/comic_qed_cmb/</loc>
+    <loc>/2019/04/comic_qed_cmb/</loc>
     <lastmod>2019-04-08T15:00:00+08:00</lastmod>
   </url>
   
@@ -78,7 +83,7 @@
   </url>
   
   <url>
-    <loc>/post/2018/11/git-learning-tips/</loc>
+    <loc>/2018/11/git-learning-tips/</loc>
     <lastmod>2018-11-25T00:20:00+08:00</lastmod>
   </url>
   
@@ -93,7 +98,7 @@
   </url>
   
   <url>
-    <loc>/post/2018/10/dataset-iris/</loc>
+    <loc>/2018/10/dataset-iris/</loc>
     <lastmod>2018-10-01T00:18:00+08:00</lastmod>
   </url>
   
@@ -103,7 +108,7 @@
   </url>
   
   <url>
-    <loc>/post/2018/09/kepler-gl/</loc>
+    <loc>/2018/09/kepler-gl/</loc>
     <lastmod>2018-09-02T16:00:00+08:00</lastmod>
   </url>
   
@@ -118,32 +123,32 @@
   </url>
   
   <url>
-    <loc>/post/2018/08/thinkbayes-ch8/</loc>
+    <loc>/2018/08/thinkbayes-ch8/</loc>
     <lastmod>2018-08-07T12:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/2018/07/thinkbayes-ch7/</loc>
+    <loc>/2018/07/thinkbayes-ch7/</loc>
     <lastmod>2018-07-23T16:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/2018/07/thinkbayes-ch6/</loc>
+    <loc>/2018/07/thinkbayes-ch6/</loc>
     <lastmod>2018-07-19T10:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/2018/07/thinkbayes-ch5/</loc>
+    <loc>/2018/07/thinkbayes-ch5/</loc>
     <lastmod>2018-07-16T17:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/2018/07/thinkbayes-ch4/</loc>
+    <loc>/2018/07/thinkbayes-ch4/</loc>
     <lastmod>2018-07-13T15:30:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/2018/07/thinkbayes-ch2-to-3/</loc>
+    <loc>/2018/07/thinkbayes-ch2-to-3/</loc>
     <lastmod>2018-07-13T10:00:00+08:00</lastmod>
   </url>
   
@@ -158,7 +163,7 @@
   </url>
   
   <url>
-    <loc>/post/2018/07/from-jekyll-to-hugo/</loc>
+    <loc>/2018/07/from-jekyll-to-hugo/</loc>
     <lastmod>2018-07-07T14:00:00+08:00</lastmod>
   </url>
   
@@ -173,7 +178,7 @@
   </url>
   
   <url>
-    <loc>/post/2018/06/strava-how-to-generate-heatmap/</loc>
+    <loc>/2018/06/strava-how-to-generate-heatmap/</loc>
     <lastmod>2018-06-02T20:00:00+08:00</lastmod>
   </url>
   
@@ -198,7 +203,7 @@
   </url>
   
   <url>
-    <loc>/post/2018/05/implement-osm-map-tiles-parallel/</loc>
+    <loc>/2018/05/implement-osm-map-tiles-parallel/</loc>
     <lastmod>2018-05-24T18:00:00+08:00</lastmod>
   </url>
   
@@ -208,12 +213,12 @@
   </url>
   
   <url>
-    <loc>/post/2018/05/thinkbayes-ch1/</loc>
+    <loc>/2018/05/thinkbayes-ch1/</loc>
     <lastmod>2018-05-16T15:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/2018/04/implement-osm-map-tiles/</loc>
+    <loc>/2018/04/implement-osm-map-tiles/</loc>
     <lastmod>2018-04-24T18:00:00+08:00</lastmod>
   </url>
   
@@ -228,7 +233,7 @@
   </url>
   
   <url>
-    <loc>/post/2018/03/learning-commons/</loc>
+    <loc>/2018/03/learning-commons/</loc>
     <lastmod>2018-03-05T16:00:00+08:00</lastmod>
   </url>
   
@@ -248,7 +253,7 @@
   </url>
   
   <url>
-    <loc>/post/2018/02/depthwise-separable-convolution/</loc>
+    <loc>/2018/02/depthwise-separable-convolution/</loc>
     <lastmod>2018-02-09T15:00:00+08:00</lastmod>
   </url>
   
@@ -258,7 +263,7 @@
   </url>
   
   <url>
-    <loc>/post/2018/02/modern-cpp-changing/</loc>
+    <loc>/2018/02/modern-cpp-changing/</loc>
     <lastmod>2018-02-03T16:00:00+08:00</lastmod>
   </url>
   
@@ -288,7 +293,7 @@
   </url>
   
   <url>
-    <loc>/post/2018/01/tensorflow-lite-in-ios-device/</loc>
+    <loc>/2018/01/tensorflow-lite-in-ios-device/</loc>
     <lastmod>2018-01-15T12:00:00+08:00</lastmod>
   </url>
   
@@ -298,7 +303,7 @@
   </url>
   
   <url>
-    <loc>/post/2018/01/autoencoder-tutorial/</loc>
+    <loc>/2018/01/autoencoder-tutorial/</loc>
     <lastmod>2018-01-04T18:00:00+08:00</lastmod>
   </url>
   
@@ -308,7 +313,7 @@
   </url>
   
   <url>
-    <loc>/post/2017/11/python-visualization-datashader/</loc>
+    <loc>/2017/11/python-visualization-datashader/</loc>
     <lastmod>2017-11-20T14:00:00+08:00</lastmod>
   </url>
   
@@ -318,7 +323,7 @@
   </url>
   
   <url>
-    <loc>/post/2017/10/python-visulization-folium/</loc>
+    <loc>/2017/10/python-visulization-folium/</loc>
     <lastmod>2017-10-08T08:00:00+08:00</lastmod>
   </url>
   
@@ -338,7 +343,7 @@
   </url>
   
   <url>
-    <loc>/post/2017/09/from-go-to-sc2-part-1/</loc>
+    <loc>/2017/09/from-go-to-sc2-part-1/</loc>
     <lastmod>2017-09-05T14:00:00+08:00</lastmod>
   </url>
   
@@ -353,7 +358,7 @@
   </url>
   
   <url>
-    <loc>/post/2017/08/isomap/</loc>
+    <loc>/2017/08/isomap/</loc>
     <lastmod>2017-08-13T14:00:00+08:00</lastmod>
   </url>
   
@@ -363,12 +368,12 @@
   </url>
   
   <url>
-    <loc>/post/2017/08/multidimensional-scaling/</loc>
+    <loc>/2017/08/multidimensional-scaling/</loc>
     <lastmod>2017-08-10T20:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/2017/08/dimension-reduction-tutorial/</loc>
+    <loc>/2017/08/dimension-reduction-tutorial/</loc>
     <lastmod>2017-08-07T20:00:00+08:00</lastmod>
   </url>
   
@@ -383,16 +388,12 @@
   </url>
   
   <url>
-    <loc>/post/2017/07/gans-tutorial/</loc>
+    <loc>/2017/07/gans-tutorial/</loc>
     <lastmod>2017-07-26T14:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/about/</loc>
-  </url>
-  
-  <url>
-    <loc>/competitions/</loc>
+    <loc>/archives/</loc>
   </url>
   
 </urlset>

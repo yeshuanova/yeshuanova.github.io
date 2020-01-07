@@ -13,10 +13,10 @@
     
     <item>
       <title>從傅立葉級數到快速傅立葉轉換</title>
-      <link>/post/2019/04/fft_intro/</link>
+      <link>/2019/04/fft_intro/</link>
       <pubDate>Thu, 18 Apr 2019 10:00:00 +0800</pubDate>
       
-      <guid>/post/2019/04/fft_intro/</guid>
+      <guid>/2019/04/fft_intro/</guid>
       <description>&lt;p&gt;傅立葉轉換(FFT)是一種數學上的線性積分變換方式，能將&lt;strong&gt;週期函數&lt;/strong&gt;使用轉換為另一個函數。在數位信號處理領域上，透過傅立葉轉換可將資料從&lt;strong&gt;時域波形&lt;/strong&gt;轉換到&lt;strong&gt;頻譜&lt;/strong&gt;上，也就是將訊號進行&lt;strong&gt;分解&lt;/strong&gt;為基礎組合，在現代的物理與工程等許多領域有大量的應用。本文將從傅立葉級數開始介紹，從其中導出離散傅立葉轉換(DFT)與快速傅立葉轉換(FFT)，並以 Python 來實作範例。&lt;/p&gt;</description>
     </item>
     

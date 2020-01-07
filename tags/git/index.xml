@@ -13,10 +13,10 @@
     
     <item>
       <title>Git 學習要點</title>
-      <link>/post/2018/11/git-learning-tips/</link>
+      <link>/2018/11/git-learning-tips/</link>
       <pubDate>Sun, 25 Nov 2018 00:20:00 +0800</pubDate>
       
-      <guid>/post/2018/11/git-learning-tips/</guid>
+      <guid>/2018/11/git-learning-tips/</guid>
       <description>&lt;p&gt;自從 Git 從 2005 年出現後，到現在幾乎所有軟體開發者都離不開他，加上 GitHub 等服務讓 Git 甚至能當成網頁空間或線上文件共筆平台等。但 Git 初學時可能有許多人不知道如何入門，本篇將簡單整理個人的 Git 學習方式，使用建議與需要注意的概念等，並不會詳細說明 Git 指令等內容。&lt;/p&gt;</description>
     </item>
     

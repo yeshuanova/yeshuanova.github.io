@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.62.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Cheng-Shiang Li">
+<meta name="keywords" content="">
+<meta name="description" content="Strava how to build global heatmap">
+
+
+<meta property="og:description" content="Strava how to build global heatmap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Strava 建立全球運動熱點圖的方式">
+<meta name="twitter:title" content="Strava 建立全球運動熱點圖的方式">
+<meta property="og:url" content="/2018/06/strava-how-to-generate-heatmap/">
+<meta property="twitter:url" content="/2018/06/strava-how-to-generate-heatmap/">
+<meta property="og:site_name" content="Xeno Universe - The Dark Forest">
+<meta property="og:description" content="Strava how to build global heatmap">
+<meta name="twitter:description" content="Strava how to build global heatmap">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2018-06-02T20:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-06-02T20:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Visualization">
+    
+  
+  
+    
+      <meta property="article:tag" content="Strava">
+    
+      <meta property="article:tag" content="Heatmap">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="/images/about/me.jpg">
+  <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+    <title>Strava 建立全球運動熱點圖的方式</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/2018/06/strava-how-to-generate-heatmap/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="/css/style-tranquilpeak.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-104710641-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
+        
+          <h5 class="sidebar-profile-bio">Senior software developer. Mastering Android/iOS application development and machine learning algorithm.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/about/">
+    
+      
+      
+      <span class="sidebar-button-desc">About Me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Strava 建立全球運動熱點圖的方式
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-06-02T20:00:00&#43;08:00">
+        
+  June 2, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/visualization">Visualization</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>因之前研究了有關 map tile 的建立的方式，因此進一步了解 Strava 如何建立熱點圖的方式，因此在本篇中在這篇文章 <a href="https://medium.com/strava-engineering/the-global-heatmap-now-6x-hotter-23fc01d301de">Building the Global Heatmap</a> 中 Strava 官方說明了建立 <a href="https://www.strava.com/heatmap">Strava Global Heatmap</a> 的過程，在看完後覺得很有趣因此分享一下心得。本篇將專注在建立熱度圖的演算法上，並不涉及如何在 Cluster 上大量運算的方法。</p>
+
+<h1 id="strava-heatmap">Strava Heatmap</h1>
+
+<p>有的人對 <a href="https://www.strava.com/?hl=zh-TW">Strava</a> 這著名的運動 app 應該不陌生，能紀錄運動者的位置以及使用者心跳等資訊並上傳至雲端分享。而 Strava 營運到現在在全世界也累積了大量資料，依照 <a href="https://medium.com/strava-engineering/the-global-heatmap-now-6x-hotter-23fc01d301de">Building the Global Heatmap</a> 所敘述，Strava 資料量至少有</p>
+
+<ul>
+<li>7 億筆運動紀錄。</li>
+<li>1.4 兆筆 GPS 座標位置</li>
+<li>7.7 兆個需要的繪製的像素</li>
+<li>5 TB 原始資料</li>
+</ul>
+
+<p>可知資料量是非常龐大而且還在繼續增加當中。最初的 Strava 團隊是在 Single Machine 上建立 Heatmap，但每更新一次需要且讀取放在 Amazon S3 的原始資料成本非常高。因此 Strava 團隊將原先的 Code 以 Apache Spark 與 Scala 重新撰寫過，使得每個運算步驟更加平行化與高效能，讓原先在單機上的運算分散到數百台機器上，在數個小時內就能得出 heatmap 且花費只有數百美元。</p>
+
+<blockquote>
+<p>詳細內容可參考 Strava 另一篇文章 <a href="https://medium.com/strava-engineering/from-data-streams-to-a-data-lake-b6ca17c00a23">From data streams to a data lake</a></p>
+</blockquote>
+
+<p>此外最新版本的 Strava Heatmap 也在繪圖上做了很多改進，如</p>
+
+<ul>
+<li>Rasterize 方式由單點資料轉變成線段資料</li>
+<li>改善 Normalization 方式與增加解析度，讓視覺化結果更好。</li>
+</ul>
+
+<p>因後端架構在文章中並沒有詳細解釋，因此以下只簡單介紹將運動位置記錄 (Activity) 轉換成最後的 map tile 圖片的演算法。</p>
+
+<h2 id="how-to-do">How to do?</h2>
+
+<h3 id="input-data-and-filtering">Input Data and Filtering</h3>
+
+<p>在真正繪製資料前，Strava 對 Activity 進行前處理排除掉錯誤的記錄資料，包含</p>
+
+<ul>
+<li>平均速度不合理的記錄（可能是在搭飛機或船）。</li>
+<li>移除虛擬裝置過來的資料，避免 Fake GPS data 影響結果。</li>
+<li>去除停止的點數，直到真正開始移動為止。</li>
+</ul>
+
+<p>此外 Mobile device 時常會自動將 GPS 位置集中到道路上，在繪圖是會過於集中讓視覺效果不好看，因此會在每個 GPS 點位加入<strong>隨機位移資料</strong> (2 meter normal distribution)，讓資料有模糊化效果。</p>
+
+<h3 id="heat-rasterization">Heat Rasterization</h3>
+
+<p>在資料過濾完畢後，Strava 團隊將每筆資料中的 GPS 位置轉換到 Zoom Level 16 的 <a href="http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/">Web Mercator Tile</a> 座標。並將移動路線切成數個格式為  <strong>(Tile, Array[TilePixel])</strong> 的 Segment Tuple。 <strong>Tile</strong> 為所在的圖磚座標，而 <strong>Array[TilePixel]</strong> 代表 Activity 在該 Tile 中的移動路線 (Point-to-Point)。假如資料座標跨越不同的 Tile，則在資料點之間建立中間點並將同一個 Tile 的資料點組成一個 Segment，確保每個 Segment 的 <strong>Tile Pixel</strong> 資料都在同一個 Tile 中。</p>
+
+<p>當 Segment 轉換完畢後，使用 <a href="https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm">Bresenham’s line algorithm</a> 計算 <strong>Array[TilePixel]</strong> 裡點與點之間的移動路徑與所對應到的 Pixels 並統計次數（count)。統計完畢後可將結果壓縮序列化存入磁碟中，因點為包還許多 count 數為零的資料，因此壓縮演算法可有效的降低資料大小。</p>
+
+<blockquote>
+<p>因每個 Tile 資料都是獨立的，可將指定給不同機器平行處理資料，以加快運算速度。</p>
+</blockquote>
+
+<h3 id="heat-normalization">Heat Normalization</h3>
+
+<p>將所有 Activity 的路徑資料轉換為在 Pixel 中的 count 的數量後，需將每個 Pixel 的數值範圍從<span  class="math">\([0, inf)\)</span>正規化到<span  class="math">\([0, 1]\)</span> 之間。因對全部的 Tile 進行正規劃成本太高，且一般 Linear 或 Log 方式效果不好，因此 Strava 團隊使用 CDF (Cumulative Distribution Function) 方式（又稱 <a href="https://en.wikipedia.org/wiki/Histogram_equalization">Histogram Equalization</a>）統計最接近的 5 個 Tile ( 5 tile radius ) 範圍內的 Pixel 數值分佈來進行該 Heat Normalization。</p>
+
+<p>雖然使用 Histogram Equalization 可確保顏色分佈均一且視覺化效果較好，但也無法正確表現出騎乘數量在所有 Tile 中的絕對關係，但在視覺化上效果上已經足夠好。</p>
+
+<h3 id="interpolate-normalization-functions-across-tile-boundaries">Interpolate Normalization Functions Across Tile Boundaries</h3>
+
+<p>使用 CDF 方法並繪製 Heat 分佈後圖片中的數值仍會有不連續的狀態，特別是在 Tile 與 Tile 的邊界處。因此 Strava 用 <a href="https://en.wikipedia.org/wiki/Bilinear_interpolation">Bilinear interpolation</a> 的方式來對每個 Pixel 進行重新計算數值，以得出連續的顯示效果。</p>
+
+<h3 id="recursion-across-zoom-levels">Recursion Across Zoom Levels</h3>
+
+<p>在完成上述的計算後，可得到 zoom level 16 的所有 Tile 的 Heat 值。因 zoom 15 中的每個 Tile 可由 zoom 16 的組合出來，因此可用 Bottom-Up 方式由下方 Tile 組合出上層 Zoom 的 Heat 數值，並重新執行一次 Normalization 步驟直到 zoom 0 為止。</p>
+
+<h3 id="serving-it-up">Serving It Up</h3>
+
+<p>計算完每個 zoom 以及每個 Tile 的數值後，將每個 heatmap data pixel 儲存為 single byte [0, 255]，並且將周圍的 tile group 成一個檔案並儲存到 Amazon S3 上，以減少檔案數量以及儲存容量。此外也不先轉換成圖片，而是等到該 Tile 真正被呼叫時才會轉換成對應的圖片，並存放在 Amazon Cloudfront CDN 服務上，以方便使用主存取圖片。</p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://www.strava.com/heatmap">Strava Global Heatmap</a></li>
+<li><a href="https://medium.com/strava-engineering/the-global-heatmap-now-6x-hotter-23fc01d301de">Building the Global Heatmap</a></li>
+<li><a href="https://medium.com/strava-engineering/from-data-streams-to-a-data-lake-b6ca17c00a23">From data streams to a data lake</a></li>
+<li><a href="https://metro.strava.com/?_branch_match_id=514340100808873549">Strava Metro</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/strava/">Strava</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/heatmap/">Heatmap</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/from-jekyll-to-hugo/" data-tooltip="從 Jekyll 轉移到 Hugo 心得">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/implement-osm-map-tiles-parallel/" data-tooltip="使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/06/strava-how-to-generate-heatmap/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Cheng-Shiang Li. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/from-jekyll-to-hugo/" data-tooltip="從 Jekyll 轉移到 Hugo 心得">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/implement-osm-map-tiles-parallel/" data-tooltip="使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/06/strava-how-to-generate-heatmap/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F06%2Fstrava-how-to-generate-heatmap%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Cheng-Shiang Li</h4>
+    
+      <div id="about-card-bio">Senior software developer. Mastering Android/iOS application development and machine learning algorithm.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Enginner
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/images/bg/nasa-space.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2018\/06\/strava-how-to-generate-heatmap\/';
+          
+            this.page.identifier = '\/2018\/06\/strava-how-to-generate-heatmap\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yeshuanova';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+
+    
+  </body>
+</html>
+

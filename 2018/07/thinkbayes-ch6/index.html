@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.62.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Cheng-Shiang Li">
+<meta name="keywords" content="">
+<meta name="description" content="ThinkBayes Note - Chapter 6">
+
+
+<meta property="og:description" content="ThinkBayes Note - Chapter 6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ThinkBayes 心得筆記 - Chapter 6">
+<meta name="twitter:title" content="ThinkBayes 心得筆記 - Chapter 6">
+<meta property="og:url" content="/2018/07/thinkbayes-ch6/">
+<meta property="twitter:url" content="/2018/07/thinkbayes-ch6/">
+<meta property="og:site_name" content="Xeno Universe - The Dark Forest">
+<meta property="og:description" content="ThinkBayes Note - Chapter 6">
+<meta name="twitter:description" content="ThinkBayes Note - Chapter 6">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2018-07-19T10:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-07-19T10:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Mathematics">
+    
+  
+  
+    
+      <meta property="article:tag" content="Bayes">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="/images/about/me.jpg">
+  <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+    <title>ThinkBayes 心得筆記 - Chapter 6</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/2018/07/thinkbayes-ch6/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="/css/style-tranquilpeak.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-104710641-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
+        
+          <h5 class="sidebar-profile-bio">Senior software developer. Mastering Android/iOS application development and machine learning algorithm.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/about/">
+    
+      
+      
+      <span class="sidebar-button-desc">About Me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      ThinkBayes 心得筆記 - Chapter 6
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-07-19T10:00:00&#43;08:00">
+        
+  July 19, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/mathematics">Mathematics</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Chapter 6 介紹了一個猜價格遊戲，並從歷史資料 dataset 中，求出得出要如何才能有最高的期望回饋。本範例中介紹如何使用 KDE 建立 PDF 以及 Likelihood 並得出 Posterior，最後以該數值建立最佳的期望回饋值分佈以得出如何得出最佳 Bid。</p>
+
+<h1 id="thinkbayes-note">ThinkBayes Note</h1>
+
+<h2 id="chapter-6--decision-analysis">Chapter 6 - Decision Analysis</h2>
+
+<h3 id="the-price-is-right-problem">The <em>Price is Right</em> Problem</h3>
+
+<p>假設有一個猜測遊戲，兩名參賽者 (Contestant) 需猜測 showcase 1, 2 中所有物品的價格加總數值，條件如下</p>
+
+<ol>
+<li>不超過真正的價格，超過就算輸。</li>
+<li>最接近真正價格者獲勝，獲勝者可獲得該 showcase 上的獎品。</li>
+<li>獲勝的參賽者假如與該 showcase 的真實價格差異在 250 內，也可獲得另一個 showcase 的獎品。</li>
+</ol>
+
+<p>以 Bayesian 方式來思考的話，上面的問題可分解為以下部分</p>
+
+<ol>
+<li>在見到獎品 (Prize) 前，真正價格的機率分佈為何 (Prior)</li>
+<li>見到獎品後，參賽者如何更新心中的預期價格。(Likelihood and Posteriror)</li>
+<li>依照 Posterior distribution 計算出參賽者出價的期望值為多少</li>
+</ol>
+
+<p>第三點即是 <strong>Decision analysis</strong> 的部分。我們可以依照 Posterior distribution 來求 <a href="https://en.wikipedia.org/wiki/Expected_return">Expected return</a> 的最大值。</p>
+
+<h3 id="prior--showcase-實際價格分佈">Prior - showcase 實際價格分佈</h3>
+
+<p><a href="http://thinkbayes.com/showcases.2011.csv">showcase 2011</a> 與 <a href="http: //thinkbayes.com/showcases.2012.csv">showcase 2012</a> 為該遊戲在 2011 與 2012 年的統計資料，包含 Showcase 1, 2 的實際價格，參賽者猜測價格（Bid）以及差異數值，因此我們可先由歷史資料中建立真實價格的機率分佈 (Prior)。由於價格為一連續資料，可用 <a href="https://en.wikipedia.org/wiki/Kernel_density_estimation">Gaussian Kernel Density Estimation</a>（高斯核密度估計，KDE）從歷史資料分佈建立 <a href="https://en.wikipedia.org/wiki/Probability_density_function">Probability Density Functions</a>（機率密度函數，PDF）以產生 Prior distribution。</p>
+
+<h4 id="probability-density-functions-pdf">Probability density functions (PDF)</h4>
+
+<p>PDF 是一個連續數值的機率分佈函數，以 <a href="https://en.wikipedia.org/wiki/Normal_distribution">Gaussian distribution</a> 為例，</p>
+
+<p><span  class="math">\[f(x|\mu, \sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}\exp(-\frac{(x-\mu)^2}{2\sigma^2})\]</span></p>
+
+<p><span  class="math">\[\int_{-\infty}^{\infty}f(x)=1\]</span></p>
+
+<p>當平均數 <span  class="math">\(\mu=0\)</span> 而標準差 <span  class="math">\(\sigma=1 \)</span> 時，Gaussian distribution 可寫成</p>
+
+<p><span  class="math">\[f(x)= \frac{1}{\sqrt{2\pi}}\exp(\frac{-x^2}{2})\]</span></p>
+
+<p>由於 Gaussian distribution 積分為 1，因此上式可是為機率分佈。</p>
+
+<blockquote>
+<p>PDF 中 <span  class="math">\(f(x)\)</span> 求出的值為 Probability Density 而並不是 <span  class="math">\(x\)</span> 的機率，需要經過積分才能成為 Probability Mass。</p>
+</blockquote>
+
+<h4 id="kernel-density-estimation-kde">Kernel density estimation (KDE)</h4>
+
+<p>KDE 是一種從離散資料建立 PDF 分佈的演算法，假設現有 N 筆資料分別為 <span  class="math">\(X=(x_1, x_2, \dots,x_n)\)</span>，在 x 位置的 Probability density 可計算為</p>
+
+<p><span  class="math">\[f_h(x)=\frac{1}{n}\sum_{i=1}^{n}K_h(x-x_i)=\frac{1}{nh}\sum_{i=1}^{n}K(\frac{x-x_i}{h})\]</span></p>
+
+<p>其中 <strong><em>K</em></strong> 為 <strong>Kernel functino</strong>，而 <strong><em>h</em></strong> 為 smooth parameter (called bandwidth)。</p>
+
+<p>以 showcase dataset 為例，實際價格可能為</p>
+
+<p><span  class="math">\[(\dots, 28800, 28868, 28941, 28957, 28958, \dots)\]</span></p>
+
+<p>這樣的分佈，也就是之前的原始資料 <span  class="math">\(X\)</span>。作者在範例程式中直接使用 <a href="https://www.scipy.org/">scipy</a> library 中的 Gaussian KDE 函式對 showcase 分佈進行計算，可得出每個 showcase 價格的機率分佈。</p>
+
+<p><figure><img src="/images/2018/thinkbayes/ch6-showcase.png" alt="prior-showcase"></figure>
+<em>showcase dataset 中價格的機率分佈 (Prior)</em></p>
+
+<h3 id="modeling-the-contestants-and-likelihood">Modeling the contestants and Likelihood</h3>
+
+<p>接下來需考慮兩個問題</p>
+
+<ol>
+<li>所觀測到的資料 <strong>D</strong> 為何，以及如何將資料量化。</li>
+<li>如何計算資料的 Conditional Likelihood。</li>
+</ol>
+
+<p>這裡作者使用實際價格（Price）與猜測值（Guess）與之間<strong>差異(Error)</strong>作為觀測到的資料，可定義為。</p>
+
+<p><span  class="math">\[\text{error} = \text{price} - \text{guess}\]</span></p>
+
+<p>當 Error 為負值時，代表猜測值太高（遊戲失敗）。而在之前的歷史資料有每次遊戲的實際價格(Price)與參賽者下注值(Bid)，因此兩者差異可計算為</p>
+
+<p><span  class="math">\[\text{diff} = \text{price} - \text{bid}\]</span></p>
+
+<p>因此遊戲歷史資料中的 error 分佈可用 diff 數值建立。假設 error為 <span  class="math">\(\mu=0\)</span> 的 Gaussian PDF，標準差 <span  class="math">\(\sigma\)</span> 由 diffs 得出。</p>
+
+<blockquote>
+<p>每個參賽者在猜測價格時，有時候會存在某些策略，如猜測對手可能會超過真正數值就會出價比較低。以及為了避免超過真實價格而猜測價格低等。但作者認為 Modeling 方式是合理的。</p>
+</blockquote>
+
+<h3 id="likelihood">Likelihood</h3>
+
+<p>當給定一個 Price (Hypothesis) 與 Guess (data)，則 Likelihood 可由之前計算出的 error PDF 計算出來。</p>
+
+<p><span  class="math">\[Likelihood = P(D \mid H) = P(Error \mid Price) = PDF_{error}(diffs)\]</span></p>
+
+<p>接下來即可計算並得出 Posterior。假如猜測值為 20,000，則最有可能的價格為 24,000</p>
+
+<p><figure><img src="/images/2018/thinkbayes/ch6-guess-2000.png" alt="guess-2000"></figure>
+<em>猜側價格為 20,000 時，Prior 與 Posterior 的分佈比較</em></p>
+
+<h3 id="optimal-bidding">Optimal bidding</h3>
+
+<p>雖然我們可知道到當猜測價格為 20,000 時最有可能的價格是 24,000。但實際上因受到遊戲規則與對手出價等因素影響，又有可能價格的數值不一定可以獲得最高報酬。因此可經由計算 <a href="https://en.wikipedia.org/wiki/Expected_return">Expected Return</a> 的方式計算不同猜測價格時的期望價格(Expect Gain)是多少。</p>
+
+<p>計算結果如下圖所示，在可看出參賽者 1 (Player 1) 的 Best Guess = 20,000 而參賽者 2 (Player 2) 的 Best Guess = 40,000 的情況下。Player 1 最佳下注為 21,000 而 Expected Return 約 16,700。 Player 2 最佳下注為 31,500 而 Expected Return 約 19,400。可以知道在本範例中，實際上的 optimal bid 數值比最佳猜測值(best guess)低。</p>
+
+<p><figure><img src="/images/2018/thinkbayes/ch6-expect-gain.png" alt="prior-showcase"></figure></p>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="http://greenteapress.com/wp/think-bayes/">ThinkBayes</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Expected_return">Expected Reture</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Probability_density_function">Probability Density Functions</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/bayes/">Bayes</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch7/" data-tooltip="ThinkBayes 心得筆記 - Chapter 7">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch5/" data-tooltip="ThinkBayes 心得筆記 - Chapter 5">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/thinkbayes-ch6/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Cheng-Shiang Li. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch7/" data-tooltip="ThinkBayes 心得筆記 - Chapter 7">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch5/" data-tooltip="ThinkBayes 心得筆記 - Chapter 5">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/thinkbayes-ch6/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F07%2Fthinkbayes-ch6%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Cheng-Shiang Li</h4>
+    
+      <div id="about-card-bio">Senior software developer. Mastering Android/iOS application development and machine learning algorithm.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Enginner
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/images/bg/nasa-space.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2018\/07\/thinkbayes-ch6\/';
+          
+            this.page.identifier = '\/2018\/07\/thinkbayes-ch6\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yeshuanova';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+
+    
+  </body>
+</html>
+

@@ -13,37 +13,37 @@
     
     <item>
       <title>高效卷積計算結構 - Depthwise Separable Convolution</title>
-      <link>/post/2018/02/depthwise-separable-convolution/</link>
+      <link>/2018/02/depthwise-separable-convolution/</link>
       <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
       
-      <guid>/post/2018/02/depthwise-separable-convolution/</guid>
+      <guid>/2018/02/depthwise-separable-convolution/</guid>
       <description>&lt;p&gt;近年來因與計算機的計算能力大幅上升，GPGPU 的支援等，使深度神經網路技術取得了非常好的效果發展。但所衍生的高計算量卻讓行動裝置以及嵌入式系統等計算能力有限的平台在執行時遇到效能的限制。因此 Google 在 MobileNets 模型中使用了新的卷積計算模型 depthwise separable convolution 來減少所需的計量。本篇將從基礎類神經網路開始介紹，說明卷積神經網路的架構與計算成本問題，並解說 depthwise separable convolution 的技術內容與計算成本。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Autoencoder 簡介與應用範例</title>
-      <link>/post/2018/01/autoencoder-tutorial/</link>
+      <link>/2018/01/autoencoder-tutorial/</link>
       <pubDate>Thu, 04 Jan 2018 18:00:00 +0800</pubDate>
       
-      <guid>/post/2018/01/autoencoder-tutorial/</guid>
+      <guid>/2018/01/autoencoder-tutorial/</guid>
       <description>&lt;p&gt;Autoencoder(自動編碼器)是一種是透過 &lt;a href=&#34;https://en.wikipedia.org/wiki/Artificial_neural_network&#34;&gt;Artificial Neural Network&lt;/a&gt;，來進行資料自動學習與編碼的技術。本文將使用機器學習函式庫 &lt;a href=&#34;https://keras.io/&#34;&gt;Keras&lt;/a&gt; 建立 Autoencoder Model，並使用 MNIST Datatset 來展示兩個 Autoencoder 範例 - &lt;strong&gt;資料降維回復&lt;/strong&gt;與&lt;strong&gt;去雜訊(Denoising)&lt;/strong&gt;的 Model。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)</title>
-      <link>/post/2017/09/from-go-to-sc2-part-1/</link>
+      <link>/2017/09/from-go-to-sc2-part-1/</link>
       <pubDate>Tue, 05 Sep 2017 14:00:00 +0800</pubDate>
       
-      <guid>/post/2017/09/from-go-to-sc2-part-1/</guid>
+      <guid>/2017/09/from-go-to-sc2-part-1/</guid>
       <description>&lt;p&gt;從AI黎明期開始，如&lt;a href=&#34;https://en.wikipedia.org/wiki/Chess&#34;&gt;西洋棋(chess)&lt;/a&gt;，&lt;a href=&#34;https://en.wikipedia.org/wiki/Go_(game)&#34;&gt;圍棋(Go)&lt;/a&gt;或&lt;a href=&#34;https://en.wikipedia.org/wiki/Xiangqi&#34;&gt;象棋&lt;/a&gt;等棋類遊戲一直是人工智慧的研究與測試領域。但由於早期的計算機的能力限制以及演算法的發展，較為複雜的棋類遊戲仍無法打敗世界級水準的棋手。直到1997年時IBM的&lt;a href=&#34;https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)&#34;&gt;深藍(Deep Blue)&lt;/a&gt;在西洋棋比賽中打敗了世界棋王&lt;a href=&#34;https://en.wikipedia.org/wiki/Garry_Kasparov&#34;&gt;Garry Kasparov&lt;/a&gt;，展現了電腦也能夠在西洋棋上打敗人類世界頂尖棋手的實力。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Generative Adversarial Networks Tutorial</title>
-      <link>/post/2017/07/gans-tutorial/</link>
+      <link>/2017/07/gans-tutorial/</link>
       <pubDate>Wed, 26 Jul 2017 14:00:00 +0800</pubDate>
       
-      <guid>/post/2017/07/gans-tutorial/</guid>
+      <guid>/2017/07/gans-tutorial/</guid>
       <description>&lt;p&gt;Generative Adversarial Networks（生成式對抗網路，以下簡稱GANs）是近年來備受矚目的機器學習框架。
 自從&lt;a href=&#34;https://en.wikipedia.org/wiki/Ian_Goodfellow&#34;&gt;Ian Goodfellow&lt;/a&gt;於2014年提出GANs的概念後，
 許多研究人員與企業如Google，Facebook與Apple等代表性公司均相繼投入了GANs的應用研究與發展，

@@ -13,10 +13,10 @@
     
     <item>
       <title>Multidimensional Scaling</title>
-      <link>/post/2017/08/multidimensional-scaling/</link>
+      <link>/2017/08/multidimensional-scaling/</link>
       <pubDate>Thu, 10 Aug 2017 20:00:00 +0800</pubDate>
       
-      <guid>/post/2017/08/multidimensional-scaling/</guid>
+      <guid>/2017/08/multidimensional-scaling/</guid>
       <description>&lt;p&gt;在&lt;a href=&#34;{{ site.baseurl }}/posts/dimension-reduction-tutorial/&#34;&gt;之前&lt;/a&gt;已經介紹過資料降維的基礎概念
 以及使用進行PCA示範，因此這篇要來談的是另一種降維方式
 &lt;a href=&#34;https://en.wikipedia.org/wiki/Multidimensional_scaling&#34;&gt;MDS&lt;/a&gt;，並敘述相關理論推導。&lt;/p&gt;</description>

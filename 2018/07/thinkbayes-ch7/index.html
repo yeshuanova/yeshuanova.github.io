@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.62.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Cheng-Shiang Li">
+<meta name="keywords" content="">
+<meta name="description" content="ThinkBayes Note - Chapter 7">
+
+
+<meta property="og:description" content="ThinkBayes Note - Chapter 7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ThinkBayes 心得筆記 - Chapter 7">
+<meta name="twitter:title" content="ThinkBayes 心得筆記 - Chapter 7">
+<meta property="og:url" content="/2018/07/thinkbayes-ch7/">
+<meta property="twitter:url" content="/2018/07/thinkbayes-ch7/">
+<meta property="og:site_name" content="Xeno Universe - The Dark Forest">
+<meta property="og:description" content="ThinkBayes Note - Chapter 7">
+<meta name="twitter:description" content="ThinkBayes Note - Chapter 7">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2018-07-23T16:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-07-23T16:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Mathematics">
+    
+  
+  
+    
+      <meta property="article:tag" content="Bayes">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="/images/about/me.jpg">
+  <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+    <title>ThinkBayes 心得筆記 - Chapter 7</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/2018/07/thinkbayes-ch7/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="/css/style-tranquilpeak.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-104710641-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
+        
+          <h5 class="sidebar-profile-bio">Senior software developer. Mastering Android/iOS application development and machine learning algorithm.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/about/">
+    
+      
+      
+      <span class="sidebar-button-desc">About Me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      ThinkBayes 心得筆記 - Chapter 7
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-07-23T16:00:00&#43;08:00">
+        
+  July 23, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/mathematics">Mathematics</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Chapter 7 介紹了如何使用 Bayes 預測比賽結果。作者以 2010-2011 NHL 的冠軍賽為範例，以 Poisson 分佈來計算 Boston Bruins 的比賽勝率，並進一步預測系列賽結果。</p>
+
+<h1 id="thinkbayes-note">ThinkBayes Note</h1>
+
+<h2 id="chapter-7--prediction">Chapter 7 - Prediction</h2>
+
+<h3 id="the-boston-bruins-problem">The Boston Bruins problem</h3>
+
+<p>在 2010-11 年的 National Hockey League (NHL，國家冰球聯盟) 總決賽上，Boston Bruins (波士頓棕熊隊) 與 Vancouver Canucks (溫哥華加人隊)的比賽，Boston 先輸兩場 (0-1, 2-3) 後再贏兩場 (8-1, 4-0)。在目前狀況下，Boston 贏得一場的機率以及兩對贏得總冠軍的機率為何?</p>
+
+<p>作者對上述該問題設定了一些假設</p>
+
+<ol>
+<li>每場比賽的得分狀況為 <a href="https://en.wikipedia.org/wiki/Poisson_point_process">Poisson Process</a></li>
+<li>每場比賽平均得分為 λ</li>
+</ol>
+
+<p>因此下列步驟計算 Bruins 的獲勝機率</p>
+
+<ol>
+<li><p>統計先前所有比賽的平均得分與標準差以建立 Gaussian distribution 作為 Prior。</p></li>
+
+<li><p>使用前四場比賽的得分得出兩隊的 λ。</p></li>
+
+<li><p>使用 λ 的 Posterior 分佈去計算兩隊的得分分佈，分數差異分佈以及勝率分佈。</p></li>
+
+<li><p>計算每個隊伍在系列賽獲勝的機率。</p></li>
+</ol>
+
+<h3 id="poisson-process">Poisson process</h3>
+
+<p>在統計上，Poisson Distribution 表示單位時間內隨機事件發生率的離散機率分佈。</p>
+
+<p><span  class="math">\[P(X=k;\lambda)=e^{-\lambda}\frac{\lambda^k}{k!}\]</span></p>
+
+<p>其中 λ 為單位時間（或範圍）內事件的<strong>平均發生次數</strong>，<strong><em>k</em></strong> 為事件<strong>真正的發生次數</strong>。如 <strong>P(X=4;λ)</strong> 代表在單位時間內事件發生 <strong>4</strong> 次的機率，而 Poisson process 則代表一系列的 Poisson distribution 過程。因 Poisson 分佈很適合描述單位時間內的隨機事件發生機率，如公車站等車人數變化，顧客到達店鋪數量等（當然現實情況可能會由集中特性而不是任何時間都是相同機率)，在此可用來表示冰球比賽得分的 的機率分佈。</p>
+
+<blockquote>
+<p>球賽結果符合 Poisson proceess 的 model 已有相關研究，如<a href="https://www.cimat.mx/Eventos/vpec10/img/poisson.pdf">此篇文章</a>對足球比賽結果的研究也支持相同假設。</p>
+</blockquote>
+
+<h3 id="estimation">Estimation</h3>
+
+<p>對於 Prior distribution，作者從 NHL <a href="https://www.nhl.com/">官方網站</a>上獲得所有隊伍在賽季中每場比賽的得分，得出平均得分為 2.8 而標準差為 0.3，可用此兩數值建立 Gaussian distribution 作為 <strong>Prior</strong>。</p>
+
+<p>之後假設 Poisson distribution 為比賽得分的 Likelihood function，其中平均得分 λ 為 Hypothesis 而冠軍賽前四場得分為 Data，其中 Bruins = [0, 2, 8, 4] 而 Canucks = [1, 3, 1, 0]，則計算出來的 Posterior distribution 為即兩隊在總決賽的平均得分機率分佈。如下圖所示</p>
+
+<p><figure><img src="/images/2018/thinkbayes/ch7-posterior.png" alt="posterior"></figure>
+<em>Bruins 與 Canucks 兩隊的 λ 的 Posterior</em></p>
+
+<p>其中兩隊最有可能的得分數值為</p>
+
+<p><span  class="math">\[\lambda_{canucks}=2.6, \lambda_{bruins}=2.9\]</span></p>
+
+<h3 id="the-distribution-of-goals">The distribution of goals</h3>
+
+<p>得出兩隊的平均得分機率分佈後，接下來使用 Posterior 的平均得分機率所形成機率分佈，來建立 Mixture of Poisson 並得出得分(Goals)的 Poisson 機率分佈。</p>
+
+<p><span  class="math">\[Goals = Normalize(\sum_{\lambda}\sum_{k}P(\lambda)Poisson(k;\lambda))\]</span></p>
+
+<p>其中 <span  class="math">\(k = [1, 2, \dots, 10]\)</span>，<span  class="math">\(Normalize()\)</span> 為對結果機率分佈做正規化(使其加總為 1)。兩隊計算結果如下</p>
+
+<p><figure><img src="/images/2018/thinkbayes/ch7-goals.png" alt="goals"></figure>
+<em>兩隊下一場比賽的得分機率分佈</em></p>
+
+<blockquote>
+<p>k 的 UpperBound 設為 10，因每場比賽得超過 10 分的機率已經非常低了。</p>
+</blockquote>
+
+<h3 id="the-probability-of-winning">The probability of winning</h3>
+
+<p>得出兩隊得分的機率分佈後，接著可計算 Bruins 的獲勝機率。方法為將 Bruins 與 Canucks 的得分機率分佈相減得到差異結果，並計算差異為正(獲勝)，負(失敗)，零(平手)時的機率分佈</p>
+
+<p><span  class="math">\[\text{Diff}_{Bruins} = Goal_{Bruins} - Goal_{Canucks}\]</span></p>
+
+<p>後依照 Bruins 在該項目對應的機率加總後，可得到 Bruins 獲勝(Win)，失敗(Loss)與平手(Tie)的機率為</p>
+
+<p><span  class="math">\[P_{win} = 46\%, P_{lose}=37\%, P_{tie}=17\%\]</span></p>
+
+<p>若兩方面平手則會進入驟死賽規則(先得分的隊伍獲勝)，此情況不適用之前的 Poisson 分佈情形，需另外處理。</p>
+
+<h4 id="sudden-death">Sudden Death</h4>
+
+<p>因平手時會進入延長賽且先進球的隊伍會直接獲勝，因此需要計算兩隊先得分的機率。在此作者假設進球時間間隔分佈為 <a href="https://en.wikipedia.org/wiki/Exponential_distribution">Exponential distribution</a>，可計算出 Bruins 再延長賽先進球獲勝的機率為 52%，因此 Bruins 的整體勝率為</p>
+
+<p><span  class="math">\[P_{win\_overall} = P_{win} + P_{tie}*P_{win\_in\_overtime}\]</span></p>
+
+<p>可得出下一場比賽的勝率為 55%。</p>
+
+<h3 id="win-the-series">Win the Series</h3>
+
+<p>在前面以得出下一場比賽的勝率，而整個系列賽要獲勝必須連贏兩場，或是一勝一敗後贏得第三場。因此可計算連勝兩場的機率</p>
+
+<p><span  class="math">\[P_{series}=P_{win} * P_{win}\]</span></p>
+
+<p>並加上前兩場平手並在第三場獲勝的狀況</p>
+
+<p><span  class="math">\[P_{series}+=2*p_{win}*(1-P_{win})*P_{win}\]</span></p>
+
+<p>可算出 Bruins 贏的系列賽的機率為 57%。</p>
+
+<blockquote>
+<p>Boston Bruins 在2011年也獲得了系列賽勝利。</p>
+</blockquote>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="http://greenteapress.com/wp/think-bayes/">ThinkBayes</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Poisson_point_process">Poisson Process</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Exponential_distribution">Exponential distribution</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/bayes/">Bayes</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/08/thinkbayes-ch8/" data-tooltip="ThinkBayes 心得筆記 - Chapter 8">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch6/" data-tooltip="ThinkBayes 心得筆記 - Chapter 6">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/thinkbayes-ch7/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Cheng-Shiang Li. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/08/thinkbayes-ch8/" data-tooltip="ThinkBayes 心得筆記 - Chapter 8">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch6/" data-tooltip="ThinkBayes 心得筆記 - Chapter 6">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/thinkbayes-ch7/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F07%2Fthinkbayes-ch7%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Cheng-Shiang Li</h4>
+    
+      <div id="about-card-bio">Senior software developer. Mastering Android/iOS application development and machine learning algorithm.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Enginner
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/images/bg/nasa-space.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2018\/07\/thinkbayes-ch7\/';
+          
+            this.page.identifier = '\/2018\/07\/thinkbayes-ch7\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yeshuanova';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+
+    
+  </body>
+</html>
+

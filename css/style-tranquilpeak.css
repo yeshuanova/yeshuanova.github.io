@@ -1,0 +1,17 @@
+/* Images */
+img {
+	width: auto;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1em auto;
+	padding: .2em;
+	background-color: #fff;
+	align-content: center
+}
+
+img + em {
+	display: block;
+	text-align: center;
+	align-content: center
+}

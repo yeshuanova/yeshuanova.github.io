@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.62.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Cheng-Shiang Li">
+<meta name="keywords" content="">
+<meta name="description" content="Fluentd basic">
+
+
+<meta property="og:description" content="Fluentd basic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fluentd 基礎使用方式">
+<meta name="twitter:title" content="Fluentd 基礎使用方式">
+<meta property="og:url" content="/2019/12/fluentd_basic/">
+<meta property="twitter:url" content="/2019/12/fluentd_basic/">
+<meta property="og:site_name" content="Xeno Universe - The Dark Forest">
+<meta property="og:description" content="Fluentd basic">
+<meta name="twitter:description" content="Fluentd basic">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2019-12-22T12:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-12-22T12:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="Software">
+    
+  
+  
+    
+      <meta property="article:tag" content="Fluentd">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="/images/about/me.jpg">
+  <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+    <title>Fluentd 基礎使用方式</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/2019/12/fluentd_basic/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="/css/style-tranquilpeak.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-104710641-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
+        
+          <h5 class="sidebar-profile-bio">Senior software developer. Mastering Android/iOS application development and machine learning algorithm.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/about/">
+    
+      
+      
+      <span class="sidebar-button-desc">About Me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Fluentd 基礎使用方式
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-12-22T12:00:00&#43;08:00">
+        
+  December 22, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/software">Software</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p><a href="https://www.fluentd.org/">Fluentd</a> 是一套開源資料蒐集軟體 (Data Collection Software)。通常在專案中我們會需要將各種資料傳遞到不同服務，如 Apache, MySQL, elasticsearch 等服務，但不同服務間的資料傳遞方式卻各自不同，常會造成混亂。</p>
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure center" >
+  
+    <a class="fancybox" href="https://www.fluentd.org/images/fluentd-before.png" title="不同系統間資料傳遞狀況" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://www.fluentd.org/images/fluentd-before.png" style="width: 480px;" alt="不同系統間資料傳遞狀況">
+  
+    </a>
+  
+   
+    <span class="caption">不同系統間資料傳遞狀況</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+
+<p>Fluentd 提供了統一的資料中介層 (Unified Logging Layer)，可將資料由不同來源匯入後，經過 Buffer 與資料處理後再將轉拋到所設定的目的地，可大幅度降低系統間資料傳遞的複雜度。</p>
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure center" >
+  
+    <a class="fancybox" href="https://www.fluentd.org/images/fluentd-architecture.png" title="將 Fluentd 作為中介層" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://www.fluentd.org/images/fluentd-architecture.png" style="width: 480px;" alt="將 Fluentd 作為中介層">
+  
+    </a>
+  
+   
+    <span class="caption">將 Fluentd 作為中介層</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+
+<p>Fluentd 還包含以下特色</p>
+<ul>
+<li>由 C 與 Ruby 寫成。</li>
+<li>資料以 Json 格式蒐集與轉拋。</li>
+<li>支援多重 Input/Output 格式。</li>
+<li>由多重 Plugin 組成，可自行加入非預設的功能。</li>
+<li>透過設定檔設定資料處理流程。</li>
+</ul>
+<h2 id="td-agent">td-agent</h2>
+<p>要使用 Fluentd 除了直接透過 Ruby Gem 安裝外，也可安裝 td-agent，由  <a href="https://www.treasuredata.com/">Treasure Data</a> 所維護的的發行版(The stable distribution of Fluentd)，因此之後的使用範例均用 td-agent。</p>
+<blockquote>
+<p>兩者的差異可參考<a href="https://www.fluentd.org/faqs">此處</a></p>
+</blockquote>
+<h3 id="安裝-td-agent-ubuntu">安裝 td-agent (Ubuntu)</h3>
+<p>可透過以下指令安裝</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#000080">## Ubuntu 16.04 (Xenial)</span>
+curl -L https://toolbelt.treasuredata.com/sh/install-ubuntu-xenial-td-agent3.sh | sh
+
+<span style="color:#000080">## Ubuntu 18.04 (Bionic)</span>
+curl -L https://toolbelt.treasuredata.com/sh/install-ubuntu-bionic-td-agent3.sh | sh
+</code></pre></div><h3 id="啟動-td-agent">啟動 td-agent</h3>
+<p>安裝完成後可透過 <code>systemctl</code> 啟動系統服務(daemons)</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000080"># 啟動服務</span>
+sudo systemctl start td-agent.service
+</code></pre></div><p>或透過 <code>/etc/init.d/td-agent</code> 啟動</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000080"># 啟動</span>
+sudo /etc/init.d/td-agent start
+</code></pre></div><p>啟動完成後可透過指令查看運行狀態</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#000080"># 查看狀態(systemctl)</span>
+sudo systemctl status td-agent.service
+
+<span style="color:#000080"># 查看狀態(init.d)</span>
+sudo /etc/init.d/td-agent status
+</code></pre></div><p>若啟動成功可看類似的訊息</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">Loaded: loaded <span style="color:#39c">(</span>/lib/systemd/system/td-agent.service; disabled; vendor preset: enabled<span style="color:#39c">)</span>
+Active: active <span style="color:#39c">(</span>running<span style="color:#39c">)</span> since Fri 2019-12-20 02:40:54 UTC; 4h 15min ago
+</code></pre></div><p>若要停止執行 td-agent 則可輸入</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#000080"># 停止 td-agent (systemctl)</span>
+sudo systemctl stop td-agent.service
+
+<span style="color:#000080"># 停止 td-agent (init.d)</span>
+sudo /etc/init.d/td-agent stop
+</code></pre></div><h3 id="安裝-plugin">安裝 plugin</h3>
+<p>Fluentd 可透過安裝外部 plugin 來擴充功能，可到 <a href="https://www.fluentd.org/plugins">Fluentd 官網</a>查詢可安裝列表，之後使用 <code>td-agent-gem</code> 指令來安裝支援該服務的 plugin 到 td-agent 中。</p>
+<p>如安裝 <a href="https://www.elastic.co/products/elasticsearch">elasticsearch</a> 的 <a href="https://github.com/uken/fluent-plugin-elasticsearch">Fluentd plugin</a>，可執行下列指令</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">td-agent-gem install fluent-plugin-elasticsearch
+</code></pre></div><p>安裝完成即可使用該 plugin。</p>
+<blockquote>
+<p>要注意版本與相容性問題。</p>
+</blockquote>
+<h2 id="fluentd-config">Fluentd Config</h2>
+<p>Fluentd 的<strong>資料接收</strong>，<strong>資料處理</strong>與<strong>資料導出</strong>的資料流處理流程都透過設定檔來進行設定。而 td-agent 的設定檔位於<code>/etc/td-agent/td-agent.conf</code>。其中包含許多資料處理區間如</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;source&gt;
+...
+&lt;/source&gt;
+
+&lt;match pattern&gt;
+  &lt;filter&gt;
+  ...
+  &lt;/filter&gt;
+...
+&lt;/match&gt;
+</code></pre></div><p>該區間就是在定義 Fluentd 的資料來源與處理方式。不同區間代表不同的處理類型，如</p>
+<ul>
+<li><strong>&lt;source&gt;</strong> - 資料輸入(Input)來源設定</li>
+<li><strong>&lt;match pattern&gt;</strong> - 將 tag 符合 <strong>pattern</strong> 的資料輸出(Output)到設定的目的地。</li>
+<li><strong>&lt;filter&gt;</strong>: 資料處理與過濾方式。</li>
+</ul>
+<p>還有其他如 <code>&lt;parse&gt;</code>，<code>&lt;format&gt;</code>，<code>&lt;buffer&gt;</code> 等處理區間。</p>
+<h3 id="example">Example</h3>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;source&gt;
+  @type http
+  port 9880
+&lt;/source&gt;
+
+&lt;match debug.**&gt;
+  @type stdout
+&lt;/match&gt;
+</code></pre></div><p>上面的設定 Fluentd 會接收來自 port 9880 的輸入，並將 Tag 為 <code>debug.*</code> 的內容輸出到標準輸出。當透過指令輸入</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -X POST -d <span style="color:#cd0000">&#39;json={&#34;json&#34;:&#34;message&#34;}&#39;</span> http://localhost:9880/debug.test
+</code></pre></div><p>可在 <code>/var/log/td-agent/td-agent.log</code> 看到如下的輸出結果</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">2019-12-20 16:44:50.034580000 +0800 debug.test: {&#34;json&#34;:&#34;message&#34;}
+</code></pre></div><p>代表從 9880 port 輸入的資料，被重新倒入到 td-agent 的標準輸出 <code>td-agent.log</code> 中</p>
+<p>此外，<code>&lt;source&gt;</code> 和 <code>&lt;match&gt;</code> 也支援多種來源及目的地，如</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># 由其他 Fluentd 輸入的資料
+&lt;source&gt;
+  @type forward
+&lt;/source&gt;
+
+# 特定檔案的變動資料
+&lt;source&gt;
+  @type tail
+  ...
+&lt;/source&gt;
+
+# 將 tag 為 action.** 輸出到外部 Fluentd 服務
+&lt;match action.**&gt;
+  @type forward
+  &lt;server&gt;
+    name out-server-name
+    host xxx.xxx.xxx.xxx # Hostname
+  &lt;/server&gt;
+&lt;/match&gt;
+
+# 將 tag 為 run.** 的 資料依照 Buffer 的設定，每一天輸出到
+# /var/log/td-agent/park_${time}.log.gz 的檔案中
+&lt;match run.**&gt;
+  @type file
+  path /var/log/td-agent/park_
+  compress gzip
+  &lt;buffer&gt;
+    timekey 1d # 每一天一個檔案
+    timekey_use_utc true # 使用 utc 時間
+    timekey_wait 10m # 在時間區段後隔多久寫入 path 中
+  &lt;/buffer&gt;
+&lt;/match&gt;
+</code></pre></div><h3 id="routing">Routing</h3>
+<p>由於 Fluentd 的資料流為 Top-down 的方式處理，也就是若之前已經使用 <strong>&lt;match pattern&gt;</strong> 擷取資料，在之後的段落是無法取得已經被擷取的資料，因此可以透過相關 plugin 對資料做 <a href="https://docs.fluentd.org/configuration/routing-examples">Routing</a> 以分流處理。</p>
+<h4 id="copy">copy</h4>
+<p>透過 <code>out_copy</code> plugin 來將複製資料流到不同的 <code>&lt;match&gt;</code>區間中</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># 將 parl.log 輸出至檔案以及外部的 Fluentd 服務
+&lt;match park.log&gt;
+  @type copy
+  &lt;store&gt;
+    @type file
+    ...
+  &lt;/store&gt;
+  &lt;store&gt;
+    @type forward
+    ...
+  &lt;/store&gt;
+&lt;/match&gt;
+</code></pre></div><h4 id="relabel">relabel</h4>
+<p>透過 <code>out_relable</code> plugin，將資料標註新 <strong>label</strong> 並在外部處理</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;match park.log&gt;
+  @type copy
+  &lt;store&gt;
+    @type relabel
+    @label OUTPUT_FILE
+  &lt;/store&gt;
+  &lt;store&gt;
+    @type relabe
+    @label OUTPUT_FORWARD
+  &lt;/store&gt;
+&lt;/match&gt;
+
+&lt;label @OUTPUT_FILE&gt;
+  &lt;match park.log&gt;
+    @type file
+    ...
+  &lt;/match&gt;
+&lt;/label&gt;
+
+&lt;label @OUTPUT_FORWARD&gt;
+  &lt;match park.log&gt;
+    @type forward
+    ...
+  &lt;/match&gt;
+&lt;/label&gt;
+</code></pre></div><h3 id="測試-config-並重新啟動服務">測試 config 並重新啟動服務</h3>
+<p>當修改過 <strong>td-agent.conf</strong> 後可先測試該 config 設定是否可執行，只要在資料中</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">td-agent --dry-run -c <span style="color:#39c">[</span>config-file<span style="color:#39c">]</span>
+</code></pre></div><p>即可測試特定設定檔是否可正常運作，若成功則可重新啟動 td-agent</p>
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000080"># 重新啟動(systemctl)</span>
+sudo systemctl restart td-agent.service
+
+<span style="color:#000080"># 重新啟動(init.d)</span>
+sudo /etc/init.d/td-agent restart
+</code></pre></div><h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.fluentd.org">Fluentd</a></li>
+<li><a href="https://docs.fluentd.org/">Fluentd - Doc</a></li>
+<li><a href="https://fluentbit.io/">Fluentd Bit</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/fluentd/">Fluentd</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/fft_intro/" data-tooltip="從傅立葉級數到快速傅立葉轉換">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2019/12/fluentd_basic/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Cheng-Shiang Li. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/fft_intro/" data-tooltip="從傅立葉級數到快速傅立葉轉換">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2019/12/fluentd_basic/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2019%2F12%2Ffluentd_basic%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Cheng-Shiang Li</h4>
+    
+      <div id="about-card-bio">Senior software developer. Mastering Android/iOS application development and machine learning algorithm.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Enginner
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/images/bg/nasa-space.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2019\/12\/fluentd_basic\/';
+          
+            this.page.identifier = '\/2019\/12\/fluentd_basic\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'yeshuanova';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+
+    
+  </body>
+</html>
+

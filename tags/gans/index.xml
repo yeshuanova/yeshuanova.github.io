@@ -13,10 +13,10 @@
     
     <item>
       <title>Generative Adversarial Networks Tutorial</title>
-      <link>/post/2017/07/gans-tutorial/</link>
+      <link>/2017/07/gans-tutorial/</link>
       <pubDate>Wed, 26 Jul 2017 14:00:00 +0800</pubDate>
       
-      <guid>/post/2017/07/gans-tutorial/</guid>
+      <guid>/2017/07/gans-tutorial/</guid>
       <description>&lt;p&gt;Generative Adversarial Networks（生成式對抗網路，以下簡稱GANs）是近年來備受矚目的機器學習框架。
 自從&lt;a href=&#34;https://en.wikipedia.org/wiki/Ian_Goodfellow&#34;&gt;Ian Goodfellow&lt;/a&gt;於2014年提出GANs的概念後，
 許多研究人員與企業如Google，Facebook與Apple等代表性公司均相繼投入了GANs的應用研究與發展，

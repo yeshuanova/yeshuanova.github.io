@@ -13,10 +13,10 @@
     
     <item>
       <title>Fluentd 基礎使用方式</title>
-      <link>/post/2019/12/fluentd_basic/</link>
+      <link>/2019/12/fluentd_basic/</link>
       <pubDate>Sun, 22 Dec 2019 12:00:00 +0800</pubDate>
       
-      <guid>/post/2019/12/fluentd_basic/</guid>
+      <guid>/2019/12/fluentd_basic/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://www.fluentd.org/&#34;&gt;Fluentd&lt;/a&gt; 是一套開源資料蒐集軟體 (Data Collection Software)。通常在專案中我們會需要將各種資料傳遞到不同服務，如 Apache, MySQL, elasticsearch 等服務，但不同服務間的資料傳遞方式卻各自不同，常會造成混亂。&lt;/p&gt;</description>
     </item>
     

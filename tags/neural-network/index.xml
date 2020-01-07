@@ -13,19 +13,19 @@
     
     <item>
       <title>高效卷積計算結構 - Depthwise Separable Convolution</title>
-      <link>/post/2018/02/depthwise-separable-convolution/</link>
+      <link>/2018/02/depthwise-separable-convolution/</link>
       <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
       
-      <guid>/post/2018/02/depthwise-separable-convolution/</guid>
+      <guid>/2018/02/depthwise-separable-convolution/</guid>
       <description>&lt;p&gt;近年來因與計算機的計算能力大幅上升，GPGPU 的支援等，使深度神經網路技術取得了非常好的效果發展。但所衍生的高計算量卻讓行動裝置以及嵌入式系統等計算能力有限的平台在執行時遇到效能的限制。因此 Google 在 MobileNets 模型中使用了新的卷積計算模型 depthwise separable convolution 來減少所需的計量。本篇將從基礎類神經網路開始介紹，說明卷積神經網路的架構與計算成本問題，並解說 depthwise separable convolution 的技術內容與計算成本。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Autoencoder 簡介與應用範例</title>
-      <link>/post/2018/01/autoencoder-tutorial/</link>
+      <link>/2018/01/autoencoder-tutorial/</link>
       <pubDate>Thu, 04 Jan 2018 18:00:00 +0800</pubDate>
       
-      <guid>/post/2018/01/autoencoder-tutorial/</guid>
+      <guid>/2018/01/autoencoder-tutorial/</guid>
       <description>&lt;p&gt;Autoencoder(自動編碼器)是一種是透過 &lt;a href=&#34;https://en.wikipedia.org/wiki/Artificial_neural_network&#34;&gt;Artificial Neural Network&lt;/a&gt;，來進行資料自動學習與編碼的技術。本文將使用機器學習函式庫 &lt;a href=&#34;https://keras.io/&#34;&gt;Keras&lt;/a&gt; 建立 Autoencoder Model，並使用 MNIST Datatset 來展示兩個 Autoencoder 範例 - &lt;strong&gt;資料降維回復&lt;/strong&gt;與&lt;strong&gt;去雜訊(Denoising)&lt;/strong&gt;的 Model。&lt;/p&gt;</description>
     </item>
     
