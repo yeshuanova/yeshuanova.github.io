@@ -6,11 +6,7 @@
     <description>Recent content in Bayes on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 07 Aug 2018 12:00:00 +0800</lastBuildDate>
-    
-	<atom:link href="/tags/bayes/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 07 Aug 2018 12:00:00 +0800</lastBuildDate><atom:link href="/tags/bayes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 8</title>
       <link>/2018/08/thinkbayes-ch8/</link>

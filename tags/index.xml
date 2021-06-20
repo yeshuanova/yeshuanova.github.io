@@ -6,10 +6,33 @@
     <description>Recent content in Tags on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 22 Dec 2019 12:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 20 Jun 2021 12:00:00 +0800</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog</title>
+      <link>/tags/blog/</link>
+      <pubDate>Sun, 20 Jun 2021 12:00:00 +0800</pubDate>
+      
+      <guid>/tags/blog/</guid>
+      <description></description>
+    </item>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Marp</title>
+      <link>/tags/marp/</link>
+      <pubDate>Sun, 20 Jun 2021 12:00:00 +0800</pubDate>
+      
+      <guid>/tags/marp/</guid>
+      <description></description>
+    </item>
     
+    <item>
+      <title>VSCode</title>
+      <link>/tags/vscode/</link>
+      <pubDate>Sun, 20 Jun 2021 12:00:00 +0800</pubDate>
+      
+      <guid>/tags/vscode/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Fluentd</title>

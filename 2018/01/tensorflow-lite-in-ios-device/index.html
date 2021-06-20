@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="Image classification in iOS device using TensorFlow Lite">
@@ -98,7 +98,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     
     
   </head>
@@ -277,7 +276,7 @@ if (!doNotTrack) {
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000080"># Install Xcode command line tools (for i)</span>
 xcode-select --install
 
-<span style="color:#000080"># Install automake and libtool</span> 
+<span style="color:#000080"># Install automake and libtool </span>
 brew install automake
 brew install libtool
 </code></pre></div><h4 id="取得-tensorflow-原始碼">取得 TensorFlow 原始碼</h4>
@@ -327,24 +326,24 @@ tensorflow/contrib/lite/build_ios_universal_lib.sh
 <h4 id="讀取--tensorflow-lite-model">讀取  TensorFlow Lite Model</h4>
 <p>使用 NSBundle 中的 <a href="https://developer.apple.com/documentation/foundation/nsbundle/1410989-pathforresource">pathForResource</a>  function 取得 model 檔案路徑後建立 <code>model </code> 物件。</p>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#cdcd00">auto</span> graph_path <span style="color:#39c">=</span> <span style="color:#000080">/* Get model path */</span>
-<span style="color:#cdcd00">auto</span> model <span style="color:#39c">=</span> tflite<span style="color:#39c">:</span><span style="color:#39c">:</span>FlatBufferModel<span style="color:#39c">:</span><span style="color:#39c">:</span>BuildFromFile(graph_path.c_str());
+<span style="color:#cdcd00">auto</span> model <span style="color:#39c">=</span> tflite<span style="color:#39c">::</span>FlatBufferModel<span style="color:#39c">::</span>BuildFromFile(graph_path.c_str());
 </code></pre></div><h4 id="建立-interpreter">建立 Interpreter</h4>
 <p>建立 Interpreter 物件，並設定所要使用的 model。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#cdcd00">auto</span> interpreter <span style="color:#39c">=</span> std<span style="color:#39c">:</span><span style="color:#39c">:</span>make_unique<span style="color:#39c">&lt;</span>tflite<span style="color:#39c">:</span><span style="color:#39c">:</span>Interpreter<span style="color:#39c">&gt;</span>();
-<span style="color:#cdcd00">auto</span> resolver <span style="color:#39c">=</span> tflite<span style="color:#39c">:</span><span style="color:#39c">:</span>ops<span style="color:#39c">:</span><span style="color:#39c">:</span>builtin<span style="color:#39c">:</span><span style="color:#39c">:</span>BuiltinOpResolver();
-<span style="color:#cdcd00">auto</span> builder <span style="color:#39c">=</span> tflite<span style="color:#39c">:</span><span style="color:#39c">:</span>InterpreterBuilder(<span style="color:#39c">*</span>model, resolver);
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#cdcd00">auto</span> interpreter <span style="color:#39c">=</span> std<span style="color:#39c">::</span>make_unique<span style="color:#39c">&lt;</span>tflite<span style="color:#39c">::</span>Interpreter<span style="color:#39c">&gt;</span>();
+<span style="color:#cdcd00">auto</span> resolver <span style="color:#39c">=</span> tflite<span style="color:#39c">::</span>ops<span style="color:#39c">::</span>builtin<span style="color:#39c">::</span>BuiltinOpResolver();
+<span style="color:#cdcd00">auto</span> builder <span style="color:#39c">=</span> tflite<span style="color:#39c">::</span>InterpreterBuilder(<span style="color:#39c">*</span>model, resolver);
 builder(<span style="color:#39c">&amp;</span>p_interpreter);
 </code></pre></div><h4 id="初始化-input-tensor">初始化 Input Tensor</h4>
 <p>在執行需先建立 Input tensor，設定維度後分配記憶體空間。因 <strong>mobilenet</strong> 的模型為 <strong>224 * 224 * 3</strong> 的圖片，引此維度需設為 <code>vector&lt;int&gt;{1, 224, 224, 3}</code>。</p>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000080">// 設定 Input Tensor 的維度
-</span><span style="color:#000080"></span>interpreter<span style="color:#39c">-</span><span style="color:#39c">&gt;</span>ResizeInputTensor(interpreter<span style="color:#39c">-</span><span style="color:#39c">&gt;</span>inputs()[<span style="color:#cd00cd">0</span>], vector<span style="color:#39c">&lt;</span><span style="color:#00cd00">int</span><span style="color:#39c">&gt;</span>{<span style="color:#cd00cd">1</span>, <span style="color:#cd00cd">224</span>, <span style="color:#cd00cd">224</span>, <span style="color:#cd00cd">3</span>);
+</span><span style="color:#000080"></span>interpreter<span style="color:#39c">-&gt;</span>ResizeInputTensor(interpreter<span style="color:#39c">-&gt;</span>inputs()[<span style="color:#cd00cd">0</span>], vector<span style="color:#39c">&lt;</span><span style="color:#00cd00">int</span><span style="color:#39c">&gt;</span>{<span style="color:#cd00cd">1</span>, <span style="color:#cd00cd">224</span>, <span style="color:#cd00cd">224</span>, <span style="color:#cd00cd">3</span>);
 
 <span style="color:#000080">// 建立 Input Tensor 的記憶體空間 (ResizeInputTensor() 後一定要執行)
-</span><span style="color:#000080"></span>interpreter<span style="color:#39c">-</span><span style="color:#39c">&gt;</span>AllocateTensors(); 
+</span><span style="color:#000080"></span>interpreter<span style="color:#39c">-&gt;</span>AllocateTensors(); 
 </code></pre></div><h4 id="設定資料到-input-tensor">設定資料到 Input Tensor</h4>
 <p>要設定資料到 Input Tensor，可先取得資料的初始 address 後，計算 Raw Data 中對應的位置後將資料傳入 Input Tensor 中。</p>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000080">// 取得輸入的資料初始 Address
-</span><span style="color:#000080"></span><span style="color:#00cd00">float</span><span style="color:#39c">*</span> out <span style="color:#39c">=</span> interpreter<span style="color:#39c">-</span><span style="color:#39c">&gt;</span>typed_tensor<span style="color:#39c">&lt;</span><span style="color:#00cd00">float</span><span style="color:#39c">&gt;</span>(interpreter<span style="color:#39c">-</span><span style="color:#39c">&gt;</span>inputs()[<span style="color:#cd00cd">0</span>]);
+</span><span style="color:#000080"></span><span style="color:#00cd00">float</span><span style="color:#39c">*</span> out <span style="color:#39c">=</span> interpreter<span style="color:#39c">-&gt;</span>typed_tensor<span style="color:#39c">&lt;</span><span style="color:#00cd00">float</span><span style="color:#39c">&gt;</span>(interpreter<span style="color:#39c">-&gt;</span>inputs()[<span style="color:#cd00cd">0</span>]);
 
 <span style="color:#000080">// Raw data 的資料的初始位址
 </span><span style="color:#000080"></span><span style="color:#00cd00">uint8_t</span><span style="color:#39c">*</span> in <span style="color:#39c">=</span> raw_data.data();  <span style="color:#000080">// raw_data: 原始資料的 byte array
@@ -361,15 +360,15 @@ size_t image_channels <span style="color:#39c">=</span> <span style="color:#0000
 <span style="color:#00cd00">float</span> input_std <span style="color:#39c">=</span> <span style="color:#cd00cd">127.5f</span>;
     
 <span style="color:#000080">// 計算每一個 input data 對應的 input tensor 位置，並將 data 設定至 tensor 中
-</span><span style="color:#000080"></span><span style="color:#cdcd00">for</span> (<span style="color:#00cd00">int</span> y <span style="color:#39c">=</span> <span style="color:#cd00cd">0</span>; y <span style="color:#39c">&lt;</span> model_height; <span style="color:#39c">+</span><span style="color:#39c">+</span>y) {
+</span><span style="color:#000080"></span><span style="color:#cdcd00">for</span> (<span style="color:#00cd00">int</span> y <span style="color:#39c">=</span> <span style="color:#cd00cd">0</span>; y <span style="color:#39c">&lt;</span> model_height; <span style="color:#39c">++</span>y) {
     <span style="color:#00cd00">int</span> in_y <span style="color:#39c">=</span> <span style="color:#cdcd00">static_cast</span><span style="color:#39c">&lt;</span><span style="color:#00cd00">int</span><span style="color:#39c">&gt;</span>(y <span style="color:#39c">*</span> image_height <span style="color:#39c">/</span> model_height);
     <span style="color:#00cd00">uint8_t</span><span style="color:#39c">*</span> in_row <span style="color:#39c">=</span> in <span style="color:#39c">+</span> (in_y <span style="color:#39c">*</span> image_width <span style="color:#39c">*</span> image_channels);
     <span style="color:#00cd00">float</span><span style="color:#39c">*</span> out_row <span style="color:#39c">=</span> out <span style="color:#39c">+</span> (y <span style="color:#39c">*</span> model_width <span style="color:#39c">*</span> model_channels);
-    <span style="color:#cdcd00">for</span> (<span style="color:#00cd00">int</span> x <span style="color:#39c">=</span> <span style="color:#cd00cd">0</span>; x <span style="color:#39c">&lt;</span> model_width; <span style="color:#39c">+</span><span style="color:#39c">+</span>x) {
+    <span style="color:#cdcd00">for</span> (<span style="color:#00cd00">int</span> x <span style="color:#39c">=</span> <span style="color:#cd00cd">0</span>; x <span style="color:#39c">&lt;</span> model_width; <span style="color:#39c">++</span>x) {
         <span style="color:#cdcd00">const</span> <span style="color:#00cd00">int</span> in_x <span style="color:#39c">=</span> <span style="color:#cdcd00">static_cast</span><span style="color:#39c">&lt;</span><span style="color:#00cd00">int</span><span style="color:#39c">&gt;</span>(x <span style="color:#39c">*</span> image_width <span style="color:#39c">/</span> model_width);
         <span style="color:#cdcd00">const</span> <span style="color:#00cd00">uint8_t</span><span style="color:#39c">*</span> in_pixel <span style="color:#39c">=</span> in_row <span style="color:#39c">+</span> (in_x <span style="color:#39c">*</span> image_channels);
         <span style="color:#00cd00">float</span><span style="color:#39c">*</span> out_pixel <span style="color:#39c">=</span> out_row <span style="color:#39c">+</span> (x <span style="color:#39c">*</span> model_channels);
-        <span style="color:#cdcd00">for</span> (<span style="color:#00cd00">int</span> c <span style="color:#39c">=</span> <span style="color:#cd00cd">0</span>; c <span style="color:#39c">&lt;</span> model_channels; <span style="color:#39c">+</span><span style="color:#39c">+</span>c) {
+        <span style="color:#cdcd00">for</span> (<span style="color:#00cd00">int</span> c <span style="color:#39c">=</span> <span style="color:#cd00cd">0</span>; c <span style="color:#39c">&lt;</span> model_channels; <span style="color:#39c">++</span>c) {
             <span style="color:#000080">// 正規化輸入資料
 </span><span style="color:#000080"></span>            out_pixel[c] <span style="color:#39c">=</span> (in_pixel[c] <span style="color:#39c">-</span> input_mean) <span style="color:#39c">/</span> input_std;
         }
@@ -378,11 +377,11 @@ size_t image_channels <span style="color:#39c">=</span> <span style="color:#0000
 </code></pre></div><h4 id="執行-tensorflow-lite-model">執行 TensorFlow Lite Model</h4>
 <p>當資料設定完成後可呼叫 <code>Interpreter::Invoke()</code> 函式執行 Model。</p>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000080">// 使用 Invoke() function 執行設定 model，並確定狀態是否執行成功。
-</span><span style="color:#000080"></span>interpreter<span style="color:#39c">-</span><span style="color:#39c">&gt;</span>Invoke()
+</span><span style="color:#000080"></span>interpreter<span style="color:#39c">-&gt;</span>Invoke()
 </code></pre></div><h4 id="取得執行後的結果">取得執行後的結果</h4>
 <p>若執行成功可得出 <strong>MobileNet</strong> 的中對應每個 <strong>Label</strong> 的 score 資訊（Label 的資訊存在 <strong>labels.txt</strong> 中）。</p>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000080">// 取得 output tensor 初始位置
-</span><span style="color:#000080"></span><span style="color:#00cd00">float</span><span style="color:#39c">*</span> output <span style="color:#39c">=</span> interpreter<span style="color:#39c">-</span><span style="color:#39c">&gt;</span>typed_output_tensor<span style="color:#39c">&lt;</span><span style="color:#00cd00">float</span><span style="color:#39c">&gt;</span>(<span style="color:#cd00cd">0</span>);
+</span><span style="color:#000080"></span><span style="color:#00cd00">float</span><span style="color:#39c">*</span> output <span style="color:#39c">=</span> interpreter<span style="color:#39c">-&gt;</span>typed_output_tensor<span style="color:#39c">&lt;</span><span style="color:#00cd00">float</span><span style="color:#39c">&gt;</span>(<span style="color:#cd00cd">0</span>);
 
 <span style="color:#000080">// 使用 output 資料建立 Score vector
 </span><span style="color:#000080"></span><span style="color:#cdcd00">auto</span> scores <span style="color:#39c">=</span> vector<span style="color:#39c">&lt;</span><span style="color:#00cd00">float</span><span style="color:#39c">&gt;</span>(output, output <span style="color:#39c">+</span> <span style="color:#cd00cd">1000</span>); <span style="color:#000080">// mobilenet 共有 1000 個 labels
@@ -481,7 +480,7 @@ size_t image_channels <span style="color:#39c">=</span> <span style="color:#0000
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 

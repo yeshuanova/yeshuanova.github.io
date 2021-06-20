@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="Machine Learning Dataset">
@@ -94,7 +94,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     
     
   </head>
@@ -277,62 +276,62 @@ if (!doNotTrack) {
 <table>
 <thead>
 <tr>
-<th align="center">Sepal Length</th>
-<th align="center">Sepal Width</th>
-<th align="center">Petal Length</th>
-<th align="center">Petal Width</th>
-<th align="center">Label</th>
+<th style="text-align:center">Sepal Length</th>
+<th style="text-align:center">Sepal Width</th>
+<th style="text-align:center">Petal Length</th>
+<th style="text-align:center">Petal Width</th>
+<th style="text-align:center">Label</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">5.1</td>
-<td align="center">3.5</td>
-<td align="center">1.4</td>
-<td align="center">0.2</td>
-<td align="center">setosa</td>
+<td style="text-align:center">5.1</td>
+<td style="text-align:center">3.5</td>
+<td style="text-align:center">1.4</td>
+<td style="text-align:center">0.2</td>
+<td style="text-align:center">setosa</td>
 </tr>
 <tr>
-<td align="center">4.9</td>
-<td align="center">3.0</td>
-<td align="center">1.4</td>
-<td align="center">0.2</td>
-<td align="center">setosa</td>
+<td style="text-align:center">4.9</td>
+<td style="text-align:center">3.0</td>
+<td style="text-align:center">1.4</td>
+<td style="text-align:center">0.2</td>
+<td style="text-align:center">setosa</td>
 </tr>
 <tr>
-<td align="center">7.0</td>
-<td align="center">3.2</td>
-<td align="center">4.7</td>
-<td align="center">1.4</td>
-<td align="center">versicolor</td>
+<td style="text-align:center">7.0</td>
+<td style="text-align:center">3.2</td>
+<td style="text-align:center">4.7</td>
+<td style="text-align:center">1.4</td>
+<td style="text-align:center">versicolor</td>
 </tr>
 <tr>
-<td align="center">6.4</td>
-<td align="center">3.2</td>
-<td align="center">4.5</td>
-<td align="center">1.5</td>
-<td align="center">versicolor</td>
+<td style="text-align:center">6.4</td>
+<td style="text-align:center">3.2</td>
+<td style="text-align:center">4.5</td>
+<td style="text-align:center">1.5</td>
+<td style="text-align:center">versicolor</td>
 </tr>
 <tr>
-<td align="center">6.3</td>
-<td align="center">3.3</td>
-<td align="center">6.0</td>
-<td align="center">2.5</td>
-<td align="center">virginica</td>
+<td style="text-align:center">6.3</td>
+<td style="text-align:center">3.3</td>
+<td style="text-align:center">6.0</td>
+<td style="text-align:center">2.5</td>
+<td style="text-align:center">virginica</td>
 </tr>
 <tr>
-<td align="center">5.8</td>
-<td align="center">2.7</td>
-<td align="center">5.1</td>
-<td align="center">1.9</td>
-<td align="center">virginica</td>
+<td style="text-align:center">5.8</td>
+<td style="text-align:center">2.7</td>
+<td style="text-align:center">5.1</td>
+<td style="text-align:center">1.9</td>
+<td style="text-align:center">virginica</td>
 </tr>
 <tr>
-<td align="center">&hellip;</td>
-<td align="center">&hellip;</td>
-<td align="center">&hellip;</td>
-<td align="center">&hellip;</td>
-<td align="center">&hellip;</td>
+<td style="text-align:center">&hellip;</td>
+<td style="text-align:center">&hellip;</td>
+<td style="text-align:center">&hellip;</td>
+<td style="text-align:center">&hellip;</td>
+<td style="text-align:center">&hellip;</td>
 </tr>
 </tbody>
 </table>
@@ -352,29 +351,29 @@ iris <span style="color:#39c">=</span> datasets<span style="color:#39c">.</span>
 ...
 ...
 </code></pre></div><p>其中 Attribute 資料在 <code>iris.data</code>，而 Label 在 <code>iris.target</code> 中</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cdcd00">print</span>(iris<span style="color:#39c">.</span>data[:<span style="color:#cd00cd">2</span>])
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">print</span>(iris<span style="color:#39c">.</span>data[:<span style="color:#cd00cd">2</span>])
 
 <span style="color:#000080"># show [[5.1 3.5 1.4 0.2], [4.9 3.0 1.4 0.2]]</span>
 
-<span style="color:#cdcd00">print</span>(iris<span style="color:#39c">.</span>target[:<span style="color:#cd00cd">2</span>])
+<span style="color:#cd00cd">print</span>(iris<span style="color:#39c">.</span>target[:<span style="color:#cd00cd">2</span>])
 
 <span style="color:#000080"># show [0, 0]</span>
 </code></pre></div><p>代表第一筆資料 <code>[5.1, 3.5, 1.4, 0.2]</code> 與第二筆資料 <code>[4.9 3.0 1.4 0.2]</code> 對應到的 Label 為 0。而每個 feature 與 label 對應到的特徵內容可使用 <code>feature_names</code> 與 <code>target_names</code> 來顯示</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cdcd00">print</span>(iris<span style="color:#39c">.</span>feature_names)
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">print</span>(iris<span style="color:#39c">.</span>feature_names)
 
 <span style="color:#000080"># [&#39;sepal length (cm)&#39;,</span>
 <span style="color:#000080">#  &#39;sepal width (cm)&#39;,</span>
 <span style="color:#000080">#  &#39;petal length (cm)&#39;,</span>
 <span style="color:#000080">#  &#39;petal width (cm)&#39;]</span>
 
-<span style="color:#cdcd00">print</span>(iris<span style="color:#39c">.</span>target_names)
+<span style="color:#cd00cd">print</span>(iris<span style="color:#39c">.</span>target_names)
 
 <span style="color:#000080"># [&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;]</span>
 </code></pre></div><p>feature 顯示代表 <code>iris.data[0][0] = 5.1</code> 為 <strong>sepal lenght</strong>，而 <code>iris.data[0][1] = 3.5</code> 代表 <strong>sepal width</strong> 等。而 Label <code>0</code> 代表 <strong>setosa</strong>。</p>
 <p>了解該資料集的結構後，我們就可以對該資料進行一些簡單的應用，如 K-mean 分群 (Clustering) 等，方法可參考 Scikit-learn 上的<a href="http://scikit-learn.org/stable/auto_examples/cluster/plot_cluster_iris.html#sphx-glr-auto-examples-cluster-plot-cluster-iris-py">範例</a>。</p>
 <h2 id="reference">Reference</h2>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">Wikipeida</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">Wikipedia</a></li>
 <li><a href="http://archive.ics.uci.edu/ml/datasets/Iris">UCI</a></li>
 <li><a href="http://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html">Scikit-learn - The Iris Dataset</a></li>
 <li><a href="http://scikit-learn.org/stable/auto_examples/cluster/plot_cluster_iris.html#sphx-glr-auto-examples-cluster-plot-cluster-iris-py">Scikit-learn - K-means clustering</a></li>
@@ -460,7 +459,7 @@ iris <span style="color:#39c">=</span> datasets<span style="color:#39c">.</span>
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 

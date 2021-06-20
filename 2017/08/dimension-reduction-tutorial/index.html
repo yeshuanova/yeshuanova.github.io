@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="Introduction to Dimension Reduction">
@@ -96,7 +96,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     
     
   </head>
@@ -382,7 +381,7 @@ if (!doNotTrack) {
 
 <p>執行下列Python Code進行PCA降維</p>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000080"># 匯入相關 Package</span>
-<span style="color:#cd00cd">import</span> matplotlib.pyplot <span style="color:#cd00cd">as</span> plt
+<span style="color:#cd00cd">import</span> matplotlib.pyplot <span style="color:#cdcd00">as</span> plt
 <span style="color:#cd00cd">from</span> sklearn <span style="color:#cd00cd">import</span> datasets
 <span style="color:#cd00cd">from</span> sklearn.decomposition <span style="color:#cd00cd">import</span> PCA
 
@@ -397,11 +396,11 @@ pca_result <span style="color:#39c">=</span> pca_model<span style="color:#39c">.
 <span style="color:#000080"># 繪製資料2D表示圖，並將不同類別加上顏色標示</span>
 <span style="color:#cdcd00">for</span> idx, label <span style="color:#cdcd00">in</span> <span style="color:#cd00cd">enumerate</span>(iris_label):
     <span style="color:#cdcd00">if</span> label <span style="color:#39c">==</span> <span style="color:#cd00cd">0</span>:
-        color <span style="color:#39c">=</span> <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">ro</span><span style="color:#cd0000">&#39;</span>
+        color <span style="color:#39c">=</span> <span style="color:#cd0000">&#39;ro&#39;</span>
     <span style="color:#cdcd00">elif</span> label <span style="color:#39c">==</span> <span style="color:#cd00cd">1</span>:
-        color <span style="color:#39c">=</span> <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">go</span><span style="color:#cd0000">&#39;</span>
+        color <span style="color:#39c">=</span> <span style="color:#cd0000">&#39;go&#39;</span>
     <span style="color:#cdcd00">elif</span> label <span style="color:#39c">==</span> <span style="color:#cd00cd">2</span>:
-        color <span style="color:#39c">=</span> <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">bo</span><span style="color:#cd0000">&#39;</span>
+        color <span style="color:#39c">=</span> <span style="color:#cd0000">&#39;bo&#39;</span>
     <span style="color:#cdcd00">else</span>:
         <span style="color:#cdcd00">continue</span>
     x <span style="color:#39c">=</span> pca_result[idx, <span style="color:#cd00cd">0</span>]
@@ -506,7 +505,7 @@ pca_result <span style="color:#39c">=</span> pca_model<span style="color:#39c">.
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 

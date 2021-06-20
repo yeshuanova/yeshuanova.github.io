@@ -6,11 +6,7 @@
     <description>Recent content in Kepler.gl on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 02 Sep 2018 16:00:00 +0800</lastBuildDate>
-    
-	<atom:link href="/tags/kepler.gl/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 02 Sep 2018 16:00:00 +0800</lastBuildDate><atom:link href="/tags/kepler.gl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kepler.gl 使用簡介</title>
       <link>/2018/09/kepler-gl/</link>

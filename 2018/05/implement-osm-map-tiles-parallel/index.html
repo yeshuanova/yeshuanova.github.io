@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="Implement OSM map tiles using datashader and mercantile (version 2)">
@@ -102,7 +102,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     
     
   </head>
@@ -319,20 +318,20 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd"
 <table>
 <thead>
 <tr>
-<th align="center">x</th>
-<th align="center">y</th>
-<th align="center">zoom</th>
-<th align="center">xtile</th>
-<th align="center">ytile</th>
+<th style="text-align:center">x</th>
+<th style="text-align:center">y</th>
+<th style="text-align:center">zoom</th>
+<th style="text-align:center">xtile</th>
+<th style="text-align:center">ytile</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">Web Mercator X</td>
-<td align="center">Web Mercator - Y</td>
-<td align="center">地圖基底 zoom</td>
-<td align="center">Map Tile X 位置</td>
-<td align="center">Map Tile Y 位置</td>
+<td style="text-align:center">Web Mercator X</td>
+<td style="text-align:center">Web Mercator - Y</td>
+<td style="text-align:center">地圖基底 zoom</td>
+<td style="text-align:center">Map Tile X 位置</td>
+<td style="text-align:center">Map Tile Y 位置</td>
 </tr>
 </tbody>
 </table>
@@ -346,20 +345,20 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd"
 </ul>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cdcd00">def</span> makeTilesAggregation(source, root):
     <span style="color:#cdcd00">if</span> <span style="color:#cdcd00">not</span> os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>exists(source):
-        <span style="color:#cdcd00">raise</span> <span style="color:#669;font-weight:bold">ValueError</span>(f<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">Source file {source} doesn</span><span style="color:#cd0000">\&#39;</span><span style="color:#cd0000">t exist</span><span style="color:#cd0000">&#39;</span>)
+        <span style="color:#cdcd00">raise</span> <span style="color:#669;font-weight:bold">ValueError</span>(<span style="color:#cd0000">f</span><span style="color:#cd0000">&#39;Source file </span><span style="color:#cd0000">{</span>source<span style="color:#cd0000">}</span><span style="color:#cd0000"> doesn</span><span style="color:#cd0000">\&#39;</span><span style="color:#cd0000">t exist&#39;</span>)
     
-    os<span style="color:#39c">.</span>makedirs(root, exist_ok<span style="color:#39c">=</span>True)
+    os<span style="color:#39c">.</span>makedirs(root, exist_ok<span style="color:#39c">=</span><span style="color:#cdcd00">True</span>)
     
     df <span style="color:#39c">=</span> pd<span style="color:#39c">.</span>read_csv(source,
-                     usecols<span style="color:#39c">=</span>[<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">x</span><span style="color:#cd0000">&#39;</span>, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">y</span><span style="color:#cd0000">&#39;</span>, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">zoom</span><span style="color:#cd0000">&#39;</span>, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">xtile</span><span style="color:#cd0000">&#39;</span>, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">ytile</span><span style="color:#cd0000">&#39;</span>],
-                     dtype<span style="color:#39c">=</span>{<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">x</span><span style="color:#cd0000">&#39;</span>:np<span style="color:#39c">.</span>float32,
-                            <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">y</span><span style="color:#cd0000">&#39;</span>:np<span style="color:#39c">.</span>float32,
-                            <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">zoom</span><span style="color:#cd0000">&#39;</span>:np<span style="color:#39c">.</span>int8,
-                            <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">xtile</span><span style="color:#cd0000">&#39;</span>:np<span style="color:#39c">.</span>int32,
-                            <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">ytile</span><span style="color:#cd0000">&#39;</span>:np<span style="color:#39c">.</span>int32})
+                     usecols<span style="color:#39c">=</span>[<span style="color:#cd0000">&#39;x&#39;</span>, <span style="color:#cd0000">&#39;y&#39;</span>, <span style="color:#cd0000">&#39;zoom&#39;</span>, <span style="color:#cd0000">&#39;xtile&#39;</span>, <span style="color:#cd0000">&#39;ytile&#39;</span>],
+                     dtype<span style="color:#39c">=</span>{<span style="color:#cd0000">&#39;x&#39;</span>:np<span style="color:#39c">.</span>float32,
+                            <span style="color:#cd0000">&#39;y&#39;</span>:np<span style="color:#39c">.</span>float32,
+                            <span style="color:#cd0000">&#39;zoom&#39;</span>:np<span style="color:#39c">.</span>int8,
+                            <span style="color:#cd0000">&#39;xtile&#39;</span>:np<span style="color:#39c">.</span>int32,
+                            <span style="color:#cd0000">&#39;ytile&#39;</span>:np<span style="color:#39c">.</span>int32})
     
-    <span style="color:#cdcd00">for</span> ((zoom, xtile, ytile), data) <span style="color:#cdcd00">in</span> df<span style="color:#39c">.</span>groupby(by<span style="color:#39c">=</span>[<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">zoom</span><span style="color:#cd0000">&#39;</span>, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">xtile</span><span style="color:#cd0000">&#39;</span>, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">ytile</span><span style="color:#cd0000">&#39;</span>]):
-        agg <span style="color:#39c">=</span> mapTileCanvas(xtile, ytile, zoom)<span style="color:#39c">.</span>points(data, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">x</span><span style="color:#cd0000">&#39;</span>, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">y</span><span style="color:#cd0000">&#39;</span>)
+    <span style="color:#cdcd00">for</span> ((zoom, xtile, ytile), data) <span style="color:#cdcd00">in</span> df<span style="color:#39c">.</span>groupby(by<span style="color:#39c">=</span>[<span style="color:#cd0000">&#39;zoom&#39;</span>, <span style="color:#cd0000">&#39;xtile&#39;</span>, <span style="color:#cd0000">&#39;ytile&#39;</span>]):
+        agg <span style="color:#39c">=</span> mapTileCanvas(xtile, ytile, zoom)<span style="color:#39c">.</span>points(data, <span style="color:#cd0000">&#39;x&#39;</span>, <span style="color:#cd0000">&#39;y&#39;</span>)
         serializeAggToFile(agg, getAggFilePath(root, xtile, ytile, zoom))
         serializeAggYaml(agg, getAggYamlFilePath(root, xtile, ytile, zoom))
         
@@ -378,7 +377,7 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd"
 <p>合併所有 map tiles aggregation files，成為一個包含所有分割 csv 資料的整合 aggregation，並將其當作是基底 map tile 資料。</p>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000080"># 平行化合併處理方式 </span>
 <span style="color:#cdcd00">with</span> futures<span style="color:#39c">.</span>ProcessPoolExecutor() <span style="color:#cdcd00">as</span> executor:
-    tiles <span style="color:#39c">=</span> getCombineTiles(glob<span style="color:#39c">.</span>glob(os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(temp_root, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">*</span><span style="color:#cd0000">&#39;</span>)))
+    tiles <span style="color:#39c">=</span> getCombineTiles(glob<span style="color:#39c">.</span>glob(os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(temp_root, <span style="color:#cd0000">&#39;*&#39;</span>)))
     tiles_chunk <span style="color:#39c">=</span> <span style="color:#cd00cd">list</span>(chunks(tiles, chunksSize(<span style="color:#cd00cd">len</span>(tiles), <span style="color:#cd00cd">4</span>)))
     tiles_tuple <span style="color:#39c">=</span> <span style="color:#cd00cd">zip</span>(tiles_chunk, [temp_root] <span style="color:#39c">*</span> <span style="color:#cd00cd">len</span>(tiles_chunk), [agg_root] <span style="color:#39c">*</span> <span style="color:#cd00cd">len</span>(tiles_chunk))
     fs <span style="color:#39c">=</span> executor<span style="color:#39c">.</span>map(combineAggregationWrapper, tiles_tuple)
@@ -407,7 +406,7 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd"
 </li>
 </ul>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cdcd00">for</span> zoom <span style="color:#cdcd00">in</span> <span style="color:#cd00cd">range</span>(base_zoom, <span style="color:#cd00cd">0</span>, <span style="color:#39c">-</span><span style="color:#cd00cd">1</span>):
-    <span style="color:#cdcd00">print</span>(f<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">Make parents tiles from zoom {zoom}</span><span style="color:#cd0000">&#39;</span>)
+    <span style="color:#cd00cd">print</span>(<span style="color:#cd0000">f</span><span style="color:#cd0000">&#39;Make parents tiles from zoom </span><span style="color:#cd0000">{</span>zoom<span style="color:#cd0000">}</span><span style="color:#cd0000">&#39;</span>)
     <span style="color:#cdcd00">with</span> futures<span style="color:#39c">.</span>ProcessPoolExecutor() <span style="color:#cdcd00">as</span> executor:
         tiles <span style="color:#39c">=</span> [(agg_root, x, y, z) <span style="color:#cdcd00">for</span> x, y, z <span style="color:#cdcd00">in</span> getParentTiles(agg_root, zoom)]
         tiles_chunk <span style="color:#39c">=</span> chunks(tiles, chunksSize(<span style="color:#cd00cd">len</span>(tiles), <span style="color:#cd00cd">4</span>))
@@ -419,20 +418,20 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd"
 <span style="color:#cdcd00">def</span> getZoomMaxCount(zoom_root):
     max_count <span style="color:#39c">=</span> <span style="color:#cd00cd">0</span>;
     <span style="color:#cdcd00">for</span> root, dirs, files <span style="color:#cdcd00">in</span> os<span style="color:#39c">.</span>walk(zoom_root):
-        <span style="color:#cdcd00">for</span> <span style="color:#cd00cd">file</span> <span style="color:#cdcd00">in</span> files:
-            exts <span style="color:#39c">=</span> <span style="color:#cd00cd">file</span><span style="color:#39c">.</span>split(os<span style="color:#39c">.</span>extsep)
-            <span style="color:#cdcd00">if</span> os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>splitext(<span style="color:#cd00cd">file</span>)[<span style="color:#cd00cd">1</span>] <span style="color:#39c">!=</span> <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">.yaml</span><span style="color:#cd0000">&#39;</span>:
+        <span style="color:#cdcd00">for</span> file <span style="color:#cdcd00">in</span> files:
+            exts <span style="color:#39c">=</span> file<span style="color:#39c">.</span>split(os<span style="color:#39c">.</span>extsep)
+            <span style="color:#cdcd00">if</span> os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>splitext(file)[<span style="color:#cd00cd">1</span>] <span style="color:#39c">!=</span> <span style="color:#cd0000">&#39;.yaml&#39;</span>:
                 <span style="color:#cdcd00">continue</span>
-            mc <span style="color:#39c">=</span> getYamlMaxCount(os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(root, <span style="color:#cd00cd">file</span>))
+            mc <span style="color:#39c">=</span> getYamlMaxCount(os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(root, file))
             max_count <span style="color:#39c">=</span> mc <span style="color:#cdcd00">if</span> max_count <span style="color:#39c">&lt;</span> mc <span style="color:#cdcd00">else</span> max_count
     <span style="color:#cdcd00">return</span> max_count
 
 <span style="color:#cdcd00">for</span> zoom <span style="color:#cdcd00">in</span> os<span style="color:#39c">.</span>listdir(agg_root):
     max_count <span style="color:#39c">=</span> getZoomMaxCount(os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(agg_root, zoom))
-    zoom_yaml <span style="color:#39c">=</span> os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(agg_root, zoom, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">zoom_config.yaml</span><span style="color:#cd0000">&#39;</span>)
-    <span style="color:#cdcd00">with</span> <span style="color:#cd00cd">open</span>(zoom_yaml, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">w</span><span style="color:#cd0000">&#39;</span>) <span style="color:#cdcd00">as</span> <span style="color:#cd00cd">file</span>:
-        yaml_obj <span style="color:#39c">=</span> {<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">max_count</span><span style="color:#cd0000">&#39;</span>: max_count}
-        yaml<span style="color:#39c">.</span>dump(yaml_obj, <span style="color:#cd00cd">file</span>, default_flow_style<span style="color:#39c">=</span>False)
+    zoom_yaml <span style="color:#39c">=</span> os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(agg_root, zoom, <span style="color:#cd0000">&#39;zoom_config.yaml&#39;</span>)
+    <span style="color:#cdcd00">with</span> <span style="color:#cd00cd">open</span>(zoom_yaml, <span style="color:#cd0000">&#39;w&#39;</span>) <span style="color:#cdcd00">as</span> file:
+        yaml_obj <span style="color:#39c">=</span> {<span style="color:#cd0000">&#39;max_count&#39;</span>: max_count}
+        yaml<span style="color:#39c">.</span>dump(yaml_obj, file, default_flow_style<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)
 </code></pre></div><h3 id="產生-aggregation-檔案對應的-tile-影像">產生 Aggregation 檔案對應的 Tile 影像</h3>
 <ul>
 <li>建立所有要繪製圖片的 aggregation 列表，並設定繪製方式。
@@ -544,7 +543,7 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd"
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 

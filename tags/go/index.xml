@@ -6,11 +6,7 @@
     <description>Recent content in Go on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 05 Sep 2017 14:00:00 +0800</lastBuildDate>
-    
-	<atom:link href="/tags/go/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 05 Sep 2017 14:00:00 +0800</lastBuildDate><atom:link href="/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)</title>
       <link>/2017/09/from-go-to-sc2-part-1/</link>

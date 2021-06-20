@@ -6,10 +6,15 @@
     <description>Recent content on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 04 Jan 2020 18:00:00 +0800</lastBuildDate>
-    
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Sun, 20 Jun 2021 12:00:00 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用 Markdown 撰寫 Slide - 使用 Marp 套件</title>
+      <link>/2021/06/marp_vscode/</link>
+      <pubDate>Sun, 20 Jun 2021 12:00:00 +0800</pubDate>
+      
+      <guid>/2021/06/marp_vscode/</guid>
+      <description>&lt;p&gt;鴿了一整個 2020，2021 應該開始繼續寫 Blog 和技術文章了。這篇文章將介紹如何在 VSCode 中使用 Marp 與 Markdown 來建立投影片。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>About Me</title>
@@ -18,7 +23,7 @@
       
       <guid>/about/</guid>
       <description>Cheng-Shiang Li Senior software engineer, mastering Android application development, data science and machine learning algorithm.
-Education National Taiwan University of Science and Technology Master&#39;s Degree in computer science and information engineering
+Education National Taiwan University of Science and Technology Master&amp;rsquo;s Degree in computer science and information engineering
  Curriculum focusing on machine learning theory and algorithm. Research areas concentrating on computer vision and image processing.  Background  Computer science and information engineering. Android/iOS platform. Machine learning and data science researcher.  Skills  Program Language - C/C++, Java, Kotlin, Swift, Objective-C and Python.</description>
     </item>
     

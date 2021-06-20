@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="Python visualization with datashader">
@@ -98,7 +98,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     
     
   </head>
@@ -300,21 +299,21 @@ python setup.py install
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> datashader
 
 <span style="color:#000080"># New York GPS coordinator</span>
-x, y <span style="color:#39c">=</span> datashader<span style="color:#39c">.</span>utils<span style="color:#39c">.</span>lnglat_to_meters(longitude<span style="color:#39c">=</span><span style="color:#39c">-</span><span style="color:#cd00cd">74.0059</span>, latitude<span style="color:#39c">=</span><span style="color:#cd00cd">40.7127</span>)
+x, y <span style="color:#39c">=</span> datashader<span style="color:#39c">.</span>utils<span style="color:#39c">.</span>lnglat_to_meters(longitude<span style="color:#39c">=-</span><span style="color:#cd00cd">74.0059</span>, latitude<span style="color:#39c">=</span><span style="color:#cd00cd">40.7127</span>)
 </code></pre></div><p>執行後可得到 <code>x = -8238299.103697925</code> 與 <code>y = 4970056.8929846436</code> 的結果。分別代表由<strong>Greenwich</strong>往東以及由**Equator(赤道)**往北的距離(公尺)。以此方式將計程車資料集中的 <code>pickup_longitude</code> 與 <code>pickup_latitude</code> 欄位轉換為 <code>pickup_x</code> 與 <code>pickup_y</code> 欄位，並與 <code>pickup_datetime</code> 欄位一起另存為 <code>nyc_taxi_data_2014_pickup.csv</code> 檔案，以方便的之後的資料繪製。</p>
 <h3 id="code">Code</h3>
 <p>這裡我們透過 Pandas 套件讀取 CSV 檔為 Dataframe</p>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000080"># 匯入所需 Packages</span>
-<span style="color:#cd00cd">import</span> dask.dataframe <span style="color:#cd00cd">as</span> dd
-<span style="color:#cd00cd">import</span> dask.diagnostics <span style="color:#cd00cd">as</span> diag
-<span style="color:#cd00cd">import</span> datashader <span style="color:#cd00cd">as</span> ds
-<span style="color:#cd00cd">import</span> datashader.transfer_functions <span style="color:#cd00cd">as</span> ds_tf
-<span style="color:#cd00cd">import</span> numpy <span style="color:#cd00cd">as</span> np
+<span style="color:#cd00cd">import</span> dask.dataframe <span style="color:#cdcd00">as</span> dd
+<span style="color:#cd00cd">import</span> dask.diagnostics <span style="color:#cdcd00">as</span> diag
+<span style="color:#cd00cd">import</span> datashader <span style="color:#cdcd00">as</span> ds
+<span style="color:#cd00cd">import</span> datashader.transfer_functions <span style="color:#cdcd00">as</span> ds_tf
+<span style="color:#cd00cd">import</span> numpy <span style="color:#cdcd00">as</span> np
 <span style="color:#cd00cd">from</span> datashader.utils <span style="color:#cd00cd">import</span> export_image
 <span style="color:#cd00cd">from</span> matplotlib.cm <span style="color:#cd00cd">import</span> hot
 
 <span style="color:#000080"># 設定 NY taxi dataset 路徑</span>
-dataset <span style="color:#39c">=</span> <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">{DATASET_FOLDER_PATH}/nyc_taxi_data_2014_pickup.csv</span><span style="color:#cd0000">&#39;</span>
+dataset <span style="color:#39c">=</span> <span style="color:#cd0000">&#39;</span><span style="color:#cd0000">{DATASET_FOLDER_PATH}</span><span style="color:#cd0000">/nyc_taxi_data_2014_pickup.csv&#39;</span>
 
 <span style="color:#000080"># 設定讀取的檔案</span>
 df <span style="color:#39c">=</span> dd<span style="color:#39c">.</span>io<span style="color:#39c">.</span>csv<span style="color:#39c">.</span>read_csv(dataset)
@@ -323,29 +322,29 @@ df <span style="color:#39c">=</span> dd<span style="color:#39c">.</span>io<span 
 <thead>
 <tr>
 <th></th>
-<th align="center">pickup_datetime</th>
-<th align="center">pickup_x</th>
-<th align="center">pickup_y</th>
+<th style="text-align:center">pickup_datetime</th>
+<th style="text-align:center">pickup_x</th>
+<th style="text-align:center">pickup_y</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>0</td>
-<td align="center">2014-01-09 20:45:25</td>
-<td align="center">-8237059.5</td>
-<td align="center">4973602.5</td>
+<td style="text-align:center">2014-01-09 20:45:25</td>
+<td style="text-align:center">-8237059.5</td>
+<td style="text-align:center">4973602.5</td>
 </tr>
 <tr>
 <td>1</td>
-<td align="center">2014-01-09 20:46:12</td>
-<td align="center">-8235682.0</td>
-<td align="center">4978972.5</td>
+<td style="text-align:center">2014-01-09 20:46:12</td>
+<td style="text-align:center">-8235682.0</td>
+<td style="text-align:center">4978972.5</td>
 </tr>
 <tr>
 <td>2</td>
-<td align="center">2014-01-09 20:44:47</td>
-<td align="center">-8236370.0</td>
-<td align="center">4973980.5</td>
+<td style="text-align:center">2014-01-09 20:44:47</td>
+<td style="text-align:center">-8236370.0</td>
+<td style="text-align:center">4973980.5</td>
 </tr>
 </tbody>
 </table>
@@ -369,14 +368,14 @@ canvas <span style="color:#39c">=</span> ds<span style="color:#39c">.</span>Canv
 
 <span style="color:#000080">## 使用 dataframe 資料建立 Aggregation 物件，並使用 ProgressBar 顯示處理進度。</span>
 <span style="color:#cdcd00">with</span> diag<span style="color:#39c">.</span>ProgressBar():
-    agg <span style="color:#39c">=</span> canvas<span style="color:#39c">.</span>points(df, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">pickup_x</span><span style="color:#cd0000">&#39;</span>, <span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">pickup_y</span><span style="color:#cd0000">&#39;</span>)
+    agg <span style="color:#39c">=</span> canvas<span style="color:#39c">.</span>points(df, <span style="color:#cd0000">&#39;pickup_x&#39;</span>, <span style="color:#cd0000">&#39;pickup_y&#39;</span>)
 
 <span style="color:#000080"># 建立影像物件並設定背景為黑色</span>
 img <span style="color:#39c">=</span> ds_tf<span style="color:#39c">.</span>shade(agg, cmap<span style="color:#39c">=</span>hot)
-img <span style="color:#39c">=</span> ds_tf<span style="color:#39c">.</span>set_background(img, color<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">black</span><span style="color:#cd0000">&#39;</span>)
+img <span style="color:#39c">=</span> ds_tf<span style="color:#39c">.</span>set_background(img, color<span style="color:#39c">=</span><span style="color:#cd0000">&#39;black&#39;</span>)
 
 <span style="color:#000080"># 儲存為 png file</span>
-export_image(img<span style="color:#39c">=</span>img, filename<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">nyc_taxi_2014_pickup</span><span style="color:#cd0000">&#39;</span>, fmt<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">.png</span><span style="color:#cd0000">&#39;</span>)
+export_image(img<span style="color:#39c">=</span>img, filename<span style="color:#39c">=</span><span style="color:#cd0000">&#39;nyc_taxi_2014_pickup&#39;</span>, fmt<span style="color:#39c">=</span><span style="color:#cd0000">&#39;.png&#39;</span>)
 </code></pre></div><p>開啟儲存的<strong>nyc_taxi_2014_pickup.png</strong>圖片檔可得到以下結果</p>
 
 
@@ -498,7 +497,7 @@ export_image(img<span style="color:#39c">=</span>img, filename<span style="color
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 

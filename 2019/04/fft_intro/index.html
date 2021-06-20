@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="How to create telegram bot">
@@ -94,7 +94,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     
     
   </head>
@@ -578,8 +577,8 @@ F_1 & = 0.5 \\
 <h3 id="建立虛擬訊號">建立虛擬訊號</h3>
 
 <p>現在給定三個 sine 波，<strong>頻率</strong>與<strong>振幅</strong>分別為 (20, 12), (100, 5), (250, 2)，在做兩秒內取 2000 個點(取樣率為 1000 Hz)後將結果繪製出來。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> numpy <span style="color:#cd00cd">as</span> np
-<span style="color:#cd00cd">import</span> matplotlib.pyplot <span style="color:#cd00cd">as</span> plt
+<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> numpy <span style="color:#cdcd00">as</span> np
+<span style="color:#cd00cd">import</span> matplotlib.pyplot <span style="color:#cdcd00">as</span> plt
 <span style="color:#cd00cd">from</span> scipy <span style="color:#cd00cd">import</span> pi
 
 <span style="color:#39c">%</span>matplotlib inline
@@ -591,7 +590,7 @@ sampling_rate <span style="color:#39c">=</span> sample_num <span style="color:#3
 fs <span style="color:#39c">=</span> [(<span style="color:#cd00cd">20</span>, <span style="color:#cd00cd">12</span>), (<span style="color:#cd00cd">100</span>, <span style="color:#cd00cd">5</span>), (<span style="color:#cd00cd">250</span>, <span style="color:#cd00cd">2</span>)] <span style="color:#000080"># sin 波的頻率與振幅組合。 (Hz, Amp)</span>
 noise_mag <span style="color:#39c">=</span> <span style="color:#cd00cd">2</span>
 
-time <span style="color:#39c">=</span> np<span style="color:#39c">.</span>linspace(<span style="color:#cd00cd">0</span>, total_time, sample_num, endpoint<span style="color:#39c">=</span>False)
+time <span style="color:#39c">=</span> np<span style="color:#39c">.</span>linspace(<span style="color:#cd00cd">0</span>, total_time, sample_num, endpoint<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)
 
 vib_data <span style="color:#39c">=</span> [amp <span style="color:#39c">*</span> np<span style="color:#39c">.</span>sin(<span style="color:#cd00cd">2</span><span style="color:#39c">*</span>pi<span style="color:#39c">*</span>hz<span style="color:#39c">*</span>time) <span style="color:#cdcd00">for</span> hz, amp <span style="color:#cdcd00">in</span> fs]
 
@@ -602,16 +601,16 @@ plt<span style="color:#39c">.</span>figure(figsize<span style="color:#39c">=</sp
 <span style="color:#cdcd00">for</span> idx, vib <span style="color:#cdcd00">in</span> <span style="color:#cd00cd">enumerate</span>(vib_data):
     plt<span style="color:#39c">.</span>subplot(<span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">2</span>, idx<span style="color:#39c">+</span><span style="color:#cd00cd">1</span>)
     plt<span style="color:#39c">.</span>plot(time[<span style="color:#cd00cd">0</span>:max_time], vib[<span style="color:#cd00cd">0</span>:max_time])
-    plt<span style="color:#39c">.</span>xlabel(<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">time</span><span style="color:#cd0000">&#39;</span>)
-    plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">vib_</span><span style="color:#cd0000">&#39;</span> <span style="color:#39c">+</span> <span style="color:#cd00cd">str</span>(idx))
+    plt<span style="color:#39c">.</span>xlabel(<span style="color:#cd0000">&#39;time&#39;</span>)
+    plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000">&#39;vib_&#39;</span> <span style="color:#39c">+</span> <span style="color:#cd00cd">str</span>(idx))
     plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span style="color:#cd00cd">24</span>, <span style="color:#cd00cd">24</span>))
 
 vib <span style="color:#39c">=</span> <span style="color:#cd00cd">sum</span>(vib_data) <span style="color:#39c">+</span> np<span style="color:#39c">.</span>random<span style="color:#39c">.</span>normal(<span style="color:#cd00cd">0</span>, noise_mag, sample_num) <span style="color:#000080"># Add noise</span>
 
 plt<span style="color:#39c">.</span>subplot(<span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">4</span>)
 plt<span style="color:#39c">.</span>plot(time[<span style="color:#cd00cd">0</span>:max_time], vib[<span style="color:#cd00cd">0</span>:max_time])
-plt<span style="color:#39c">.</span>xlabel(<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">time</span><span style="color:#cd0000">&#39;</span>)
-plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">vib(with noise)</span><span style="color:#cd0000">&#39;</span>)
+plt<span style="color:#39c">.</span>xlabel(<span style="color:#cd0000">&#39;time&#39;</span>)
+plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000">&#39;vib(with noise)&#39;</span>)
 plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span style="color:#cd00cd">24</span>, <span style="color:#cd00cd">24</span>))</code></pre></div>
 
 
@@ -655,14 +654,14 @@ plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span
 <p>現在可透過 <a href="https://docs.scipy.org/doc/scipy/reference/tutorial/fftpack.html">scipy.fftpack</a> 套件中的 <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.fft.html#scipy.fftpack.fft">fft</a> 函數將原始訊號進行 FFT 轉換得到頻率域結果。</p>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">from</span> scipy.fftpack <span style="color:#cd00cd">import</span> fft
 
-fd <span style="color:#39c">=</span> np<span style="color:#39c">.</span>linspace(<span style="color:#cd00cd">0.0</span>, sampling_rate, <span style="color:#cd00cd">int</span>(sample_num), endpoint<span style="color:#39c">=</span>False)
+fd <span style="color:#39c">=</span> np<span style="color:#39c">.</span>linspace(<span style="color:#cd00cd">0.0</span>, sampling_rate, <span style="color:#cd00cd">int</span>(sample_num), endpoint<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)
 
 vib_fft <span style="color:#39c">=</span> fft(vib)
 mag <span style="color:#39c">=</span> <span style="color:#cd00cd">2</span><span style="color:#39c">/</span>sample_num <span style="color:#39c">*</span> np<span style="color:#39c">.</span>abs(vib_fft) <span style="color:#000080"># Magnitude</span>
 
 plt<span style="color:#39c">.</span>plot(fd[<span style="color:#cd00cd">0</span>:<span style="color:#cd00cd">int</span>(sample_num<span style="color:#39c">/</span><span style="color:#cd00cd">2</span>)], mag[<span style="color:#cd00cd">0</span>:<span style="color:#cd00cd">int</span>(sample_num<span style="color:#39c">/</span><span style="color:#cd00cd">2</span>)])
-plt<span style="color:#39c">.</span>xlabel(<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">Hz</span><span style="color:#cd0000">&#39;</span>)
-plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">Mag</span><span style="color:#cd0000">&#39;</span>)</code></pre></div>
+plt<span style="color:#39c">.</span>xlabel(<span style="color:#cd0000">&#39;Hz&#39;</span>)
+plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000">&#39;Mag&#39;</span>)</code></pre></div>
 
 
  
@@ -826,7 +825,7 @@ plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 

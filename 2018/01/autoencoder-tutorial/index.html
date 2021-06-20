@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.62.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="About Autoencoder theory and examples using MNIST dataset">
@@ -98,7 +98,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     
     
   </head>
@@ -289,14 +288,14 @@ if (!doNotTrack) {
 <p>MNIST 為一著名的手寫辨識資料集，在此範例中使用 Fully-Connection Neural Network，將 <strong>28 * 28 = 784</strong> 維的圖片轉換成 <strong>32</strong> 維的 Encoding Layer 後，再還原至原先的 <strong>28 * 28</strong> 維影像資料並比較雙方差異。</p>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000080"># 讀取 MNIST dataset 並進行前處理</span>
 <span style="color:#cd00cd">from</span> keras.datasets <span style="color:#cd00cd">import</span> mnist
-<span style="color:#cd00cd">import</span> numpy <span style="color:#cd00cd">as</span> np
+<span style="color:#cd00cd">import</span> numpy <span style="color:#cdcd00">as</span> np
 
 <span style="color:#000080"># x_train: Autoencoder 訓練資料</span>
 <span style="color:#000080"># x_test: Autoencoder 測試資料</span>
 (x_train, _), (x_test, _) <span style="color:#39c">=</span> mnist<span style="color:#39c">.</span>load_data()
 
-x_train <span style="color:#39c">=</span> x_train<span style="color:#39c">.</span>astype(<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">float32</span><span style="color:#cd0000">&#39;</span>) <span style="color:#39c">/</span> <span style="color:#cd00cd">255.</span> <span style="color:#000080"># 正規化資料數值範圍至 [0, 1] 間</span>
-x_test <span style="color:#39c">=</span> x_test<span style="color:#39c">.</span>astype(<span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">float32</span><span style="color:#cd0000">&#39;</span>) <span style="color:#39c">/</span> <span style="color:#cd00cd">255.</span>
+x_train <span style="color:#39c">=</span> x_train<span style="color:#39c">.</span>astype(<span style="color:#cd0000">&#39;float32&#39;</span>) <span style="color:#39c">/</span> <span style="color:#cd00cd">255.</span> <span style="color:#000080"># 正規化資料數值範圍至 [0, 1] 間</span>
+x_test <span style="color:#39c">=</span> x_test<span style="color:#39c">.</span>astype(<span style="color:#cd0000">&#39;float32&#39;</span>) <span style="color:#39c">/</span> <span style="color:#cd00cd">255.</span>
 
 <span style="color:#000080"># 正規化資料維度，以便 Keras 處理</span>
 x_train <span style="color:#39c">=</span> x_train<span style="color:#39c">.</span>reshape((<span style="color:#cd00cd">len</span>(x_train), np<span style="color:#39c">.</span>prod(x_train<span style="color:#39c">.</span>shape[<span style="color:#cd00cd">1</span>:])))
@@ -306,18 +305,18 @@ x_test <span style="color:#39c">=</span> x_test<span style="color:#39c">.</span>
 <span style="color:#cd00cd">from</span> keras.models <span style="color:#cd00cd">import</span> Model
 
 input_img <span style="color:#39c">=</span> Input(shape<span style="color:#39c">=</span>(<span style="color:#cd00cd">784</span>,))
-encoded <span style="color:#39c">=</span> Dense(<span style="color:#cd00cd">32</span>, activation<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">relu</span><span style="color:#cd0000">&#39;</span>)(input_img) <span style="color:#000080">## Encoding layer 設為 32 維</span>
-decoded <span style="color:#39c">=</span> Dense(<span style="color:#cd00cd">784</span>, activation<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">sigmoid</span><span style="color:#cd0000">&#39;</span>)(encoded) <span style="color:#000080">## Decoding layer 設為與 input layer 相同的 784 維</span>
+encoded <span style="color:#39c">=</span> Dense(<span style="color:#cd00cd">32</span>, activation<span style="color:#39c">=</span><span style="color:#cd0000">&#39;relu&#39;</span>)(input_img) <span style="color:#000080">## Encoding layer 設為 32 維</span>
+decoded <span style="color:#39c">=</span> Dense(<span style="color:#cd00cd">784</span>, activation<span style="color:#39c">=</span><span style="color:#cd0000">&#39;sigmoid&#39;</span>)(encoded) <span style="color:#000080">## Decoding layer 設為與 input layer 相同的 784 維</span>
 
 <span style="color:#000080"># 建立 Model 並將 loss funciton 設為 binary cross entropy</span>
 autoencoder <span style="color:#39c">=</span> Model(input_img, decoded)
-autoencoder<span style="color:#39c">.</span>compile(optimizer<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">adadelta</span><span style="color:#cd0000">&#39;</span>, loss<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">binary_crossentropy</span><span style="color:#cd0000">&#39;</span>)
+autoencoder<span style="color:#39c">.</span>compile(optimizer<span style="color:#39c">=</span><span style="color:#cd0000">&#39;adadelta&#39;</span>, loss<span style="color:#39c">=</span><span style="color:#cd0000">&#39;binary_crossentropy&#39;</span>)
 
 autoencoder<span style="color:#39c">.</span>fit(x_train,
                 x_train,  <span style="color:#000080"># Label 也設為 x_train</span>
                 epochs<span style="color:#39c">=</span><span style="color:#cd00cd">25</span>,
                 batch_size<span style="color:#39c">=</span><span style="color:#cd00cd">128</span>,
-                shuffle<span style="color:#39c">=</span>True,
+                shuffle<span style="color:#39c">=</span><span style="color:#cdcd00">True</span>,
                 validation_data<span style="color:#39c">=</span>(x_test, x_test))</code></pre></div>
 <p>訓練完後可以得到 <strong>loss</strong> 值約為 <code>0.1049</code> 以及 <strong>Validation loss</strong> 為 <code>0.1029</code> 的 Autoencoder Model。下圖為將 <code>x_test</code> 資料輸入 <code>autoencoder</code> 物件後的得到的結果圖片。</p>
 
@@ -363,30 +362,30 @@ x_train_noisy <span style="color:#39c">=</span> np<span style="color:#39c">.</sp
 x_test_noisy <span style="color:#39c">=</span> np<span style="color:#39c">.</span>clip(x_test_noisy, <span style="color:#cd00cd">0.</span>, <span style="color:#cd00cd">1.</span>)</code></pre></div>
 <p>使用加入 Noise 的資料建立 Autoencoder Model 並進行訓練</p>
 <div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">input_img <span style="color:#39c">=</span> Input(shape<span style="color:#39c">=</span>(<span style="color:#cd00cd">28</span>, <span style="color:#cd00cd">28</span>, <span style="color:#cd00cd">1</span>))
-x <span style="color:#39c">=</span> Conv2D(<span style="color:#cd00cd">32</span>, (<span style="color:#cd00cd">3</span>, <span style="color:#cd00cd">3</span>), activation<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">relu</span><span style="color:#cd0000">&#39;</span>, padding<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">same</span><span style="color:#cd0000">&#39;</span>)(input_img)
-x <span style="color:#39c">=</span> MaxPooling2D((<span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">2</span>), padding<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">same</span><span style="color:#cd0000">&#39;</span>)(x)
-x <span style="color:#39c">=</span> Conv2D(<span style="color:#cd00cd">32</span>, (<span style="color:#cd00cd">3</span>, <span style="color:#cd00cd">3</span>), activation<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">relu</span><span style="color:#cd0000">&#39;</span>, padding<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">same</span><span style="color:#cd0000">&#39;</span>)(x)
+x <span style="color:#39c">=</span> Conv2D(<span style="color:#cd00cd">32</span>, (<span style="color:#cd00cd">3</span>, <span style="color:#cd00cd">3</span>), activation<span style="color:#39c">=</span><span style="color:#cd0000">&#39;relu&#39;</span>, padding<span style="color:#39c">=</span><span style="color:#cd0000">&#39;same&#39;</span>)(input_img)
+x <span style="color:#39c">=</span> MaxPooling2D((<span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">2</span>), padding<span style="color:#39c">=</span><span style="color:#cd0000">&#39;same&#39;</span>)(x)
+x <span style="color:#39c">=</span> Conv2D(<span style="color:#cd00cd">32</span>, (<span style="color:#cd00cd">3</span>, <span style="color:#cd00cd">3</span>), activation<span style="color:#39c">=</span><span style="color:#cd0000">&#39;relu&#39;</span>, padding<span style="color:#39c">=</span><span style="color:#cd0000">&#39;same&#39;</span>)(x)
 
 <span style="color:#000080"># encoded size = (7, 7, 32) dimension</span>
-encoded <span style="color:#39c">=</span> MaxPooling2D((<span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">2</span>), padding<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">same</span><span style="color:#cd0000">&#39;</span>)(x) 
+encoded <span style="color:#39c">=</span> MaxPooling2D((<span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">2</span>), padding<span style="color:#39c">=</span><span style="color:#cd0000">&#39;same&#39;</span>)(x) 
 
-x <span style="color:#39c">=</span> Conv2D(<span style="color:#cd00cd">32</span>, (<span style="color:#cd00cd">3</span>, <span style="color:#cd00cd">3</span>), activation<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">relu</span><span style="color:#cd0000">&#39;</span>, padding<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">same</span><span style="color:#cd0000">&#39;</span>)(encoded)
+x <span style="color:#39c">=</span> Conv2D(<span style="color:#cd00cd">32</span>, (<span style="color:#cd00cd">3</span>, <span style="color:#cd00cd">3</span>), activation<span style="color:#39c">=</span><span style="color:#cd0000">&#39;relu&#39;</span>, padding<span style="color:#39c">=</span><span style="color:#cd0000">&#39;same&#39;</span>)(encoded)
 x <span style="color:#39c">=</span> UpSampling2D((<span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">2</span>))(x)
-x <span style="color:#39c">=</span> Conv2D(<span style="color:#cd00cd">32</span>, (<span style="color:#cd00cd">3</span>, <span style="color:#cd00cd">3</span>), activation<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">relu</span><span style="color:#cd0000">&#39;</span>, padding<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">same</span><span style="color:#cd0000">&#39;</span>)(x)
+x <span style="color:#39c">=</span> Conv2D(<span style="color:#cd00cd">32</span>, (<span style="color:#cd00cd">3</span>, <span style="color:#cd00cd">3</span>), activation<span style="color:#39c">=</span><span style="color:#cd0000">&#39;relu&#39;</span>, padding<span style="color:#39c">=</span><span style="color:#cd0000">&#39;same&#39;</span>)(x)
 x <span style="color:#39c">=</span> UpSampling2D((<span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">2</span>))(x)
 
 <span style="color:#000080"># Decoded size = (28, 28, 1) dimension (Original size)</span>
-decoded <span style="color:#39c">=</span> Conv2D(<span style="color:#cd00cd">1</span>, (<span style="color:#cd00cd">3</span>, <span style="color:#cd00cd">3</span>), activation<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">sigmoid</span><span style="color:#cd0000">&#39;</span>, padding<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">same</span><span style="color:#cd0000">&#39;</span>)(x)
+decoded <span style="color:#39c">=</span> Conv2D(<span style="color:#cd00cd">1</span>, (<span style="color:#cd00cd">3</span>, <span style="color:#cd00cd">3</span>), activation<span style="color:#39c">=</span><span style="color:#cd0000">&#39;sigmoid&#39;</span>, padding<span style="color:#39c">=</span><span style="color:#cd0000">&#39;same&#39;</span>)(x)
 
 autoencoder <span style="color:#39c">=</span> Model(input_img, decoded)
-autoencoder<span style="color:#39c">.</span>compile(optimizer<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">adadelta</span><span style="color:#cd0000">&#39;</span>, loss<span style="color:#39c">=</span><span style="color:#cd0000"></span><span style="color:#cd0000">&#39;</span><span style="color:#cd0000">binary_crossentropy</span><span style="color:#cd0000">&#39;</span>)
+autoencoder<span style="color:#39c">.</span>compile(optimizer<span style="color:#39c">=</span><span style="color:#cd0000">&#39;adadelta&#39;</span>, loss<span style="color:#39c">=</span><span style="color:#cd0000">&#39;binary_crossentropy&#39;</span>)
 
 <span style="color:#000080"># 訓練 DAE Model</span>
 autoencoder<span style="color:#39c">.</span>fit(x_train_noisy, <span style="color:#000080"># 加入 noise 的資料為輸入</span>
                 x_train,  <span style="color:#000080"># 原始資料為 Label</span>
                 epochs<span style="color:#39c">=</span><span style="color:#cd00cd">20</span>,
                 batch_size<span style="color:#39c">=</span><span style="color:#cd00cd">256</span>,
-                shuffle<span style="color:#39c">=</span>True,
+                shuffle<span style="color:#39c">=</span><span style="color:#cdcd00">True</span>,
                 validation_data<span style="color:#39c">=</span>(x_test_noisy, x_test))</code></pre></div>
 <p>訓練後可得到一個 Denoising Autoencoder Model。現建立加入不同雜訊數量的 MNIST 影像資料輸入訓練完成的 DAE 中得到的 denoising 的結果。</p>
 
@@ -593,7 +592,7 @@ autoencoder<span style="color:#39c">.</span>fit(x_train_noisy, <span style="colo
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 
