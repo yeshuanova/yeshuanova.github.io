@@ -2,10 +2,30 @@
 <html lang="zh-tw">
   <head>
     
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"\/",
+  "author": {
+    "@type": "Person",
+    "name": "Cheng-Shiang Li",
+    
+    "image": "/images/about/me.jpg"
+    
+  },
+  "name":"Xeno Universe - The Dark Forest",
+  "description":"How to create telegram bot",
+  "url":"\/2019\/04\/fft_intro\/",
+  "keywords":"[]"
+}
+
+</script>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.124.1 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="How to create telegram bot">
@@ -49,12 +69,12 @@
 
 
 
-
-
-
-
   <meta property="og:image" content="/images/about/me.jpg">
   <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+
+
 
 
     <title>從傅立葉級數到快速傅立葉轉換</title>
@@ -67,12 +87,12 @@
     <link rel="canonical" href="/2019/04/fft_intro/">
 
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     
-    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    <link rel="stylesheet" href="/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
     
     
       
@@ -82,7 +102,7 @@
 
     
       
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -103,7 +123,7 @@ if (!doNotTrack) {
       <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+    <a class="header-title-link" href="/" aria-label="Go to homepage">Xeno Universe - The Dark Forest</a>
   </div>
   
 </header>
@@ -112,7 +132,7 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="/#about">
+        <a href="/#about" aria-label="Read more about the author">
           <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
@@ -125,7 +145,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/">
+      <a class="sidebar-button-link " href="/" title="Home">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -135,7 +155,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/categories">
+      <a class="sidebar-button-link " href="/categories" title="Categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -145,7 +165,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/tags">
+      <a class="sidebar-button-link " href="/tags" title="Tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -155,7 +175,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/archives">
+      <a class="sidebar-button-link " href="/archives" title="Archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -165,7 +185,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/about/">
+      <a class="sidebar-button-link " href="/about/" title="About Me">
     
       
       
@@ -179,7 +199,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova" title="GitHub">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -189,7 +209,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li" title="Linkedin">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -199,7 +219,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener" title="Email">
     
       <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
       
@@ -222,19 +242,19 @@ if (!doNotTrack) {
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+        <article class="post" id="top">
           
           
             <div class="post-header main-content-wrap text-left">
   
-    <h1 class="post-title" itemprop="headline">
+    <h1 class="post-title">
       從傅立葉級數到快速傅立葉轉換
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-04-18T10:00:00&#43;08:00">
+      <time datetime="2019-04-18T10:00:00&#43;08:00">
         
   April 18, 2019
 
@@ -253,190 +273,147 @@ if (!doNotTrack) {
 
 </div>
           
-          <div class="post-content markdown" itemprop="articleBody">
+          <div class="post-content markdown">
             <div class="main-content-wrap">
               <p>傅立葉轉換(FFT)是一種數學上的線性積分變換方式，能將<strong>週期函數</strong>使用轉換為另一個函數。在數位信號處理領域上，透過傅立葉轉換可將資料從<strong>時域波形</strong>轉換到<strong>頻譜</strong>上，也就是將訊號進行<strong>分解</strong>為基礎組合，在現代的物理與工程等許多領域有大量的應用。本文將從傅立葉級數開始介紹，從其中導出離散傅立葉轉換(DFT)與快速傅立葉轉換(FFT)，並以 Python 來實作範例。</p>
-
 <p>本文的推導大綱主要由 <a href="https://en.wikipedia.org/wiki/Erwin_Kreyszig">Erwin Kreyszig</a> 所著的 <a href="https://www.amazon.com/gp/product/8126554231/ref=dbs_a_def_rwt_bibl_vppi_i4?language=en_US">Advanced Engineering Mathematics</a> 9th Edition 中文版而來，詳細的證明過程可自行參閱該書籍。</p>
-
 <h2 id="傅立葉級數fourier-series">傅立葉級數(Fourier Series)</h2>
-
-<p>傅立葉級數為法國數家<a href="https://en.wikipedia.org/wiki/Joseph_Fourier">傅立葉(Joseph Fourier)</a>所提出的三角級數，可以將任何週期函數分解為 <span  class="math">\(\sin\)</span> 與 <span  class="math">\(\cos\)</span> 函數的集合，也就是對週期波進行分解，之後可透過<a href="https://en.wikipedia.org/wiki/Fourier_transform">傅立葉轉換(Fourier Transform)</a>將函數轉換為另一個函數表現形式。</p>
-
-<p>當一函數 <span  class="math">\(f(x)\)</span> 存在 <span  class="math">\(p\)</span> 使 <span  class="math">\(f(x) = f(x+p)\)</span> 時，<span  class="math">\(f(x)\)</span> 為一週期為 <span  class="math">\(p\)</span> 的週期函數。當週期為 <span  class="math">\(2\pi\)</span> 時，函數 <span  class="math">\(f(x)\)</span> 的<strong>傅立葉級數(Fourier Series)</strong>為</p>
-
-<p><span  class="math">\[
+<p>傅立葉級數為法國數學家<a href="https://en.wikipedia.org/wiki/Joseph_Fourier">傅立葉(Joseph Fourier)</a>所提出的三角級數，可以將任何週期函數分解為 $\sin$ 與 $\cos$ 函數的集合，也就是對週期波進行分解，之後可透過<a href="https://en.wikipedia.org/wiki/Fourier_transform">傅立葉轉換(Fourier Transform)</a>將函數轉換為另一個函數表現形式。</p>
+<p>當一函數 $f(x)$ 存在 $p$ 使 $f(x) = f(x+p)$ 時，$f(x)$ 為一週期為 $p$ 的週期函數。當週期為 $2\pi$ 時，函數 $f(x)$ 的<strong>傅立葉級數(Fourier Series)</strong> 為</p>
+$$
 f(x)=\alpha_0 + \sum_{n=1}^{\infty}(a_n\cos nx + b_nsin nx) \\
-\]</span></p>
-
-<p><span  class="math">\[
+$$
+$$
 f(x) = f(x+2\pi)
-\]</span></p>
-
-<p>透過三角系統的<a href="http://tutorial.math.lamar.edu/Classes/DE/PeriodicOrthogonal.aspx">正交性</a>可得出 <span  class="math">\(a_n\)</span> 與 <span  class="math">\(b_n\)</span> 的解</p>
-
-<p><span  class="math">\[
+$$
+<p>透過三角系統的<a href="http://tutorial.math.lamar.edu/Classes/DE/PeriodicOrthogonal.aspx">正交性</a>可得出 $a_n$ 與 $b_n$ 的解</p>
+$$
 \begin{aligned}
 a_0 &= \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)dx \\
 a_n &= \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos nxdx \\
 b_n &= \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin nxdx
 \end{aligned}
-\]</span></p>
-
-<p><span  class="math">\[
+$$
+$$
 n=1,2,\dots
-\]</span></p>
-
-<p>上式的傅立葉級數解則稱為<strong>傅立葉係數(Fourier Coefficients)</strong>。當推廣到任意週期 <span  class="math">\(p=2L\)</span> 之情況時</p>
-
-<p><span  class="math">\[
+$$
+<p>上式的傅立葉級數解則稱為<strong>傅立葉係數(Fourier Coefficients)</strong>。當推廣到任意週期 $p=2L$ 之情況時</p>
+$$
 f(x)=\alpha_0 + \sum_{n=1}^{\infty}(a_n\cos \frac{n\pi}{L}x + b_nsin \frac{n\pi}{L}x)
-\]</span></p>
-
-<p><span  class="math">\[
+$$
+$$
 f(x) = f(x+2L)
-\]</span></p>
-
+$$
 <p>而傅立葉係數為</p>
-
-<p><span  class="math">\[
+$$
 \begin{aligned}
 a_0 &= \frac{1}{2L}\int_{-L}^{L}f(x)dx \\
 a_n &= \frac{1}{L}\int_{-L}^{L}f(x)\cos \frac{n\pi x}{L}dx \\
 b_n &= \frac{1}{L}\int_{-L}^{L}f(x)\sin \frac{n\pi x}{L}dx
 \end{aligned}
-\]</span></p>
-
-<p><span  class="math">\[
+$$
+$$
 n=1,2,\dots
-\]</span></p>
-
-<p>由上式可知任意週期的週期函數 <span  class="math">\(f(x)\)</span> 都可轉換為對應的傅立葉級數。</p>
-
+$$
+<p>由上式可知任意週期的週期函數 $f(x)$ 都可轉換為對應的傅立葉級數。</p>
 <h3 id="傅立葉級數求解範例">傅立葉級數求解範例</h3>
-
-<p>給定一週期函數 <span  class="math">\(f(x)\)</span>，其中</p>
-
-<p><span  class="math">\[
-f(x) = \begin{cases}
+<p>給定一週期函數 $f(x)$，其中</p>
+$$
+f(x) =
+\begin{aligned}
   0 & \quad \text{if } -2 < x < -1 \\
   k & \quad \text{if } -1 < x < 1 & p=2L=4, L=2 \\
   0 & \quad \text{if } 1 < x < 2
-\end{cases}
-\]</span></p>
-
-<p>可知 <span  class="math">\(f(x)\)</span> 為週期 <span  class="math">\(p=4\)</span> 的函數，則傅立葉係數解為</p>
-
-<p><span  class="math">\[
+\end{aligned}
+$$
+<p>可知 $f(x)$ 為週期 $p=4$ 的函數，則傅立葉係數解為</p>
+$$
 \begin{aligned}
-a_0 &
-= \frac{1}{4}\int_{-2}^{2}f(x)dx=\frac{1}{4}\int_{-1}^{1}kdx=\frac{1}{4}[kx\big|_{-1}^{1}]=\frac{k}{2}\\
-a_n &
-=\frac{1}{2}\int_{-2}^{2}f(x)\cos \frac{n\pi x}{2}dx
-=\frac{1}{2}\int_{-1}^{1}k\cos \frac{n\pi x}{2}dx
-=\frac{2k}{n\pi}\sin \frac{n\pi}{2}\\
+a_0 & = \frac{1}{4}\int_{-2}^{2}f(x)dx=\frac{1}{4}\int_{-1}^{1}kdx=\frac{1}{4}[kx\big|_{-1}^{1}]=\frac{k}{2} \\
+a_n & = \frac{1}{2}
+\end{aligned}
+$$
+$$
+\begin{aligned}
+a_n & = \frac{1}{2}\int_{-2}^{2}f(x)\cos \frac{n\pi x}{2}dx =\frac{1}{2}\int_{-1}^{1}k\cos \frac{n\pi x}{2}dx =\frac{2k}{n\pi}\sin \frac{n\pi}{2}
+\end{aligned}
+$$
+$$
+\begin{aligned}
+a_0 & = \frac{1}{4}\int_{-2}^{2}f(x)dx=\frac{1}{4}\int_{-1}^{1}kdx=\frac{1}{4}[kx\big|_{-1}^{1}]=\frac{k}{2} \\\\
+a_n & \frac{1}{2}\int_{-2}^{2}f(x)\cos \frac{n\pi x}{2}dx =\frac{1}{2}\int_{-1}^{1}k\cos \frac{n\pi x}{2}dx =\frac{2k}{n\pi}\sin \frac{n\pi}{2} \\
 b_n &
 =\frac{1}{2}\int_{-2}^{2}f(x)\sin \frac{n\pi x}{2}dx
 =\frac{1}{2}\int_{-1}^{1}k\sin \frac{n\pi x}{2}dx
 =\frac{-k}{2}\cos \frac{n\pi x}{2}\big|_{-1}^{1}
 =0
 \end{aligned}
-\]</span></p>
-
+$$
 <p>整理後可得</p>
-
-<p><span  class="math">\[
+$$
 \begin{aligned}
 a_0 &= \frac{k}{2}\\
 a_n &= \begin{cases}2k/(n\pi) & \quad n=1,5,9,\dots\\ -2k/(n\pi) & \quad n=3,7,11,\dots \\ 0 & \quad \text{if n is even number}\end{cases}\\
 b_n &= 0
 \end{aligned}
-\]</span></p>
-
-<p>因此 <span  class="math">\(f(x)\)</span> 的傅立葉級數為</p>
-
-<p><span  class="math">\[
+$$
+<p>因此 $f(x)$ 的傅立葉級數為</p>
+$$
 \begin{aligned}
 f(x) &= \frac{k}{2} + \frac{2k}{\pi}\big(\cos\frac{\pi}{2}-\frac{1}{3}\cos \frac{3\pi}{2} + \frac{1}{5}\cos \frac{5\pi}{2}-\dots\big)\\
  &= \frac{k}{2} + \frac{2k}{\pi}\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{2n-1}\cos\frac{(2n-1)\pi}{2}
 \end{aligned}
-\]</span></p>
-
-<p>除了週期性函數外，對非週期函數也可透過將傅立葉積分對整個 <span  class="math">\(x\)</span> 軸進行處理(即考慮 <span  class="math">\(L\rightarrow\infty\)</span> 的情況)，以及使用連續傅立葉轉換將函數 <span  class="math">\(f(x)\)</span> 轉換到 <span  class="math">\(\hat{f}(w)\)</span> 來協助處理(如物理上的波到頻譜的轉換)，有興趣可自行參考資料。</p>
-
+$$
+<p>除了週期性函數外，對非週期函數也可透過將傅立葉積分對整個 $x$ 軸進行處理(即考慮 $L\rightarrow\infty$ 的情況)，以及使用連續傅立葉轉換將函數 $f(x)$ 轉換到 $\hat{f}(w)$ 來協助處理(如物理上的波到頻譜的轉換)，有興趣可自行參考資料。</p>
 <h2 id="複數傅立葉級數complex-fourier-series">複數傅立葉級數(Complex Fourier Series)</h2>
-
-<p>考慮週期為 <span  class="math">\(2\pi\)</span> 的週期函數，可利用 <a href="https://en.wikipedia.org/wiki/Euler%27s_formula">Euler's Formula</a></p>
-
-<p><span  class="math">\[
+<p>考慮週期為 $2\pi$ 的週期函數，可利用 <a href="https://en.wikipedia.org/wiki/Euler%27s_formula">Euler&rsquo;s Formula</a></p>
+$$
 e^{it}=\cos{t} + i\sin{t}
-\]</span></p>
-
-<p><span  class="math">\[
+$$
+$$
 \begin{aligned}
-\cos{t}&=\frac{1}{2}(e^{it}+e^{-it})\\
+\cos{t}&=\frac{1}{2}(e^{it}+e^{-it}) \\
 \sin{t}&=\frac{1}{2i}(e^{it}-e^{-it})
 \end{aligned}
-\]</span></p>
-
-<p>令 <span  class="math">\(1/i=-i\)</span> 且 <span  class="math">\(t=nx\)</span> 帶入原先的傅立葉級數，可轉換為</p>
-
-<p><span  class="math">\[
+$$
+<p>令 $1/i=-i$ 且 $t=nx$ 帶入原先的傅立葉級數，可轉換為</p>
+$$
 \begin{aligned}
 f(x) &=\sum_{n=-\infty}^{\infty}c_ne^{inx}\\
 c_n &=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx}dx
 \end{aligned}
-\]</span></p>
-
-<p>上式稱為傅立葉級數複數形式(complex form of the Fourier sereis)。</p>
-
+$$
+<p>上式稱為傅立葉級數複數形式(complex form of the Fourier series)。</p>
 <h2 id="離散時間傅立葉轉換discrete-time-fourier-transform">離散時間傅立葉轉換(Discrete Time Fourier Transform)</h2>
-
-<p>現實中在處理資料時型式通常為<strong>有限多點</strong>的狀況，是對<strong>取樣值</strong>而非<strong>函數</strong>來進行處理。在這種情況下我們可透過<strong>離散時間傅立葉轉換(DTFT)</strong>來處理資料。現在給定ㄧ週期為 <span  class="math">\(2\pi\)</span> 的週期函數 <span  class="math">\(f(x)\)</span>，在 <span  class="math">\(0 \leq x \leq 2\pi\)</span>的範圍內，進行 <span  class="math">\(N\)</span> 次間隔相同時間的取樣得到資料 <span  class="math">\(X\)</span>，其中每一點的資料取樣點位置為</p>
-
-<p><span  class="math">\[
+<p>現實中在處理資料時型式通常為<strong>有限多點</strong>的狀況，是對<strong>取樣值</strong>而非<strong>函數</strong>來進行處理。在這種情況下我們可透過**離散時間傅立葉轉換(DTFT)**來處理資料。現在給定ㄧ週期為 $2\pi$ 的週期函數 $f(x)$，在 $0 \leq x \leq 2\pi$ 的範圍內，進行 $N$ 次間隔相同時間的取樣得到資料 $X$，其中每一點的資料取樣點位置為</p>
+$$
 x_k=\frac{2\pi}{N}k, \quad k=0,1,\dots,N-1
-\]</span></p>
-
-<p>現給定一 N 階複數三角多項式 <span  class="math">\(q(x)\)</span>，其中</p>
-
-<p><span  class="math">\[
+$$
+<p>現給定一 N 階複數三角多項式 $q(x)$，其中</p>
+$$
 q(x)=\sum_{n=0}^{N-1}c_ne^{inx}
-\]</span></p>
-
-<p>我們想讓 <span  class="math">\(x_k\)</span> 位置的值 <span  class="math">\(q(x_k)=f(x_k)\)</span>，即讓 <span  class="math">\(q(x)\)</span> 可以去補差週期函數 <span  class="math">\(f(x)\)</span></p>
-
-<p><span  class="math">\[f_k=f(x_k)=q(x_k)=\sum_{n=0}^{N-1}c_ne^{inx_k}\]</span></p>
-
-<p>現決定係數 <span  class="math">\(c_0,\dots,c_{N-1}\)</span> 使得等式成立。因上式為 N 階複數傅立葉級數，可透過解傅立葉係數時的正交特性來求解。先對雙邊同乘 <span  class="math">\(e^{-imx_k}\)</span> 並對 <span  class="math">\(k\)</span> 從 0 到 N-1 加總轉換得到 <span  class="math">\(c_n\)</span> 為</p>
-
-<p><span  class="math">\[
+$$
+<p>我們想讓 $x_k$ 位置的值 $q(x_k)=f(x_k)$，即讓 $q(x)$ 可以去補差週期函數 $f(x)$</p>
+$$f_k=f(x_k)=q(x_k)=\sum_{n=0}^{N-1}c_ne^{inx_k}$$
+<p>現決定係數 $c_0,\dots,c_{N-1}$ 使得等式成立。因上式為 N 階複數傅立葉級數，可透過解傅立葉係數時的正交特性來求解。先對雙邊同乘 $e^{-imx_k}$ 並對 $k$ 從 0 到 N-1 加總轉換得到 $c_n$ 為</p>
+$$
 c_n=\frac{1}{N}\sum_{k=0}^{N-1}f_ke^{-inx_k}
-\]</span></p>
-
-<p>現在將 <span  class="math">\(x_k\)</span> 以 <span  class="math">\(\frac{2\pi}{N}k\)</span> 取代，則</p>
-
-<p><span  class="math">\[
+$$
+<p>現在將 $x_k$ 以 $\frac{2\pi}{N}k$ 取代，則</p>
+$$
 e^{-inx_k}=e^{(-2\pi i/N)kn}=w_{N}^{kn}, \quad w_N=e^{-2\pi i/N}
-\]</span></p>
-
-<p>因此對於訊號 <span  class="math">\(f=[f_0, \dots , f_{N-1}]^T\)</span> 的 DFT 轉換結果 <span  class="math">\(\hat{f}=[\hat{f}_0, \dots, \hat{f}_{N-1}]^T\)</span>，其分量計算為</p>
-
-<p><span  class="math">\[
+$$
+<p>因此對於訊號 $f=[f_0, \dots , f_{N-1}]^T$ 的 DFT 轉換結果 $\hat{f}=[\hat{f}_0, \dots, \hat{f}_{N-1}]^T$，其分量計算為</p>
+$$
 \hat{f}_n=Nc_n=\sum_{k=0}^{N-1}w_{N}^{kn}f_k
-\]</span></p>
-
+$$
 <h3 id="矩陣形式matrix-form">矩陣形式(Matrix Form)</h3>
-
 <p>DFT 轉換也可用矩陣計算來表示，如</p>
-
-<p><span  class="math">\[
+$$
 \hat{f}=F_Nf
-\]</span></p>
-
-<p>其中 <span  class="math">\(F_N=[w^{nk}]\)</span> 為 <span  class="math">\(N\times N\)</span> 之傅立葉矩陣(Fourier matrix)，<span  class="math">\(n\)</span> 為 row 而 <span  class="math">\(k\)</span> 為 column。假設收到離散訊號 <span  class="math">\(f=[0, 1, 4, 9]\)</span>，則 <span  class="math">\(N=4\)</span> 且 DFT 轉換為</p>
-
-<p><span  class="math">\[
+$$
+<p>其中 $F_N=[w^{nk}]$ 為 $N\times N$ 之傅立葉矩陣(Fourier matrix)，$n$ 為 row 而 $k$ 為 column。假設收到離散訊號 $f=[0, 1, 4, 9]$，則 $N=4$ 且 DFT 轉換為</p>
+$$
 \hat{f}=F_4f=
 \begin{bmatrix}
 w^0 & w^0 & w^0 & w^0 \\
@@ -453,166 +430,130 @@ w^0 & w^3 & w^6 & w^9
 \end{bmatrix}
 \begin{bmatrix} 0 \\ 1 \\ 4 \\ 9 \end{bmatrix}=
 \begin{bmatrix} 14 \\ -4+8i \\ -6 \\ -4-8i \end{bmatrix}
-\]</span></p>
-
+$$
 <h3 id="逆轉換">逆轉換</h3>
-
-<p>除了從 <span  class="math">\(f\)</span> 轉換到 <span  class="math">\(\hat{f}\)</span> 外，我們也可使用反矩陣計算，將 <span  class="math">\(\hat{f}\)</span> 的數值轉回 <span  class="math">\(f\)</span>，如</p>
-
-<p><span  class="math">\[
+<p>除了從 $f$ 轉換到 $\hat{f}$ 外，我們也可使用反矩陣計算，將 $\hat{f}$ 的數值轉回 $f$，如</p>
+$$
 \hat{f}=F_Nf \quad \Rightarrow \quad f=F_{N}^{-1}\hat{f}
-\]</span></p>
-
-<p>因 <span  class="math">\(F_N\)</span> 的共軛複數矩陣 <span  class="math">\(\bar{F}\)</span> 滿足</p>
-
-<p><span  class="math">\[
+$$
+<p>因 $F_N$ 的共軛複數矩陣 $\bar{F}$ 滿足</p>
+$$
 \bar{F}_NF_{N}=F_{N}\bar{F}_N=NI
-\]</span></p>
-
-<p>因此 <span  class="math">\(F_N\)</span> 的反矩陣為</p>
-
-<p><span  class="math">\[
+$$
+<p>因此 $F_N$ 的反矩陣為</p>
+$$
 F_{N}^{-1}=\frac{1}{N}\bar{F}_N
-\]</span></p>
-
+$$
 <h2 id="快速傅立葉轉換fast-fourier-transform">快速傅立葉轉換(Fast Fourier Transform)</h2>
-
-<p>一般離散傅立葉轉換的時間複雜度為 <span  class="math">\(O(N^2)\)</span>，在取樣率大的時候會造成計算上的負擔，因此可以透過快速傅立葉轉換(FFT)演算法，將分解計算量在合併，以將時間複雜度降到<span  class="math">\(O(N\log N)\)</span>，大幅減少計算量。</p>
-
-<p>設 <span  class="math">\(N=2M\)</span>，則對上面推導出的 <span  class="math">\(w_{N}\)</span> 進行轉換，可得</p>
-
-<p><span  class="math">\[
+<p>一般離散傅立葉轉換的時間複雜度為 $O(N^2)$，在取樣率大的時候會造成計算上的負擔，因此可以透過快速傅立葉轉換(FFT)演算法，將分解計算量在合併，以將時間複雜度降到 $O(N\log N)$，大幅減少計算量。</p>
+<p>設 $N=2M$，則對上面推導出的 $w_{N}$ 進行轉換，可得</p>
+$$
 w_{N}^2=(w^{-2\pi i/N})^2=e^{-2\pi i/M}=w_M
-\]</span></p>
-
-<p>現將原始資料 <span  class="math">\(f=[f_0,\dots,f_{N-1}]\)</span> 分為偶數項 <span  class="math">\(f_{\text{ev}}\)</span> 與奇數項 <span  class="math">\(f_{\text{od}}\)</span>，可寫為</p>
-
-<p><span  class="math">\[
+$$
+<p>現將原始資料 $f=[f_0,\dots,f_{N-1}]$ 分為偶數項 $f_{\text{ev}}$ 與奇數項 $f_{\text{od}}$，可寫為</p>
+$$
 \begin{aligned}
 f_{\text{ev}} & = [f_0 \quad f_2 \quad \dots \quad f_{N-2}]^T\\
 f_{\text{od}} & = [f_1 \quad f_3 \quad \dots \quad f_{N-1}]^T
 \end{aligned}
-\]</span></p>
-
+$$
 <p>上面二項的 DFT 轉換為</p>
-
-<p><span  class="math">\[
+$$
 \begin{aligned}
 \hat{f}_{\text{ev}} & = [\hat{f}_{\text{ev,}0} \quad \hat{f}_{\text{ev,}2} \quad \dots \quad \hat{f}_{\text{ev,}N-2}]^T & = F_Mf_{\text{ev}} \\
 \hat{f}_{\text{od}} & = [\hat{f}_{\text{od,}1} \quad \hat{f}_{\text{od,}3} \quad \dots \quad \hat{f}_{\text{od,}N-1}]^T & = F_Mf_{\text{od}}
 \end{aligned}
-\]</span></p>
-
+$$
 <p>對原先的 DFT 轉換公式進行拆解</p>
-
-<p><span  class="math">\[
+$$
 \begin{aligned}
 \hat{f}_n & =\sum_{k=0}^{N-1}w_N^{kn}f_k \\
  & =\sum_{k=0}^{M-1}w_N^{2kn}f_{2k}+\sum_{k=0}^{M-1}w_N^{(2k+1)n}f_{2k+1}\\
  & =\sum_{k=0}^{M-1}w_M^{kn}f_{\text{ev,}k}+w_N^n\sum_{k=0}^{M-1}w_M^{kn}f_{\text{od},k}\\
  & =\hat{f}_{\text{ev,}n}+w_N^n\hat{f}_{\text{od,}n}
 \end{aligned}
-\]</span></p>
-
-<p>可得出 DFT 轉換的計算可看成偶數項與基數項的相加。此外將上式的 <span  class="math">\(n\)</span> 以 <span  class="math">\(n+M\)</span> 代入且因</p>
-
-<p><span  class="math">\[
+$$
+<p>可得出 DFT 轉換的計算可看成偶數項與基數項的相加。此外將上式的 $n$ 以 $n+M$ 代入且因</p>
+$$
 \begin{aligned}
 w_M^{kM} &= e^{(-2\pi i/M)kM}=(e^{-i \pi})^{2k}=(-1)^{2k}=1\\
 w_N^M&=e^{-2\pi iM/N}=e^{-2\pi i/2}=e^{-\pi i}=-1
 \end{aligned}
-\]</span></p>
-
-<p>因此對向量 <span  class="math">\(f\)</span> 的 DFT 可簡化為</p>
-
-<p><span  class="math">\[
+$$
+<p>因此對向量 $f$ 的 DFT 可簡化為</p>
+$$
 \begin{aligned}
 \hat{f}_n & =\hat{f}_{\text{ev,}n}+w_N^n\hat{f}_{\text{od,}n}\\
 \hat{f}_{n+M} & = \hat{f}_{\text{ev,}n}-w_N^n\hat{f}_{\text{od,}n}
 \end{aligned}
-\]</span></p>
-
-<p>可看出將原先 <span  class="math">\(N\times N\)</span> 的轉換矩陣 <span  class="math">\(F_N\)</span> 計算轉化成大小為 <span  class="math">\(M\times M\)</span> 的 <span  class="math">\(F_M\)</span> 來計算可省下許多計算量。此外如果 <span  class="math">\(M\)</span> 為 2 的倍數也可繼續分解下去因此若 <span  class="math">\(N=2^p\)</span> 時效果最佳。此方法也稱為 <a href="https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm">Cooley-Tukey FFT Algorithm</a>。</p>
-
+$$
+<p>可看出將原先 $N\times N$ 的轉換矩陣 $F_N$ 計算轉化成大小為 $M\times M$ 的 $F_M$ 來計算可省下許多計算量。此外如果 $M$ 為 2 的倍數也可繼續分解下去因此若 $N=2^p$ 時效果最佳。此方法也稱為 <a href="https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm">Cooley-Tukey FFT Algorithm</a>。</p>
 <h2 id="時域訊號與頻率域的對應">時域訊號與頻率域的對應</h2>
-
-<p>傅立葉轉換在工程上應用極廣，其中一項就是時域訊號到頻率域的轉換，讓信號內容能拆解為基本組成單位來進行分析並協助工程上的處理。現有一連續訊號，我們在取樣時間 <span  class="math">\(T_d\)</span> 內取 <span  class="math">\(N\)</span> 個點，則資料點取樣間隔時間 <span  class="math">\(\Delta t\)</span> 與取樣頻率 <span  class="math">\(F_s\)</span>為</p>
-
-<p><span  class="math">\[\frac{T_d}{N}=\Delta t, \quad F_s=\frac{1}{\Delta t}\]</span></p>
-
-<p>當透過 FFT 將資料轉換到 N 點的 <span  class="math">\(\hat{f}_n\)</span> 後，每個點的間隔頻率為</p>
-
-<p><span  class="math">\[
+<p>傅立葉轉換在工程上應用極廣，其中一項就是時域訊號到頻率域的轉換，讓信號內容能拆解為基本組成單位來進行分析並協助工程上的處理。現有一連續訊號，我們在取樣時間 $T_d$ 內取 $N$s 個點，則資料點取樣間隔時間 $\Delta t$ 與取樣頻率 $F_s$ 為</p>
+$$\frac{T_d}{N}=\Delta t, \quad F_s=\frac{1}{\Delta t}$$
+<p>當透過 FFT 將資料轉換到 N 點的 $\hat{f}_n$ 後，每個點的間隔頻率為</p>
+$$
 \Delta F=\frac{F_s}{N}
-\]</span></p>
-
+$$
 <p>則每個點的所對應到的頻率</p>
-
-<p><span  class="math">\[F_n=n\Delta F, \quad n=0,1,\dots, N-1\]</span></p>
-
-<p>根據 <a href="https://en.wikipedia.org/wiki/Nyquist_frequency">Nyquist Frequency</a>，可正確分析的頻率範圍最大為 <span  class="math">\(\frac{F_s}{2}\)</span> (超過會產生<a href="https://en.wikipedia.org/wiki/Aliasing">混疊(aliasing)</a>的現象)。因此 FFT 轉換後的 <span  class="math">\(\hat{f}_n\)</span> 只有在 <span  class="math">\(0 \leq n \leq \frac{N}{2}\)</span> 的範圍內有意義。假設取樣時間為 2 秒 總共取樣 2000 個點，則取樣頻率為</p>
-
-<p><span  class="math">\[
+$$
+F_n=n\Delta F, \quad n=0,1,\dots, N-1
+$$
+<p>根據 <a href="https://en.wikipedia.org/wiki/Nyquist_frequency">Nyquist Frequency</a>，可正確分析的頻率範圍最大為 $\frac{F_s}{2}$ (超過會產生<a href="https://en.wikipedia.org/wiki/Aliasing">混疊(aliasing)</a>的現象)。因此 FFT 轉換後的 $\hat{f}_n$ 只有在 $0 \leq n \leq \frac{N}{2}$ 的範圍內有意義。假設取樣時間為 2 秒 總共取樣 2000 個點，則取樣頻率為</p>
+$$
 F_s=\frac{2000}{2}=1000 \quad (Hz)
-\]</span></p>
-
+$$
 <p>進行 FFT 轉換後每個值對應到的頻率為</p>
-
-<p><span  class="math">\[
+$$
 \Delta F = \frac{1000}{2000} = 0.5 \quad (Hz)
-\]</span></p>
-
-<p><span  class="math">\[
+$$
+$$
 \begin{aligned}
 F_0 & = 0 \\
 F_1 & = 0.5 \\
 & \vdots \\
 \end{aligned}
-\]</span></p>
-
+$$
 <h2 id="使用-python-執行-fft-轉換範例">使用 Python 執行 FFT 轉換範例</h2>
-
 <p>我們可利用 Python 中的 scipy 套件來做簡單的 FFT 範例。首先透過 <code>sin</code> 函數建立特定頻率的時域訊號，將資料疊加並加上雜訊後得到一模擬訊號。之後透過 FFT 函數資料轉換到頻率域並與原先的資料做對照，確認是否符合原先設定的頻率與振幅的數值範圍。</p>
-
 <h3 id="建立虛擬訊號">建立虛擬訊號</h3>
-
 <p>現在給定三個 sine 波，<strong>頻率</strong>與<strong>振幅</strong>分別為 (20, 12), (100, 5), (250, 2)，在做兩秒內取 2000 個點(取樣率為 1000 Hz)後將結果繪製出來。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> numpy <span style="color:#cdcd00">as</span> np
-<span style="color:#cd00cd">import</span> matplotlib.pyplot <span style="color:#cdcd00">as</span> plt
-<span style="color:#cd00cd">from</span> scipy <span style="color:#cd00cd">import</span> pi
-
-<span style="color:#39c">%</span>matplotlib inline
-
-sample_num <span style="color:#39c">=</span> <span style="color:#cd00cd">2000</span> <span style="color:#000080"># Sampling points</span>
-total_time <span style="color:#39c">=</span> <span style="color:#cd00cd">2</span> <span style="color:#000080"># Sampling number</span>
-sampling_rate <span style="color:#39c">=</span> sample_num <span style="color:#39c">/</span> total_time <span style="color:#000080"># 取樣頻率</span>
-
-fs <span style="color:#39c">=</span> [(<span style="color:#cd00cd">20</span>, <span style="color:#cd00cd">12</span>), (<span style="color:#cd00cd">100</span>, <span style="color:#cd00cd">5</span>), (<span style="color:#cd00cd">250</span>, <span style="color:#cd00cd">2</span>)] <span style="color:#000080"># sin 波的頻率與振幅組合。 (Hz, Amp)</span>
-noise_mag <span style="color:#39c">=</span> <span style="color:#cd00cd">2</span>
-
-time <span style="color:#39c">=</span> np<span style="color:#39c">.</span>linspace(<span style="color:#cd00cd">0</span>, total_time, sample_num, endpoint<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)
-
-vib_data <span style="color:#39c">=</span> [amp <span style="color:#39c">*</span> np<span style="color:#39c">.</span>sin(<span style="color:#cd00cd">2</span><span style="color:#39c">*</span>pi<span style="color:#39c">*</span>hz<span style="color:#39c">*</span>time) <span style="color:#cdcd00">for</span> hz, amp <span style="color:#cdcd00">in</span> fs]
-
-max_time <span style="color:#39c">=</span> <span style="color:#cd00cd">int</span>(sample_num <span style="color:#39c">/</span> <span style="color:#cd00cd">4</span>)
-
-plt<span style="color:#39c">.</span>figure(figsize<span style="color:#39c">=</span>(<span style="color:#cd00cd">12</span>, <span style="color:#cd00cd">8</span>))
-<span style="color:#000080"># Show seperated signal</span>
-<span style="color:#cdcd00">for</span> idx, vib <span style="color:#cdcd00">in</span> <span style="color:#cd00cd">enumerate</span>(vib_data):
-    plt<span style="color:#39c">.</span>subplot(<span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">2</span>, idx<span style="color:#39c">+</span><span style="color:#cd00cd">1</span>)
-    plt<span style="color:#39c">.</span>plot(time[<span style="color:#cd00cd">0</span>:max_time], vib[<span style="color:#cd00cd">0</span>:max_time])
-    plt<span style="color:#39c">.</span>xlabel(<span style="color:#cd0000">&#39;time&#39;</span>)
-    plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000">&#39;vib_&#39;</span> <span style="color:#39c">+</span> <span style="color:#cd00cd">str</span>(idx))
-    plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span style="color:#cd00cd">24</span>, <span style="color:#cd00cd">24</span>))
-
-vib <span style="color:#39c">=</span> <span style="color:#cd00cd">sum</span>(vib_data) <span style="color:#39c">+</span> np<span style="color:#39c">.</span>random<span style="color:#39c">.</span>normal(<span style="color:#cd00cd">0</span>, noise_mag, sample_num) <span style="color:#000080"># Add noise</span>
-
-plt<span style="color:#39c">.</span>subplot(<span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">4</span>)
-plt<span style="color:#39c">.</span>plot(time[<span style="color:#cd00cd">0</span>:max_time], vib[<span style="color:#cd00cd">0</span>:max_time])
-plt<span style="color:#39c">.</span>xlabel(<span style="color:#cd0000">&#39;time&#39;</span>)
-plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000">&#39;vib(with noise)&#39;</span>)
-plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span style="color:#cd00cd">24</span>, <span style="color:#cd00cd">24</span>))</code></pre></div>
-
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">import</span> numpy <span style="color:#cdcd00">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#cd00cd">import</span> matplotlib.pyplot <span style="color:#cdcd00">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#cd00cd">from</span> scipy <span style="color:#cd00cd">import</span> pi
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#39c">%</span>matplotlib inline
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sample_num <span style="color:#39c">=</span> <span style="color:#cd00cd">2000</span> <span style="color:#000080"># Sampling points</span>
+</span></span><span style="display:flex;"><span>total_time <span style="color:#39c">=</span> <span style="color:#cd00cd">2</span> <span style="color:#000080"># Sampling number</span>
+</span></span><span style="display:flex;"><span>sampling_rate <span style="color:#39c">=</span> sample_num <span style="color:#39c">/</span> total_time <span style="color:#000080"># 取樣頻率</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fs <span style="color:#39c">=</span> [(<span style="color:#cd00cd">20</span>, <span style="color:#cd00cd">12</span>), (<span style="color:#cd00cd">100</span>, <span style="color:#cd00cd">5</span>), (<span style="color:#cd00cd">250</span>, <span style="color:#cd00cd">2</span>)] <span style="color:#000080"># sin 波的頻率與振幅組合。 (Hz, Amp)</span>
+</span></span><span style="display:flex;"><span>noise_mag <span style="color:#39c">=</span> <span style="color:#cd00cd">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>time <span style="color:#39c">=</span> np<span style="color:#39c">.</span>linspace(<span style="color:#cd00cd">0</span>, total_time, sample_num, endpoint<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vib_data <span style="color:#39c">=</span> [amp <span style="color:#39c">*</span> np<span style="color:#39c">.</span>sin(<span style="color:#cd00cd">2</span><span style="color:#39c">*</span>pi<span style="color:#39c">*</span>hz<span style="color:#39c">*</span>time) <span style="color:#cdcd00">for</span> hz, amp <span style="color:#cdcd00">in</span> fs]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>max_time <span style="color:#39c">=</span> <span style="color:#cd00cd">int</span>(sample_num <span style="color:#39c">/</span> <span style="color:#cd00cd">4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#39c">.</span>figure(figsize<span style="color:#39c">=</span>(<span style="color:#cd00cd">12</span>, <span style="color:#cd00cd">8</span>))
+</span></span><span style="display:flex;"><span><span style="color:#000080"># Show seperated signal</span>
+</span></span><span style="display:flex;"><span><span style="color:#cdcd00">for</span> idx, vib <span style="color:#cdcd00">in</span> <span style="color:#cd00cd">enumerate</span>(vib_data):
+</span></span><span style="display:flex;"><span>    plt<span style="color:#39c">.</span>subplot(<span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">2</span>, idx<span style="color:#39c">+</span><span style="color:#cd00cd">1</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#39c">.</span>plot(time[<span style="color:#cd00cd">0</span>:max_time], vib[<span style="color:#cd00cd">0</span>:max_time])
+</span></span><span style="display:flex;"><span>    plt<span style="color:#39c">.</span>xlabel(<span style="color:#cd0000">&#39;time&#39;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000">&#39;vib_&#39;</span> <span style="color:#39c">+</span> <span style="color:#cd00cd">str</span>(idx))
+</span></span><span style="display:flex;"><span>    plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span style="color:#cd00cd">24</span>, <span style="color:#cd00cd">24</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vib <span style="color:#39c">=</span> <span style="color:#cd00cd">sum</span>(vib_data) <span style="color:#39c">+</span> np<span style="color:#39c">.</span>random<span style="color:#39c">.</span>normal(<span style="color:#cd00cd">0</span>, noise_mag, sample_num) <span style="color:#000080"># Add noise</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#39c">.</span>subplot(<span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">2</span>, <span style="color:#cd00cd">4</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#39c">.</span>plot(time[<span style="color:#cd00cd">0</span>:max_time], vib[<span style="color:#cd00cd">0</span>:max_time])
+</span></span><span style="display:flex;"><span>plt<span style="color:#39c">.</span>xlabel(<span style="color:#cd0000">&#39;time&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000">&#39;vib(with noise)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span style="color:#cd00cd">24</span>, <span style="color:#cd00cd">24</span>))
+</span></span></code></pre></div>
 
  
   
@@ -628,7 +569,7 @@ plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span
 
 <div class="figure center" >
   
-    <a class="fancybox" href="/images/2019/fft_intro/origin_signals.png" title="三個獨立訊號與加總結果(0 ~ 0.5s)" data-fancybox-group="">
+    <a class="fancybox" href="/images/2019/fft_intro/origin_signals.png" title="三個獨立訊號與加總結果(0 ~ 0.5s)" data-fancybox="">
   
     <img class="fig-img" src="/images/2019/fft_intro/origin_signals.png"  alt="三個獨立訊號與加總結果(0 ~ 0.5s)">
   
@@ -639,30 +580,26 @@ plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span
   
 </div>
 
-
 <p>其中</p>
-
 <ul>
 <li>左上 - 20 Hz 訊號</li>
 <li>右上 - 100 Hz 訊號</li>
 <li>左下 - 250 Hz 訊號</li>
 <li>右下 - 前三個訊號的加總並加入雜訊的結果。</li>
 </ul>
-
 <h3 id="fft">FFT</h3>
-
 <p>現在可透過 <a href="https://docs.scipy.org/doc/scipy/reference/tutorial/fftpack.html">scipy.fftpack</a> 套件中的 <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.fft.html#scipy.fftpack.fft">fft</a> 函數將原始訊號進行 FFT 轉換得到頻率域結果。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">from</span> scipy.fftpack <span style="color:#cd00cd">import</span> fft
-
-fd <span style="color:#39c">=</span> np<span style="color:#39c">.</span>linspace(<span style="color:#cd00cd">0.0</span>, sampling_rate, <span style="color:#cd00cd">int</span>(sample_num), endpoint<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)
-
-vib_fft <span style="color:#39c">=</span> fft(vib)
-mag <span style="color:#39c">=</span> <span style="color:#cd00cd">2</span><span style="color:#39c">/</span>sample_num <span style="color:#39c">*</span> np<span style="color:#39c">.</span>abs(vib_fft) <span style="color:#000080"># Magnitude</span>
-
-plt<span style="color:#39c">.</span>plot(fd[<span style="color:#cd00cd">0</span>:<span style="color:#cd00cd">int</span>(sample_num<span style="color:#39c">/</span><span style="color:#cd00cd">2</span>)], mag[<span style="color:#cd00cd">0</span>:<span style="color:#cd00cd">int</span>(sample_num<span style="color:#39c">/</span><span style="color:#cd00cd">2</span>)])
-plt<span style="color:#39c">.</span>xlabel(<span style="color:#cd0000">&#39;Hz&#39;</span>)
-plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000">&#39;Mag&#39;</span>)</code></pre></div>
-
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">from</span> scipy.fftpack <span style="color:#cd00cd">import</span> fft
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fd <span style="color:#39c">=</span> np<span style="color:#39c">.</span>linspace(<span style="color:#cd00cd">0.0</span>, sampling_rate, <span style="color:#cd00cd">int</span>(sample_num), endpoint<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vib_fft <span style="color:#39c">=</span> fft(vib)
+</span></span><span style="display:flex;"><span>mag <span style="color:#39c">=</span> <span style="color:#cd00cd">2</span><span style="color:#39c">/</span>sample_num <span style="color:#39c">*</span> np<span style="color:#39c">.</span>abs(vib_fft) <span style="color:#000080"># Magnitude</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#39c">.</span>plot(fd[<span style="color:#cd00cd">0</span>:<span style="color:#cd00cd">int</span>(sample_num<span style="color:#39c">/</span><span style="color:#cd00cd">2</span>)], mag[<span style="color:#cd00cd">0</span>:<span style="color:#cd00cd">int</span>(sample_num<span style="color:#39c">/</span><span style="color:#cd00cd">2</span>)])
+</span></span><span style="display:flex;"><span>plt<span style="color:#39c">.</span>xlabel(<span style="color:#cd0000">&#39;Hz&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000">&#39;Mag&#39;</span>)
+</span></span></code></pre></div>
 
  
   
@@ -678,7 +615,7 @@ plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000">&#39;Mag&
 
 <div class="figure center" >
   
-    <a class="fancybox" href="/images/2019/fft_intro/fft.png" title="頻率域結果" data-fancybox-group="">
+    <a class="fancybox" href="/images/2019/fft_intro/fft.png" title="頻率域結果" data-fancybox="">
   
     <img class="fig-img" src="/images/2019/fft_intro/fft.png"  alt="頻率域結果">
   
@@ -689,19 +626,16 @@ plt<span style="color:#39c">.</span>ylabel(<span style="color:#cd0000">&#39;Mag&
   
 </div>
 
-
 <p>從上圖可以看出，在 <strong>20 Hz</strong>, <strong>100 Hz</strong> 以及 <strong>250 Hz</strong> 的位置各有一個明顯的能量高峰，資料量與數值與之前設定的頻率一致，以此可知 FFT 可幫助我們分解找出原始訊號中的訊號組合。</p>
-
 <h3 id="inverse-fft">Inverse FFT</h3>
-
 <p>除了將時域訊號轉換成頻譜外，也可以透過 <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.ifft.html#scipy.fftpack.ifft">ifft</a> 函數，將頻譜轉換回時域訊號。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">from</span> scipy.fftpack <span style="color:#cd00cd">import</span> ifft
-
-vib_re <span style="color:#39c">=</span> np<span style="color:#39c">.</span>real(ifft(vib_fft)) <span style="color:#000080"># Real part of complex number</span>
-
-plt<span style="color:#39c">.</span>plot(time[<span style="color:#cd00cd">0</span>:max_time], vib_re[<span style="color:#cd00cd">0</span>:max_time])
-plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span style="color:#cd00cd">24</span>, <span style="color:#cd00cd">24</span>))</code></pre></div>
-
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">from</span> scipy.fftpack <span style="color:#cd00cd">import</span> ifft
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vib_re <span style="color:#39c">=</span> np<span style="color:#39c">.</span>real(ifft(vib_fft)) <span style="color:#000080"># Real part of complex number</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#39c">.</span>plot(time[<span style="color:#cd00cd">0</span>:max_time], vib_re[<span style="color:#cd00cd">0</span>:max_time])
+</span></span><span style="display:flex;"><span>plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span style="color:#cd00cd">24</span>, <span style="color:#cd00cd">24</span>))
+</span></span></code></pre></div>
 
  
   
@@ -717,7 +651,7 @@ plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span
 
 <div class="figure center" >
   
-    <a class="fancybox" href="/images/2019/fft_intro/ifft.png" title="頻率域轉回時域訊號" data-fancybox-group="">
+    <a class="fancybox" href="/images/2019/fft_intro/ifft.png" title="頻率域轉回時域訊號" data-fancybox="">
   
     <img class="fig-img" src="/images/2019/fft_intro/ifft.png"  alt="頻率域轉回時域訊號">
   
@@ -728,15 +662,10 @@ plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span
   
 </div>
 
-
 <p>從上圖可知轉換回來的訊號幾乎相等於原始訊號。</p>
-
 <h2 id="conclusion">conclusion</h2>
-
-<p>本文先從<strong>傅立葉級數(Fourier Series)</strong>的定義開始介紹並簡述證明方式，並推廣到<strong>複數傅立葉級數</strong>，以及透過介紹離散傅立葉轉換(DFT)的定義與證明導出快速傅立葉轉換(FFT)的概念。之後探討傅立葉轉換在訊號處理上的意義，並給出 Python 程式碼範例與圖片協助了解內容。</p>
-
+<p>本文先從<strong>傅立葉級數(Fourier Series)<strong>的定義開始介紹並簡述證明方式，並推廣到</strong>複數傅立葉級數</strong>，以及透過介紹離散傅立葉轉換(DFT)的定義與證明導出快速傅立葉轉換(FFT)的概念。之後探討傅立葉轉換在訊號處理上的意義，並給出 Python 程式碼範例與圖片協助了解內容。</p>
 <h2 id="reference">Reference</h2>
-
 <ul>
 <li><a href="https://ericstrong.org/fast-fourier-transforms-in-python/">Fast Fourier Transforms in Python</a></li>
 <li><a href="https://docs.scipy.org/doc/scipy/reference/tutorial/fftpack.html">Fourier Transforms (scipy.fftpack)</a></li>
@@ -745,6 +674,8 @@ plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span
 <li><a href="https://www.youtube.com/watch?v=spUNpyF58BY">Youtube - 可視的傅立葉轉換</a></li>
 </ul>
               
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -761,159 +692,163 @@ plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span
                 
               
             
-            <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/fluentd_basic/" data-tooltip="Fluentd 基礎使用方式">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/comic_qed_cmb/" data-tooltip="非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/fluentd_basic/" data-tooltip="Fluentd 基礎使用方式" aria-label="NEXT: Fluentd 基礎使用方式">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2019/04/fft_intro/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/comic_qed_cmb/" data-tooltip="非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B." aria-label="PREVIOUS: 非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2019/04/fft_intro/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2019/04/fft_intro/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2019/04/fft_intro/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
             
-              
-            
+  
+
+
           </div>
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2024 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 
       </div>
       <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-        <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/fluentd_basic/" data-tooltip="Fluentd 基礎使用方式">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/comic_qed_cmb/" data-tooltip="非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/fluentd_basic/" data-tooltip="Fluentd 基礎使用方式" aria-label="NEXT: Fluentd 基礎使用方式">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2019/04/fft_intro/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/comic_qed_cmb/" data-tooltip="非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B." aria-label="PREVIOUS: 非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2019/04/fft_intro/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2019/04/fft_intro/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2019/04/fft_intro/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
       </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2019%2F04%2Ffft_intro%2F">
-          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2019%2F04%2Ffft_intro%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2019%2F04%2Ffft_intro%2F">
-          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2019%2F04%2Ffft_intro%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
         </a>
       </li>
     
   </ul>
 </div>
 <div id="share-options-mask" class="share-options-mask"></div>
+
+
     </div>
     
     <div id="about">
   <div id="about-card">
     <div id="about-btn-close">
-      <i class="fa fa-remove"></i>
+      <i class="fa fa-times"></i>
     </div>
     
       <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
@@ -931,7 +866,7 @@ plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span
     
     
       <div id="about-card-location">
-        <i class="fa fa-map-marker"></i>
+        <i class="fa fa-map-marker-alt"></i>
         <br/>
         Taiwan
       </div>
@@ -950,30 +885,16 @@ plt<span style="color:#39c">.</span>ylim((<span style="color:#39c">-</span><span
 
 
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
-
-
-<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<script lang="javascript">
-window.onload = updateMinWidth;
-window.onresize = updateMinWidth;
-document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
-function updateMinWidth() {
-  var sidebar = document.getElementById("sidebar");
-  var main = document.getElementById("main");
-  main.style.minWidth = "";
-  var w1 = getComputedStyle(main).getPropertyValue("min-width");
-  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
-  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
-  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
-}
-</script>
+<script src="/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
 
 <script>
 $(document).ready(function() {
@@ -988,15 +909,16 @@ $(document).ready(function() {
 </script>
 
 
-  
-    
-  
 
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+    MathJax = {
+        tex: {
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+            inlineMath: [['\\(', '\\)'], ['$', '$']]   
+        }
+    };
+</script>
 
 
 

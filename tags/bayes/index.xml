@@ -6,69 +6,56 @@
     <description>Recent content in Bayes on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 07 Aug 2018 12:00:00 +0800</lastBuildDate><atom:link href="/tags/bayes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Aug 2018 12:00:00 +0800</lastBuildDate>
+    <atom:link href="/tags/bayes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 8</title>
       <link>/2018/08/thinkbayes-ch8/</link>
       <pubDate>Tue, 07 Aug 2018 12:00:00 +0800</pubDate>
-      
       <guid>/2018/08/thinkbayes-ch8/</guid>
       <description>&lt;p&gt;Chapter 8 作者介紹了自己實際通勤的案例，並從地鐵班表建立一個數據模型，由月台上的等車人數推測是否應該繼續等待下去，或是轉搭計程車前往目的地。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 7</title>
       <link>/2018/07/thinkbayes-ch7/</link>
       <pubDate>Mon, 23 Jul 2018 16:00:00 +0800</pubDate>
-      
       <guid>/2018/07/thinkbayes-ch7/</guid>
       <description>&lt;p&gt;Chapter 7 介紹了如何使用 Bayes 預測比賽結果。作者以 2010-2011 NHL 的冠軍賽為範例，以 Poisson 分佈來計算 Boston Bruins 的比賽勝率，並進一步預測系列賽結果。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 6</title>
       <link>/2018/07/thinkbayes-ch6/</link>
       <pubDate>Thu, 19 Jul 2018 10:00:00 +0800</pubDate>
-      
       <guid>/2018/07/thinkbayes-ch6/</guid>
       <description>&lt;p&gt;Chapter 6 介紹了一個猜價格遊戲，並從歷史資料 dataset 中，求出得出要如何才能有最高的期望回饋。本範例中介紹如何使用 KDE 建立 PDF 以及 Likelihood 並得出 Posterior，最後以該數值建立最佳的期望回饋值分佈以得出如何得出最佳 Bid。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 5</title>
       <link>/2018/07/thinkbayes-ch5/</link>
       <pubDate>Mon, 16 Jul 2018 17:00:00 +0800</pubDate>
-      
       <guid>/2018/07/thinkbayes-ch5/</guid>
-      <description>&lt;p&gt;Chapter 5 在介紹 Ratio 形式的機率表示法，並轉換成 Bayes&#39;s theorem 的形式，並以 Oliver&#39;s Blood 為範例展示不需計算 Posterior 也能從 Likelihood Ratio 得出結果。此外也介紹了 Mixture Distribution 以及如何使用 Python 計算該分佈的方式。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Chapter 5 在介紹 Ratio 形式的機率表示法，並轉換成 Bayes&amp;rsquo;s theorem 的形式，並以 Oliver&amp;rsquo;s Blood 為範例展示不需計算 Posterior 也能從 Likelihood Ratio 得出結果。此外也介紹了 Mixture Distribution 以及如何使用 Python 計算該分佈的方式。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 4</title>
       <link>/2018/07/thinkbayes-ch4/</link>
       <pubDate>Fri, 13 Jul 2018 15:30:00 +0800</pubDate>
-      
       <guid>/2018/07/thinkbayes-ch4/</guid>
       <description>&lt;p&gt;在 Chpater 4 中作者用 Euro Problem (硬幣投擲問題) 作為範例計算並檢定&lt;strong&gt;硬幣&lt;/strong&gt;是否&lt;strong&gt;公平&lt;/strong&gt;。並介紹使用 Beta Distribution 快速計算 Posterior 的方法。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 2 ~ 3</title>
       <link>/2018/07/thinkbayes-ch2-to-3/</link>
       <pubDate>Fri, 13 Jul 2018 10:00:00 +0800</pubDate>
-      
       <guid>/2018/07/thinkbayes-ch2-to-3/</guid>
-      <description>&lt;p&gt;Chapter 2 主要為作者的機率運算程式碼運作方式，這部分將簡單帶過。Chapter 3 則為如何透過 Chpater 1 的 Bayes&#39; theorem 與 Chapter 2 的程式碼結合，示範如何對問題使用 Bayes&#39; theorem 計算結果。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Chapter 2 主要為作者的機率運算程式碼運作方式，這部分將簡單帶過。Chapter 3 則為如何透過 Chpater 1 的 Bayes&amp;rsquo; theorem 與 Chapter 2 的程式碼結合，示範如何對問題使用 Bayes&amp;rsquo; theorem 計算結果。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 1</title>
       <link>/2018/05/thinkbayes-ch1/</link>
       <pubDate>Wed, 16 May 2018 15:00:00 +0800</pubDate>
-      
       <guid>/2018/05/thinkbayes-ch1/</guid>
       <description>&lt;p&gt;本筆記主要紀錄閱讀 &lt;a href=&#34;http://greenteapress.com/wp/think-bayes/&#34;&gt;ThinkBayes&lt;/a&gt; 一書內各章節的心得筆記，提供往後參考與複習。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

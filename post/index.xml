@@ -6,286 +6,224 @@
     <description>Recent content in Posts on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 20 Jun 2021 12:00:00 +0800</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Dec 2023 16:00:00 +0800</lastBuildDate>
+    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 中顯示 Latex 數學式</title>
+      <link>/2023/12/hugo_math/</link>
+      <pubDate>Tue, 12 Dec 2023 16:00:00 +0800</pubDate>
+      <guid>/2023/12/hugo_math/</guid>
+      <description>&lt;p&gt;要在 Hugo 中使用 Latex 語法撰寫數學式，需讓寫在 Markdown 中的 Latex 語法被 &lt;a href=&#34;https://www.mathjax.org/&#34;&gt;MathJax&lt;/a&gt; 或 &lt;a href=&#34;https://katex.org/&#34;&gt;Katex&lt;/a&gt; 能讀取並轉換為數學表示式。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>用 Markdown 撰寫 Slide - 使用 Marp 套件</title>
       <link>/2021/06/marp_vscode/</link>
       <pubDate>Sun, 20 Jun 2021 12:00:00 +0800</pubDate>
-      
       <guid>/2021/06/marp_vscode/</guid>
       <description>&lt;p&gt;鴿了一整個 2020，2021 應該開始繼續寫 Blog 和技術文章了。這篇文章將介紹如何在 VSCode 中使用 Marp 與 Markdown 來建立投影片。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fluentd 基礎使用方式</title>
       <link>/2019/12/fluentd_basic/</link>
       <pubDate>Sun, 22 Dec 2019 12:00:00 +0800</pubDate>
-      
       <guid>/2019/12/fluentd_basic/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://www.fluentd.org/&#34;&gt;Fluentd&lt;/a&gt; 是一套開源資料蒐集軟體 (Data Collection Software)。通常在專案中我們會需要將各種資料傳遞到不同服務，如 Apache, MySQL, elasticsearch 等服務，但不同服務間的資料傳遞方式卻各自不同，常會造成混亂。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>從傅立葉級數到快速傅立葉轉換</title>
       <link>/2019/04/fft_intro/</link>
       <pubDate>Thu, 18 Apr 2019 10:00:00 +0800</pubDate>
-      
       <guid>/2019/04/fft_intro/</guid>
       <description>&lt;p&gt;傅立葉轉換(FFT)是一種數學上的線性積分變換方式，能將&lt;strong&gt;週期函數&lt;/strong&gt;使用轉換為另一個函數。在數位信號處理領域上，透過傅立葉轉換可將資料從&lt;strong&gt;時域波形&lt;/strong&gt;轉換到&lt;strong&gt;頻譜&lt;/strong&gt;上，也就是將訊號進行&lt;strong&gt;分解&lt;/strong&gt;為基礎組合，在現代的物理與工程等許多領域有大量的應用。本文將從傅立葉級數開始介紹，從其中導出離散傅立葉轉換(DFT)與快速傅立葉轉換(FFT)，並以 Python 來實作範例。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.</title>
       <link>/2019/04/comic_qed_cmb/</link>
       <pubDate>Mon, 08 Apr 2019 15:00:00 +0800</pubDate>
-      
       <guid>/2019/04/comic_qed_cmb/</guid>
       <description>&lt;p&gt;在說到推理漫畫作品時，許多人可能第一時間想到的可能是柯南，金田一等作品，但這次要介紹的是不同於上面兩部，而是比較不為大眾所知卻非常優秀，由日本漫畫家&lt;a href=&#34;https://ja.wikipedia.org/wiki/%E5%8A%A0%E8%97%A4%E5%85%83%E6%B5%A9&#34;&gt;加藤元浩&lt;/a&gt;所連載的推理漫畫 - &lt;a href=&#34;https://ja.wikipedia.org/wiki/Q.E.D._%E8%A8%BC%E6%98%8E%E7%B5%82%E4%BA%86&#34;&gt;Q.E.D. 證明終了&lt;/a&gt;與 &lt;a href=&#34;https://ja.wikipedia.org/wiki/C.M.B._%E6%A3%AE%E7%BE%85%E5%8D%9A%E7%89%A9%E9%A4%A8%E3%81%AE%E4%BA%8B%E4%BB%B6%E7%9B%AE%E9%8C%B2&#34;&gt;C.M.B. 森羅博物館事件目錄&lt;/a&gt; 這兩個作品。與其他推理漫畫不同的是，Q.E.D. 與 C.M.B. 並沒有使用如神秘組織，主角宿敵，說教，男女配對發展等大眾化元素，而是著重在故事性以及推理內容上的本格派推理漫畫。作品從 1997 年開始連載至今已經已經超過 20 年以上仍然維持著相同的基調，可說是推理漫畫界的清流。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Git 學習要點</title>
       <link>/2018/11/git-learning-tips/</link>
       <pubDate>Sun, 25 Nov 2018 00:20:00 +0800</pubDate>
-      
       <guid>/2018/11/git-learning-tips/</guid>
       <description>&lt;p&gt;自從 Git 從 2005 年出現後，到現在幾乎所有軟體開發者都離不開他，加上 GitHub 等服務讓 Git 甚至能當成網頁空間或線上文件共筆平台等。但 Git 初學時可能有許多人不知道如何入門，本篇將簡單整理個人的 Git 學習方式，使用建議與需要注意的概念等，並不會詳細說明 Git 指令等內容。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>機器學習資料集 - Iris dataset</title>
       <link>/2018/10/dataset-iris/</link>
       <pubDate>Mon, 01 Oct 2018 00:18:00 +0800</pubDate>
-      
       <guid>/2018/10/dataset-iris/</guid>
       <description>&lt;p&gt;當我們有一個新的機器學習演算法時，為展現其效果以及與其他演算法的差異，我們可以使用共通的資料集(Dataset)來進行測試與比較，才有一個共同的標準。本篇將簡單介紹 Iris dataset 內容與結構，之後也會持續介紹許多常用的 Dataset 相關內容。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Kepler.gl 使用簡介</title>
       <link>/2018/09/kepler-gl/</link>
       <pubDate>Sun, 02 Sep 2018 16:00:00 +0800</pubDate>
-      
       <guid>/2018/09/kepler-gl/</guid>
       <description>&lt;p&gt;過去在做地理資訊是視覺化的時候，通常需要專業的軟體與操作技能，增加了一般使用者的進入障礙。Uber 在今年五月時開放了內部使用的地理資料視覺化軟體 Kepler.gl，提供一般使用者能在瀏覽器上輕易地匯入與操作資料進行地理資訊視覺化操作與檢視。本文章將簡單介紹 Kepler.gl 的用法，讓剛使用者能了解其基礎用法。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 8</title>
       <link>/2018/08/thinkbayes-ch8/</link>
       <pubDate>Tue, 07 Aug 2018 12:00:00 +0800</pubDate>
-      
       <guid>/2018/08/thinkbayes-ch8/</guid>
       <description>&lt;p&gt;Chapter 8 作者介紹了自己實際通勤的案例，並從地鐵班表建立一個數據模型，由月台上的等車人數推測是否應該繼續等待下去，或是轉搭計程車前往目的地。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 7</title>
       <link>/2018/07/thinkbayes-ch7/</link>
       <pubDate>Mon, 23 Jul 2018 16:00:00 +0800</pubDate>
-      
       <guid>/2018/07/thinkbayes-ch7/</guid>
       <description>&lt;p&gt;Chapter 7 介紹了如何使用 Bayes 預測比賽結果。作者以 2010-2011 NHL 的冠軍賽為範例，以 Poisson 分佈來計算 Boston Bruins 的比賽勝率，並進一步預測系列賽結果。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 6</title>
       <link>/2018/07/thinkbayes-ch6/</link>
       <pubDate>Thu, 19 Jul 2018 10:00:00 +0800</pubDate>
-      
       <guid>/2018/07/thinkbayes-ch6/</guid>
       <description>&lt;p&gt;Chapter 6 介紹了一個猜價格遊戲，並從歷史資料 dataset 中，求出得出要如何才能有最高的期望回饋。本範例中介紹如何使用 KDE 建立 PDF 以及 Likelihood 並得出 Posterior，最後以該數值建立最佳的期望回饋值分佈以得出如何得出最佳 Bid。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 5</title>
       <link>/2018/07/thinkbayes-ch5/</link>
       <pubDate>Mon, 16 Jul 2018 17:00:00 +0800</pubDate>
-      
       <guid>/2018/07/thinkbayes-ch5/</guid>
-      <description>&lt;p&gt;Chapter 5 在介紹 Ratio 形式的機率表示法，並轉換成 Bayes&#39;s theorem 的形式，並以 Oliver&#39;s Blood 為範例展示不需計算 Posterior 也能從 Likelihood Ratio 得出結果。此外也介紹了 Mixture Distribution 以及如何使用 Python 計算該分佈的方式。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Chapter 5 在介紹 Ratio 形式的機率表示法，並轉換成 Bayes&amp;rsquo;s theorem 的形式，並以 Oliver&amp;rsquo;s Blood 為範例展示不需計算 Posterior 也能從 Likelihood Ratio 得出結果。此外也介紹了 Mixture Distribution 以及如何使用 Python 計算該分佈的方式。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 4</title>
       <link>/2018/07/thinkbayes-ch4/</link>
       <pubDate>Fri, 13 Jul 2018 15:30:00 +0800</pubDate>
-      
       <guid>/2018/07/thinkbayes-ch4/</guid>
       <description>&lt;p&gt;在 Chpater 4 中作者用 Euro Problem (硬幣投擲問題) 作為範例計算並檢定&lt;strong&gt;硬幣&lt;/strong&gt;是否&lt;strong&gt;公平&lt;/strong&gt;。並介紹使用 Beta Distribution 快速計算 Posterior 的方法。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 2 ~ 3</title>
       <link>/2018/07/thinkbayes-ch2-to-3/</link>
       <pubDate>Fri, 13 Jul 2018 10:00:00 +0800</pubDate>
-      
       <guid>/2018/07/thinkbayes-ch2-to-3/</guid>
-      <description>&lt;p&gt;Chapter 2 主要為作者的機率運算程式碼運作方式，這部分將簡單帶過。Chapter 3 則為如何透過 Chpater 1 的 Bayes&#39; theorem 與 Chapter 2 的程式碼結合，示範如何對問題使用 Bayes&#39; theorem 計算結果。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Chapter 2 主要為作者的機率運算程式碼運作方式，這部分將簡單帶過。Chapter 3 則為如何透過 Chpater 1 的 Bayes&amp;rsquo; theorem 與 Chapter 2 的程式碼結合，示範如何對問題使用 Bayes&amp;rsquo; theorem 計算結果。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>從 Jekyll 轉移到 Hugo 心得</title>
       <link>/2018/07/from-jekyll-to-hugo/</link>
       <pubDate>Sat, 07 Jul 2018 14:00:00 +0800</pubDate>
-      
       <guid>/2018/07/from-jekyll-to-hugo/</guid>
       <description>&lt;p&gt;由於原先使用 Jekyll 的 voyager theme 所建立的靜態 Blog 在功能上已有些不足，且 Jekyll 的過慢的編譯速度也讓人有些頭大，因此有了轉換網網頁產生器的想法。原本是想使用 Hexo 來當作新的產生器，但在找產生器的過程發現了 Hugo 這個靜態網頁產生器中的新起之秀，研究後發現相當符合個人需求，因此決定使用 Hugo 來作為新的靜態網頁產生器。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Strava 建立全球運動熱點圖的方式</title>
       <link>/2018/06/strava-how-to-generate-heatmap/</link>
       <pubDate>Sat, 02 Jun 2018 20:00:00 +0800</pubDate>
-      
       <guid>/2018/06/strava-how-to-generate-heatmap/</guid>
       <description>&lt;p&gt;因之前研究了有關 map tile 的建立的方式，因此進一步了解 Strava 如何建立熱點圖的方式，因此在本篇中在這篇文章 &lt;a href=&#34;https://medium.com/strava-engineering/the-global-heatmap-now-6x-hotter-23fc01d301de&#34;&gt;Building the Global Heatmap&lt;/a&gt; 中 Strava 官方說明了建立 &lt;a href=&#34;https://www.strava.com/heatmap&#34;&gt;Strava Global Heatmap&lt;/a&gt; 的過程，在看完後覺得很有趣因此分享一下心得。本篇將專注在建立熱度圖的演算法上，並不涉及如何在 Cluster 上大量運算的方法。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</title>
       <link>/2018/05/implement-osm-map-tiles-parallel/</link>
       <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
-      
       <guid>/2018/05/implement-osm-map-tiles-parallel/</guid>
       <description>&lt;p&gt;在&lt;a href=&#34;https://yeshuanova.github.io/blog/posts/implement-OSM-map-tiles/&#34;&gt;上一篇文章&lt;/a&gt;中已展示過了已展示如何從 NYC taxi trip dataset 中建立 map tiles 的基本方式。本篇將進一步改進該演算法，加速產生速度以及大檔案方式。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 1</title>
       <link>/2018/05/thinkbayes-ch1/</link>
       <pubDate>Wed, 16 May 2018 15:00:00 +0800</pubDate>
-      
       <guid>/2018/05/thinkbayes-ch1/</guid>
       <description>&lt;p&gt;本筆記主要紀錄閱讀 &lt;a href=&#34;http://greenteapress.com/wp/think-bayes/&#34;&gt;ThinkBayes&lt;/a&gt; 一書內各章節的心得筆記，提供往後參考與複習。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</title>
       <link>/2018/04/implement-osm-map-tiles/</link>
       <pubDate>Tue, 24 Apr 2018 18:00:00 +0800</pubDate>
-      
       <guid>/2018/04/implement-osm-map-tiles/</guid>
       <description>&lt;p&gt;在先前的文章 &lt;a href=&#34;https://yeshuanova.github.io/blog/posts/python-visualization-datashader/&#34;&gt;Python 地圖視覺化 - 使用 Folium&lt;/a&gt; 中，我們已經介紹過如何使用 Python 與 datashader 套件將 GPS 資料繪製成圖片。本篇文章將進一步示範如何使用 NYC Taxi Trip Data 來建立 New York City 的計程車上車位置的 Heatmap，並把繪製出的 map tile 資料與 &lt;a href=&#34;https://github.com/python-visualization/folium&#34;&gt;Folium&lt;/a&gt; 地圖元件整合以達到互動的效果。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>京都大學的 Learning Commons (學習共享空間) 參訪感想</title>
       <link>/2018/03/learning-commons/</link>
       <pubDate>Mon, 05 Mar 2018 16:00:00 +0800</pubDate>
-      
       <guid>/2018/03/learning-commons/</guid>
       <description>&lt;p&gt;這次到京都自助旅行時因行程有經過&lt;a href=&#34;http://www.kyoto-u.ac.jp/zh-tw&#34;&gt;京都大學&lt;/a&gt;，因此特別抽空參觀了校園以及圖書館，而在其中最讓我覺得有趣的是圖書館中的 Learning Commons（ラーニング・コモンズ，學習共享空間）的概念與功能。因此整理了一些 Learning Commons 的相關資料以及將參訪心得記錄下來。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>高效卷積計算結構 - Depthwise Separable Convolution</title>
       <link>/2018/02/depthwise-separable-convolution/</link>
       <pubDate>Fri, 09 Feb 2018 15:00:00 +0800</pubDate>
-      
       <guid>/2018/02/depthwise-separable-convolution/</guid>
       <description>&lt;p&gt;近年來因與計算機的計算能力大幅上升，GPGPU 的支援等，使深度神經網路技術取得了非常好的效果發展。但所衍生的高計算量卻讓行動裝置以及嵌入式系統等計算能力有限的平台在執行時遇到效能的限制。因此 Google 在 MobileNets 模型中使用了新的卷積計算模型 depthwise separable convolution 來減少所需的計量。本篇將從基礎類神經網路開始介紹，說明卷積神經網路的架構與計算成本問題，並解說 depthwise separable convolution 的技術內容與計算成本。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Modern C&#43;&#43; changing</title>
       <link>/2018/02/modern-cpp-changing/</link>
       <pubDate>Sat, 03 Feb 2018 16:00:00 +0800</pubDate>
-      
       <guid>/2018/02/modern-cpp-changing/</guid>
       <description>&lt;p&gt;C++ 標準自從建立後到現在已經經過了許多次改版，其中最重要的版本除了 C++98 外，當在2011 年正式發佈的 C++11 標準了。該標準加入了許多新特性，不但讓程式撰寫更為精簡，在執行時效率也更加上升，可說是之後 C++14 與 C++17 等標準的基石。本篇文章簡單整理了一些關於 C++11 重要標準變更與概念，若要詳細了解相關內容以及 C++14/17 的相關變更可參考 &lt;a href=&#34;https://en.wikipedia.org/wiki/C%2B%2B11&#34;&gt;Wikipedia&lt;/a&gt; 等網站。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>使用 TensorFlow Lite 在 iOS 裝置上進行圖片分類</title>
       <link>/2018/01/tensorflow-lite-in-ios-device/</link>
       <pubDate>Mon, 15 Jan 2018 12:00:00 +0800</pubDate>
-      
       <guid>/2018/01/tensorflow-lite-in-ios-device/</guid>
       <description>&lt;p&gt;近幾年來由 Google 推出的 TensorFlow 在深度學習等領域有著大量的發展，但也因為由 TensorFlow 所訓練出的 Model 容量大且本身執行時也會佔用較多資源，並不適合在行動裝置上執行。因此 Google 推出了 TensorFlow Lite 讓在行動裝置上執行 TensorFlow  更為方便。本文章將簡單介紹如何在 iOS 裝置上執行 TensorFlow Lite 並進行圖像分類的方法。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Autoencoder 簡介與應用範例</title>
       <link>/2018/01/autoencoder-tutorial/</link>
       <pubDate>Thu, 04 Jan 2018 18:00:00 +0800</pubDate>
-      
       <guid>/2018/01/autoencoder-tutorial/</guid>
-      <description>&lt;p&gt;Autoencoder(自動編碼器)是一種是透過 &lt;a href=&#34;https://en.wikipedia.org/wiki/Artificial_neural_network&#34;&gt;Artificial Neural Network&lt;/a&gt;，來進行資料自動學習與編碼的技術。本文將使用機器學習函式庫 &lt;a href=&#34;https://keras.io/&#34;&gt;Keras&lt;/a&gt; 建立 Autoencoder Model，並使用 MNIST Datatset 來展示兩個 Autoencoder 範例 - &lt;strong&gt;資料降維回復&lt;/strong&gt;與&lt;strong&gt;去雜訊(Denoising)&lt;/strong&gt;的 Model。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Autoencoder(自動編碼器)是一種是透過 &lt;a href=&#34;https://en.wikipedia.org/wiki/Artificial_neural_network&#34;&gt;Artificial Neural Network&lt;/a&gt;，來進行資料自動學習與編碼的技術。本文將使用機器學習函式庫 &lt;a href=&#34;https://keras.io/&#34;&gt;Keras&lt;/a&gt; 建立 Autoencoder Model，並使用 MNIST Datatset 來展示兩個 Autoencoder 範例 - &lt;strong&gt;資料降維回復&lt;/strong&gt;與**去雜訊(Denoising)**的 Model。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Python 資料視覺化 - 使用 datashader</title>
       <link>/2017/11/python-visualization-datashader/</link>
       <pubDate>Mon, 20 Nov 2017 14:00:00 +0800</pubDate>
-      
       <guid>/2017/11/python-visualization-datashader/</guid>
       <description>&lt;p&gt;在做資料視覺化時，經常會遇到因資料量過大而無法簡單進行處理，或是執行速度過慢的問題。本文章將介紹一套&lt;strong&gt;Python&lt;/strong&gt;上的資料視覺化工具&lt;strong&gt;datashader&lt;/strong&gt;，能將數億個點的大資料快速生成視覺化圖形，並以&lt;strong&gt;New York Taxi Trip&lt;/strong&gt;資料集為範例說明如何使用&lt;strong&gt;datashader&lt;/strong&gt;繪製乘車位置分佈圖。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Python 地圖視覺化 - 使用 Folium</title>
       <link>/2017/10/python-visulization-folium/</link>
       <pubDate>Sun, 08 Oct 2017 08:00:00 +0800</pubDate>
-      
       <guid>/2017/10/python-visulization-folium/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://github.com/python-visualization/folium&#34;&gt;Folium&lt;/a&gt;是一套Python上的地圖視覺化工具。透過&lt;a href=&#34;http://leafletjs.com/&#34;&gt;Leaflet&lt;/a&gt;這個JavaScript Library以及&lt;a href=&#34;https://www.openstreetmap.org/&#34;&gt;OpenStreetMap&lt;/a&gt;地圖服務，可在Jupyter Notebook上實現互動式地圖繪製。本篇將簡單介紹&lt;strong&gt;Folium&lt;/strong&gt;的使用方式以及繪製效果。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)</title>
       <link>/2017/09/from-go-to-sc2-part-1/</link>
       <pubDate>Tue, 05 Sep 2017 14:00:00 +0800</pubDate>
-      
       <guid>/2017/09/from-go-to-sc2-part-1/</guid>
       <description>&lt;p&gt;從AI黎明期開始，如&lt;a href=&#34;https://en.wikipedia.org/wiki/Chess&#34;&gt;西洋棋(chess)&lt;/a&gt;，&lt;a href=&#34;https://en.wikipedia.org/wiki/Go_(game)&#34;&gt;圍棋(Go)&lt;/a&gt;或&lt;a href=&#34;https://en.wikipedia.org/wiki/Xiangqi&#34;&gt;象棋&lt;/a&gt;等棋類遊戲一直是人工智慧的研究與測試領域。但由於早期的計算機的能力限制以及演算法的發展，較為複雜的棋類遊戲仍無法打敗世界級水準的棋手。直到1997年時IBM的&lt;a href=&#34;https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)&#34;&gt;深藍(Deep Blue)&lt;/a&gt;在西洋棋比賽中打敗了世界棋王&lt;a href=&#34;https://en.wikipedia.org/wiki/Garry_Kasparov&#34;&gt;Garry Kasparov&lt;/a&gt;，展現了電腦也能夠在西洋棋上打敗人類世界頂尖棋手的實力。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Isomap - Isometric Mapping</title>
       <link>/2017/08/isomap/</link>
       <pubDate>Sun, 13 Aug 2017 14:00:00 +0800</pubDate>
-      
       <guid>/2017/08/isomap/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Isomap&#34;&gt;&lt;strong&gt;Isomap&lt;/strong&gt;&lt;/a&gt;，全名為&lt;strong&gt;Isometric Mapping&lt;/strong&gt;，
-是一種基於Classical MDS所產生的&lt;strong&gt;非線性降維演算法&lt;/strong&gt;（Nonlinear Dimensional Reduction）。
-一般來說，如果資料有著線性分佈的性質，如PCA與MDS這類計算整體資料（Global）之間的關係後再進行降維的線性演算法，
-都會有不錯的效果。但如果資料本身為非線性分佈，古典PCA與MDS則時常無法在降維後正確展現出資料間的關係。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Isomap&#34;&gt;&lt;strong&gt;Isomap&lt;/strong&gt;&lt;/a&gt;，全名為&lt;strong&gt;Isometric Mapping&lt;/strong&gt;，&#xA;是一種基於Classical MDS所產生的&lt;strong&gt;非線性降維演算法&lt;/strong&gt;（Nonlinear Dimensional Reduction）。&#xA;一般來說，如果資料有著線性分佈的性質，如PCA與MDS這類計算整體資料（Global）之間的關係後再進行降維的線性演算法，&#xA;都會有不錯的效果。但如果資料本身為非線性分佈，古典PCA與MDS則時常無法在降維後正確展現出資料間的關係。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Multidimensional Scaling</title>
       <link>/2017/08/multidimensional-scaling/</link>
       <pubDate>Thu, 10 Aug 2017 20:00:00 +0800</pubDate>
-      
       <guid>/2017/08/multidimensional-scaling/</guid>
-      <description>&lt;p&gt;在&lt;a href=&#34;{{ site.baseurl }}/posts/dimension-reduction-tutorial/&#34;&gt;之前&lt;/a&gt;已經介紹過資料降維的基礎概念
-以及使用進行PCA示範，因此這篇要來談的是另一種降維方式
-&lt;a href=&#34;https://en.wikipedia.org/wiki/Multidimensional_scaling&#34;&gt;MDS&lt;/a&gt;，並敘述相關理論推導。&lt;/p&gt;</description>
+      <description>&lt;p&gt;在[之前]({{ site.baseurl }}/posts/dimension-reduction-tutorial/)已經介紹過資料降維的基礎概念&#xA;以及使用進行PCA示範，因此這篇要來談的是另一種降維方式&#xA;&lt;a href=&#34;https://en.wikipedia.org/wiki/Multidimensional_scaling&#34;&gt;MDS&lt;/a&gt;，並敘述相關理論推導。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Introduction to Dimension Reduction</title>
       <link>/2017/08/dimension-reduction-tutorial/</link>
       <pubDate>Mon, 07 Aug 2017 20:00:00 +0800</pubDate>
-      
       <guid>/2017/08/dimension-reduction-tutorial/</guid>
-      <description>&lt;p&gt;在現實生活中，一筆資料可能會有許多欄位，如交易資料會有交易日期，時間，數量等欄位，而天氣資料會有氣溫，氣壓，濕度等，視資料屬性而定還會有超高維度資料存在（如100x100大小的灰階圖片資料可以看成是10,000維的資料，若為RGB彩色圖片就是高達30,000維的高維資料）在處理這些高維資料時會需要耗費許多時間與空間進行處理資料，且時常會包含較不重要的維度資料在其中，並增加資料複雜度。因此在進行高維資料處理時，常使用被稱為&lt;strong&gt;資料降維（Dimension Reduction）&lt;/strong&gt;的技術，將高維資料轉換為低維資料，以利後續的資料處理。&lt;/p&gt;</description>
+      <description>&lt;p&gt;在現實生活中，一筆資料可能會有許多欄位，如交易資料會有交易日期，時間，數量等欄位，而天氣資料會有氣溫，氣壓，濕度等，視資料屬性而定還會有超高維度資料存在（如100x100大小的灰階圖片資料可以看成是10,000維的資料，若為RGB彩色圖片就是高達30,000維的高維資料）在處理這些高維資料時會需要耗費許多時間與空間進行處理資料，且時常會包含較不重要的維度資料在其中，並增加資料複雜度。因此在進行高維資料處理時，常使用被稱為**資料降維（Dimension Reduction）**的技術，將高維資料轉換為低維資料，以利後續的資料處理。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Generative Adversarial Networks Tutorial</title>
       <link>/2017/07/gans-tutorial/</link>
       <pubDate>Wed, 26 Jul 2017 14:00:00 +0800</pubDate>
-      
       <guid>/2017/07/gans-tutorial/</guid>
-      <description>&lt;p&gt;Generative Adversarial Networks（生成式對抗網路，以下簡稱GANs）是近年來備受矚目的機器學習框架。
-自從&lt;a href=&#34;https://en.wikipedia.org/wiki/Ian_Goodfellow&#34;&gt;Ian Goodfellow&lt;/a&gt;於2014年提出GANs的概念後，
-許多研究人員與企業如Google，Facebook與Apple等代表性公司均相繼投入了GANs的應用研究與發展，
-並產生了許多衍生模型。
-Machine Learning界大師&lt;a href=&#34;http://yann.lecun.com/&#34;&gt;Yann LeCun&lt;/a&gt;也稱GANs為近十年來最有趣的想法。
-此篇文章將簡單介紹Ian Goodfellow所提出的最原始GANs概念，以及其之後的衍生應用。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Generative Adversarial Networks（生成式對抗網路，以下簡稱GANs）是近年來備受矚目的機器學習框架。&#xA;自從&lt;a href=&#34;https://en.wikipedia.org/wiki/Ian_Goodfellow&#34;&gt;Ian Goodfellow&lt;/a&gt;於2014年提出GANs的概念後，&#xA;許多研究人員與企業如Google，Facebook與Apple等代表性公司均相繼投入了GANs的應用研究與發展，&#xA;並產生了許多衍生模型。&#xA;Machine Learning界大師&lt;a href=&#34;http://yann.lecun.com/&#34;&gt;Yann LeCun&lt;/a&gt;也稱GANs為近十年來最有趣的想法。&#xA;此篇文章將簡單介紹Ian Goodfellow所提出的最原始GANs概念，以及其之後的衍生應用。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

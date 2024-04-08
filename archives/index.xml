@@ -5,6 +5,7 @@
     <link>/archives/</link>
     <description>Recent content in Archives on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language><atom:link href="/archives/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-tw</language>
+    <atom:link href="/archives/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

@@ -6,74 +6,56 @@
     <description>Recent content in Python on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 24 May 2018 18:00:00 +0800</lastBuildDate><atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 May 2018 18:00:00 +0800</lastBuildDate>
+    <atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</title>
       <link>/2018/05/implement-osm-map-tiles-parallel/</link>
       <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
-      
       <guid>/2018/05/implement-osm-map-tiles-parallel/</guid>
       <description>&lt;p&gt;在&lt;a href=&#34;https://yeshuanova.github.io/blog/posts/implement-OSM-map-tiles/&#34;&gt;上一篇文章&lt;/a&gt;中已展示過了已展示如何從 NYC taxi trip dataset 中建立 map tiles 的基本方式。本篇將進一步改進該演算法，加速產生速度以及大檔案方式。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</title>
       <link>/2018/04/implement-osm-map-tiles/</link>
       <pubDate>Tue, 24 Apr 2018 18:00:00 +0800</pubDate>
-      
       <guid>/2018/04/implement-osm-map-tiles/</guid>
       <description>&lt;p&gt;在先前的文章 &lt;a href=&#34;https://yeshuanova.github.io/blog/posts/python-visualization-datashader/&#34;&gt;Python 地圖視覺化 - 使用 Folium&lt;/a&gt; 中，我們已經介紹過如何使用 Python 與 datashader 套件將 GPS 資料繪製成圖片。本篇文章將進一步示範如何使用 NYC Taxi Trip Data 來建立 New York City 的計程車上車位置的 Heatmap，並把繪製出的 map tile 資料與 &lt;a href=&#34;https://github.com/python-visualization/folium&#34;&gt;Folium&lt;/a&gt; 地圖元件整合以達到互動的效果。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Python 資料視覺化 - 使用 datashader</title>
       <link>/2017/11/python-visualization-datashader/</link>
       <pubDate>Mon, 20 Nov 2017 14:00:00 +0800</pubDate>
-      
       <guid>/2017/11/python-visualization-datashader/</guid>
       <description>&lt;p&gt;在做資料視覺化時，經常會遇到因資料量過大而無法簡單進行處理，或是執行速度過慢的問題。本文章將介紹一套&lt;strong&gt;Python&lt;/strong&gt;上的資料視覺化工具&lt;strong&gt;datashader&lt;/strong&gt;，能將數億個點的大資料快速生成視覺化圖形，並以&lt;strong&gt;New York Taxi Trip&lt;/strong&gt;資料集為範例說明如何使用&lt;strong&gt;datashader&lt;/strong&gt;繪製乘車位置分佈圖。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Python 地圖視覺化 - 使用 Folium</title>
       <link>/2017/10/python-visulization-folium/</link>
       <pubDate>Sun, 08 Oct 2017 08:00:00 +0800</pubDate>
-      
       <guid>/2017/10/python-visulization-folium/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://github.com/python-visualization/folium&#34;&gt;Folium&lt;/a&gt;是一套Python上的地圖視覺化工具。透過&lt;a href=&#34;http://leafletjs.com/&#34;&gt;Leaflet&lt;/a&gt;這個JavaScript Library以及&lt;a href=&#34;https://www.openstreetmap.org/&#34;&gt;OpenStreetMap&lt;/a&gt;地圖服務，可在Jupyter Notebook上實現互動式地圖繪製。本篇將簡單介紹&lt;strong&gt;Folium&lt;/strong&gt;的使用方式以及繪製效果。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Isomap - Isometric Mapping</title>
       <link>/2017/08/isomap/</link>
       <pubDate>Sun, 13 Aug 2017 14:00:00 +0800</pubDate>
-      
       <guid>/2017/08/isomap/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Isomap&#34;&gt;&lt;strong&gt;Isomap&lt;/strong&gt;&lt;/a&gt;，全名為&lt;strong&gt;Isometric Mapping&lt;/strong&gt;，
-是一種基於Classical MDS所產生的&lt;strong&gt;非線性降維演算法&lt;/strong&gt;（Nonlinear Dimensional Reduction）。
-一般來說，如果資料有著線性分佈的性質，如PCA與MDS這類計算整體資料（Global）之間的關係後再進行降維的線性演算法，
-都會有不錯的效果。但如果資料本身為非線性分佈，古典PCA與MDS則時常無法在降維後正確展現出資料間的關係。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Isomap&#34;&gt;&lt;strong&gt;Isomap&lt;/strong&gt;&lt;/a&gt;，全名為&lt;strong&gt;Isometric Mapping&lt;/strong&gt;，&#xA;是一種基於Classical MDS所產生的&lt;strong&gt;非線性降維演算法&lt;/strong&gt;（Nonlinear Dimensional Reduction）。&#xA;一般來說，如果資料有著線性分佈的性質，如PCA與MDS這類計算整體資料（Global）之間的關係後再進行降維的線性演算法，&#xA;都會有不錯的效果。但如果資料本身為非線性分佈，古典PCA與MDS則時常無法在降維後正確展現出資料間的關係。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Multidimensional Scaling</title>
       <link>/2017/08/multidimensional-scaling/</link>
       <pubDate>Thu, 10 Aug 2017 20:00:00 +0800</pubDate>
-      
       <guid>/2017/08/multidimensional-scaling/</guid>
-      <description>&lt;p&gt;在&lt;a href=&#34;{{ site.baseurl }}/posts/dimension-reduction-tutorial/&#34;&gt;之前&lt;/a&gt;已經介紹過資料降維的基礎概念
-以及使用進行PCA示範，因此這篇要來談的是另一種降維方式
-&lt;a href=&#34;https://en.wikipedia.org/wiki/Multidimensional_scaling&#34;&gt;MDS&lt;/a&gt;，並敘述相關理論推導。&lt;/p&gt;</description>
+      <description>&lt;p&gt;在[之前]({{ site.baseurl }}/posts/dimension-reduction-tutorial/)已經介紹過資料降維的基礎概念&#xA;以及使用進行PCA示範，因此這篇要來談的是另一種降維方式&#xA;&lt;a href=&#34;https://en.wikipedia.org/wiki/Multidimensional_scaling&#34;&gt;MDS&lt;/a&gt;，並敘述相關理論推導。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Introduction to Dimension Reduction</title>
       <link>/2017/08/dimension-reduction-tutorial/</link>
       <pubDate>Mon, 07 Aug 2017 20:00:00 +0800</pubDate>
-      
       <guid>/2017/08/dimension-reduction-tutorial/</guid>
-      <description>&lt;p&gt;在現實生活中，一筆資料可能會有許多欄位，如交易資料會有交易日期，時間，數量等欄位，而天氣資料會有氣溫，氣壓，濕度等，視資料屬性而定還會有超高維度資料存在（如100x100大小的灰階圖片資料可以看成是10,000維的資料，若為RGB彩色圖片就是高達30,000維的高維資料）在處理這些高維資料時會需要耗費許多時間與空間進行處理資料，且時常會包含較不重要的維度資料在其中，並增加資料複雜度。因此在進行高維資料處理時，常使用被稱為&lt;strong&gt;資料降維（Dimension Reduction）&lt;/strong&gt;的技術，將高維資料轉換為低維資料，以利後續的資料處理。&lt;/p&gt;</description>
+      <description>&lt;p&gt;在現實生活中，一筆資料可能會有許多欄位，如交易資料會有交易日期，時間，數量等欄位，而天氣資料會有氣溫，氣壓，濕度等，視資料屬性而定還會有超高維度資料存在（如100x100大小的灰階圖片資料可以看成是10,000維的資料，若為RGB彩色圖片就是高達30,000維的高維資料）在處理這些高維資料時會需要耗費許多時間與空間進行處理資料，且時常會包含較不重要的維度資料在其中，並增加資料複雜度。因此在進行高維資料處理時，常使用被稱為**資料降維（Dimension Reduction）**的技術，將高維資料轉換為低維資料，以利後續的資料處理。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>iOS on Xeno Universe - The Dark Forest</title>
+    <title>IOS on Xeno Universe - The Dark Forest</title>
     <link>/tags/ios/</link>
-    <description>Recent content in iOS on Xeno Universe - The Dark Forest</description>
+    <description>Recent content in IOS on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 15 Jan 2018 12:00:00 +0800</lastBuildDate><atom:link href="/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Jan 2018 12:00:00 +0800</lastBuildDate>
+    <atom:link href="/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 TensorFlow Lite 在 iOS 裝置上進行圖片分類</title>
       <link>/2018/01/tensorflow-lite-in-ios-device/</link>
       <pubDate>Mon, 15 Jan 2018 12:00:00 +0800</pubDate>
-      
       <guid>/2018/01/tensorflow-lite-in-ios-device/</guid>
       <description>&lt;p&gt;近幾年來由 Google 推出的 TensorFlow 在深度學習等領域有著大量的發展，但也因為由 TensorFlow 所訓練出的 Model 容量大且本身執行時也會佔用較多資源，並不適合在行動裝置上執行。因此 Google 推出了 TensorFlow Lite 讓在行動裝置上執行 TensorFlow  更為方便。本文章將簡單介紹如何在 iOS 裝置上執行 TensorFlow Lite 並進行圖像分類的方法。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>mercatile on Xeno Universe - The Dark Forest</title>
+    <title>Mercatile on Xeno Universe - The Dark Forest</title>
     <link>/tags/mercatile/</link>
-    <description>Recent content in mercatile on Xeno Universe - The Dark Forest</description>
+    <description>Recent content in Mercatile on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 24 May 2018 18:00:00 +0800</lastBuildDate><atom:link href="/tags/mercatile/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 May 2018 18:00:00 +0800</lastBuildDate>
+    <atom:link href="/tags/mercatile/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</title>
       <link>/2018/05/implement-osm-map-tiles-parallel/</link>
       <pubDate>Thu, 24 May 2018 18:00:00 +0800</pubDate>
-      
       <guid>/2018/05/implement-osm-map-tiles-parallel/</guid>
       <description>&lt;p&gt;在&lt;a href=&#34;https://yeshuanova.github.io/blog/posts/implement-OSM-map-tiles/&#34;&gt;上一篇文章&lt;/a&gt;中已展示過了已展示如何從 NYC taxi trip dataset 中建立 map tiles 的基本方式。本篇將進一步改進該演算法，加速產生速度以及大檔案方式。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</title>
       <link>/2018/04/implement-osm-map-tiles/</link>
       <pubDate>Tue, 24 Apr 2018 18:00:00 +0800</pubDate>
-      
       <guid>/2018/04/implement-osm-map-tiles/</guid>
       <description>&lt;p&gt;在先前的文章 &lt;a href=&#34;https://yeshuanova.github.io/blog/posts/python-visualization-datashader/&#34;&gt;Python 地圖視覺化 - 使用 Folium&lt;/a&gt; 中，我們已經介紹過如何使用 Python 與 datashader 套件將 GPS 資料繪製成圖片。本篇文章將進一步示範如何使用 NYC Taxi Trip Data 來建立 New York City 的計程車上車位置的 Heatmap，並把繪製出的 map tile 資料與 &lt;a href=&#34;https://github.com/python-visualization/folium&#34;&gt;Folium&lt;/a&gt; 地圖元件整合以達到互動的效果。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

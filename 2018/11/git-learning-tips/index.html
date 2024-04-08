@@ -2,10 +2,30 @@
 <html lang="zh-tw">
   <head>
     
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"\/",
+  "author": {
+    "@type": "Person",
+    "name": "Cheng-Shiang Li",
+    
+    "image": "/images/about/me.jpg"
+    
+  },
+  "name":"Xeno Universe - The Dark Forest",
+  "description":"Git Learning Tips",
+  "url":"\/2018\/11\/git-learning-tips\/",
+  "keywords":"[]"
+}
+
+</script>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.124.1 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="Git Learning Tips">
@@ -49,12 +69,12 @@
 
 
 
-
-
-
-
   <meta property="og:image" content="/images/about/me.jpg">
   <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+
+
 
 
     <title>Git 學習要點</title>
@@ -67,12 +87,12 @@
     <link rel="canonical" href="/2018/11/git-learning-tips/">
 
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     
-    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    <link rel="stylesheet" href="/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
     
     
       
@@ -82,7 +102,7 @@
 
     
       
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -103,7 +123,7 @@ if (!doNotTrack) {
       <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+    <a class="header-title-link" href="/" aria-label="Go to homepage">Xeno Universe - The Dark Forest</a>
   </div>
   
 </header>
@@ -112,7 +132,7 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="/#about">
+        <a href="/#about" aria-label="Read more about the author">
           <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
@@ -125,7 +145,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/">
+      <a class="sidebar-button-link " href="/" title="Home">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -135,7 +155,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/categories">
+      <a class="sidebar-button-link " href="/categories" title="Categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -145,7 +165,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/tags">
+      <a class="sidebar-button-link " href="/tags" title="Tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -155,7 +175,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/archives">
+      <a class="sidebar-button-link " href="/archives" title="Archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -165,7 +185,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/about/">
+      <a class="sidebar-button-link " href="/about/" title="About Me">
     
       
       
@@ -179,7 +199,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova" title="GitHub">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -189,7 +209,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li" title="Linkedin">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -199,7 +219,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener" title="Email">
     
       <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
       
@@ -222,19 +242,19 @@ if (!doNotTrack) {
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+        <article class="post" id="top">
           
           
             <div class="post-header main-content-wrap text-left">
   
-    <h1 class="post-title" itemprop="headline">
+    <h1 class="post-title">
       Git 學習要點
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-11-25T00:20:00&#43;08:00">
+      <time datetime="2018-11-25T00:20:00&#43;08:00">
         
   November 25, 2018
 
@@ -253,7 +273,7 @@ if (!doNotTrack) {
 
 </div>
           
-          <div class="post-content markdown" itemprop="articleBody">
+          <div class="post-content markdown">
             <div class="main-content-wrap">
               <p>自從 Git 從 2005 年出現後，到現在幾乎所有軟體開發者都離不開他，加上 GitHub 等服務讓 Git 甚至能當成網頁空間或線上文件共筆平台等。但 Git 初學時可能有許多人不知道如何入門，本篇將簡單整理個人的 Git 學習方式，使用建議與需要注意的概念等，並不會詳細說明 Git 指令等內容。</p>
 <h2 id="什麼是-git">什麼是 Git</h2>
@@ -296,12 +316,12 @@ if (!doNotTrack) {
 <p>使用 IDE 軟體常常會不了解 Git 真正的執行步驟，且沒支援的功能就無法使用，因此要真正理解 Git 所提供的各項功能就必須熟悉 command line。此外如果是使用 Terminal 在遠端 Server 中工作時，就必須使用 command line 來進行 Git 操作，無法透過 IDE 來處理，因此非常建議一定要習慣使用 command 進行各種的操作。</p>
 <h3 id="sha-1-hash">SHA-1 Hash</h3>
 <p>我們常常在 Git 中看到一常串的文字</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">a906cb2a4a904a152e80877d4088654daad0c859
-</code></pre></div><p>初學者可能會很困惑這些奇怪的文字是什麼，實際上該文字是 <a href="https://en.wikipedia.org/wiki/SHA-1">SHA-1</a> hash function 所產出結果的的 16 進位表示字元。而 Git 對所有物件的索引值都是採用<strong>檔案內容</strong>的 SHA 1 編碼結果，如一個 <code>README.md</code> 的檔案經過 SHA-1 計算後，得到的索引可能是</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">a906cb2a4a904a152e80877d4088654daad0c859
-</code></pre></div><p>而當對 README.md 的內容做修改後，其 SHA-1 結果可能變化成為</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">8f94139338f9404f26296befa88755fc2598c289
-</code></pre></div><p>因此一個檔案的 SHA-1 可以代表該檔案是否發生變化。Git 所有內容包含 <strong>commit object</strong> 以及資料夾結構物件 <strong>tree object</strong> 都是使用 SHA-1 作為索引值。要計算檔案對應的 SHA-1 可用 <code>git hash-object &lt;file&gt;</code> 指令</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>a906cb2a4a904a152e80877d4088654daad0c859
+</span></span></code></pre></div><p>初學者可能會很困惑這些奇怪的文字是什麼，實際上該文字是 <a href="https://en.wikipedia.org/wiki/SHA-1">SHA-1</a> hash function 所產出結果的的 16 進位表示字元。而 Git 對所有物件的索引值都是採用<strong>檔案內容</strong>的 SHA 1 編碼結果，如一個 <code>README.md</code> 的檔案經過 SHA-1 計算後，得到的索引可能是</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>a906cb2a4a904a152e80877d4088654daad0c859
+</span></span></code></pre></div><p>而當對 README.md 的內容做修改後，其 SHA-1 結果可能變化成為</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>8f94139338f9404f26296befa88755fc2598c289
+</span></span></code></pre></div><p>因此一個檔案的 SHA-1 可以代表該檔案是否發生變化。Git 所有內容包含 <strong>commit object</strong> 以及資料夾結構物件 <strong>tree object</strong> 都是使用 SHA-1 作為索引值。要計算檔案對應的 SHA-1 可用 <code>git hash-object &lt;file&gt;</code> 指令</p>
 <blockquote>
 <p>因 SHA-1 產出的結果為 160 bits 資訊，其 16 進位表示法結果都為 40 chars。此外 SHA-1 可能會發生兩個不同檔案產生同樣的結果，也就是發生碰撞(collision)，但這個機率其實非常低，低到 Git 使用到現在還沒發生碰撞的問題。</p>
 </blockquote>
@@ -337,7 +357,7 @@ if (!doNotTrack) {
 
 <div class="figure center" >
   
-    <a class="fancybox" href="/images/2018/git-learning/git-data-model.png" title="Git objects model (From: Pro Gti)" data-fancybox-group="">
+    <a class="fancybox" href="/images/2018/git-learning/git-data-model.png" title="Git objects model (From: Pro Gti)" data-fancybox="">
   
     <img class="fig-img" src="/images/2018/git-learning/git-data-model.png" style="width: 640px;" alt="Git objects model (From: Pro Gti)">
   
@@ -355,27 +375,27 @@ if (!doNotTrack) {
 <h3 id="branch-只是輔助commit-才是本體">Branch 只是輔助，Commit 才是本體</h3>
 <p>Git 的歷史是由 commit 與其內部紀錄的 parent commit 所連接起來，而 branch 只是參照到的特定 commit 的紀錄。當在一個 branch 上執行 commit 時，是新增一個 commit object 並將現在的 branch 指向新建立的 commit。</p>
 <p>我們可以在 <code>.git</code> 資料夾中看到紀錄對應的檔案。如 maseter branch 對應的 commit 就紀錄在 <code>.git/refs/head/master</code> 的檔案中。查看當中內容可以看到</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cat .git/refs/head/master
-ff5f583564a6108407d9a2304af839e877d80f3c
-</code></pre></div><p>這樣的內容，代表 master branch 對應到 <code>ff5f583564a6108407d9a2304af839e877d80f3c</code> 的 commit。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cat .git/refs/head/master
+</span></span><span style="display:flex;"><span>ff5f583564a6108407d9a2304af839e877d80f3c
+</span></span></code></pre></div><p>這樣的內容，代表 master branch 對應到 <code>ff5f583564a6108407d9a2304af839e877d80f3c</code> 的 commit。</p>
 <p>在 Git 中，對 Git Branch 的操作都可以用 commit 的 SHA-1 編號代替。假如我們想加入另一個 commit <code>a7ccca6fd65bc347a065d83a8f32fd347bab544f</code> 的修改內容，可以執行</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#000080"># a7ccca6fd65bc347a065d83a8f32fd347bab544f 可用前面的編號取代完整的 SHA-1 編碼</span>
-git cherry-pick a7ccca
-</code></pre></div><p>來進行 cherry-pick 操作</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#000080"># a7ccca6fd65bc347a065d83a8f32fd347bab544f 可用前面的編號取代完整的 SHA-1 編碼</span>
+</span></span><span style="display:flex;"><span>git cherry-pick a7ccca
+</span></span></code></pre></div><p>來進行 cherry-pick 操作</p>
 <h3 id="以-commit-歷史與內容來思考要進行的操作">以 commit 歷史與內容來思考要進行的操作</h3>
 <p>當在一個 branch 上開發軟體時，假如有其他 branch 有我們想要套用的修改，或是想回復檔案狀態等操作。在過去可能會想要將檔案直接複製文件中。而在 Git 上可使用 <code>reset</code>, <code>revert</code>, <code>checkout</code>, <code>rebase</code>, <code>cherry-pick</code> 等指令改變 commit tree 或直接將變動套用到現在的程式碼中，這會比用複製檔案來的省事且不容易出錯。如下面的範例</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#000080"># 切換到特定 commit</span>
-git checkout &lt;commit&gt;
-
-<span style="color:#000080"># 取出由特定 commit 的 file 內容</span>
-git checkout &lt;commit&gt; &lt;file&gt;
-
-<span style="color:#000080"># 將現在的 branch 切換到特定 commit</span>
-git reset &lt;commit&gt;
-
-<span style="color:#000080"># 將 stage 的檔案回復到 unstage 狀態</span>
-git reset HEAD &lt;staged file&gt;
-</code></pre></div><p>Git 中有許多類似的指令，能夠讓使用者非常方便的做內容變動與修補，因此只要能更理解 Git 的運作架構並且善用對 commit tree 的操作，就更能發揮 Git 強大的功能。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#000080"># 切換到特定 commit</span>
+</span></span><span style="display:flex;"><span>git checkout &lt;commit&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 取出由特定 commit 的 file 內容</span>
+</span></span><span style="display:flex;"><span>git checkout &lt;commit&gt; &lt;file&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 將現在的 branch 切換到特定 commit</span>
+</span></span><span style="display:flex;"><span>git reset &lt;commit&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 將 stage 的檔案回復到 unstage 狀態</span>
+</span></span><span style="display:flex;"><span>git reset HEAD &lt;staged file&gt;
+</span></span></code></pre></div><p>Git 中有許多類似的指令，能夠讓使用者非常方便的做內容變動與修補，因此只要能更理解 Git 的運作架構並且善用對 commit tree 的操作，就更能發揮 Git 強大的功能。</p>
 <h3 id="使用-gitlab-或-github-等程式碼代管服務">使用 GitLab 或 GitHub 等程式碼代管服務</h3>
 <p>除了 Local 端的操作外，Git 的價值之一就在多人協作非常便利，因此誕生了如 GitHub 或 GitLab 的原始碼代管平台。開發者可以將自己的 Git Repository 推送(push)遠端平台進行備份與管理。</p>
 <p>這些平台除了提供程式碼代管外，也提供如 Issue, Milestone, Pull Request(Merge Request) 等多人協作所需功能，甚至能透過 Webhook 等呼叫 CI/CD 服務進行自動化測試部署，甚至透過所提供的 Page 功能當作是靜態網頁空間使用。</p>
@@ -390,8 +410,8 @@ git reset HEAD &lt;staged file&gt;
 <h3 id="減少-clone-repository-所佔用的空間與時間">減少 clone repository 所佔用的空間與時間</h3>
 <p>在執行 <code>git clone</code> 指令時，會將目標的 repository 全部抓下來，但如果該 repository 太大，
 許多過去的資料可以不用抓下來節省空間與傳輸時間，這時可以透過 <code>--depth &lt;depth&gt;</code> 的參數來建立 shallow clone，如下面的指令</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone --depth <span style="color:#cd00cd">1</span> GIT_REPO
-</code></pre></div><p>執行後 Git 只會抓取 master branch 中最新一筆 commit 資料，可大幅節省儲存空間與 clone 的時間。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git clone --depth <span style="color:#cd00cd">1</span> GIT_REPO
+</span></span></code></pre></div><p>執行後 Git 只會抓取 master branch 中最新一筆 commit 資料，可大幅節省儲存空間與 clone 的時間。</p>
 <h3 id="garbage-collection">Garbage Collection</h3>
 <p>在許多 Git 教學中都提過，當使用 Git 將檔案加入後會儲存檔案的<strong>完整內容</strong>。但假如只修改一小部分卻需要保留整個檔案，將會使 blob objects 的資料儲存空間的使用非常沒有效率。因此 Git 可以執行 <code>Packfiles</code> 動作，將許多的離散資料<strong>打包</strong>成依照差異組成的單一 Packfile 以節省空間消耗。</p>
 <p>Packfiles 動作通常在檔案數量多到一定程度(約 7000 objects)時會自動執行，而我們也可透過 <code>git gc</code> 指令手動執行 Packfiles。</p>
@@ -411,6 +431,8 @@ git reset HEAD &lt;staged file&gt;
 <li><a href="https://www.jstage.jst.go.jp/article/isciesci/61/10/61_394/_pdf">Git を用いたバージョン管理のすすめ</a></li>
 </ul>
               
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -427,159 +449,163 @@ git reset HEAD &lt;staged file&gt;
                 
               
             
-            <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/comic_qed_cmb/" data-tooltip="非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/dataset-iris/" data-tooltip="機器學習資料集 - Iris dataset">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/comic_qed_cmb/" data-tooltip="非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B." aria-label="NEXT: 非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/11/git-learning-tips/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/dataset-iris/" data-tooltip="機器學習資料集 - Iris dataset" aria-label="PREVIOUS: 機器學習資料集 - Iris dataset">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/11/git-learning-tips/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/11/git-learning-tips/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/11/git-learning-tips/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
             
-              
-            
+  
+
+
           </div>
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2024 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 
       </div>
       <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-        <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/comic_qed_cmb/" data-tooltip="非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/dataset-iris/" data-tooltip="機器學習資料集 - Iris dataset">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/comic_qed_cmb/" data-tooltip="非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B." aria-label="NEXT: 非大眾化的傑出推理漫畫 - Q.E.D. 與 C.M.B.">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/11/git-learning-tips/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/dataset-iris/" data-tooltip="機器學習資料集 - Iris dataset" aria-label="PREVIOUS: 機器學習資料集 - Iris dataset">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/11/git-learning-tips/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/11/git-learning-tips/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/11/git-learning-tips/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
       </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F11%2Fgit-learning-tips%2F">
-          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F11%2Fgit-learning-tips%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F11%2Fgit-learning-tips%2F">
-          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F11%2Fgit-learning-tips%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
         </a>
       </li>
     
   </ul>
 </div>
 <div id="share-options-mask" class="share-options-mask"></div>
+
+
     </div>
     
     <div id="about">
   <div id="about-card">
     <div id="about-btn-close">
-      <i class="fa fa-remove"></i>
+      <i class="fa fa-times"></i>
     </div>
     
       <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
@@ -597,7 +623,7 @@ git reset HEAD &lt;staged file&gt;
     
     
       <div id="about-card-location">
-        <i class="fa fa-map-marker"></i>
+        <i class="fa fa-map-marker-alt"></i>
         <br/>
         Taiwan
       </div>
@@ -616,30 +642,16 @@ git reset HEAD &lt;staged file&gt;
 
 
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
-
-
-<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<script lang="javascript">
-window.onload = updateMinWidth;
-window.onresize = updateMinWidth;
-document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
-function updateMinWidth() {
-  var sidebar = document.getElementById("sidebar");
-  var main = document.getElementById("main");
-  main.style.minWidth = "";
-  var w1 = getComputedStyle(main).getPropertyValue("min-width");
-  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
-  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
-  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
-}
-</script>
+<script src="/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
 
 <script>
 $(document).ready(function() {
@@ -654,15 +666,6 @@ $(document).ready(function() {
 </script>
 
 
-  
-    
-  
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 
 
 

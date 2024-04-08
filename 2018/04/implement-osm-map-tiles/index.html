@@ -2,10 +2,30 @@
 <html lang="zh-tw">
   <head>
     
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"\/",
+  "author": {
+    "@type": "Person",
+    "name": "Cheng-Shiang Li",
+    
+    "image": "/images/about/me.jpg"
+    
+  },
+  "name":"Xeno Universe - The Dark Forest",
+  "description":"Implement OSM map tiles using datashader and mercantile",
+  "url":"\/2018\/04\/implement-osm-map-tiles\/",
+  "keywords":"[]"
+}
+
+</script>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.124.1 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="Implement OSM map tiles using datashader and mercantile">
@@ -57,12 +77,12 @@
 
 
 
-
-
-
-
   <meta property="og:image" content="/images/about/me.jpg">
   <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+
+
 
 
     <title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統</title>
@@ -75,12 +95,12 @@
     <link rel="canonical" href="/2018/04/implement-osm-map-tiles/">
 
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     
-    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    <link rel="stylesheet" href="/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
     
     
       
@@ -90,7 +110,7 @@
 
     
       
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -111,7 +131,7 @@ if (!doNotTrack) {
       <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+    <a class="header-title-link" href="/" aria-label="Go to homepage">Xeno Universe - The Dark Forest</a>
   </div>
   
 </header>
@@ -120,7 +140,7 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="/#about">
+        <a href="/#about" aria-label="Read more about the author">
           <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
@@ -133,7 +153,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/">
+      <a class="sidebar-button-link " href="/" title="Home">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -143,7 +163,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/categories">
+      <a class="sidebar-button-link " href="/categories" title="Categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -153,7 +173,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/tags">
+      <a class="sidebar-button-link " href="/tags" title="Tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -163,7 +183,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/archives">
+      <a class="sidebar-button-link " href="/archives" title="Archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -173,7 +193,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/about/">
+      <a class="sidebar-button-link " href="/about/" title="About Me">
     
       
       
@@ -187,7 +207,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova" title="GitHub">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -197,7 +217,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li" title="Linkedin">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -207,7 +227,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener" title="Email">
     
       <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
       
@@ -230,19 +250,19 @@ if (!doNotTrack) {
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+        <article class="post" id="top">
           
           
             <div class="post-header main-content-wrap text-left">
   
-    <h1 class="post-title" itemprop="headline">
+    <h1 class="post-title">
       使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-04-24T18:00:00&#43;08:00">
+      <time datetime="2018-04-24T18:00:00&#43;08:00">
         
   April 24, 2018
 
@@ -261,253 +281,221 @@ if (!doNotTrack) {
 
 </div>
           
-          <div class="post-content markdown" itemprop="articleBody">
+          <div class="post-content markdown">
             <div class="main-content-wrap">
               <p>在先前的文章 <a href="https://yeshuanova.github.io/blog/posts/python-visualization-datashader/">Python 地圖視覺化 - 使用 Folium</a> 中，我們已經介紹過如何使用 Python 與 datashader 套件將 GPS 資料繪製成圖片。本篇文章將進一步示範如何使用 NYC Taxi Trip Data 來建立 New York City 的計程車上車位置的 Heatmap，並把繪製出的 map tile 資料與 <a href="https://github.com/python-visualization/folium">Folium</a> 地圖元件整合以達到互動的效果。</p>
-
 <h2 id="openstreetmap-tiles-system">OpenStreetMap tiles system</h2>
-
 <p><a href="https://www.openstreetmap.org/#map=8/23.611/120.768">OpenStreetMap</a> 是一個由 <a href="https://en.wikipedia.org/wiki/Steve_Coast">Steve Coast</a> 所發起網路協作地圖計畫，目的是建立一個由使用者所共同建立的開放地圖服務。除了所有人都能免費使用該地圖服務外，使用者也可協助編輯地圖內容，上傳 GPS 路徑等資料，以完善地圖品質。現在著名的手機遊戲 Pokemon Go，也在 2017年底時將遊戲內的地圖資料，由先前所使用的 Google Map <a href="https://pokemongohub.net/post/news/game-map-updated-openstreetmap-data-imported-notable-changes-around-globe/">轉移到 OpenStreetMap 上</a>。</p>
-
 <p>在建立地圖資料前，先介紹現在 <strong>OpenStreetMap</strong> 所使用的 <a href="https://wiki.openstreetmap.org/wiki/Slippy_Map">Map tile system （圖磚系統）</a>。由於地圖所包含的資料量非常龐大，所以地圖資料會依照所涵蓋區域的大小，分成許多小型的<strong>正方形區域</strong>，該區域稱為 tile（圖磚），每個區域的大小為 <strong>256x256 pixels</strong>。</p>
-
 <h4 id="map-tile-coordinate">Map tile coordinate</h4>
-
 <p>每個圖磚座標主要由三個部分組成，<strong>Zoom</strong>，<strong>X</strong> 與 <strong>Y</strong>。</p>
-
 <ul>
 <li><strong>Zoom</strong>：地圖涵蓋區域的大小，數值最大代表範圍越廣（ 0 為整個世界地圖範圍），最大範圍為 0 ~ 19</li>
-<li><strong>X</strong>：地圖 X 座標軸，依照 Zoom 大小變化。範圍為 0 到 <span  class="math">\(2^{zoom}-1\)</span>。</li>
-<li><strong>Y</strong>：地圖 X 座標軸，依照 Zoom 大小變化。範圍為 0 到 <span  class="math">\(2^{zoom}-1\)</span>。</li>
+<li><strong>X</strong>：地圖 X 座標軸，依照 Zoom 大小變化。範圍為 0 到 $$2^{zoom}-1$$。</li>
+<li><strong>Y</strong>：地圖 X 座標軸，依照 Zoom 大小變化。範圍為 0 到 $$2^{zoom}-1$$。</li>
 </ul>
-
-<p>可知當 zoom 越大時，tiles 的數量也會越來多，如當 zoom = 2 時，tiles 數量只有<span  class="math">\(2^2*2^2=16\)</span>個。而當 zoom = 12 時，tiles 數量就會有<span  class="math">\(2^{12}*2^{12}=16,777,216\)</span> 個。當 zoom 每增加一層，tiles 數就會增加四倍。</p>
-
+<p>可知當 zoom 越大時，tiles 的數量也會越來多，如當 zoom = 2 時，tiles 數量只有</p>
+$$2^2*2^2=16$$
+<p>個。而當 zoom = 12 時，tiles 數量就會有</p>
+$$2^{12}*2^{12}=16,777,216$$
+<p> 個。當 zoom 每增加一層，tiles 數就會增加四倍。</p>
 <p>使用地圖服務時，OpenStreetmap 會去設定的 tile server 拿取對應位置的圖片。如標準 OpenStreetMap 的 Tile Server URL 為</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">http://tile.openstreetmap.org/${zoom}/${x}/${y}.png</code></pre></div>
-<p>當移動到對應的範圍時，OpenStreetMap 就回去拿取對應位置的圖磚資料。如下圖所示，左圖為 zoom=0, x=0, y=0 的圖磚，可直接下列網址取得，如下表左方的圖片</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">http://tile.openstreetmap.org/0/0/0.png</code></pre></div>
-<p>而 zoom = 7, x = 63, y = 42 的圖磚則可由下列 URL 取得，如下表右方的圖片</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">http://tile.openstreetmap.org/7/63/42.png</code></pre></div>
-<table>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>http://tile.openstreetmap.org/${zoom}/${x}/${y}.png
+</span></span></code></pre></div><p>當移動到對應的範圍時，OpenStreetMap 就回去拿取對應位置的圖磚資料。如下圖所示，左圖為 zoom=0, x=0, y=0 的圖磚，可直接下列網址取得，如下表左方的圖片</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>http://tile.openstreetmap.org/0/0/0.png
+</span></span></code></pre></div><p>而 zoom = 7, x = 63, y = 42 的圖磚則可由下列 URL 取得，如下表右方的圖片</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>http://tile.openstreetmap.org/7/63/42.png
+</span></span></code></pre></div><table>
 <thead>
 <tr>
-<th align="center">OSM (.../0/0/0.png)</th>
-<th align="center">OSM (.../7/63/42.png)</th>
+<th style="text-align:center">OSM (&hellip;/0/0/0.png)</th>
+<th style="text-align:center">OSM (&hellip;/7/63/42.png)</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center"><figure><img src="https://tile.openstreetmap.org/0/0/0.png" alt="OSM-tile-0-0-0"></figure></td>
-<td align="center"><figure><img src="https://tile.openstreetmap.org/7/63/42.png" alt="OSM-tile-7-63-42"></figure></td>
+<td style="text-align:center"><img src="https://tile.openstreetmap.org/0/0/0.png" alt="OSM-tile-0-0-0"></td>
+<td style="text-align:center"><img src="https://tile.openstreetmap.org/7/63/42.png" alt="OSM-tile-7-63-42"></td>
 </tr>
 </tbody>
 </table>
-
 <p>除了標準 OpenStreetMap 的 tiles 外，也可由不同的 Tile Server 取得不同的<a href="https://wiki.openstreetmap.org/wiki/Tiles">圖磚</a>加以應用，或<a href="https://switch2osm.org/the-basics/">自行建立 Tile Server</a> 來使用自訂的圖磚。</p>
-
 <table>
 <thead>
 <tr>
-<th align="center">Stamen Toner</th>
-<th align="center">Stamen Watercolor</th>
+<th style="text-align:center">Stamen Toner</th>
+<th style="text-align:center">Stamen Watercolor</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center"><figure><img src="http://tile.stamen.com/toner/7/63/42.png" alt="ST-tile-7-63-42"></figure></td>
-<td align="center"><figure><img src="http://c.tile.stamen.com/watercolor/7/63/42.jpg" alt="SW-tile-7-63-42"></figure></td>
+<td style="text-align:center"><img src="http://tile.stamen.com/toner/7/63/42.png" alt="ST-tile-7-63-42"></td>
+<td style="text-align:center"><img src="http://c.tile.stamen.com/watercolor/7/63/42.jpg" alt="SW-tile-7-63-42"></td>
 </tr>
 </tbody>
 </table>
-
 <p>關於 map tile 更詳細的解說可參考<a href="http://www.liedman.net/tiled-maps/">本篇文章</a>。</p>
-
 <h2 id="mercantile-package">Mercantile Package</h2>
-
 <p>除了前篇所提過的 <a href="http://datashader.org/">datashader</a>，<a href="https://pandas.pydata.org/">Pandas</a>，<a href="https://dask.pydata.org/en/latest/">Dask</a> 等之外 ，這次使用 <a href="https://github.com/mapbox/mercantile">Ｍercantile</a> 這套由 <a href="https://www.mapbox.com/">Mapbox</a> 所開源的 Spherical mercator coordinate 工具，來幫助我們從 tile 座標產生對應的經緯度或 web mercator 座標，或反過來產生包含特定座標的 map tiles 。</p>
-
 <h3 id="安裝">安裝</h3>
-
 <p>直接使用 python 的 pip 套件管理工具即可安裝 mercantile</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install mercantile</code></pre></div>
-<h3 id="使用範例">使用範例</h3>
-
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install mercantile
+</span></span></code></pre></div><h3 id="使用範例">使用範例</h3>
 <h4 id="從-map-tile-座標取得對應的經緯度範圍">從 map tile 座標，取得對應的經緯度範圍</h4>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> mercatile
-
-mercantile<span style="color:#39c">.</span>bounds(<span style="color:#cd00cd">603</span>, <span style="color:#cd00cd">769</span>, <span style="color:#cd00cd">11</span>) <span style="color:#000080"># x=603, y=769, z=11</span>
-<span style="color:#000080"># LngLatBbox(west=-74.00390625, south=40.713955826286046, east=-73.828125, north=40.84706035607122)</span></code></pre></div>
-<h4 id="從-gps-座標產生對應的單一-tile-物件">從 GPS 座標產生對應的單一 Tile 物件</h4>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">mercantile<span style="color:#39c">.</span>tile(<span style="color:#39c">-</span><span style="color:#cd00cd">74.00390625</span>, <span style="color:#39c">-</span><span style="color:#cd00cd">73.828125</span>, <span style="color:#cd00cd">11</span>)
-<span style="color:#000080"># Tile(x=603, y=769, z=11)</span></code></pre></div>
-<h4 id="從-gps-座標與-zoom-範圍產生包含在內的-tile-列表">從 GPS 座標與 zoom 範圍產生包含在內的 tile 列表</h4>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000080"># 建立地圖範圍 (west, south, east, north)</span>
-bound_nyc <span style="color:#39c">=</span> (<span style="color:#39c">-</span><span style="color:#cd00cd">74.029495</span>, <span style="color:#cd00cd">40.697930</span>, <span style="color:#39c">-</span><span style="color:#cd00cd">73.946411</span>, <span style="color:#cd00cd">40.817817</span>) 
-
-<span style="color:#000080"># 產生 zoom 範圍為 0 到 15 的所有 tile 的 generator</span>
-mercantile<span style="color:#39c">.</span>tiles(<span style="color:#39c">*</span>bound_nyc, zooms<span style="color:#39c">=</span><span style="color:#cd00cd">list</span>(<span style="color:#cd00cd">range</span>(<span style="color:#cd00cd">0</span>, <span style="color:#cd00cd">16</span>)))
-<span style="color:#000080"># len(list(tile_list)) = 212, 共有 212 個圖磚</span></code></pre></div>
-<h4 id="從-tile-物件取得-web-mercator-座標">從 Tile 物件取得 Web Mercator 座標</h4>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">from</span> mercantile <span style="color:#cd00cd">import</span> Tile
-bound_xy <span style="color:#39c">=</span> mercantile<span style="color:#39c">.</span>xy_bounds(Tile(x<span style="color:#39c">=</span><span style="color:#cd00cd">603</span>, y<span style="color:#39c">=</span><span style="color:#cd00cd">769</span>, z<span style="color:#39c">=</span><span style="color:#cd00cd">11</span>))
-<span style="color:#000080"># bound_xy = Bbox(left=-8238077.160463155, bottom=4970241.327215301, right=-8218509.281222151, top=4989809.2064563045)</span></code></pre></div>
-<p>之後將使用 <strong>mercantile</strong> 工具來建立所需產生的圖磚資料。</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">import</span> mercatile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mercantile<span style="color:#39c">.</span>bounds(<span style="color:#cd00cd">603</span>, <span style="color:#cd00cd">769</span>, <span style="color:#cd00cd">11</span>) <span style="color:#000080"># x=603, y=769, z=11</span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># LngLatBbox(west=-74.00390625, south=40.713955826286046, east=-73.828125, north=40.84706035607122)</span>
+</span></span></code></pre></div><h4 id="從-gps-座標產生對應的單一-tile-物件">從 GPS 座標產生對應的單一 Tile 物件</h4>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>mercantile<span style="color:#39c">.</span>tile(<span style="color:#39c">-</span><span style="color:#cd00cd">74.00390625</span>, <span style="color:#39c">-</span><span style="color:#cd00cd">73.828125</span>, <span style="color:#cd00cd">11</span>)
+</span></span><span style="display:flex;"><span><span style="color:#000080"># Tile(x=603, y=769, z=11)</span>
+</span></span></code></pre></div><h4 id="從-gps-座標與-zoom-範圍產生包含在內的-tile-列表">從 GPS 座標與 zoom 範圍產生包含在內的 tile 列表</h4>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000080"># 建立地圖範圍 (west, south, east, north)</span>
+</span></span><span style="display:flex;"><span>bound_nyc <span style="color:#39c">=</span> (<span style="color:#39c">-</span><span style="color:#cd00cd">74.029495</span>, <span style="color:#cd00cd">40.697930</span>, <span style="color:#39c">-</span><span style="color:#cd00cd">73.946411</span>, <span style="color:#cd00cd">40.817817</span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 產生 zoom 範圍為 0 到 15 的所有 tile 的 generator</span>
+</span></span><span style="display:flex;"><span>mercantile<span style="color:#39c">.</span>tiles(<span style="color:#39c">*</span>bound_nyc, zooms<span style="color:#39c">=</span><span style="color:#cd00cd">list</span>(<span style="color:#cd00cd">range</span>(<span style="color:#cd00cd">0</span>, <span style="color:#cd00cd">16</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#000080"># len(list(tile_list)) = 212, 共有 212 個圖磚</span>
+</span></span></code></pre></div><h4 id="從-tile-物件取得-web-mercator-座標">從 Tile 物件取得 Web Mercator 座標</h4>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">from</span> mercantile <span style="color:#cd00cd">import</span> Tile
+</span></span><span style="display:flex;"><span>bound_xy <span style="color:#39c">=</span> mercantile<span style="color:#39c">.</span>xy_bounds(Tile(x<span style="color:#39c">=</span><span style="color:#cd00cd">603</span>, y<span style="color:#39c">=</span><span style="color:#cd00cd">769</span>, z<span style="color:#39c">=</span><span style="color:#cd00cd">11</span>))
+</span></span><span style="display:flex;"><span><span style="color:#000080"># bound_xy = Bbox(left=-8238077.160463155, bottom=4970241.327215301, right=-8218509.281222151, top=4989809.2064563045)</span>
+</span></span></code></pre></div><p>之後將使用 <strong>mercantile</strong> 工具來建立所需產生的圖磚資料。</p>
 <h2 id="使用-nyc-taxi-trip-data-建立-map-tiles">使用 NYC Taxi Trip Data 建立 Map Tiles</h2>
-
 <p>完整程式碼可至 <a href="https://github.com/yeshuanova/nyc_taxi_trip_map/blob/master/generate_nyc_map_tiles_blog.ipynb">GitHub</a> 參考。</p>
-
 <h3 id="演算法概念">演算法概念</h3>
-
 <ul>
 <li>建立要繪製的 map tile 列表
-
 <ul>
 <li>使用 Mercantile 套件，對設定的範圍自動產生所有的 Tile 列表。</li>
-</ul></li>
+</ul>
+</li>
 <li>統計 map tile 範圍內每個點的資料數量
-
 <ul>
 <li>使用 <strong>datashader.Canvas.point</strong> 函數，對 map tile 範圍內進行統計。</li>
 <li>將統計結果使用 pickle 與 gzip 序列化成壓縮檔儲存（*<strong>.pkl.gz</strong>）。</li>
 <li>將每個點中的最大值儲存在 *<strong>.pkl.yaml</strong> 檔中方檢視。</li>
 <li>不儲存無資料（全為零）的統計結果以節省空間。</li>
-</ul></li>
+</ul>
+</li>
 <li>尋找 zoom 中的最大值
-
 <ul>
 <li>統計 zoom 中的所有 tile 的最大值，並儲存在 <strong>_config.yaml</strong> 中。</li>
-</ul></li>
+</ul>
+</li>
 <li>依照統計資料，繪製每個 tile 圖片。
-
 <ul>
 <li>讀取 *<strong>.pkl.gz</strong> 並還原為統計物件來進行繪圖。</li>
 <li>繪圖時使用 <strong>log</strong> 方法來進行內差計算，避免資料過於集中導致較少的點位看不出資料的問題。</li>
 <li>繪圖時將範圍設為 <strong>[0, zoom_agg__max]</strong>，避免不同 tile 做 interpolate 後得出的顏色範圍不統一的問題。</li>
 <li>儲存圖片到指定路徑。</li>
-</ul></li>
+</ul>
+</li>
 <li>使用 Folium 套件來呈現結果。</li>
 </ul>
-
 <h3 id="下載-nyc-taxi-trip-data">下載 NYC taxi trip data</h3>
-
 <p>前篇的 datashader 視覺化使用 kaggle 上整理完畢的 dataset，這次我們直<a href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">原始資料網站</a>下載資料集。進入官網後可下載個年度的統計資料（使用 *.csv 格式），這裡我們使用 Yellow Taxi 在 2016 年 5 月份的<a href="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv">資料</a>。</p>
-
 <blockquote>
 <p>目前有上下車 GPS 位置的資料中最多只到 2016 年 6 月。</p>
 </blockquote>
-
 <p>也可在 Command Line 直接使用 <code>wget</code> 指令下載（該資料集約 1.8 GB）</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv</code></pre></div>
-<p>也可直接在 Python 中使用 <code>os</code> package來下達 <code>wget</code> 指令</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> os
-os<span style="color:#39c">.</span>system(<span style="color:#cd0000">&#34;wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv&#34;</span>)</code></pre></div>
-<blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv
+</span></span></code></pre></div><p>也可直接在 Python 中使用 <code>os</code> package來下達 <code>wget</code> 指令</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">import</span> os
+</span></span><span style="display:flex;"><span>os<span style="color:#39c">.</span>system(<span style="color:#cd0000">&#34;wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv&#34;</span>)
+</span></span></code></pre></div><blockquote>
 <p>其他在 Python 中下載檔案的方式可參考這篇文章 - <a href="http://stackabuse.com/download-files-with-python/">Download Files with Python</a></p>
 </blockquote>
-
 <h3 id="讀取-dataset">讀取 dataset</h3>
-
 <p>因我們只需要 GPS 座標，因此只需要讀取特定欄位的資料即可，這邊我們只讀取上車位置的經緯度欄位 <strong>pickup_longitude</strong>  與  <strong>pickup_latitude</strong> 即可。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> pandas <span style="color:#cdcd00">as</span> pd
-<span style="color:#cd00cd">import</span> numpy <span style="color:#cdcd00">as</span> np
-
-<span style="color:#000080"># 讀取 pickup_longitude 與 pickup_latitude 兩欄位</span>
-df <span style="color:#39c">=</span> pd<span style="color:#39c">.</span>read_csv(<span style="color:#cd0000">&#34;yellow_tripdata_2016-05.csv&#34;</span>,
-                 usecols<span style="color:#39c">=</span>[<span style="color:#cd0000">&#39;pickup_longitude&#39;</span>, <span style="color:#cd0000">&#34;pickup_latitude&#34;</span>],
-                 dtype<span style="color:#39c">=</span>{<span style="color:#cd0000">&#39;pickup_longitude&#39;</span>:np<span style="color:#39c">.</span>float32,
-                        <span style="color:#cd0000">&#34;pickup_latitude&#34;</span>:np<span style="color:#39c">.</span>float32})</code></pre></div>
-<h3 id="轉換-gps-座標至-web-mercator-coordinate">轉換 GPS 座標至 Web Mercator coordinate</h3>
-
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">import</span> pandas <span style="color:#cdcd00">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#cd00cd">import</span> numpy <span style="color:#cdcd00">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 讀取 pickup_longitude 與 pickup_latitude 兩欄位</span>
+</span></span><span style="display:flex;"><span>df <span style="color:#39c">=</span> pd<span style="color:#39c">.</span>read_csv(<span style="color:#cd0000">&#34;yellow_tripdata_2016-05.csv&#34;</span>,
+</span></span><span style="display:flex;"><span>                 usecols<span style="color:#39c">=</span>[<span style="color:#cd0000">&#39;pickup_longitude&#39;</span>, <span style="color:#cd0000">&#34;pickup_latitude&#34;</span>],
+</span></span><span style="display:flex;"><span>                 dtype<span style="color:#39c">=</span>{<span style="color:#cd0000">&#39;pickup_longitude&#39;</span>:np<span style="color:#39c">.</span>float32,
+</span></span><span style="display:flex;"><span>                        <span style="color:#cd0000">&#34;pickup_latitude&#34;</span>:np<span style="color:#39c">.</span>float32})
+</span></span></code></pre></div><h3 id="轉換-gps-座標至-web-mercator-coordinate">轉換 GPS 座標至 Web Mercator coordinate</h3>
 <p>因原始資料的座標使用的 GPS 為球面座標，因此須先轉換為 Web mercator coordinate 才能使用在 map tiles 的座標系統中。我們使用 <a href="https://pypi.org/project/pyproj/">pyproj</a> 套件來轉換座標，將 <strong>pickup_longitude</strong> 與 <strong>pickup_latitude</strong> 的數值分別轉換到 <strong>pickup_x</strong> 與 <strong>pickup_y</strong> 欄位中。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000080"># 定義轉換函數</span>
-<span style="color:#cd00cd">from</span> pyproj <span style="color:#cd00cd">import</span> transform, Proj
-
-<span style="color:#000080"># Set project function</span>
-source <span style="color:#39c">=</span> Proj(init<span style="color:#39c">=</span><span style="color:#cd0000">&#34;epsg:4326&#34;</span>) <span style="color:#000080"># WGS84</span>
-target <span style="color:#39c">=</span> Proj(init<span style="color:#39c">=</span><span style="color:#cd0000">&#34;epsg:3857&#34;</span>) <span style="color:#000080"># Web mercator </span>
-
-<span style="color:#000080"># 轉換 Longitude 到 Web Mercator - X coordinate</span>
-<span style="color:#cdcd00">def</span> lngToX(lng):
-    <span style="color:#cdcd00">return</span> transform(source, target, lng, <span style="color:#cd00cd">0</span>)[<span style="color:#cd00cd">0</span>]
-
-<span style="color:#000080"># 轉換 Latitude 到 Web Mercator - Y coordinate</span>
-<span style="color:#cdcd00">def</span> latToY(lat):
-    <span style="color:#cdcd00">return</span> transform(source, target, <span style="color:#cd00cd">0</span>, lat)[<span style="color:#cd00cd">1</span>]</code></pre></div>
-<p>之後將 dataframe 中的 Longitude 與 Latitude 轉換到 Web Mercator 中的 X, Y 座標中</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df[<span style="color:#cd0000">&#39;pickup_x&#39;</span>] <span style="color:#39c">=</span> df<span style="color:#39c">.</span>pickup_longitude<span style="color:#39c">.</span>apply(lngToX)
-df[<span style="color:#cd0000">&#39;pickup_y&#39;</span>] <span style="color:#39c">=</span> df<span style="color:#39c">.</span>pickup_latitude<span style="color:#39c">.</span>apply(latToY)</code></pre></div>
-<blockquote>
-<p>注意，GPS 所使用的 WGS84 能投影轉換到 Web Mercator 的範圍有限制，Longitude 為 ，而Latitude 為 ，使用前須先過過濾掉超出範圍的數值資料。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000080"># 定義轉換函數</span>
+</span></span><span style="display:flex;"><span><span style="color:#cd00cd">from</span> pyproj <span style="color:#cd00cd">import</span> transform, Proj
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># Set project function</span>
+</span></span><span style="display:flex;"><span>source <span style="color:#39c">=</span> Proj(init<span style="color:#39c">=</span><span style="color:#cd0000">&#34;epsg:4326&#34;</span>) <span style="color:#000080"># WGS84</span>
+</span></span><span style="display:flex;"><span>target <span style="color:#39c">=</span> Proj(init<span style="color:#39c">=</span><span style="color:#cd0000">&#34;epsg:3857&#34;</span>) <span style="color:#000080"># Web mercator </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 轉換 Longitude 到 Web Mercator - X coordinate</span>
+</span></span><span style="display:flex;"><span><span style="color:#cdcd00">def</span> lngToX(lng):
+</span></span><span style="display:flex;"><span>    <span style="color:#cdcd00">return</span> transform(source, target, lng, <span style="color:#cd00cd">0</span>)[<span style="color:#cd00cd">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 轉換 Latitude 到 Web Mercator - Y coordinate</span>
+</span></span><span style="display:flex;"><span><span style="color:#cdcd00">def</span> latToY(lat):
+</span></span><span style="display:flex;"><span>    <span style="color:#cdcd00">return</span> transform(source, target, <span style="color:#cd00cd">0</span>, lat)[<span style="color:#cd00cd">1</span>]
+</span></span></code></pre></div><p>之後將 dataframe 中的 Longitude 與 Latitude 轉換到 Web Mercator 中的 X, Y 座標中</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df[<span style="color:#cd0000">&#39;pickup_x&#39;</span>] <span style="color:#39c">=</span> df<span style="color:#39c">.</span>pickup_longitude<span style="color:#39c">.</span>apply(lngToX)
+</span></span><span style="display:flex;"><span>df[<span style="color:#cd0000">&#39;pickup_y&#39;</span>] <span style="color:#39c">=</span> df<span style="color:#39c">.</span>pickup_latitude<span style="color:#39c">.</span>apply(latToY)
+</span></span></code></pre></div><blockquote>
+<p>注意，GPS 所使用的 WGS84 能投影轉換到 Web Mercator 的範圍有限制，Longitude 為 [-180, 180]，而Latitude 為 [-85.0511, 85.0511]，使用前須先過過濾掉超出範圍的數值資料。</p>
 </blockquote>
-
 <h3 id="使用-dask-平行處理-dataframe">使用 Dask 平行處理 Dataframe</h3>
-
 <p>因 Pandas 是 single thread 架構，無法發揮多處理器的功能，因此我們使用 Dask 來讓 dataframe 能使用多處理器平行處理，以增加處理速度。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> dask.dataframe <span style="color:#cdcd00">as</span> dd
-<span style="color:#cd00cd">import</span> multiprocessing <span style="color:#cdcd00">as</span> mp
-
-dask_df <span style="color:#39c">=</span> dd<span style="color:#39c">.</span>from_pandas(df, npartitions<span style="color:#39c">=</span>mp<span style="color:#39c">.</span>cpu_count())
-dask_df<span style="color:#39c">.</span>persist()</code></pre></div>
-<h3 id="建立所要產生的-map-tile-列表">建立所要產生的 Map Tile 列表</h3>
-
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">import</span> dask.dataframe <span style="color:#cdcd00">as</span> dd
+</span></span><span style="display:flex;"><span><span style="color:#cd00cd">import</span> multiprocessing <span style="color:#cdcd00">as</span> mp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dask_df <span style="color:#39c">=</span> dd<span style="color:#39c">.</span>from_pandas(df, npartitions<span style="color:#39c">=</span>mp<span style="color:#39c">.</span>cpu_count())
+</span></span><span style="display:flex;"><span>dask_df<span style="color:#39c">.</span>persist()
+</span></span></code></pre></div><h3 id="建立所要產生的-map-tile-列表">建立所要產生的 Map Tile 列表</h3>
 <p>使用 <strong>Mercantile</strong> 建立所要產生的 map tiles。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> mercantile
-
-<span style="color:#000080"># New York City 周邊範圍</span>
-bound_nyc <span style="color:#39c">=</span> (<span style="color:#39c">-</span><span style="color:#cd00cd">74.029495</span>, <span style="color:#cd00cd">40.697930</span>, <span style="color:#39c">-</span><span style="color:#cd00cd">73.946411</span>, <span style="color:#cd00cd">40.817817</span>) 
-
-<span style="color:#000080"># 產生 zoom 範圍為 [0, 15]，在 bounds_nyc 中的所有 tiles</span>
-tile_list <span style="color:#39c">=</span> <span style="color:#cd00cd">list</span>(mercantile<span style="color:#39c">.</span>tiles(<span style="color:#39c">*</span>bounds_nyc, zooms<span style="color:#39c">=</span><span style="color:#cd00cd">list</span>(<span style="color:#cd00cd">range</span>(<span style="color:#cd00cd">0</span>, <span style="color:#cd00cd">16</span>))))</code></pre></div>
-<h3 id="建立-aggregation-資料並寫入檔案中">建立 Aggregation 資料並寫入檔案中</h3>
-
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">import</span> mercantile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># New York City 周邊範圍</span>
+</span></span><span style="display:flex;"><span>bound_nyc <span style="color:#39c">=</span> (<span style="color:#39c">-</span><span style="color:#cd00cd">74.029495</span>, <span style="color:#cd00cd">40.697930</span>, <span style="color:#39c">-</span><span style="color:#cd00cd">73.946411</span>, <span style="color:#cd00cd">40.817817</span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 產生 zoom 範圍為 [0, 15]，在 bounds_nyc 中的所有 tiles</span>
+</span></span><span style="display:flex;"><span>tile_list <span style="color:#39c">=</span> <span style="color:#cd00cd">list</span>(mercantile<span style="color:#39c">.</span>tiles(<span style="color:#39c">*</span>bounds_nyc, zooms<span style="color:#39c">=</span><span style="color:#cd00cd">list</span>(<span style="color:#cd00cd">range</span>(<span style="color:#cd00cd">0</span>, <span style="color:#cd00cd">16</span>))))
+</span></span></code></pre></div><h3 id="建立-aggregation-資料並寫入檔案中">建立 Aggregation 資料並寫入檔案中</h3>
 <p>當資料準備好後對每個 tile 範圍進行統計，並依照 tile 位置將 aggregation 資料寫入指定位置的檔案中。這步驟會產生兩個檔案，一個為該 tile 進行 aggregate 後產生的資料進行序列化並壓縮後的檔案，以 <code>*.pkl.gz</code> 表示。另一個則為記錄該 tile 中最大點數資料的 yaml 檔，以 <code>*.pkl.yaml</code> 表示。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> gzip<span style="color:#39c">,</span> pickle
-
-<span style="color:#000080"># 由 tile 資訊產生 Canvas 物件，並使用 pickup_x 與 pickup_y 的資料進行統計後產生 aggregation 物件</span>
-cvs <span style="color:#39c">=</span> mapTilesCanvas(<span style="color:#39c">*</span>tile)
-agg <span style="color:#39c">=</span> cvs<span style="color:#39c">.</span>points(dask_df, <span style="color:#cd0000">&#39;pickup_x&#39;</span>, <span style="color:#cd0000">&#39;pickup_y&#39;</span>)
-
-<span style="color:#000080"># 將 aggregation 物件內容用 gzip 壓縮後寫入檔案</span>
-agg_file <span style="color:#39c">=</span> <span style="color:#000080"># *.pkl.gz</span>
-<span style="color:#cdcd00">with</span> gzip<span style="color:#39c">.</span>open(agg_file, mode<span style="color:#39c">=</span><span style="color:#cd0000">&#39;wb&#39;</span>) <span style="color:#cdcd00">as</span> f:
-    pickle<span style="color:#39c">.</span>dump(agg, f)
-
-<span style="color:#000080"># 將 aggregation 中的最大值寫入 yaml 檔案中</span>
-agg_yaml_file <span style="color:#39c">=</span> <span style="color:#000080"># *.pkl.yaml</span>
-<span style="color:#cdcd00">with</span> <span style="color:#cd00cd">open</span>(agg_yaml_file, mode<span style="color:#39c">=</span><span style="color:#cd0000">&#39;w&#39;</span>) <span style="color:#cdcd00">as</span> f:
-    yaml_obj <span style="color:#39c">=</span> {<span style="color:#cd0000">&#34;max_count&#34;</span>: <span style="color:#cd00cd">int</span>(agg<span style="color:#39c">.</span>values<span style="color:#39c">.</span>max())}
-    yaml<span style="color:#39c">.</span>dump(yaml_obj, f, default_flow_style<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)</code></pre></div>
-<h3 id="建立每個-zoom-中的最大點數資料">建立每個 zoom 中的最大點數資料</h3>
-
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">import</span> gzip<span style="color:#39c">,</span> pickle
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 由 tile 資訊產生 Canvas 物件，並使用 pickup_x 與 pickup_y 的資料進行統計後產生 aggregation 物件</span>
+</span></span><span style="display:flex;"><span>cvs <span style="color:#39c">=</span> mapTilesCanvas(<span style="color:#39c">*</span>tile)
+</span></span><span style="display:flex;"><span>agg <span style="color:#39c">=</span> cvs<span style="color:#39c">.</span>points(dask_df, <span style="color:#cd0000">&#39;pickup_x&#39;</span>, <span style="color:#cd0000">&#39;pickup_y&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 將 aggregation 物件內容用 gzip 壓縮後寫入檔案</span>
+</span></span><span style="display:flex;"><span>agg_file <span style="color:#39c">=</span> <span style="color:#000080"># *.pkl.gz</span>
+</span></span><span style="display:flex;"><span><span style="color:#cdcd00">with</span> gzip<span style="color:#39c">.</span>open(agg_file, mode<span style="color:#39c">=</span><span style="color:#cd0000">&#39;wb&#39;</span>) <span style="color:#cdcd00">as</span> f:
+</span></span><span style="display:flex;"><span>    pickle<span style="color:#39c">.</span>dump(agg, f)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 將 aggregation 中的最大值寫入 yaml 檔案中</span>
+</span></span><span style="display:flex;"><span>agg_yaml_file <span style="color:#39c">=</span> <span style="color:#000080"># *.pkl.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#cdcd00">with</span> <span style="color:#cd00cd">open</span>(agg_yaml_file, mode<span style="color:#39c">=</span><span style="color:#cd0000">&#39;w&#39;</span>) <span style="color:#cdcd00">as</span> f:
+</span></span><span style="display:flex;"><span>    yaml_obj <span style="color:#39c">=</span> {<span style="color:#cd0000">&#34;max_count&#34;</span>: <span style="color:#cd00cd">int</span>(agg<span style="color:#39c">.</span>values<span style="color:#39c">.</span>max())}
+</span></span><span style="display:flex;"><span>    yaml<span style="color:#39c">.</span>dump(yaml_obj, f, default_flow_style<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)
+</span></span></code></pre></div><h3 id="建立每個-zoom-中的最大點數資料">建立每個 zoom 中的最大點數資料</h3>
 <p>尋訪每個 zoom 中的 *<strong>.pkl.yaml</strong> 檔案，取得 <strong>max_count</strong> 的數值並與目前 zoom 中的最大值進行比較，若比現有最大值大則以該數值取代現有最大值。全部尋訪完畢可取得現有 zoom 中的最大點數值並寫入 <strong>_config.yaml</strong> 檔中。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">zoom_yaml_file <span style="color:#39c">=</span> <span style="color:#000080"># 每個 zoom 資料夾位置下都有一個 _config.yaml 檔案</span>
-<span style="color:#cdcd00">with</span> <span style="color:#cd00cd">open</span>(zoom_yaml_file, <span style="color:#cd0000">&#39;w&#39;</span>) <span style="color:#cdcd00">as</span> file:
-    yaml_obj <span style="color:#39c">=</span> {<span style="color:#cd0000">&#39;zoom_max_count&#39;</span>: max_count}
-    yaml<span style="color:#39c">.</span>dump(yaml_obj, file, default_flow_style<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)</code></pre></div>
-<h3 id="產生每個-aggregation-檔案對應的-tile-image">產生每個 Aggregation 檔案對應的 Tile Image</h3>
-
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>zoom_yaml_file <span style="color:#39c">=</span> <span style="color:#000080"># 每個 zoom 資料夾位置下都有一個 _config.yaml 檔案</span>
+</span></span><span style="display:flex;"><span><span style="color:#cdcd00">with</span> <span style="color:#cd00cd">open</span>(zoom_yaml_file, <span style="color:#cd0000">&#39;w&#39;</span>) <span style="color:#cdcd00">as</span> file:
+</span></span><span style="display:flex;"><span>    yaml_obj <span style="color:#39c">=</span> {<span style="color:#cd0000">&#39;zoom_max_count&#39;</span>: max_count}
+</span></span><span style="display:flex;"><span>    yaml<span style="color:#39c">.</span>dump(yaml_obj, file, default_flow_style<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)
+</span></span></code></pre></div><h3 id="產生每個-aggregation-檔案對應的-tile-image">產生每個 Aggregation 檔案對應的 Tile Image</h3>
 <p>在相關資料都產生完後，接著我們開始產生所需要使用的 Map tile 圖檔。主要步驟為取出每個 aggregation 的檔案並使用其繪製 png 圖檔並儲存至對應的 folder 中。繪圖方式使用 <code>log</code> 且最大最小值範圍為 0 到 <strong>zoom_max</strong>， 使相同 zoom 中不同 tile 的顯示狀況能盡量一致。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> datashader.transfer_functions <span style="color:#cdcd00">as</span> tf
-<span style="color:#cd00cd">from</span> matplotlib.cm <span style="color:#cd00cd">import</span> hot 
-
-<span style="color:#000080"># 取出每個 zoom 的最大統計</span>
-max_dict <span style="color:#39c">=</span> getMaxCountDict(agg_root)
-agg_path <span style="color:#39c">=</span> <span style="color:#000080"># aggregation 檔案位置</span>
-
-<span style="color:#cdcd00">with</span> gzip<span style="color:#39c">.</span>open(agg_path, <span style="color:#cd0000">&#39;rb&#39;</span>) <span style="color:#cdcd00">as</span> f:
-    agg <span style="color:#39c">=</span> pickle<span style="color:#39c">.</span>load(f)
-    zoom, xtile, ytile <span style="color:#39c">=</span> getMapTileCoord(agg_path)
-    img <span style="color:#39c">=</span> tf<span style="color:#39c">.</span>shade(agg, cmap<span style="color:#39c">=</span>hot, how<span style="color:#39c">=</span><span style="color:#cd0000">&#39;log&#39;</span>, span<span style="color:#39c">=</span>[<span style="color:#cd00cd">0</span>, max_dict[zoom]])
-
-    tile_path <span style="color:#39c">=</span> <span style="color:#000080"># 影像儲存位置</span>
-    <span style="color:#cdcd00">with</span> <span style="color:#cd00cd">open</span>(tile_path, mode<span style="color:#39c">=</span><span style="color:#cd0000">&#39;wb&#39;</span>) <span style="color:#cdcd00">as</span> f:
-        f<span style="color:#39c">.</span>write(img<span style="color:#39c">.</span>to_bytesio(<span style="color:#cd00cd">format</span><span style="color:#39c">=</span><span style="color:#cd0000">&#39;png&#39;</span>)<span style="color:#39c">.</span>read())</code></pre></div>
-<p>完成後 map tile 會儲存在 <strong>{tile_root}/{z}/{x}/{y}.png</strong> 的位置中，我們可以將檔案放到 server 上讓其他地圖服務使用圖磚資料。這我們使用 GitHub 來存放 map tiles 讓 Folium 直接使用圖檔資料。</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">import</span> datashader.transfer_functions <span style="color:#cdcd00">as</span> tf
+</span></span><span style="display:flex;"><span><span style="color:#cd00cd">from</span> matplotlib.cm <span style="color:#cd00cd">import</span> hot 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 取出每個 zoom 的最大統計</span>
+</span></span><span style="display:flex;"><span>max_dict <span style="color:#39c">=</span> getMaxCountDict(agg_root)
+</span></span><span style="display:flex;"><span>agg_path <span style="color:#39c">=</span> <span style="color:#000080"># aggregation 檔案位置</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cdcd00">with</span> gzip<span style="color:#39c">.</span>open(agg_path, <span style="color:#cd0000">&#39;rb&#39;</span>) <span style="color:#cdcd00">as</span> f:
+</span></span><span style="display:flex;"><span>    agg <span style="color:#39c">=</span> pickle<span style="color:#39c">.</span>load(f)
+</span></span><span style="display:flex;"><span>    zoom, xtile, ytile <span style="color:#39c">=</span> getMapTileCoord(agg_path)
+</span></span><span style="display:flex;"><span>    img <span style="color:#39c">=</span> tf<span style="color:#39c">.</span>shade(agg, cmap<span style="color:#39c">=</span>hot, how<span style="color:#39c">=</span><span style="color:#cd0000">&#39;log&#39;</span>, span<span style="color:#39c">=</span>[<span style="color:#cd00cd">0</span>, max_dict[zoom]])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    tile_path <span style="color:#39c">=</span> <span style="color:#000080"># 影像儲存位置</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cdcd00">with</span> <span style="color:#cd00cd">open</span>(tile_path, mode<span style="color:#39c">=</span><span style="color:#cd0000">&#39;wb&#39;</span>) <span style="color:#cdcd00">as</span> f:
+</span></span><span style="display:flex;"><span>        f<span style="color:#39c">.</span>write(img<span style="color:#39c">.</span>to_bytesio(<span style="color:#cd00cd">format</span><span style="color:#39c">=</span><span style="color:#cd0000">&#39;png&#39;</span>)<span style="color:#39c">.</span>read())
+</span></span></code></pre></div><p>完成後 map tile 會儲存在 <strong>{tile_root}/{z}/{x}/{y}.png</strong> 的位置中，我們可以將檔案放到 server 上讓其他地圖服務使用圖磚資料。這我們使用 GitHub 來存放 map tiles 讓 Folium 直接使用圖檔資料。</p>
 
 
  
@@ -524,7 +512,7 @@ agg_path <span style="color:#39c">=</span> <span style="color:#000080"># aggrega
 
 <div class="figure center" >
   
-    <a class="fancybox" href="/images/2018/nyc_taxi_trip_map/769.png" title="位置為 /11/603/769.png 的 map tile（背景為透明）" data-fancybox-group="">
+    <a class="fancybox" href="/images/2018/nyc_taxi_trip_map/769.png" title="位置為 /11/603/769.png 的 map tile（背景為透明）" data-fancybox="">
   
     <img class="fig-img" src="/images/2018/nyc_taxi_trip_map/769.png"  alt="位置為 /11/603/769.png 的 map tile（背景為透明）">
   
@@ -535,35 +523,29 @@ agg_path <span style="color:#39c">=</span> <span style="color:#000080"># aggrega
   
 </div>
 
-
 <h3 id="使用-folium-顯示-map-tile">使用 Folium 顯示 map tile</h3>
-
 <p>在前篇已經介紹過如何使用  <a href="https://github.com/python-visualization/folium">Folium</a> 地圖套件顯示地圖資料，因此我們可使用 <strong>Folium</strong> 來加入放在 GitHub 上的圖層資料，並將地圖匯出成 html 檔案以供檢視。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> folium
-
-<span style="color:#000080"># 使用 Carto Dark 建立底圖</span>
-fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">40.772562</span>, <span style="color:#39c">-</span><span style="color:#cd00cd">73.974039</span>],
-                  tiles<span style="color:#39c">=</span><span style="color:#cd0000">&#39;https://cartodb-basemaps-</span><span style="color:#cd0000">{s}</span><span style="color:#cd0000">.global.ssl.fastly.net/dark_all/</span><span style="color:#cd0000">{z}</span><span style="color:#cd0000">/</span><span style="color:#cd0000">{x}</span><span style="color:#cd0000">/</span><span style="color:#cd0000">{y}</span><span style="color:#cd0000">.png&#39;</span>,
-                  zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">12</span>,
-                  attr<span style="color:#39c">=</span><span style="color:#cd0000">&#39;Carto Dark&#39;</span>)
-
-<span style="color:#000080"># 加入放在 GitHub 存放的 map tiles 位置</span>
-fmap<span style="color:#39c">.</span>add_tile_layer(tiles<span style="color:#39c">=</span><span style="color:#cd0000">&#39;https://raw.githubusercontent.com/yeshuanova/nyc_taxi_trip_map/master/map/tile/</span><span style="color:#cd0000">{z}</span><span style="color:#cd0000">/</span><span style="color:#cd0000">{x}</span><span style="color:#cd0000">/</span><span style="color:#cd0000">{y}</span><span style="color:#cd0000">.png&#39;</span>,
-                    attr<span style="color:#39c">=</span><span style="color:#cd0000">&#39;NYC taxi pickup Heatmap&#39;</span>)
-
-<span style="color:#000080"># 儲存地圖為 html 檔，可直接用瀏覽器打開檢視地圖資訊</span>
-fmap<span style="color:#39c">.</span>save(<span style="color:#cd0000">&#39;map.html&#39;</span>)
-
-<span style="color:#000080"># 直接在 ipython 中顯示地圖</span>
-fmap</code></pre></div>
-<p>最後可得到如下的顯示結果，可看出地圖有正確顯示出上車熱點，</p>
-
-<p><figure><img src="/images/2018/nyc_taxi_trip_map/nyc_taxi_layer_map.jpg" alt="folium_taxi_layer"></figure></p>
-
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">import</span> folium
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 使用 Carto Dark 建立底圖</span>
+</span></span><span style="display:flex;"><span>fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">40.772562</span>, <span style="color:#39c">-</span><span style="color:#cd00cd">73.974039</span>],
+</span></span><span style="display:flex;"><span>                  tiles<span style="color:#39c">=</span><span style="color:#cd0000">&#39;https://cartodb-basemaps-</span><span style="color:#cd0000">{s}</span><span style="color:#cd0000">.global.ssl.fastly.net/dark_all/</span><span style="color:#cd0000">{z}</span><span style="color:#cd0000">/</span><span style="color:#cd0000">{x}</span><span style="color:#cd0000">/</span><span style="color:#cd0000">{y}</span><span style="color:#cd0000">.png&#39;</span>,
+</span></span><span style="display:flex;"><span>                  zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">12</span>,
+</span></span><span style="display:flex;"><span>                  attr<span style="color:#39c">=</span><span style="color:#cd0000">&#39;Carto Dark&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 加入放在 GitHub 存放的 map tiles 位置</span>
+</span></span><span style="display:flex;"><span>fmap<span style="color:#39c">.</span>add_tile_layer(tiles<span style="color:#39c">=</span><span style="color:#cd0000">&#39;https://raw.githubusercontent.com/yeshuanova/nyc_taxi_trip_map/master/map/tile/</span><span style="color:#cd0000">{z}</span><span style="color:#cd0000">/</span><span style="color:#cd0000">{x}</span><span style="color:#cd0000">/</span><span style="color:#cd0000">{y}</span><span style="color:#cd0000">.png&#39;</span>,
+</span></span><span style="display:flex;"><span>                    attr<span style="color:#39c">=</span><span style="color:#cd0000">&#39;NYC taxi pickup Heatmap&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 儲存地圖為 html 檔，可直接用瀏覽器打開檢視地圖資訊</span>
+</span></span><span style="display:flex;"><span>fmap<span style="color:#39c">.</span>save(<span style="color:#cd0000">&#39;map.html&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 直接在 ipython 中顯示地圖</span>
+</span></span><span style="display:flex;"><span>fmap
+</span></span></code></pre></div><p>最後可得到如下的顯示結果，可看出地圖有正確顯示出上車熱點，</p>
+<p><img src="/images/2018/nyc_taxi_trip_map/nyc_taxi_layer_map.jpg" alt="folium_taxi_layer"></p>
 <p>若要嘗試操作，也可由<a href="https://yeshuanova.github.io/nyc_taxi_trip_map/map.html">此連結</a>檢視<strong>互動式地圖</strong>。</p>
-
 <h2 id="reference">Reference</h2>
-
 <ul>
 <li><a href="https://www.openstreetmap.org/">OpenStreetMap</a></li>
 <li><a href="https://github.com/mapbox/mercantile">Mercatile</a></li>
@@ -575,6 +557,8 @@ fmap</code></pre></div>
 <li><a href="https://yeshuanova.github.io/blog/posts/python-visulization-folium/">Python 地圖視覺化 - 使用 Folium</a></li>
 </ul>
               
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -599,159 +583,163 @@ fmap</code></pre></div>
                 
               
             
-            <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/thinkbayes-ch1/" data-tooltip="ThinkBayes 心得筆記 - Chapter 1">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/03/learning-commons/" data-tooltip="京都大學的 Learning Commons (學習共享空間) 參訪感想">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/thinkbayes-ch1/" data-tooltip="ThinkBayes 心得筆記 - Chapter 1" aria-label="NEXT: ThinkBayes 心得筆記 - Chapter 1">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/04/implement-osm-map-tiles/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/03/learning-commons/" data-tooltip="京都大學的 Learning Commons (學習共享空間) 參訪感想" aria-label="PREVIOUS: 京都大學的 Learning Commons (學習共享空間) 參訪感想">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/04/implement-osm-map-tiles/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/04/implement-osm-map-tiles/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/04/implement-osm-map-tiles/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
             
-              
-            
+  
+
+
           </div>
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2024 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 
       </div>
       <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-        <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/thinkbayes-ch1/" data-tooltip="ThinkBayes 心得筆記 - Chapter 1">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/03/learning-commons/" data-tooltip="京都大學的 Learning Commons (學習共享空間) 參訪感想">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/thinkbayes-ch1/" data-tooltip="ThinkBayes 心得筆記 - Chapter 1" aria-label="NEXT: ThinkBayes 心得筆記 - Chapter 1">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/04/implement-osm-map-tiles/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/03/learning-commons/" data-tooltip="京都大學的 Learning Commons (學習共享空間) 參訪感想" aria-label="PREVIOUS: 京都大學的 Learning Commons (學習共享空間) 參訪感想">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/04/implement-osm-map-tiles/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/04/implement-osm-map-tiles/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/04/implement-osm-map-tiles/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
       </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F04%2Fimplement-osm-map-tiles%2F">
-          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F04%2Fimplement-osm-map-tiles%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F04%2Fimplement-osm-map-tiles%2F">
-          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F04%2Fimplement-osm-map-tiles%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
         </a>
       </li>
     
   </ul>
 </div>
 <div id="share-options-mask" class="share-options-mask"></div>
+
+
     </div>
     
     <div id="about">
   <div id="about-card">
     <div id="about-btn-close">
-      <i class="fa fa-remove"></i>
+      <i class="fa fa-times"></i>
     </div>
     
       <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
@@ -769,7 +757,7 @@ fmap</code></pre></div>
     
     
       <div id="about-card-location">
-        <i class="fa fa-map-marker"></i>
+        <i class="fa fa-map-marker-alt"></i>
         <br/>
         Taiwan
       </div>
@@ -788,30 +776,16 @@ fmap</code></pre></div>
 
 
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
-
-
-<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<script lang="javascript">
-window.onload = updateMinWidth;
-window.onresize = updateMinWidth;
-document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
-function updateMinWidth() {
-  var sidebar = document.getElementById("sidebar");
-  var main = document.getElementById("main");
-  main.style.minWidth = "";
-  var w1 = getComputedStyle(main).getPropertyValue("min-width");
-  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
-  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
-  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
-}
-</script>
+<script src="/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
 
 <script>
 $(document).ready(function() {
@@ -826,15 +800,6 @@ $(document).ready(function() {
 </script>
 
 
-  
-    
-  
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 
 
 

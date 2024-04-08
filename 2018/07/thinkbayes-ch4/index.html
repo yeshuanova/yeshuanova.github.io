@@ -2,10 +2,30 @@
 <html lang="zh-tw">
   <head>
     
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"\/",
+  "author": {
+    "@type": "Person",
+    "name": "Cheng-Shiang Li",
+    
+    "image": "/images/about/me.jpg"
+    
+  },
+  "name":"Xeno Universe - The Dark Forest",
+  "description":"ThinkBayes Note - Chapter 4",
+  "url":"\/2018\/07\/thinkbayes-ch4\/",
+  "keywords":"[]"
+}
+
+</script>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.124.1 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="ThinkBayes Note - Chapter 4">
@@ -49,12 +69,12 @@
 
 
 
-
-
-
-
   <meta property="og:image" content="/images/about/me.jpg">
   <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+
+
 
 
     <title>ThinkBayes 心得筆記 - Chapter 4</title>
@@ -67,12 +87,12 @@
     <link rel="canonical" href="/2018/07/thinkbayes-ch4/">
 
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     
-    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    <link rel="stylesheet" href="/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
     
     
       
@@ -82,7 +102,7 @@
 
     
       
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -103,7 +123,7 @@ if (!doNotTrack) {
       <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+    <a class="header-title-link" href="/" aria-label="Go to homepage">Xeno Universe - The Dark Forest</a>
   </div>
   
 </header>
@@ -112,7 +132,7 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="/#about">
+        <a href="/#about" aria-label="Read more about the author">
           <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
@@ -125,7 +145,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/">
+      <a class="sidebar-button-link " href="/" title="Home">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -135,7 +155,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/categories">
+      <a class="sidebar-button-link " href="/categories" title="Categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -145,7 +165,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/tags">
+      <a class="sidebar-button-link " href="/tags" title="Tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -155,7 +175,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/archives">
+      <a class="sidebar-button-link " href="/archives" title="Archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -165,7 +185,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/about/">
+      <a class="sidebar-button-link " href="/about/" title="About Me">
     
       
       
@@ -179,7 +199,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova" title="GitHub">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -189,7 +209,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li" title="Linkedin">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -199,7 +219,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener" title="Email">
     
       <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
       
@@ -222,19 +242,19 @@ if (!doNotTrack) {
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+        <article class="post" id="top">
           
           
             <div class="post-header main-content-wrap text-left">
   
-    <h1 class="post-title" itemprop="headline">
+    <h1 class="post-title">
       ThinkBayes 心得筆記 - Chapter 4
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-07-13T15:30:00&#43;08:00">
+      <time datetime="2018-07-13T15:30:00&#43;08:00">
         
   July 13, 2018
 
@@ -253,84 +273,88 @@ if (!doNotTrack) {
 
 </div>
           
-          <div class="post-content markdown" itemprop="articleBody">
+          <div class="post-content markdown">
             <div class="main-content-wrap">
               <p>在 Chpater 4 中作者用 Euro Problem (硬幣投擲問題) 作為範例計算並檢定<strong>硬幣</strong>是否<strong>公平</strong>。並介紹使用 Beta Distribution 快速計算 Posterior 的方法。</p>
-
 <h1 id="thinkbayes-note">ThinkBayes Note</h1>
-
-<h2 id="chapter-4--more-estimation">Chapter 4 - More Estimation</h2>
-
+<h2 id="chapter-4---more-estimation">Chapter 4 - More Estimation</h2>
 <h3 id="the-euro-problem">The Euro Problem</h3>
-
 <p>投擲一個歐元硬幣 250 次，統計得出的 Head 和 Tail 數量分別為 140 次與 110 次，試問是否能資料判斷這枚硬幣是否<strong>公平（Fair)</strong>。</p>
-
 <p>對於該問題可用兩步驟加以求解</p>
-
 <ol>
 <li>計算硬幣擲出 Head 的機率分佈。</li>
 <li>驗證前面的投擲結果資料，是否能說明硬幣為<strong>公平</strong>。</li>
 </ol>
-
-<p>定義 Hypothesis <span  class="math">\(H_x\)</span> 來代表該硬幣擲出 Head 的機率為 <span  class="math">\(x\)</span> (也代表擲出 Tail 的機率為 <span  class="math">\(100-x\)</span>)。也就是共有 <span  class="math">\(H_0\)</span> 到 <span  class="math">\(H_{100}\)</span> 共 101 個 Hypothesis，假如硬幣為 fair，那結果應該接近 <span  class="math">\(H_{50}\)</span>。</p>
-
+<p>定義 Hypothesis </p>
+$$H_x$$
+<p> 來代表該硬幣擲出 Head 的機率為 </p>
+$$x$$
+<p> (也代表擲出 Tail 的機率為 </p>
+$$100-x$$
+<p>)。也就是共有 </p>
+$$H_0$$
+<p> 到 </p>
+$$H_{100}$$
+<p> 共 101 個 Hypothesis，假如硬幣為 fair，那結果應該接近 </p>
+$$H_{50}$$
+<p>。</p>
 <p>假設 Prior 為 Uniform Prior，因此</p>
-
-<p><span  class="math">\[P(H_0) = P(H_1) = \cdots = P(H_{100})\]</span></p>
-
+$$P(H_0) = P(H_1) = \cdots = P(H_{100})$$
 <p>而硬幣擲出 Head 的 Likelihood 為</p>
-
-<p><span  class="math">\[P(D=Head \mid H_{x})=\frac{x}{100}\]</span></p>
-
+$$P(D=Head \mid H_{x})=\frac{x}{100}$$
 <p>則擲出 Tail 的 Likelihood</p>
-
-<p><span  class="math">\[P(D=Tail \mid H_x)=1-P(D=Head \mid H_{x})\]</span></p>
-
-<p>現有 Data 中 Head 出現 140 次而 Tail 為 110 次，即 D = [&quot;Head&quot; * 140 + &quot;Tail&quot; * 110]，計算 Posterior Probability distrubution 後可得到下圖結果 (原書中 <a href="https://github.com/AllenDowney/ThinkBayes/blob/master/book/figs/euro1.pdf">Fig.4.1</a> 的圖)</p>
-
-<p><figure><img src="/images/2018/thinkbayes/ch4-posterior.png" alt="thinkbayes-ch4-posterior"></figure></p>
-
-<p>可得知 Maximum Likelihood 為 <span  class="math">\(P(H_{56} \mid D)\)</span>，也就是擲出該結果的硬幣，本身擲出 Head 的機率最有可能是 <strong>56%</strong>。計算該機率分佈 <strong>90%</strong> 的 Credible interval 後得到範圍為 (51, 56)。而 50 並不在信賴區間中，因此可判斷該硬幣為<strong>不公平</strong>（<strong>unfair</strong>）。</p>
-
+$$P(D=Tail \mid H_x)=1-P(D=Head \mid H_{x})$$
+<p>現有 Data 中 Head 出現 140 次而 Tail 為 110 次，即 D = [&ldquo;Head&rdquo; * 140 + &ldquo;Tail&rdquo; * 110]，計算 Posterior Probability distrubution 後可得到下圖結果 (原書中 <a href="https://github.com/AllenDowney/ThinkBayes/blob/master/book/figs/euro1.pdf">Fig.4.1</a> 的圖)</p>
+<p><img src="/images/2018/thinkbayes/ch4-posterior.png" alt="thinkbayes-ch4-posterior"></p>
+<p>可得知 Maximum Likelihood 為 </p>
+$$P(H_{56} \mid D)$$
+<p>，也就是擲出該結果的硬幣，本身擲出 Head 的機率最有可能是 <strong>56%</strong>。計算該機率分佈 <strong>90%</strong> 的 Credible interval 後得到範圍為 (51, 56)。而 50 並不在信賴區間中，因此可判斷該硬幣為<strong>不公平</strong>（<strong>unfair</strong>）。</p>
 <h3 id="swamping-the-priors">Swamping the priors</h3>
-
 <p>在許多問題中 Prior 通常會被設為 Uniform Distribution，但可能影響計算結果的好壞。因此作者嘗試在該問題中使用 Triangular 作為 Prior Distribution，如下圖所示</p>
-
-<p><figure><img src="/images/2018/thinkbayes/ch4-triangular-prior.png" alt="ch4-triangular-prior"></figure></p>
-
+<p><img src="/images/2018/thinkbayes/ch4-triangular-prior.png" alt="ch4-triangular-prior"></p>
 <p>並使用新的 Triangular Prior 重新計算 Posterior 得出來的結果與 Uniform Prior 所得出的分佈非常接近。因此可知道在<strong>資料足夠</strong>的情況下，就算使用不同的 Prior 分佈，Posterior 也會收斂到近似的結果。</p>
-
-<h3 id="optimization--the-beta-distribution">Optimization - The beta distribution</h3>
-
+<h3 id="optimization---the-beta-distribution">Optimization - The beta distribution</h3>
 <p>若 Hypotheses 與 Data 越多，則計算時間會越來越長，這時就需要將演算法最佳化以提升計算效率。除了在程式部分外，我們可以把機率模型由離散分佈轉換成連續分佈，如 <a href="https://en.wikipedia.org/wiki/Beta_distribution">Beta 分佈 (Beta distribution)</a> 的連續機率模型。</p>
-
-<p><span  class="math">\[
+$$
 f(x;\alpha,\beta) = \frac{1}{B(\alpha, \beta)}x^{\alpha - 1}(1-x)^{\beta - 1}
-\]</span></p>
-
-<p><span  class="math">\[
+$$
+$$
 0 \le x \le 1, \alpha > 0, \beta > 0
-\]</span></p>
-
-<p><span  class="math">\(\alpha\)</span> (<strong>alpha</strong>) 和 <span  class="math">\(\beta\)</span> (<strong>beta</strong>)為 shape parameters。</p>
-
+$$
+$$\alpha$$
+<p> (<strong>alpha</strong>) 和 </p>
+$$\beta$$
+<p> (<strong>beta</strong>)為 shape parameters。</p>
 <p>假如使用 Binomial Likelihood Function 來更新模型，則 Beta Distribution 為 <strong>conjugate prior</strong> - 即 Prior Distribution 為 Beta 分佈時，Posterior 也是 Beta 分佈。</p>
-
-<p>以硬幣問題為例，假設 Prior 為由 <span  class="math">\(\alpha\)</span> 與 <span  class="math">\(\beta\)</span> 組成的 Beta Distribution，投擲結果為 H 個 <strong>Heads</strong> 與 T 個 <strong>Tails</strong> 的，則 Posterior 為由 <span  class="math">\(\alpha + H\)</span> 與 <span  class="math">\(\beta + T\)</span> 所組成的 Beta Distrubution。這個結果顯示我們可以非常快速的計算出 Posterior 數值而不需要在像之前一樣不斷更新 PMF，大幅減少計算時間。</p>
-
-<p>因當 <span  class="math">\(\alpha = 1\)</span> 且 <span  class="math">\(\beta = 1\)</span> 時 Beta distribution 即為 <strong>Uniform distribution</strong>，與原先的 Prior 假設相符。因此我們可直接以 <span  class="math">\(\alpha + 140\)</span> 與 <span  class="math">\(\beta + 110\)</span> 的參數作為 Posterior Beta Distribution 的參數，計算出最大可能機率約為 <strong>56%</strong>。</p>
-
+<p>以硬幣問題為例，假設 Prior 為由 </p>
+$$\alpha$$
+<p> 與 </p>
+$$\beta$$
+<p> 組成的 Beta Distribution，投擲結果為 H 個 <strong>Heads</strong> 與 T 個 <strong>Tails</strong> 的，則 Posterior 為由 </p>
+$$\alpha + H$$
+<p> 與 </p>
+$$\beta + T$$
+<p> 所組成的 Beta Distrubution。這個結果顯示我們可以非常快速的計算出 Posterior 數值而不需要在像之前一樣不斷更新 PMF，大幅減少計算時間。</p>
+<p>因當 </p>
+$$\alpha = 1$$
+<p> 且 </p>
+$$\beta = 1$$
+<p> 時 Beta distribution 即為 <strong>Uniform distribution</strong>，與原先的 Prior 假設相符。因此我們可直接以 </p>
+$$\alpha + 140$$
+<p> 與 </p>
+$$\beta + 110$$
+<p> 的參數作為 Posterior Beta Distribution 的參數，計算出最大可能機率約為 <strong>56%</strong>。</p>
 <blockquote>
-<p>避免設定 Prior 的值為 0，詳情可參考 <a href="https://en.wikipedia.org/wiki/Cromwell's_rule">Cromwell's rule</a>。</p>
+<p>避免設定 Prior 的值為 0，詳情可參考 <a href="https://en.wikipedia.org/wiki/Cromwell's_rule">Cromwell&rsquo;s rule</a>。</p>
 </blockquote>
-
 <h2 id="reference">Reference</h2>
-
 <ul>
 <li><a href="http://greenteapress.com/wp/think-bayes/">ThinkBayes</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Beta_distribution">Beta distribution</a></li>
 </ul>
               
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -347,159 +371,163 @@ f(x;\alpha,\beta) = \frac{1}{B(\alpha, \beta)}x^{\alpha - 1}(1-x)^{\beta - 1}
                 
               
             
-            <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch5/" data-tooltip="ThinkBayes 心得筆記 - Chapter 5">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch2-to-3/" data-tooltip="ThinkBayes 心得筆記 - Chapter 2 ~ 3">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch5/" data-tooltip="ThinkBayes 心得筆記 - Chapter 5" aria-label="NEXT: ThinkBayes 心得筆記 - Chapter 5">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/07/thinkbayes-ch4/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch2-to-3/" data-tooltip="ThinkBayes 心得筆記 - Chapter 2 ~ 3" aria-label="PREVIOUS: ThinkBayes 心得筆記 - Chapter 2 ~ 3">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/thinkbayes-ch4/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/07/thinkbayes-ch4/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/thinkbayes-ch4/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
             
-              
-            
+  
+
+
           </div>
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2024 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 
       </div>
       <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-        <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch5/" data-tooltip="ThinkBayes 心得筆記 - Chapter 5">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch2-to-3/" data-tooltip="ThinkBayes 心得筆記 - Chapter 2 ~ 3">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch5/" data-tooltip="ThinkBayes 心得筆記 - Chapter 5" aria-label="NEXT: ThinkBayes 心得筆記 - Chapter 5">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/07/thinkbayes-ch4/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch2-to-3/" data-tooltip="ThinkBayes 心得筆記 - Chapter 2 ~ 3" aria-label="PREVIOUS: ThinkBayes 心得筆記 - Chapter 2 ~ 3">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/thinkbayes-ch4/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/07/thinkbayes-ch4/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/thinkbayes-ch4/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
       </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F07%2Fthinkbayes-ch4%2F">
-          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F07%2Fthinkbayes-ch4%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F07%2Fthinkbayes-ch4%2F">
-          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F07%2Fthinkbayes-ch4%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
         </a>
       </li>
     
   </ul>
 </div>
 <div id="share-options-mask" class="share-options-mask"></div>
+
+
     </div>
     
     <div id="about">
   <div id="about-card">
     <div id="about-btn-close">
-      <i class="fa fa-remove"></i>
+      <i class="fa fa-times"></i>
     </div>
     
       <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
@@ -517,7 +545,7 @@ f(x;\alpha,\beta) = \frac{1}{B(\alpha, \beta)}x^{\alpha - 1}(1-x)^{\beta - 1}
     
     
       <div id="about-card-location">
-        <i class="fa fa-map-marker"></i>
+        <i class="fa fa-map-marker-alt"></i>
         <br/>
         Taiwan
       </div>
@@ -536,30 +564,16 @@ f(x;\alpha,\beta) = \frac{1}{B(\alpha, \beta)}x^{\alpha - 1}(1-x)^{\beta - 1}
 
 
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
-
-
-<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<script lang="javascript">
-window.onload = updateMinWidth;
-window.onresize = updateMinWidth;
-document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
-function updateMinWidth() {
-  var sidebar = document.getElementById("sidebar");
-  var main = document.getElementById("main");
-  main.style.minWidth = "";
-  var w1 = getComputedStyle(main).getPropertyValue("min-width");
-  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
-  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
-  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
-}
-</script>
+<script src="/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
 
 <script>
 $(document).ready(function() {
@@ -574,15 +588,6 @@ $(document).ready(function() {
 </script>
 
 
-  
-    
-  
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 
 
 

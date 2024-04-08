@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MathJax on Xeno Universe - The Dark Forest</title>
+    <link>/tags/mathjax/</link>
+    <description>Recent content in MathJax on Xeno Universe - The Dark Forest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Tue, 12 Dec 2023 16:00:00 +0800</lastBuildDate>
+    <atom:link href="/tags/mathjax/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 中顯示 Latex 數學式</title>
+      <link>/2023/12/hugo_math/</link>
+      <pubDate>Tue, 12 Dec 2023 16:00:00 +0800</pubDate>
+      <guid>/2023/12/hugo_math/</guid>
+      <description>&lt;p&gt;要在 Hugo 中使用 Latex 語法撰寫數學式，需讓寫在 Markdown 中的 Latex 語法被 &lt;a href=&#34;https://www.mathjax.org/&#34;&gt;MathJax&lt;/a&gt; 或 &lt;a href=&#34;https://katex.org/&#34;&gt;Katex&lt;/a&gt; 能讀取並轉換為數學表示式。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

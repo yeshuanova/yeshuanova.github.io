@@ -6,15 +6,14 @@
     <description>Recent content in Probability on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 16 May 2018 15:00:00 +0800</lastBuildDate><atom:link href="/tags/probability/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 May 2018 15:00:00 +0800</lastBuildDate>
+    <atom:link href="/tags/probability/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ThinkBayes 心得筆記 - Chapter 1</title>
       <link>/2018/05/thinkbayes-ch1/</link>
       <pubDate>Wed, 16 May 2018 15:00:00 +0800</pubDate>
-      
       <guid>/2018/05/thinkbayes-ch1/</guid>
       <description>&lt;p&gt;本筆記主要紀錄閱讀 &lt;a href=&#34;http://greenteapress.com/wp/think-bayes/&#34;&gt;ThinkBayes&lt;/a&gt; 一書內各章節的心得筆記，提供往後參考與複習。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

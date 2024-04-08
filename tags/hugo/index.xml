@@ -6,15 +6,21 @@
     <description>Recent content in Hugo on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 07 Jul 2018 14:00:00 +0800</lastBuildDate><atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Dec 2023 16:00:00 +0800</lastBuildDate>
+    <atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 中顯示 Latex 數學式</title>
+      <link>/2023/12/hugo_math/</link>
+      <pubDate>Tue, 12 Dec 2023 16:00:00 +0800</pubDate>
+      <guid>/2023/12/hugo_math/</guid>
+      <description>&lt;p&gt;要在 Hugo 中使用 Latex 語法撰寫數學式，需讓寫在 Markdown 中的 Latex 語法被 &lt;a href=&#34;https://www.mathjax.org/&#34;&gt;MathJax&lt;/a&gt; 或 &lt;a href=&#34;https://katex.org/&#34;&gt;Katex&lt;/a&gt; 能讀取並轉換為數學表示式。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>從 Jekyll 轉移到 Hugo 心得</title>
       <link>/2018/07/from-jekyll-to-hugo/</link>
       <pubDate>Sat, 07 Jul 2018 14:00:00 +0800</pubDate>
-      
       <guid>/2018/07/from-jekyll-to-hugo/</guid>
       <description>&lt;p&gt;由於原先使用 Jekyll 的 voyager theme 所建立的靜態 Blog 在功能上已有些不足，且 Jekyll 的過慢的編譯速度也讓人有些頭大，因此有了轉換網網頁產生器的想法。原本是想使用 Hexo 來當作新的產生器，但在找產生器的過程發現了 Hugo 這個靜態網頁產生器中的新起之秀，研究後發現相當符合個人需求，因此決定使用 Hugo 來作為新的靜態網頁產生器。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

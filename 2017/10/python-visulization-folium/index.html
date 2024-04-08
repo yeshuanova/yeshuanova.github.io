@@ -2,10 +2,30 @@
 <html lang="zh-tw">
   <head>
     
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"\/",
+  "author": {
+    "@type": "Person",
+    "name": "Cheng-Shiang Li",
+    
+    "image": "/images/about/me.jpg"
+    
+  },
+  "name":"Xeno Universe - The Dark Forest",
+  "description":"Python visualization with real Map",
+  "url":"\/2017\/10\/python-visulization-folium\/",
+  "keywords":"[]"
+}
+
+</script>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.124.1 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="Python visualization with real Map">
@@ -53,12 +73,12 @@
 
 
 
-
-
-
-
   <meta property="og:image" content="/images/about/me.jpg">
   <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+
+
 
 
     <title>Python 地圖視覺化 - 使用 Folium</title>
@@ -71,12 +91,12 @@
     <link rel="canonical" href="/2017/10/python-visulization-folium/">
 
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     
-    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    <link rel="stylesheet" href="/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
     
     
       
@@ -86,7 +106,7 @@
 
     
       
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -107,7 +127,7 @@ if (!doNotTrack) {
       <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+    <a class="header-title-link" href="/" aria-label="Go to homepage">Xeno Universe - The Dark Forest</a>
   </div>
   
 </header>
@@ -116,7 +136,7 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="/#about">
+        <a href="/#about" aria-label="Read more about the author">
           <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
@@ -129,7 +149,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/">
+      <a class="sidebar-button-link " href="/" title="Home">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -139,7 +159,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/categories">
+      <a class="sidebar-button-link " href="/categories" title="Categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -149,7 +169,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/tags">
+      <a class="sidebar-button-link " href="/tags" title="Tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -159,7 +179,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/archives">
+      <a class="sidebar-button-link " href="/archives" title="Archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -169,7 +189,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/about/">
+      <a class="sidebar-button-link " href="/about/" title="About Me">
     
       
       
@@ -183,7 +203,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova" title="GitHub">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -193,7 +213,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li" title="Linkedin">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -203,7 +223,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener" title="Email">
     
       <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
       
@@ -226,19 +246,19 @@ if (!doNotTrack) {
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+        <article class="post" id="top">
           
           
             <div class="post-header main-content-wrap text-left">
   
-    <h1 class="post-title" itemprop="headline">
+    <h1 class="post-title">
       Python 地圖視覺化 - 使用 Folium
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-10-08T08:00:00&#43;08:00">
+      <time datetime="2017-10-08T08:00:00&#43;08:00">
         
   October 8, 2017
 
@@ -257,7 +277,7 @@ if (!doNotTrack) {
 
 </div>
           
-          <div class="post-content markdown" itemprop="articleBody">
+          <div class="post-content markdown">
             <div class="main-content-wrap">
               <p><a href="https://github.com/python-visualization/folium">Folium</a>是一套Python上的地圖視覺化工具。透過<a href="http://leafletjs.com/">Leaflet</a>這個JavaScript Library以及<a href="https://www.openstreetmap.org/">OpenStreetMap</a>地圖服務，可在Jupyter Notebook上實現互動式地圖繪製。本篇將簡單介紹<strong>Folium</strong>的使用方式以及繪製效果。</p>
 <blockquote>
@@ -265,12 +285,12 @@ if (!doNotTrack) {
 </blockquote>
 <h2 id="安裝folium">安裝Folium</h2>
 <p>本篇文章範例均透過Jupyter Notebook實作，因此建議先安裝相關套件並開啟Notebook直接在瀏覽器上操作較為方便。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000080"># 使用pip3安裝Jupyter</span>
-pip3 install --upgrade pip
-pip3 install jupyter
-</code></pre></div><p>安裝完成後輸入<code>jupyter notebook</code>在瀏覽器上開啟操作介面。接著安裝<strong>Folium</strong>套件</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip3 install folium <span style="color:#000080"># 安裝 Folium package</span>
-</code></pre></div><p>更詳細安裝方式可參考官方網站</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#000080"># 使用pip3安裝Jupyter</span>
+</span></span><span style="display:flex;"><span>pip3 install --upgrade pip
+</span></span><span style="display:flex;"><span>pip3 install jupyter
+</span></span></code></pre></div><p>安裝完成後輸入<code>jupyter notebook</code>在瀏覽器上開啟操作介面。接著安裝<strong>Folium</strong>套件</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip3 install folium <span style="color:#000080"># 安裝 Folium package</span>
+</span></span></code></pre></div><p>更詳細安裝方式可參考官方網站</p>
 <ul>
 <li><a href="http://jupyter.readthedocs.io/en/latest/index.html">Jupyter</a></li>
 <li><a href="https://github.com/python-visualization/folium">Folium</a></li>
@@ -280,12 +300,12 @@ pip3 install jupyter
 </blockquote>
 <h2 id="顯示地圖">顯示地圖</h2>
 <p>在Jupyter Notebook中輸入以下程式碼並執行</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> folium <span style="color:#000080"># 匯入 folium 套件</span>
-
-<span style="color:#000080"># 建立地圖與設定位置</span>
-fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.709635</span>, <span style="color:#cd00cd">139.810851</span>], zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">16</span>)
-fmap  <span style="color:#000080"># 在notebook中顯示地圖</span>
-</code></pre></div><p>即可直接在Jupyter Notebook顯示地圖資訊。其中<code>location=[35.709635, 139.810851]</code>表示中心經緯度位置，<code>zoom_start=16</code>代表畫面細節為<code>16</code>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">import</span> folium <span style="color:#000080"># 匯入 folium 套件</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 建立地圖與設定位置</span>
+</span></span><span style="display:flex;"><span>fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.709635</span>, <span style="color:#cd00cd">139.810851</span>], zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">16</span>)
+</span></span><span style="display:flex;"><span>fmap  <span style="color:#000080"># 在notebook中顯示地圖</span>
+</span></span></code></pre></div><p>即可直接在Jupyter Notebook顯示地圖資訊。其中<code>location=[35.709635, 139.810851]</code>表示中心經緯度位置，<code>zoom_start=16</code>代表畫面細節為<code>16</code>。</p>
 <p><img src="/images/2018/python-folium/map-osm.jpg" alt="map-osm">
 <em>Folium顯示的地圖範例</em></p>
 <p><strong>Folium</strong>預設使用OpenStreetMap，此外也可以使用如<a href="http://maps.stamen.com/">Stamen</a>或<a href="https://www.mapbox.com/">Mapbox</a>等地圖服務(Mapbox須申請並匯入API key)。</p>
@@ -295,91 +315,91 @@ fmap  <span style="color:#000080"># 在notebook中顯示地圖</span>
 <em>使用 Stamen Terrain 圖層</em></p>
 <h2 id="匯出html檔案">匯出HTML檔案</h2>
 <p><strong>Folium</strong>也可將繪製好的地圖匯出成HTML檔案，並直接使用瀏覽器開啟觀看結果。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fmap<span style="color:#39c">.</span>save(<span style="color:#cd0000">&#39;map.html&#39;</span>)
-</code></pre></div><p>執行後會在Python檔案所在資料夾建立一個名為<code>map.html</code>的檔案，可直接用瀏覽器開啟觀看結果。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fmap<span style="color:#39c">.</span>save(<span style="color:#cd0000">&#39;map.html&#39;</span>)
+</span></span></code></pre></div><p>執行後會在Python檔案所在資料夾建立一個名為<code>map.html</code>的檔案，可直接用瀏覽器開啟觀看結果。</p>
 <h2 id="加入marker標記">加入Marker標記</h2>
 <p>將Marker套用在地圖上，並點擊後顯示<code>popup</code>參數所設定的文字。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.709635</span>, <span style="color:#cd00cd">139.810851</span>], zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">17</span>)
-
-fmap<span style="color:#39c">.</span>add_child(folium<span style="color:#39c">.</span>Marker(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.709635</span>, <span style="color:#cd00cd">139.810851</span>],
-                             popup<span style="color:#39c">=</span><span style="color:#cd0000">&#39;Skytree&#39;</span>))
-</code></pre></div><p><img src="/images/2018/python-folium/map-marker.jpg" alt="map-marker"></p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.709635</span>, <span style="color:#cd00cd">139.810851</span>], zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">17</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fmap<span style="color:#39c">.</span>add_child(folium<span style="color:#39c">.</span>Marker(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.709635</span>, <span style="color:#cd00cd">139.810851</span>],
+</span></span><span style="display:flex;"><span>                             popup<span style="color:#39c">=</span><span style="color:#cd0000">&#39;Skytree&#39;</span>))
+</span></span></code></pre></div><p><img src="/images/2018/python-folium/map-marker.jpg" alt="map-marker"></p>
 <p>此外也可設定各個Marker的顏色，屬性與Icon類型</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.712326</span>, <span style="color:#cd00cd">139.804037</span>],
-                  zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">15</span>)
-
-m1 <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Marker(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.709635</span>, <span style="color:#cd00cd">139.810851</span>],
-                   popup<span style="color:#39c">=</span><span style="color:#cd0000">&#39;&lt;b&gt;Skytree&lt;/b&gt;&#39;</span>)
-
-m2 <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Marker(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.707595</span>, <span style="color:#cd00cd">139.795530</span>],
-                   popup<span style="color:#39c">=</span><span style="color:#cd0000">&#39;&lt;i&gt;Hotel&lt;/i&gt;&#39;</span>,
-                   icon<span style="color:#39c">=</span>folium<span style="color:#39c">.</span>Icon(icon<span style="color:#39c">=</span><span style="color:#cd0000">&#39;bed&#39;</span>, <span style="color:#000080"># Icon類型</span>
-                                    color<span style="color:#39c">=</span><span style="color:#cd0000">&#39;green&#39;</span>, <span style="color:#000080"># Marker顏色</span>
-                                    prefix<span style="color:#39c">=</span><span style="color:#cd0000">&#39;fa&#39;</span>)) <span style="color:#000080"># 使用Font Awesome Icons</span>
-
-m3 <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Marker(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.715092</span>, <span style="color:#cd00cd">139.796666</span>],
-                   popup<span style="color:#39c">=</span><span style="color:#cd0000">&#39;Asakusa Temple&#39;</span>,
-                   icon<span style="color:#39c">=</span>folium<span style="color:#39c">.</span>Icon(icon<span style="color:#39c">=</span><span style="color:#cd0000">&#39;info-sign&#39;</span>,
-                                    color<span style="color:#39c">=</span><span style="color:#cd0000">&#39;red&#39;</span>))
-<span style="color:#000080"># 將各Marker加入地圖。</span>
-fmap<span style="color:#39c">.</span>add_child(child<span style="color:#39c">=</span>m1)
-fmap<span style="color:#39c">.</span>add_child(child<span style="color:#39c">=</span>m2)
-fmap<span style="color:#39c">.</span>add_child(child<span style="color:#39c">=</span>m3)
-</code></pre></div><p><img src="/images/2018/python-folium/map-markers.jpg" alt="map-markers"></p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.712326</span>, <span style="color:#cd00cd">139.804037</span>],
+</span></span><span style="display:flex;"><span>                  zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">15</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>m1 <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Marker(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.709635</span>, <span style="color:#cd00cd">139.810851</span>],
+</span></span><span style="display:flex;"><span>                   popup<span style="color:#39c">=</span><span style="color:#cd0000">&#39;&lt;b&gt;Skytree&lt;/b&gt;&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>m2 <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Marker(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.707595</span>, <span style="color:#cd00cd">139.795530</span>],
+</span></span><span style="display:flex;"><span>                   popup<span style="color:#39c">=</span><span style="color:#cd0000">&#39;&lt;i&gt;Hotel&lt;/i&gt;&#39;</span>,
+</span></span><span style="display:flex;"><span>                   icon<span style="color:#39c">=</span>folium<span style="color:#39c">.</span>Icon(icon<span style="color:#39c">=</span><span style="color:#cd0000">&#39;bed&#39;</span>, <span style="color:#000080"># Icon類型</span>
+</span></span><span style="display:flex;"><span>                                    color<span style="color:#39c">=</span><span style="color:#cd0000">&#39;green&#39;</span>, <span style="color:#000080"># Marker顏色</span>
+</span></span><span style="display:flex;"><span>                                    prefix<span style="color:#39c">=</span><span style="color:#cd0000">&#39;fa&#39;</span>)) <span style="color:#000080"># 使用Font Awesome Icons</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>m3 <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Marker(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.715092</span>, <span style="color:#cd00cd">139.796666</span>],
+</span></span><span style="display:flex;"><span>                   popup<span style="color:#39c">=</span><span style="color:#cd0000">&#39;Asakusa Temple&#39;</span>,
+</span></span><span style="display:flex;"><span>                   icon<span style="color:#39c">=</span>folium<span style="color:#39c">.</span>Icon(icon<span style="color:#39c">=</span><span style="color:#cd0000">&#39;info-sign&#39;</span>,
+</span></span><span style="display:flex;"><span>                                    color<span style="color:#39c">=</span><span style="color:#cd0000">&#39;red&#39;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 將各Marker加入地圖。</span>
+</span></span><span style="display:flex;"><span>fmap<span style="color:#39c">.</span>add_child(child<span style="color:#39c">=</span>m1)
+</span></span><span style="display:flex;"><span>fmap<span style="color:#39c">.</span>add_child(child<span style="color:#39c">=</span>m2)
+</span></span><span style="display:flex;"><span>fmap<span style="color:#39c">.</span>add_child(child<span style="color:#39c">=</span>m3)
+</span></span></code></pre></div><p><img src="/images/2018/python-folium/map-markers.jpg" alt="map-markers"></p>
 <h2 id="circle-圖示">Circle 圖示</h2>
 <p>若要加入圓形標記，可使用<code>folium.Circle</code>物件</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">center_pos <span style="color:#39c">=</span> [<span style="color:#cd00cd">35.709635</span>, <span style="color:#cd00cd">139.810851</span>]
-fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(location<span style="color:#39c">=</span>center_pos, zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">17</span>)
-fmap<span style="color:#39c">.</span>add_child(folium<span style="color:#39c">.</span>Circle(location<span style="color:#39c">=</span>center_pos,
-                             color<span style="color:#39c">=</span><span style="color:#cd0000">&#39;green&#39;</span>, <span style="color:#000080"># Circle 顏色</span>
-                             radius<span style="color:#39c">=</span><span style="color:#cd00cd">30</span>, <span style="color:#000080"># Circle 寬度</span>
-                             popup<span style="color:#39c">=</span><span style="color:#cd0000">&#39;Skytree&#39;</span>, <span style="color:#000080"># 彈出視窗內容</span>
-                             fill<span style="color:#39c">=</span><span style="color:#cdcd00">True</span>, <span style="color:#000080"># 填滿中間區域</span>
-                             fill_opacity<span style="color:#39c">=</span><span style="color:#cd00cd">0.5</span> <span style="color:#000080"># 設定透明度</span>
-                             ))
-</code></pre></div><p><img src="/images/2018/python-folium/map-circle.jpg" alt="map-markers"></p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>center_pos <span style="color:#39c">=</span> [<span style="color:#cd00cd">35.709635</span>, <span style="color:#cd00cd">139.810851</span>]
+</span></span><span style="display:flex;"><span>fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(location<span style="color:#39c">=</span>center_pos, zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">17</span>)
+</span></span><span style="display:flex;"><span>fmap<span style="color:#39c">.</span>add_child(folium<span style="color:#39c">.</span>Circle(location<span style="color:#39c">=</span>center_pos,
+</span></span><span style="display:flex;"><span>                             color<span style="color:#39c">=</span><span style="color:#cd0000">&#39;green&#39;</span>, <span style="color:#000080"># Circle 顏色</span>
+</span></span><span style="display:flex;"><span>                             radius<span style="color:#39c">=</span><span style="color:#cd00cd">30</span>, <span style="color:#000080"># Circle 寬度</span>
+</span></span><span style="display:flex;"><span>                             popup<span style="color:#39c">=</span><span style="color:#cd0000">&#39;Skytree&#39;</span>, <span style="color:#000080"># 彈出視窗內容</span>
+</span></span><span style="display:flex;"><span>                             fill<span style="color:#39c">=</span><span style="color:#cdcd00">True</span>, <span style="color:#000080"># 填滿中間區域</span>
+</span></span><span style="display:flex;"><span>                             fill_opacity<span style="color:#39c">=</span><span style="color:#cd00cd">0.5</span> <span style="color:#000080"># 設定透明度</span>
+</span></span><span style="display:flex;"><span>                             ))
+</span></span></code></pre></div><p><img src="/images/2018/python-folium/map-circle.jpg" alt="map-markers"></p>
 <h2 id="繪製線條">繪製線條</h2>
 <p>要使用<strong>Folium</strong>繪製地圖線條，可使用提供<code>PolyLine</code>這個函數，並可設定線條顏色，寬度，透明度等屬性。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">points <span style="color:#39c">=</span> [[<span style="color:#cd00cd">35.709635</span>, <span style="color:#cd00cd">139.810851</span>],
-          [<span style="color:#cd00cd">35.707595</span>, <span style="color:#cd00cd">139.795530</span>],
-          [<span style="color:#cd00cd">35.715092</span>, <span style="color:#cd00cd">139.796666</span>]]
-
-fmap<span style="color:#39c">.</span>add_child(folium<span style="color:#39c">.</span>PolyLine(locations<span style="color:#39c">=</span>points, <span style="color:#000080"># 座標List</span>
-                               weight<span style="color:#39c">=</span><span style="color:#cd00cd">8</span>)) <span style="color:#000080"># 線條寬度</span>
-</code></pre></div><p><img src="/images/2018/python-folium/map-poly-line.jpg" alt="map-poly-lines"></p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>points <span style="color:#39c">=</span> [[<span style="color:#cd00cd">35.709635</span>, <span style="color:#cd00cd">139.810851</span>],
+</span></span><span style="display:flex;"><span>          [<span style="color:#cd00cd">35.707595</span>, <span style="color:#cd00cd">139.795530</span>],
+</span></span><span style="display:flex;"><span>          [<span style="color:#cd00cd">35.715092</span>, <span style="color:#cd00cd">139.796666</span>]]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fmap<span style="color:#39c">.</span>add_child(folium<span style="color:#39c">.</span>PolyLine(locations<span style="color:#39c">=</span>points, <span style="color:#000080"># 座標List</span>
+</span></span><span style="display:flex;"><span>                               weight<span style="color:#39c">=</span><span style="color:#cd00cd">8</span>)) <span style="color:#000080"># 線條寬度</span>
+</span></span></code></pre></div><p><img src="/images/2018/python-folium/map-poly-line.jpg" alt="map-poly-lines"></p>
 <h2 id="heatmap熱度圖">HeatMap(熱度圖)</h2>
 <p>若要在<strong>Folium</strong>繪製熱度圖，可使用<code>folium.plugins</code>中的<code>HeatMap</code>物件</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> numpy <span style="color:#cdcd00">as</span> np
-<span style="color:#cd00cd">from</span> folium.plugins <span style="color:#cd00cd">import</span> HeatMap
-
-fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.712326</span>, <span style="color:#cd00cd">139.804037</span>], zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">12</span>)
-
-<span style="color:#000080"># 建立隨機資料</span>
-data <span style="color:#39c">=</span> (np<span style="color:#39c">.</span>random<span style="color:#39c">.</span>normal(size<span style="color:#39c">=</span>(<span style="color:#cd00cd">100</span>, <span style="color:#cd00cd">3</span>)) <span style="color:#39c">*</span> <span style="color:#cd00cd">0.02</span> <span style="color:#39c">*</span>
-        np<span style="color:#39c">.</span>array([[<span style="color:#cd00cd">1</span>, <span style="color:#cd00cd">1</span>, <span style="color:#cd00cd">1</span>]]) <span style="color:#39c">+</span>
-        np<span style="color:#39c">.</span>array([[<span style="color:#cd00cd">35.712326</span>, <span style="color:#cd00cd">139.804037</span>, <span style="color:#cd00cd">1</span>]]))<span style="color:#39c">.</span>tolist()
-
-fmap<span style="color:#39c">.</span>add_child(HeatMap(data<span style="color:#39c">=</span>data))
-</code></pre></div><p><img src="/images/2018/python-folium/map-heatmap.jpg" alt="map-heatmap"></p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">import</span> numpy <span style="color:#cdcd00">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#cd00cd">from</span> folium.plugins <span style="color:#cd00cd">import</span> HeatMap
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(location<span style="color:#39c">=</span>[<span style="color:#cd00cd">35.712326</span>, <span style="color:#cd00cd">139.804037</span>], zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">12</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 建立隨機資料</span>
+</span></span><span style="display:flex;"><span>data <span style="color:#39c">=</span> (np<span style="color:#39c">.</span>random<span style="color:#39c">.</span>normal(size<span style="color:#39c">=</span>(<span style="color:#cd00cd">100</span>, <span style="color:#cd00cd">3</span>)) <span style="color:#39c">*</span> <span style="color:#cd00cd">0.02</span> <span style="color:#39c">*</span>
+</span></span><span style="display:flex;"><span>        np<span style="color:#39c">.</span>array([[<span style="color:#cd00cd">1</span>, <span style="color:#cd00cd">1</span>, <span style="color:#cd00cd">1</span>]]) <span style="color:#39c">+</span>
+</span></span><span style="display:flex;"><span>        np<span style="color:#39c">.</span>array([[<span style="color:#cd00cd">35.712326</span>, <span style="color:#cd00cd">139.804037</span>, <span style="color:#cd00cd">1</span>]]))<span style="color:#39c">.</span>tolist()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fmap<span style="color:#39c">.</span>add_child(HeatMap(data<span style="color:#39c">=</span>data))
+</span></span></code></pre></div><p><img src="/images/2018/python-folium/map-heatmap.jpg" alt="map-heatmap"></p>
 <p>除了單張熱度圖外，也可以使用<code>HeatMapWithTime</code>元件來顯示連續的時間軸。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cd00cd">import</span> numpy <span style="color:#cdcd00">as</span> np
-<span style="color:#cd00cd">from</span> folium.plugins <span style="color:#cd00cd">import</span> HeatMapWithTime
-
-center_pos <span style="color:#39c">=</span> [<span style="color:#cd00cd">35.712326</span>, <span style="color:#cd00cd">139.804037</span>]
-
-<span style="color:#000080"># 使用 numpy 建立初始資料</span>
-initial_data <span style="color:#39c">=</span> (np<span style="color:#39c">.</span>random<span style="color:#39c">.</span>normal(size<span style="color:#39c">=</span>(<span style="color:#cd00cd">200</span>, <span style="color:#cd00cd">2</span>)) <span style="color:#39c">*</span>
-                np<span style="color:#39c">.</span>array([[<span style="color:#cd00cd">0.02</span>, <span style="color:#cd00cd">0.02</span>]]) <span style="color:#39c">+</span>
-                np<span style="color:#39c">.</span>array([center_pos]))
-
-<span style="color:#000080"># 建立連續資料</span>
-data <span style="color:#39c">=</span> [initial_data<span style="color:#39c">.</span>tolist()]
-<span style="color:#cdcd00">for</span> i <span style="color:#cdcd00">in</span> <span style="color:#cd00cd">range</span>(<span style="color:#cd00cd">20</span>):
-    data<span style="color:#39c">.</span>append((data[i] <span style="color:#39c">+</span> np<span style="color:#39c">.</span>random<span style="color:#39c">.</span>normal(size<span style="color:#39c">=</span>(<span style="color:#cd00cd">200</span>, <span style="color:#cd00cd">2</span>)) <span style="color:#39c">*</span> <span style="color:#cd00cd">0.001</span>)<span style="color:#39c">.</span>tolist())
-
-fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(center_pos, zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">11</span>)
-fmap<span style="color:#39c">.</span>add_child(HeatMapWithTime(data)) <span style="color:#000080"># 顯示連續熱度圖</span>
-</code></pre></div><p><img src="/images/2018/python-folium/map-heatmap-time-1.jpg" alt="map-heatmap-time-1">
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cd00cd">import</span> numpy <span style="color:#cdcd00">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#cd00cd">from</span> folium.plugins <span style="color:#cd00cd">import</span> HeatMapWithTime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>center_pos <span style="color:#39c">=</span> [<span style="color:#cd00cd">35.712326</span>, <span style="color:#cd00cd">139.804037</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 使用 numpy 建立初始資料</span>
+</span></span><span style="display:flex;"><span>initial_data <span style="color:#39c">=</span> (np<span style="color:#39c">.</span>random<span style="color:#39c">.</span>normal(size<span style="color:#39c">=</span>(<span style="color:#cd00cd">200</span>, <span style="color:#cd00cd">2</span>)) <span style="color:#39c">*</span>
+</span></span><span style="display:flex;"><span>                np<span style="color:#39c">.</span>array([[<span style="color:#cd00cd">0.02</span>, <span style="color:#cd00cd">0.02</span>]]) <span style="color:#39c">+</span>
+</span></span><span style="display:flex;"><span>                np<span style="color:#39c">.</span>array([center_pos]))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 建立連續資料</span>
+</span></span><span style="display:flex;"><span>data <span style="color:#39c">=</span> [initial_data<span style="color:#39c">.</span>tolist()]
+</span></span><span style="display:flex;"><span><span style="color:#cdcd00">for</span> i <span style="color:#cdcd00">in</span> <span style="color:#cd00cd">range</span>(<span style="color:#cd00cd">20</span>):
+</span></span><span style="display:flex;"><span>    data<span style="color:#39c">.</span>append((data[i] <span style="color:#39c">+</span> np<span style="color:#39c">.</span>random<span style="color:#39c">.</span>normal(size<span style="color:#39c">=</span>(<span style="color:#cd00cd">200</span>, <span style="color:#cd00cd">2</span>)) <span style="color:#39c">*</span> <span style="color:#cd00cd">0.001</span>)<span style="color:#39c">.</span>tolist())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(center_pos, zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">11</span>)
+</span></span><span style="display:flex;"><span>fmap<span style="color:#39c">.</span>add_child(HeatMapWithTime(data)) <span style="color:#000080"># 顯示連續熱度圖</span>
+</span></span></code></pre></div><p><img src="/images/2018/python-folium/map-heatmap-time-1.jpg" alt="map-heatmap-time-1">
 <em>第 1 筆資料的熱度圖</em></p>
 <p><img src="/images/2018/python-folium/map-heatmap-time-11.jpg" alt="map-heatmap-time-11">
 <em>第 11 筆資料的熱度圖</em></p>
@@ -389,12 +409,12 @@ fmap<span style="color:#39c">.</span>add_child(HeatMapWithTime(data)) <span styl
 <blockquote>
 <p><a href="https://en.wikipedia.org/wiki/GeoJSON">GeoJson</a>是一種開放地圖繪製標準，可透過Json格式的文件在地圖上繪製所想要的點，線，面積等效果。<a href="https://github.com/topojson/topojson">TopoJson</a>則是GeoJson的擴展，可繪製更複雜的地圖效果。</p>
 </blockquote>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(
-    location<span style="color:#39c">=</span>[<span style="color:#39c">-</span><span style="color:#cd00cd">24.908886</span>, <span style="color:#cd00cd">132.388750</span>],
-    zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">4</span>)
-
-fmap<span style="color:#39c">.</span>add_child(folium<span style="color:#39c">.</span>GeoJson(<span style="color:#cd0000">&#39;AUS.geo.json&#39;</span>, name<span style="color:#39c">=</span><span style="color:#cd0000">&#39;geojson&#39;</span>)) <span style="color:#000080"># 使用&#34;AUS.geo.json&#34;檔案來繪製地圖</span>
-</code></pre></div><p><img src="/images/2018/python-folium/map-geojson.jpg" alt="map-geojson">
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fmap <span style="color:#39c">=</span> folium<span style="color:#39c">.</span>Map(
+</span></span><span style="display:flex;"><span>    location<span style="color:#39c">=</span>[<span style="color:#39c">-</span><span style="color:#cd00cd">24.908886</span>, <span style="color:#cd00cd">132.388750</span>],
+</span></span><span style="display:flex;"><span>    zoom_start<span style="color:#39c">=</span><span style="color:#cd00cd">4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fmap<span style="color:#39c">.</span>add_child(folium<span style="color:#39c">.</span>GeoJson(<span style="color:#cd0000">&#39;AUS.geo.json&#39;</span>, name<span style="color:#39c">=</span><span style="color:#cd0000">&#39;geojson&#39;</span>)) <span style="color:#000080"># 使用&#34;AUS.geo.json&#34;檔案來繪製地圖</span>
+</span></span></code></pre></div><p><img src="/images/2018/python-folium/map-geojson.jpg" alt="map-geojson">
 <em>Australia 地圖輪廓</em></p>
 <h2 id="reference">Reference</h2>
 <ul>
@@ -405,6 +425,8 @@ fmap<span style="color:#39c">.</span>add_child(folium<span style="color:#39c">.<
 <li><a href="http://maps.stamen.com/">Stamen</a></li>
 </ul>
               
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -425,159 +447,163 @@ fmap<span style="color:#39c">.</span>add_child(folium<span style="color:#39c">.<
                 
               
             
-            <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/python-visualization-datashader/" data-tooltip="Python 資料視覺化 - 使用 datashader">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/from-go-to-sc2-part-1/" data-tooltip="從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/python-visualization-datashader/" data-tooltip="Python 資料視覺化 - 使用 datashader" aria-label="NEXT: Python 資料視覺化 - 使用 datashader">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/python-visulization-folium/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/from-go-to-sc2-part-1/" data-tooltip="從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)" aria-label="PREVIOUS: 從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2017/10/python-visulization-folium/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/python-visulization-folium/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2017/10/python-visulization-folium/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
             
-              
-            
+  
+
+
           </div>
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2024 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 
       </div>
       <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-        <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/python-visualization-datashader/" data-tooltip="Python 資料視覺化 - 使用 datashader">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/from-go-to-sc2-part-1/" data-tooltip="從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/python-visualization-datashader/" data-tooltip="Python 資料視覺化 - 使用 datashader" aria-label="NEXT: Python 資料視覺化 - 使用 datashader">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/python-visulization-folium/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/from-go-to-sc2-part-1/" data-tooltip="從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)" aria-label="PREVIOUS: 從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2017/10/python-visulization-folium/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/python-visulization-folium/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2017/10/python-visulization-folium/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
       </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2017%2F10%2Fpython-visulization-folium%2F">
-          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2017%2F10%2Fpython-visulization-folium%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2017%2F10%2Fpython-visulization-folium%2F">
-          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2017%2F10%2Fpython-visulization-folium%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
         </a>
       </li>
     
   </ul>
 </div>
 <div id="share-options-mask" class="share-options-mask"></div>
+
+
     </div>
     
     <div id="about">
   <div id="about-card">
     <div id="about-btn-close">
-      <i class="fa fa-remove"></i>
+      <i class="fa fa-times"></i>
     </div>
     
       <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
@@ -595,7 +621,7 @@ fmap<span style="color:#39c">.</span>add_child(folium<span style="color:#39c">.<
     
     
       <div id="about-card-location">
-        <i class="fa fa-map-marker"></i>
+        <i class="fa fa-map-marker-alt"></i>
         <br/>
         Taiwan
       </div>
@@ -614,30 +640,16 @@ fmap<span style="color:#39c">.</span>add_child(folium<span style="color:#39c">.<
 
 
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
-
-
-<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<script lang="javascript">
-window.onload = updateMinWidth;
-window.onresize = updateMinWidth;
-document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
-function updateMinWidth() {
-  var sidebar = document.getElementById("sidebar");
-  var main = document.getElementById("main");
-  main.style.minWidth = "";
-  var w1 = getComputedStyle(main).getPropertyValue("min-width");
-  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
-  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
-  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
-}
-</script>
+<script src="/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
 
 <script>
 $(document).ready(function() {
@@ -652,15 +664,6 @@ $(document).ready(function() {
 </script>
 
 
-  
-    
-  
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 
 
 

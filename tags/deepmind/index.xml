@@ -6,15 +6,14 @@
     <description>Recent content in DeepMind on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 05 Sep 2017 14:00:00 +0800</lastBuildDate><atom:link href="/tags/deepmind/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Sep 2017 14:00:00 +0800</lastBuildDate>
+    <atom:link href="/tags/deepmind/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>從圍棋到星海爭霸 - 淺談人工智慧的挑戰 (1)</title>
       <link>/2017/09/from-go-to-sc2-part-1/</link>
       <pubDate>Tue, 05 Sep 2017 14:00:00 +0800</pubDate>
-      
       <guid>/2017/09/from-go-to-sc2-part-1/</guid>
       <description>&lt;p&gt;從AI黎明期開始，如&lt;a href=&#34;https://en.wikipedia.org/wiki/Chess&#34;&gt;西洋棋(chess)&lt;/a&gt;，&lt;a href=&#34;https://en.wikipedia.org/wiki/Go_(game)&#34;&gt;圍棋(Go)&lt;/a&gt;或&lt;a href=&#34;https://en.wikipedia.org/wiki/Xiangqi&#34;&gt;象棋&lt;/a&gt;等棋類遊戲一直是人工智慧的研究與測試領域。但由於早期的計算機的能力限制以及演算法的發展，較為複雜的棋類遊戲仍無法打敗世界級水準的棋手。直到1997年時IBM的&lt;a href=&#34;https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)&#34;&gt;深藍(Deep Blue)&lt;/a&gt;在西洋棋比賽中打敗了世界棋王&lt;a href=&#34;https://en.wikipedia.org/wiki/Garry_Kasparov&#34;&gt;Garry Kasparov&lt;/a&gt;，展現了電腦也能夠在西洋棋上打敗人類世界頂尖棋手的實力。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

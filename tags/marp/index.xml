@@ -6,15 +6,14 @@
     <description>Recent content in Marp on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 20 Jun 2021 12:00:00 +0800</lastBuildDate><atom:link href="/tags/marp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Jun 2021 12:00:00 +0800</lastBuildDate>
+    <atom:link href="/tags/marp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>用 Markdown 撰寫 Slide - 使用 Marp 套件</title>
       <link>/2021/06/marp_vscode/</link>
       <pubDate>Sun, 20 Jun 2021 12:00:00 +0800</pubDate>
-      
       <guid>/2021/06/marp_vscode/</guid>
       <description>&lt;p&gt;鴿了一整個 2020，2021 應該開始繼續寫 Blog 和技術文章了。這篇文章將介紹如何在 VSCode 中使用 Marp 與 Markdown 來建立投影片。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

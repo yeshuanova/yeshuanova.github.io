@@ -2,10 +2,30 @@
 <html lang="zh-tw">
   <head>
     
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"\/",
+  "author": {
+    "@type": "Person",
+    "name": "Cheng-Shiang Li",
+    
+    "image": "/images/about/me.jpg"
+    
+  },
+  "name":"Xeno Universe - The Dark Forest",
+  "description":"Implement OSM map tiles using datashader and mercantile (version 2)",
+  "url":"\/2018\/05\/implement-osm-map-tiles-parallel\/",
+  "keywords":"[]"
+}
+
+</script>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.124.1 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="Implement OSM map tiles using datashader and mercantile (version 2)">
@@ -57,12 +77,12 @@
 
 
 
-
-
-
-
   <meta property="og:image" content="/images/about/me.jpg">
   <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+
+
 
 
     <title>使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)</title>
@@ -75,12 +95,12 @@
     <link rel="canonical" href="/2018/05/implement-osm-map-tiles-parallel/">
 
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     
-    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    <link rel="stylesheet" href="/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
     
     
       
@@ -90,7 +110,7 @@
 
     
       
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -111,7 +131,7 @@ if (!doNotTrack) {
       <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+    <a class="header-title-link" href="/" aria-label="Go to homepage">Xeno Universe - The Dark Forest</a>
   </div>
   
 </header>
@@ -120,7 +140,7 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="/#about">
+        <a href="/#about" aria-label="Read more about the author">
           <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
@@ -133,7 +153,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/">
+      <a class="sidebar-button-link " href="/" title="Home">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -143,7 +163,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/categories">
+      <a class="sidebar-button-link " href="/categories" title="Categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -153,7 +173,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/tags">
+      <a class="sidebar-button-link " href="/tags" title="Tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -163,7 +183,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/archives">
+      <a class="sidebar-button-link " href="/archives" title="Archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -173,7 +193,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/about/">
+      <a class="sidebar-button-link " href="/about/" title="About Me">
     
       
       
@@ -187,7 +207,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova" title="GitHub">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -197,7 +217,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li" title="Linkedin">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -207,7 +227,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener" title="Email">
     
       <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
       
@@ -230,19 +250,19 @@ if (!doNotTrack) {
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+        <article class="post" id="top">
           
           
             <div class="post-header main-content-wrap text-left">
   
-    <h1 class="post-title" itemprop="headline">
+    <h1 class="post-title">
       使用 datashader 與 mercantile 建立 OpenStreetMap 圖磚系統 (version 2)
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-05-24T18:00:00&#43;08:00">
+      <time datetime="2018-05-24T18:00:00&#43;08:00">
         
   May 24, 2018
 
@@ -261,7 +281,7 @@ if (!doNotTrack) {
 
 </div>
           
-          <div class="post-content markdown" itemprop="articleBody">
+          <div class="post-content markdown">
             <div class="main-content-wrap">
               <p>在<a href="https://yeshuanova.github.io/blog/posts/implement-OSM-map-tiles/">上一篇文章</a>中已展示過了已展示如何從 NYC taxi trip dataset 中建立 map tiles 的基本方式。本篇將進一步改進該演算法，加速產生速度以及大檔案方式。</p>
 <h2 id="concept">Concept</h2>
@@ -297,24 +317,24 @@ if (!doNotTrack) {
 <h3 id="資料前處理">資料前處理</h3>
 <h4 id="download-nyc-taxi-trip-data">Download NYC Taxi Trip Data</h4>
 <p>使用 <code>wget</code> 指令取得 NYC Taxi trip data，這裡一樣使用 2016 年 5 月的計程車資料。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv
-</code></pre></div><h4 id="將原始-csv-分割為小檔案">將原始 CSV 分割為小檔案</h4>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-05.csv
+</span></span></code></pre></div><h4 id="將原始-csv-分割為小檔案">將原始 CSV 分割為小檔案</h4>
 <p>依照資料筆數切割為許多小檔案</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir split <span style="color:#000080"># 建立 split 資料夾</span>
-
-<span style="color:#000080"># 以 1,000,000 lines 為單位，將原始 csv 檔案分割為數個檔案（不包含 header）</span>
-tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd">1000000</span> - split/trip.csv.
-</code></pre></div><p>完成後可得到 <code>split/trip.csv.00</code>，<code>split/trip.csv.01</code> 等不包含標頭的分割檔</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir split <span style="color:#000080"># 建立 split 資料夾</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080"># 以 1,000,000 lines 為單位，將原始 csv 檔案分割為數個檔案（不包含 header）</span>
+</span></span><span style="display:flex;"><span>tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd">1000000</span> - split/trip.csv.
+</span></span></code></pre></div><p>完成後可得到 <code>split/trip.csv.00</code>，<code>split/trip.csv.01</code> 等不包含標頭的分割檔</p>
 <blockquote>
 <p>若使用 mac 可先安裝 <a href="http://macappstore.org/coreutils/">coreutils</a>，並將 <code>tail</code> 與 <code>split</code> 指令換成 <code>gtail</code> 與 <code>gsplit</code> 並執行即可。</p>
 </blockquote>
 <h3 id="轉換-csv-內容到目標格式">轉換 csv 內容到目標格式</h3>
 <p>將 csv 檔案轉換到包含 Web Mercator 格式座標(epsg:3857)以及所在基底 Tile 的座標資料。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cdcd00">with</span> futures<span style="color:#39c">.</span>ProcessPoolExecutor() <span style="color:#cdcd00">as</span> executor:
-    datas <span style="color:#39c">=</span> <span style="color:#cd00cd">zip</span>(source_csvs, epsg3857_csvs, [base_zoom] <span style="color:#39c">*</span> <span style="color:#cd00cd">len</span>(source_csvs))
-    fs <span style="color:#39c">=</span> executor<span style="color:#39c">.</span>map(convTripGpsToWebMercatorWrapper, datas)
-    futures<span style="color:#39c">.</span>as_completed(fs)
-</code></pre></div><p>轉換完成後可得到如下方格式的 csv 檔案</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cdcd00">with</span> futures<span style="color:#39c">.</span>ProcessPoolExecutor() <span style="color:#cdcd00">as</span> executor:
+</span></span><span style="display:flex;"><span>    datas <span style="color:#39c">=</span> <span style="color:#cd00cd">zip</span>(source_csvs, epsg3857_csvs, [base_zoom] <span style="color:#39c">*</span> <span style="color:#cd00cd">len</span>(source_csvs))
+</span></span><span style="display:flex;"><span>    fs <span style="color:#39c">=</span> executor<span style="color:#39c">.</span>map(convTripGpsToWebMercatorWrapper, datas)
+</span></span><span style="display:flex;"><span>    futures<span style="color:#39c">.</span>as_completed(fs)
+</span></span></code></pre></div><p>轉換完成後可得到如下方格式的 csv 檔案</p>
 <table>
 <thead>
 <tr>
@@ -343,46 +363,46 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd"
 <li>使用 Group 後的座標資料建立 aggregation data</li>
 <li>使用 concurrent.futures 進行平行處理，加快計算速度。</li>
 </ul>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cdcd00">def</span> makeTilesAggregation(source, root):
-    <span style="color:#cdcd00">if</span> <span style="color:#cdcd00">not</span> os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>exists(source):
-        <span style="color:#cdcd00">raise</span> <span style="color:#669;font-weight:bold">ValueError</span>(<span style="color:#cd0000">f</span><span style="color:#cd0000">&#39;Source file </span><span style="color:#cd0000">{</span>source<span style="color:#cd0000">}</span><span style="color:#cd0000"> doesn</span><span style="color:#cd0000">\&#39;</span><span style="color:#cd0000">t exist&#39;</span>)
-    
-    os<span style="color:#39c">.</span>makedirs(root, exist_ok<span style="color:#39c">=</span><span style="color:#cdcd00">True</span>)
-    
-    df <span style="color:#39c">=</span> pd<span style="color:#39c">.</span>read_csv(source,
-                     usecols<span style="color:#39c">=</span>[<span style="color:#cd0000">&#39;x&#39;</span>, <span style="color:#cd0000">&#39;y&#39;</span>, <span style="color:#cd0000">&#39;zoom&#39;</span>, <span style="color:#cd0000">&#39;xtile&#39;</span>, <span style="color:#cd0000">&#39;ytile&#39;</span>],
-                     dtype<span style="color:#39c">=</span>{<span style="color:#cd0000">&#39;x&#39;</span>:np<span style="color:#39c">.</span>float32,
-                            <span style="color:#cd0000">&#39;y&#39;</span>:np<span style="color:#39c">.</span>float32,
-                            <span style="color:#cd0000">&#39;zoom&#39;</span>:np<span style="color:#39c">.</span>int8,
-                            <span style="color:#cd0000">&#39;xtile&#39;</span>:np<span style="color:#39c">.</span>int32,
-                            <span style="color:#cd0000">&#39;ytile&#39;</span>:np<span style="color:#39c">.</span>int32})
-    
-    <span style="color:#cdcd00">for</span> ((zoom, xtile, ytile), data) <span style="color:#cdcd00">in</span> df<span style="color:#39c">.</span>groupby(by<span style="color:#39c">=</span>[<span style="color:#cd0000">&#39;zoom&#39;</span>, <span style="color:#cd0000">&#39;xtile&#39;</span>, <span style="color:#cd0000">&#39;ytile&#39;</span>]):
-        agg <span style="color:#39c">=</span> mapTileCanvas(xtile, ytile, zoom)<span style="color:#39c">.</span>points(data, <span style="color:#cd0000">&#39;x&#39;</span>, <span style="color:#cd0000">&#39;y&#39;</span>)
-        serializeAggToFile(agg, getAggFilePath(root, xtile, ytile, zoom))
-        serializeAggYaml(agg, getAggYamlFilePath(root, xtile, ytile, zoom))
-        
-<span style="color:#cdcd00">def</span> makeTilesAggregationWrapper(data):
-    source, root <span style="color:#39c">=</span> data
-    makeTilesAggregation(source, root)
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cdcd00">def</span> makeTilesAggregation(source, root):
+</span></span><span style="display:flex;"><span>    <span style="color:#cdcd00">if</span> <span style="color:#cdcd00">not</span> os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>exists(source):
+</span></span><span style="display:flex;"><span>        <span style="color:#cdcd00">raise</span> <span style="color:#669;font-weight:bold">ValueError</span>(<span style="color:#cd0000">f</span><span style="color:#cd0000">&#39;Source file </span><span style="color:#cd0000">{</span>source<span style="color:#cd0000">}</span><span style="color:#cd0000"> doesn</span><span style="color:#cd0000">\&#39;</span><span style="color:#cd0000">t exist&#39;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    os<span style="color:#39c">.</span>makedirs(root, exist_ok<span style="color:#39c">=</span><span style="color:#cdcd00">True</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    df <span style="color:#39c">=</span> pd<span style="color:#39c">.</span>read_csv(source,
+</span></span><span style="display:flex;"><span>                     usecols<span style="color:#39c">=</span>[<span style="color:#cd0000">&#39;x&#39;</span>, <span style="color:#cd0000">&#39;y&#39;</span>, <span style="color:#cd0000">&#39;zoom&#39;</span>, <span style="color:#cd0000">&#39;xtile&#39;</span>, <span style="color:#cd0000">&#39;ytile&#39;</span>],
+</span></span><span style="display:flex;"><span>                     dtype<span style="color:#39c">=</span>{<span style="color:#cd0000">&#39;x&#39;</span>:np<span style="color:#39c">.</span>float32,
+</span></span><span style="display:flex;"><span>                            <span style="color:#cd0000">&#39;y&#39;</span>:np<span style="color:#39c">.</span>float32,
+</span></span><span style="display:flex;"><span>                            <span style="color:#cd0000">&#39;zoom&#39;</span>:np<span style="color:#39c">.</span>int8,
+</span></span><span style="display:flex;"><span>                            <span style="color:#cd0000">&#39;xtile&#39;</span>:np<span style="color:#39c">.</span>int32,
+</span></span><span style="display:flex;"><span>                            <span style="color:#cd0000">&#39;ytile&#39;</span>:np<span style="color:#39c">.</span>int32})
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#cdcd00">for</span> ((zoom, xtile, ytile), data) <span style="color:#cdcd00">in</span> df<span style="color:#39c">.</span>groupby(by<span style="color:#39c">=</span>[<span style="color:#cd0000">&#39;zoom&#39;</span>, <span style="color:#cd0000">&#39;xtile&#39;</span>, <span style="color:#cd0000">&#39;ytile&#39;</span>]):
+</span></span><span style="display:flex;"><span>        agg <span style="color:#39c">=</span> mapTileCanvas(xtile, ytile, zoom)<span style="color:#39c">.</span>points(data, <span style="color:#cd0000">&#39;x&#39;</span>, <span style="color:#cd0000">&#39;y&#39;</span>)
+</span></span><span style="display:flex;"><span>        serializeAggToFile(agg, getAggFilePath(root, xtile, ytile, zoom))
+</span></span><span style="display:flex;"><span>        serializeAggYaml(agg, getAggYamlFilePath(root, xtile, ytile, zoom))
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span><span style="color:#cdcd00">def</span> makeTilesAggregationWrapper(data):
+</span></span><span style="display:flex;"><span>    source, root <span style="color:#39c">=</span> data
+</span></span><span style="display:flex;"><span>    makeTilesAggregation(source, root)
+</span></span></code></pre></div><ul>
 <li>平行化建立 Map tiles</li>
 </ul>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cdcd00">with</span> futures<span style="color:#39c">.</span>ProcessPoolExecutor() <span style="color:#cdcd00">as</span> executor:
-    targets_root <span style="color:#39c">=</span> [os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(temp_root, os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>basename(f)) <span style="color:#cdcd00">for</span> f <span style="color:#cdcd00">in</span> epsg3857_csvs]
-    datas <span style="color:#39c">=</span> <span style="color:#cd00cd">zip</span>(epsg3857_csvs, targets_root)
-    fs <span style="color:#39c">=</span> executor<span style="color:#39c">.</span>map(makeTilesAggregationWrapper, datas)
-    futures<span style="color:#39c">.</span>as_completed(fs)
-</code></pre></div><h3 id="合併-aggregation-files">合併 aggregation files</h3>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cdcd00">with</span> futures<span style="color:#39c">.</span>ProcessPoolExecutor() <span style="color:#cdcd00">as</span> executor:
+</span></span><span style="display:flex;"><span>    targets_root <span style="color:#39c">=</span> [os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(temp_root, os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>basename(f)) <span style="color:#cdcd00">for</span> f <span style="color:#cdcd00">in</span> epsg3857_csvs]
+</span></span><span style="display:flex;"><span>    datas <span style="color:#39c">=</span> <span style="color:#cd00cd">zip</span>(epsg3857_csvs, targets_root)
+</span></span><span style="display:flex;"><span>    fs <span style="color:#39c">=</span> executor<span style="color:#39c">.</span>map(makeTilesAggregationWrapper, datas)
+</span></span><span style="display:flex;"><span>    futures<span style="color:#39c">.</span>as_completed(fs)
+</span></span></code></pre></div><h3 id="合併-aggregation-files">合併 aggregation files</h3>
 <p>合併所有 map tiles aggregation files，成為一個包含所有分割 csv 資料的整合 aggregation，並將其當作是基底 map tile 資料。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000080"># 平行化合併處理方式 </span>
-<span style="color:#cdcd00">with</span> futures<span style="color:#39c">.</span>ProcessPoolExecutor() <span style="color:#cdcd00">as</span> executor:
-    tiles <span style="color:#39c">=</span> getCombineTiles(glob<span style="color:#39c">.</span>glob(os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(temp_root, <span style="color:#cd0000">&#39;*&#39;</span>)))
-    tiles_chunk <span style="color:#39c">=</span> <span style="color:#cd00cd">list</span>(chunks(tiles, chunksSize(<span style="color:#cd00cd">len</span>(tiles), <span style="color:#cd00cd">4</span>)))
-    tiles_tuple <span style="color:#39c">=</span> <span style="color:#cd00cd">zip</span>(tiles_chunk, [temp_root] <span style="color:#39c">*</span> <span style="color:#cd00cd">len</span>(tiles_chunk), [agg_root] <span style="color:#39c">*</span> <span style="color:#cd00cd">len</span>(tiles_chunk))
-    fs <span style="color:#39c">=</span> executor<span style="color:#39c">.</span>map(combineAggregationWrapper, tiles_tuple)
-    futures<span style="color:#39c">.</span>as_completed(fs)
-</code></pre></div><h3 id="使用-bottom-up-方式合併並產生上層-zoom-的-map-tiles">使用 Bottom-Up 方式合併並產生上層 zoom 的 map tiles</h3>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000080"># 平行化合併處理方式 </span>
+</span></span><span style="display:flex;"><span><span style="color:#cdcd00">with</span> futures<span style="color:#39c">.</span>ProcessPoolExecutor() <span style="color:#cdcd00">as</span> executor:
+</span></span><span style="display:flex;"><span>    tiles <span style="color:#39c">=</span> getCombineTiles(glob<span style="color:#39c">.</span>glob(os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(temp_root, <span style="color:#cd0000">&#39;*&#39;</span>)))
+</span></span><span style="display:flex;"><span>    tiles_chunk <span style="color:#39c">=</span> <span style="color:#cd00cd">list</span>(chunks(tiles, chunksSize(<span style="color:#cd00cd">len</span>(tiles), <span style="color:#cd00cd">4</span>)))
+</span></span><span style="display:flex;"><span>    tiles_tuple <span style="color:#39c">=</span> <span style="color:#cd00cd">zip</span>(tiles_chunk, [temp_root] <span style="color:#39c">*</span> <span style="color:#cd00cd">len</span>(tiles_chunk), [agg_root] <span style="color:#39c">*</span> <span style="color:#cd00cd">len</span>(tiles_chunk))
+</span></span><span style="display:flex;"><span>    fs <span style="color:#39c">=</span> executor<span style="color:#39c">.</span>map(combineAggregationWrapper, tiles_tuple)
+</span></span><span style="display:flex;"><span>    futures<span style="color:#39c">.</span>as_completed(fs)
+</span></span></code></pre></div><h3 id="使用-bottom-up-方式合併並產生上層-zoom-的-map-tiles">使用 Bottom-Up 方式合併並產生上層 zoom 的 map tiles</h3>
 <ul>
 <li>
 <p>從基底 tile 的 aggregation 的檔案中建立所有 parents tile 列表。</p>
@@ -405,34 +425,34 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd"
 <p>不斷往上建立 parents tiles 直到  zoom 0 為止。</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#cdcd00">for</span> zoom <span style="color:#cdcd00">in</span> <span style="color:#cd00cd">range</span>(base_zoom, <span style="color:#cd00cd">0</span>, <span style="color:#39c">-</span><span style="color:#cd00cd">1</span>):
-    <span style="color:#cd00cd">print</span>(<span style="color:#cd0000">f</span><span style="color:#cd0000">&#39;Make parents tiles from zoom </span><span style="color:#cd0000">{</span>zoom<span style="color:#cd0000">}</span><span style="color:#cd0000">&#39;</span>)
-    <span style="color:#cdcd00">with</span> futures<span style="color:#39c">.</span>ProcessPoolExecutor() <span style="color:#cdcd00">as</span> executor:
-        tiles <span style="color:#39c">=</span> [(agg_root, x, y, z) <span style="color:#cdcd00">for</span> x, y, z <span style="color:#cdcd00">in</span> getParentTiles(agg_root, zoom)]
-        tiles_chunk <span style="color:#39c">=</span> chunks(tiles, chunksSize(<span style="color:#cd00cd">len</span>(tiles), <span style="color:#cd00cd">4</span>))
-        fs <span style="color:#39c">=</span> executor<span style="color:#39c">.</span>map(makeTilesBottomUpWrapper, tiles_chunk)
-        futures<span style="color:#39c">.</span>as_completed(fs)
-</code></pre></div><h3 id="建立每個-zoom-中的最大點數資料">建立每個 zoom 中的最大點數資料</h3>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cdcd00">for</span> zoom <span style="color:#cdcd00">in</span> <span style="color:#cd00cd">range</span>(base_zoom, <span style="color:#cd00cd">0</span>, <span style="color:#39c">-</span><span style="color:#cd00cd">1</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#cd00cd">print</span>(<span style="color:#cd0000">f</span><span style="color:#cd0000">&#39;Make parents tiles from zoom </span><span style="color:#cd0000">{</span>zoom<span style="color:#cd0000">}</span><span style="color:#cd0000">&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#cdcd00">with</span> futures<span style="color:#39c">.</span>ProcessPoolExecutor() <span style="color:#cdcd00">as</span> executor:
+</span></span><span style="display:flex;"><span>        tiles <span style="color:#39c">=</span> [(agg_root, x, y, z) <span style="color:#cdcd00">for</span> x, y, z <span style="color:#cdcd00">in</span> getParentTiles(agg_root, zoom)]
+</span></span><span style="display:flex;"><span>        tiles_chunk <span style="color:#39c">=</span> chunks(tiles, chunksSize(<span style="color:#cd00cd">len</span>(tiles), <span style="color:#cd00cd">4</span>))
+</span></span><span style="display:flex;"><span>        fs <span style="color:#39c">=</span> executor<span style="color:#39c">.</span>map(makeTilesBottomUpWrapper, tiles_chunk)
+</span></span><span style="display:flex;"><span>        futures<span style="color:#39c">.</span>as_completed(fs)
+</span></span></code></pre></div><h3 id="建立每個-zoom-中的最大點數資料">建立每個 zoom 中的最大點數資料</h3>
 <p>掃描 zoom 中每個 tile 的最大點位資料，並儲存進 <code>{zoom}/zoom_config.yaml</code> 中（與前篇方式相同）。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000080"># 計算 zoom 中的最大點數資料</span>
-<span style="color:#cdcd00">def</span> getZoomMaxCount(zoom_root):
-    max_count <span style="color:#39c">=</span> <span style="color:#cd00cd">0</span>;
-    <span style="color:#cdcd00">for</span> root, dirs, files <span style="color:#cdcd00">in</span> os<span style="color:#39c">.</span>walk(zoom_root):
-        <span style="color:#cdcd00">for</span> file <span style="color:#cdcd00">in</span> files:
-            exts <span style="color:#39c">=</span> file<span style="color:#39c">.</span>split(os<span style="color:#39c">.</span>extsep)
-            <span style="color:#cdcd00">if</span> os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>splitext(file)[<span style="color:#cd00cd">1</span>] <span style="color:#39c">!=</span> <span style="color:#cd0000">&#39;.yaml&#39;</span>:
-                <span style="color:#cdcd00">continue</span>
-            mc <span style="color:#39c">=</span> getYamlMaxCount(os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(root, file))
-            max_count <span style="color:#39c">=</span> mc <span style="color:#cdcd00">if</span> max_count <span style="color:#39c">&lt;</span> mc <span style="color:#cdcd00">else</span> max_count
-    <span style="color:#cdcd00">return</span> max_count
-
-<span style="color:#cdcd00">for</span> zoom <span style="color:#cdcd00">in</span> os<span style="color:#39c">.</span>listdir(agg_root):
-    max_count <span style="color:#39c">=</span> getZoomMaxCount(os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(agg_root, zoom))
-    zoom_yaml <span style="color:#39c">=</span> os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(agg_root, zoom, <span style="color:#cd0000">&#39;zoom_config.yaml&#39;</span>)
-    <span style="color:#cdcd00">with</span> <span style="color:#cd00cd">open</span>(zoom_yaml, <span style="color:#cd0000">&#39;w&#39;</span>) <span style="color:#cdcd00">as</span> file:
-        yaml_obj <span style="color:#39c">=</span> {<span style="color:#cd0000">&#39;max_count&#39;</span>: max_count}
-        yaml<span style="color:#39c">.</span>dump(yaml_obj, file, default_flow_style<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)
-</code></pre></div><h3 id="產生-aggregation-檔案對應的-tile-影像">產生 Aggregation 檔案對應的 Tile 影像</h3>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000080"># 計算 zoom 中的最大點數資料</span>
+</span></span><span style="display:flex;"><span><span style="color:#cdcd00">def</span> getZoomMaxCount(zoom_root):
+</span></span><span style="display:flex;"><span>    max_count <span style="color:#39c">=</span> <span style="color:#cd00cd">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cdcd00">for</span> root, dirs, files <span style="color:#cdcd00">in</span> os<span style="color:#39c">.</span>walk(zoom_root):
+</span></span><span style="display:flex;"><span>        <span style="color:#cdcd00">for</span> file <span style="color:#cdcd00">in</span> files:
+</span></span><span style="display:flex;"><span>            exts <span style="color:#39c">=</span> file<span style="color:#39c">.</span>split(os<span style="color:#39c">.</span>extsep)
+</span></span><span style="display:flex;"><span>            <span style="color:#cdcd00">if</span> os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>splitext(file)[<span style="color:#cd00cd">1</span>] <span style="color:#39c">!=</span> <span style="color:#cd0000">&#39;.yaml&#39;</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#cdcd00">continue</span>
+</span></span><span style="display:flex;"><span>            mc <span style="color:#39c">=</span> getYamlMaxCount(os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(root, file))
+</span></span><span style="display:flex;"><span>            max_count <span style="color:#39c">=</span> mc <span style="color:#cdcd00">if</span> max_count <span style="color:#39c">&lt;</span> mc <span style="color:#cdcd00">else</span> max_count
+</span></span><span style="display:flex;"><span>    <span style="color:#cdcd00">return</span> max_count
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cdcd00">for</span> zoom <span style="color:#cdcd00">in</span> os<span style="color:#39c">.</span>listdir(agg_root):
+</span></span><span style="display:flex;"><span>    max_count <span style="color:#39c">=</span> getZoomMaxCount(os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(agg_root, zoom))
+</span></span><span style="display:flex;"><span>    zoom_yaml <span style="color:#39c">=</span> os<span style="color:#39c">.</span>path<span style="color:#39c">.</span>join(agg_root, zoom, <span style="color:#cd0000">&#39;zoom_config.yaml&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#cdcd00">with</span> <span style="color:#cd00cd">open</span>(zoom_yaml, <span style="color:#cd0000">&#39;w&#39;</span>) <span style="color:#cdcd00">as</span> file:
+</span></span><span style="display:flex;"><span>        yaml_obj <span style="color:#39c">=</span> {<span style="color:#cd0000">&#39;max_count&#39;</span>: max_count}
+</span></span><span style="display:flex;"><span>        yaml<span style="color:#39c">.</span>dump(yaml_obj, file, default_flow_style<span style="color:#39c">=</span><span style="color:#cdcd00">False</span>)
+</span></span></code></pre></div><h3 id="產生-aggregation-檔案對應的-tile-影像">產生 Aggregation 檔案對應的 Tile 影像</h3>
 <ul>
 <li>建立所有要繪製圖片的 aggregation 列表，並設定繪製方式。
 <ul>
@@ -455,6 +475,8 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd"
 <li><a href="http://www.liedman.net/tiled-maps/">The Hitchhacker’s Guide To Tiled Maps</a></li>
 </ul>
               
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -479,159 +501,163 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd"
                 
               
             
-            <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/06/strava-how-to-generate-heatmap/" data-tooltip="Strava 建立全球運動熱點圖的方式">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/thinkbayes-ch1/" data-tooltip="ThinkBayes 心得筆記 - Chapter 1">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/06/strava-how-to-generate-heatmap/" data-tooltip="Strava 建立全球運動熱點圖的方式" aria-label="NEXT: Strava 建立全球運動熱點圖的方式">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/05/implement-osm-map-tiles-parallel/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/thinkbayes-ch1/" data-tooltip="ThinkBayes 心得筆記 - Chapter 1" aria-label="PREVIOUS: ThinkBayes 心得筆記 - Chapter 1">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/05/implement-osm-map-tiles-parallel/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/05/implement-osm-map-tiles-parallel/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/05/implement-osm-map-tiles-parallel/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
             
-              
-            
+  
+
+
           </div>
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2024 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 
       </div>
       <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-        <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/06/strava-how-to-generate-heatmap/" data-tooltip="Strava 建立全球運動熱點圖的方式">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/thinkbayes-ch1/" data-tooltip="ThinkBayes 心得筆記 - Chapter 1">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/06/strava-how-to-generate-heatmap/" data-tooltip="Strava 建立全球運動熱點圖的方式" aria-label="NEXT: Strava 建立全球運動熱點圖的方式">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/05/implement-osm-map-tiles-parallel/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/thinkbayes-ch1/" data-tooltip="ThinkBayes 心得筆記 - Chapter 1" aria-label="PREVIOUS: ThinkBayes 心得筆記 - Chapter 1">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/05/implement-osm-map-tiles-parallel/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/05/implement-osm-map-tiles-parallel/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/05/implement-osm-map-tiles-parallel/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
       </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F05%2Fimplement-osm-map-tiles-parallel%2F">
-          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F05%2Fimplement-osm-map-tiles-parallel%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F05%2Fimplement-osm-map-tiles-parallel%2F">
-          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F05%2Fimplement-osm-map-tiles-parallel%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
         </a>
       </li>
     
   </ul>
 </div>
 <div id="share-options-mask" class="share-options-mask"></div>
+
+
     </div>
     
     <div id="about">
   <div id="about-card">
     <div id="about-btn-close">
-      <i class="fa fa-remove"></i>
+      <i class="fa fa-times"></i>
     </div>
     
       <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
@@ -649,7 +675,7 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd"
     
     
       <div id="about-card-location">
-        <i class="fa fa-map-marker"></i>
+        <i class="fa fa-map-marker-alt"></i>
         <br/>
         Taiwan
       </div>
@@ -668,30 +694,16 @@ tail -n +2 yellow_tripdata_2016-05.csv | split -d -l <span style="color:#cd00cd"
 
 
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
-
-
-<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<script lang="javascript">
-window.onload = updateMinWidth;
-window.onresize = updateMinWidth;
-document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
-function updateMinWidth() {
-  var sidebar = document.getElementById("sidebar");
-  var main = document.getElementById("main");
-  main.style.minWidth = "";
-  var w1 = getComputedStyle(main).getPropertyValue("min-width");
-  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
-  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
-  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
-}
-</script>
+<script src="/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
 
 <script>
 $(document).ready(function() {
@@ -706,15 +718,6 @@ $(document).ready(function() {
 </script>
 
 
-  
-    
-  
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 
 
 

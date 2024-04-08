@@ -6,15 +6,14 @@
     <description>Recent content in Autoencoder on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 04 Jan 2018 18:00:00 +0800</lastBuildDate><atom:link href="/tags/autoencoder/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Jan 2018 18:00:00 +0800</lastBuildDate>
+    <atom:link href="/tags/autoencoder/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Autoencoder 簡介與應用範例</title>
       <link>/2018/01/autoencoder-tutorial/</link>
       <pubDate>Thu, 04 Jan 2018 18:00:00 +0800</pubDate>
-      
       <guid>/2018/01/autoencoder-tutorial/</guid>
-      <description>&lt;p&gt;Autoencoder(自動編碼器)是一種是透過 &lt;a href=&#34;https://en.wikipedia.org/wiki/Artificial_neural_network&#34;&gt;Artificial Neural Network&lt;/a&gt;，來進行資料自動學習與編碼的技術。本文將使用機器學習函式庫 &lt;a href=&#34;https://keras.io/&#34;&gt;Keras&lt;/a&gt; 建立 Autoencoder Model，並使用 MNIST Datatset 來展示兩個 Autoencoder 範例 - &lt;strong&gt;資料降維回復&lt;/strong&gt;與&lt;strong&gt;去雜訊(Denoising)&lt;/strong&gt;的 Model。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Autoencoder(自動編碼器)是一種是透過 &lt;a href=&#34;https://en.wikipedia.org/wiki/Artificial_neural_network&#34;&gt;Artificial Neural Network&lt;/a&gt;，來進行資料自動學習與編碼的技術。本文將使用機器學習函式庫 &lt;a href=&#34;https://keras.io/&#34;&gt;Keras&lt;/a&gt; 建立 Autoencoder Model，並使用 MNIST Datatset 來展示兩個 Autoencoder 範例 - &lt;strong&gt;資料降維回復&lt;/strong&gt;與**去雜訊(Denoising)**的 Model。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

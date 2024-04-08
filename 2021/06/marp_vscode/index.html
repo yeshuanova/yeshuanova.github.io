@@ -2,10 +2,30 @@
 <html lang="zh-tw">
   <head>
     
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"\/",
+  "author": {
+    "@type": "Person",
+    "name": "Cheng-Shiang Li",
+    
+    "image": "/images/about/me.jpg"
+    
+  },
+  "name":"Xeno Universe - The Dark Forest",
+  "description":"Generate Slide by Markdown and Marp Framework",
+  "url":"\/2021\/06\/marp_vscode\/",
+  "keywords":"[]"
+}
+
+</script>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.124.1 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="Generate Slide by Markdown and Marp Framework">
@@ -53,12 +73,12 @@
 
 
 
-
-
-
-
   <meta property="og:image" content="/images/about/me.jpg">
   <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+
+
 
 
     <title>用 Markdown 撰寫 Slide - 使用 Marp 套件</title>
@@ -71,12 +91,12 @@
     <link rel="canonical" href="/2021/06/marp_vscode/">
 
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     
-    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    <link rel="stylesheet" href="/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
     
     
       
@@ -86,7 +106,7 @@
 
     
       
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -107,7 +127,7 @@ if (!doNotTrack) {
       <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+    <a class="header-title-link" href="/" aria-label="Go to homepage">Xeno Universe - The Dark Forest</a>
   </div>
   
 </header>
@@ -116,7 +136,7 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="/#about">
+        <a href="/#about" aria-label="Read more about the author">
           <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
@@ -129,7 +149,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/">
+      <a class="sidebar-button-link " href="/" title="Home">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -139,7 +159,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/categories">
+      <a class="sidebar-button-link " href="/categories" title="Categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -149,7 +169,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/tags">
+      <a class="sidebar-button-link " href="/tags" title="Tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -159,7 +179,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/archives">
+      <a class="sidebar-button-link " href="/archives" title="Archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -169,7 +189,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/about/">
+      <a class="sidebar-button-link " href="/about/" title="About Me">
     
       
       
@@ -183,7 +203,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova" title="GitHub">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -193,7 +213,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li" title="Linkedin">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -203,7 +223,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener" title="Email">
     
       <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
       
@@ -226,19 +246,19 @@ if (!doNotTrack) {
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+        <article class="post" id="top">
           
           
             <div class="post-header main-content-wrap text-left">
   
-    <h1 class="post-title" itemprop="headline">
+    <h1 class="post-title">
       用 Markdown 撰寫 Slide - 使用 Marp 套件
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2021-06-20T12:00:00&#43;08:00">
+      <time datetime="2021-06-20T12:00:00&#43;08:00">
         
   June 20, 2021
 
@@ -257,7 +277,7 @@ if (!doNotTrack) {
 
 </div>
           
-          <div class="post-content markdown" itemprop="articleBody">
+          <div class="post-content markdown">
             <div class="main-content-wrap">
               <p>鴿了一整個 2020，2021 應該開始繼續寫 Blog 和技術文章了。這篇文章將介紹如何在 VSCode 中使用 Marp 與 Markdown 來建立投影片。</p>
 <p>在建立投影片時，可能大部分人都是使用微軟的 PowerPoint，iWork 的 Keynote 或是 Google Slide 等專有軟體。
@@ -281,122 +301,122 @@ if (!doNotTrack) {
 <h2 id="使用-markdown-建立-marp-slide">使用 Markdown 建立 Marp Slide</h2>
 <h3 id="宣告為-marpit-markdown-文件">宣告為 Marpit Markdown 文件</h3>
 <p>在 Markdown 文件最上面(Front-matter)加入 <code>marp: true</code> 來宣告使用 Marp 來建立 slide</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">---
-marp: true
----
-</code></pre></div><p>之後就可使用 Markdown 語法撰寫 Slide 內容，如 List, Hyperlink 等都能用 Slide 來顯示。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>marp: true
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><p>之後就可使用 Markdown 語法撰寫 Slide 內容，如 List, Hyperlink 等都能用 Slide 來顯示。</p>
 <h3 id="分頁">分頁</h3>
 <p>可使用 <code>---</code> 標記來分隔不同頁面的 Slide</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#000080;font-weight:bold"># Page 1
-</span><span style="color:#000080;font-weight:bold"></span>
-Hello World!
-
----
-
-<span style="color:#000080;font-weight:bold"># Page 2
-</span><span style="color:#000080;font-weight:bold"></span>
-magic word
-</code></pre></div><h3 id="directives">Directives</h3>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"># Page 1
+</span></span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>Hello World!
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"># Page 2
+</span></span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>magic word
+</span></span></code></pre></div><h3 id="directives">Directives</h3>
 <p>Marp 中可使用被稱為 Directives 的標示來標注 Slide 頁面屬性。Directives 主要分為兩類，<strong>Global Directives</strong> 與 <strong>Local Directives</strong></p>
 <h4 id="global-directives">Global Directives</h4>
 <p>影響全部 Slide 內容的設定，放置在文件最上方 Front-matter 處，如設定 theme，css style，headingDivider(根據 header 設定分頁，如設為 2 就會在<strong>大於等於</strong>第二層標示 (<code>##</code>) 處自動分頁)等設定。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">---
-marp: true
-theme: theme-name
-style: |
-  section {
-    background-color: #eee;
-  }
-headingDivider: 2
----
-</code></pre></div><h4 id="local-directives">Local Directives</h4>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>marp: true
+</span></span><span style="display:flex;"><span>theme: theme-name
+</span></span><span style="display:flex;"><span>style: |
+</span></span><span style="display:flex;"><span>  section {
+</span></span><span style="display:flex;"><span>    background-color: #eee;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>headingDivider: 2
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><h4 id="local-directives">Local Directives</h4>
 <p>影響 slide 每個頁面的屬性，可以放在 Front-matter 影響全部 slide，或是用 HTML comment 來影響個別(或以下)分頁</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#000080">&lt;!-- backgroundColor: aqua --&gt;</span>
-
-<span style="color:#000080;font-weight:bold"># Page 1
-</span><span style="color:#000080;font-weight:bold"></span>
-Aqua Background
-
----
-
-<span style="color:#000080;font-weight:bold"># Page 2
-</span><span style="color:#000080;font-weight:bold"></span>
-Same color
-</code></pre></div><p>上面的方式會將所以之後的 slide 背景都設為 <code>aqua</code> 色，若要只改變單一 Slide 可將屬性名稱 prefix 加上 <code>_</code> 即可</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#000080">&lt;!-- _backgroundColor: aqua --&gt;</span>
-
-<span style="color:#000080;font-weight:bold"># Page 1
-</span><span style="color:#000080;font-weight:bold"></span>
-Aqua Background
-
----
-
-<span style="color:#000080;font-weight:bold"># Page 2
-</span><span style="color:#000080;font-weight:bold"></span>
-Original color
-</code></pre></div><p>此外可以將 Local Directives 設定放在 Front-matter 來影響全部 slide，如</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">---
-paginate: true
----
-</code></pre></div><p>加入後會將之後所有的頁面加入頁碼。如果要參考更多的 Directives 設定資訊，可參考<a href="https://marpit.marp.app/directives">官方網站</a>的說明內容</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#000080">&lt;!-- backgroundColor: aqua --&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"># Page 1
+</span></span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>Aqua Background
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"># Page 2
+</span></span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>Same color
+</span></span></code></pre></div><p>上面的方式會將所以之後的 slide 背景都設為 <code>aqua</code> 色，若要只改變單一 Slide 可將屬性名稱 prefix 加上 <code>_</code> 即可</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#000080">&lt;!-- _backgroundColor: aqua --&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"># Page 1
+</span></span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>Aqua Background
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"># Page 2
+</span></span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>Original color
+</span></span></code></pre></div><p>此外可以將 Local Directives 設定放在 Front-matter 來影響全部 slide，如</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>paginate: true
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><p>加入後會將之後所有的頁面加入頁碼。如果要參考更多的 Directives 設定資訊，可參考<a href="https://marpit.marp.app/directives">官方網站</a>的說明內容</p>
 <h3 id="image-syntax">Image Syntax</h3>
 <p>Marp 提供了許多能簡單對圖片進行特效與縮放等處理的功能，可將設定放在 caption 處進行設定。</p>
 <ul>
 <li>Resizing image (調整圖片大小)</li>
 </ul>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">![width:200px](image_path.jpg) <span style="color:#000080">&lt;!-- 設定圖片寬度為 200px --&gt;</span>
-![height:30cm](image_path.jpg) <span style="color:#000080">&lt;!-- 設定圖片高度為 300px --&gt;</span>
-![width:200px height:30cm](image_path.jpg) <span style="color:#000080">&lt;!-- 同時設定兩者屬性 --&gt;</span>
-![w:32 h:32](image_path.jpg) <span style="color:#000080">&lt;!-- 設定圖片大小為 32x32 px --&gt;</span>
-![width:90% height:80%](image_path.jpg) <span style="color:#000080">&lt;!-- 設定圖片大小為 32x32 px --&gt;</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>![width:200px](image_path.jpg) <span style="color:#000080">&lt;!-- 設定圖片寬度為 200px --&gt;</span>
+</span></span><span style="display:flex;"><span>![height:30cm](image_path.jpg) <span style="color:#000080">&lt;!-- 設定圖片高度為 300px --&gt;</span>
+</span></span><span style="display:flex;"><span>![width:200px height:30cm](image_path.jpg) <span style="color:#000080">&lt;!-- 同時設定兩者屬性 --&gt;</span>
+</span></span><span style="display:flex;"><span>![w:32 h:32](image_path.jpg) <span style="color:#000080">&lt;!-- 設定圖片大小為 32x32 px --&gt;</span>
+</span></span><span style="display:flex;"><span>![width:90% height:80%](image_path.jpg) <span style="color:#000080">&lt;!-- 設定圖片大小為 32x32 px --&gt;</span>
+</span></span></code></pre></div><ul>
 <li>Image filter (圖片特效處理)</li>
 </ul>
 <p>對圖片進行亮度，模糊，灰階，對比等進行調整。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">![blur](image_path.jpg) <span style="color:#000080">&lt;!-- 圖片模糊化  --&gt;</span>
-![blur:10px](image_path.jpg) <span style="color:#000080">&lt;!-- 圖片模糊化，參數為 10px(越大越模糊)  --&gt;</span>
-![grayscale:1](image_path.jpg) <span style="color:#000080">&lt;!-- 圖片灰階化  --&gt;</span>
-![brightness:.8 sepia:50%](image_path.jpg) <span style="color:#000080">&lt;!-- 多重特效設定 --&gt;</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>![blur](image_path.jpg) <span style="color:#000080">&lt;!-- 圖片模糊化  --&gt;</span>
+</span></span><span style="display:flex;"><span>![blur:10px](image_path.jpg) <span style="color:#000080">&lt;!-- 圖片模糊化，參數為 10px(越大越模糊)  --&gt;</span>
+</span></span><span style="display:flex;"><span>![grayscale:1](image_path.jpg) <span style="color:#000080">&lt;!-- 圖片灰階化  --&gt;</span>
+</span></span><span style="display:flex;"><span>![brightness:.8 sepia:50%](image_path.jpg) <span style="color:#000080">&lt;!-- 多重特效設定 --&gt;</span>
+</span></span></code></pre></div><ul>
 <li>Slide Background</li>
 </ul>
 <p>設定影像為背景圖片並調整圖片屬性</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">![bg](bg.jpg) <span style="color:#000080">&lt;!-- 設定 bg.jpg 為背景圖片--&gt;</span>
-![bg fit](bg.jpg) <span style="color:#000080">&lt;!-- 設定 bg.jgp 的圖片大小調整為背景框架大小 --&gt;</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>![bg](bg.jpg) <span style="color:#000080">&lt;!-- 設定 bg.jpg 為背景圖片--&gt;</span>
+</span></span><span style="display:flex;"><span>![bg fit](bg.jpg) <span style="color:#000080">&lt;!-- 設定 bg.jgp 的圖片大小調整為背景框架大小 --&gt;</span>
+</span></span></code></pre></div><ul>
 <li>Multiple backgrounds</li>
 </ul>
 <p>除了單一圖片，也能在背景設定多重圖，如果要將圖片水平展示，則可使用以下排列方式</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">![bg](A.png)
-![bg](B.png)
-![bg](C.png)
-</code></pre></div><p>排列結果為</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>![bg](A.png)
+</span></span><span style="display:flex;"><span>![bg](B.png)
+</span></span><span style="display:flex;"><span>![bg](C.png)
+</span></span></code></pre></div><p>排列結果為</p>
 <p><img src="https://raw.githubusercontent.com/marp-team/marpit/main/docs/assets/image-syntax/multiple-bg.png" alt=""></p>
 <p>水平顯示方式為</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">![bg vertical](A.png)
-![bg](B.png)
-![bg](C.png)
-</code></pre></div><p><img src="https://raw.githubusercontent.com/marp-team/marpit/main/docs/assets/image-syntax/multiple-bg-vertical.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>![bg vertical](A.png)
+</span></span><span style="display:flex;"><span>![bg](B.png)
+</span></span><span style="display:flex;"><span>![bg](C.png)
+</span></span></code></pre></div><p><img src="https://raw.githubusercontent.com/marp-team/marpit/main/docs/assets/image-syntax/multiple-bg-vertical.png" alt=""></p>
 <ul>
 <li>Slide Background</li>
 </ul>
 <p>讓圖片充滿左(右)兩側畫面</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">![bg left](bg.jpg) <span style="color:#000080">&lt;!-- 充滿左側畫面 --&gt;</span>
-![bg left:33%](bg.jpg) <span style="color:#000080">&lt;!-- 充滿左側 33% 畫面 --&gt;</span>
-![bg right](https://picsum.photos/720?image=29) <span style="color:#000080">&lt;!-- 充滿右側畫面 --&gt;</span>
-</code></pre></div><p><img src="https://raw.githubusercontent.com/marp-team/marpit/main/docs/assets/image-syntax/split-background.jpg" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>![bg left](bg.jpg) <span style="color:#000080">&lt;!-- 充滿左側畫面 --&gt;</span>
+</span></span><span style="display:flex;"><span>![bg left:33%](bg.jpg) <span style="color:#000080">&lt;!-- 充滿左側 33% 畫面 --&gt;</span>
+</span></span><span style="display:flex;"><span>![bg right](https://picsum.photos/720?image=29) <span style="color:#000080">&lt;!-- 充滿右側畫面 --&gt;</span>
+</span></span></code></pre></div><p><img src="https://raw.githubusercontent.com/marp-team/marpit/main/docs/assets/image-syntax/split-background.jpg" alt=""></p>
 <p>更多 Image Syntax 的使用方式可參考<a href="https://marpit.marp.app/image-syntax">說明文件</a>。</p>
 <h3 id="latex-expression-數學表示式">Latex Expression (數學表示式)</h3>
 <p>Marp 支援使用 Latex 語法來撰寫數學式，只要使用 <code>$...$</code> 或 <code>$$...$$</code> 包含著 Latex 數學式即可透過 <a href="https://katex.org/">Katex</a> 或 <a href="https://www.mathjax.org/">MathJax</a> 套件來顯示數學式。現在我們在 Markdown 中輸入一下 Latex 表示式</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">$$
-\sum_{n=0}^{\infty}=\frac{f^{(n)}(a)}{n!}(x-a)^n
-$$
-</code></pre></div><p>則顯示結果為</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>$$
+</span></span><span style="display:flex;"><span>\sum_{n=0}^{\infty}=\frac{f^{(n)}(a)}{n!}(x-a)^n
+</span></span><span style="display:flex;"><span>$$
+</span></span></code></pre></div><p>則顯示結果為</p>
 <p><img src="/images/2021/marp_vscode/marp_math_taylor_series.png" alt=""></p>
 <h3 id="匯出-slide-export">匯出 Slide (Export)</h3>
 <p>若要將 Marp markdown 轉換成 PDF Slide，只要在 VS Code 的 Command Palette 中執行</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">&gt; Marp: Export Slide Deck 
-</code></pre></div><p>即可選擇要匯出的檔名，格式與位置。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>&gt; Marp: Export Slide Deck 
+</span></span></code></pre></div><p>即可選擇要匯出的檔名，格式與位置。</p>
 <p><img src="/images/2021/marp_vscode/marp_export_command.png" alt=""></p>
 <h2 id="參考資料">參考資料</h2>
 <ul>
@@ -407,6 +427,8 @@ $$
 <li><a href="https://technews.tw/2017/08/16/the-big-secret-of-ooxml/">微軟文書格式為何常跑掉？揭開 OOXML 格式大祕辛</a></li>
 </ul>
               
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -427,159 +449,163 @@ $$
                 
               
             
-            <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--disabled">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/fluentd_basic/" data-tooltip="Fluentd 基礎使用方式">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2023/12/hugo_math/" data-tooltip="Hugo 中顯示 Latex 數學式" aria-label="NEXT: Hugo 中顯示 Latex 數學式">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2021/06/marp_vscode/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/fluentd_basic/" data-tooltip="Fluentd 基礎使用方式" aria-label="PREVIOUS: Fluentd 基礎使用方式">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2021/06/marp_vscode/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2021/06/marp_vscode/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2021/06/marp_vscode/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
             
-              
-            
+  
+
+
           </div>
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2024 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 
       </div>
       <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-        <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--disabled">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/fluentd_basic/" data-tooltip="Fluentd 基礎使用方式">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2023/12/hugo_math/" data-tooltip="Hugo 中顯示 Latex 數學式" aria-label="NEXT: Hugo 中顯示 Latex 數學式">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2021/06/marp_vscode/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/fluentd_basic/" data-tooltip="Fluentd 基礎使用方式" aria-label="PREVIOUS: Fluentd 基礎使用方式">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2021/06/marp_vscode/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2021/06/marp_vscode/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2021/06/marp_vscode/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
       </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2021%2F06%2Fmarp_vscode%2F">
-          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2021%2F06%2Fmarp_vscode%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2021%2F06%2Fmarp_vscode%2F">
-          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2021%2F06%2Fmarp_vscode%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
         </a>
       </li>
     
   </ul>
 </div>
 <div id="share-options-mask" class="share-options-mask"></div>
+
+
     </div>
     
     <div id="about">
   <div id="about-card">
     <div id="about-btn-close">
-      <i class="fa fa-remove"></i>
+      <i class="fa fa-times"></i>
     </div>
     
       <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
@@ -597,7 +623,7 @@ $$
     
     
       <div id="about-card-location">
-        <i class="fa fa-map-marker"></i>
+        <i class="fa fa-map-marker-alt"></i>
         <br/>
         Taiwan
       </div>
@@ -616,30 +642,16 @@ $$
 
 
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
-
-
-<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<script lang="javascript">
-window.onload = updateMinWidth;
-window.onresize = updateMinWidth;
-document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
-function updateMinWidth() {
-  var sidebar = document.getElementById("sidebar");
-  var main = document.getElementById("main");
-  main.style.minWidth = "";
-  var w1 = getComputedStyle(main).getPropertyValue("min-width");
-  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
-  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
-  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
-}
-</script>
+<script src="/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
 
 <script>
 $(document).ready(function() {
@@ -654,15 +666,6 @@ $(document).ready(function() {
 </script>
 
 
-  
-    
-  
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 
 
 

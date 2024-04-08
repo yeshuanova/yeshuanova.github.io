@@ -2,10 +2,30 @@
 <html lang="zh-tw">
   <head>
     
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"\/",
+  "author": {
+    "@type": "Person",
+    "name": "Cheng-Shiang Li",
+    
+    "image": "/images/about/me.jpg"
+    
+  },
+  "name":"Xeno Universe - The Dark Forest",
+  "description":"ThinkBayes Note - Chapter 8",
+  "url":"\/2018\/08\/thinkbayes-ch8\/",
+  "keywords":"[]"
+}
+
+</script>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.124.1 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="ThinkBayes Note - Chapter 8">
@@ -49,12 +69,12 @@
 
 
 
-
-
-
-
   <meta property="og:image" content="/images/about/me.jpg">
   <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+
+
 
 
     <title>ThinkBayes 心得筆記 - Chapter 8</title>
@@ -67,12 +87,12 @@
     <link rel="canonical" href="/2018/08/thinkbayes-ch8/">
 
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     
-    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    <link rel="stylesheet" href="/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
     
     
       
@@ -82,7 +102,7 @@
 
     
       
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -103,7 +123,7 @@ if (!doNotTrack) {
       <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+    <a class="header-title-link" href="/" aria-label="Go to homepage">Xeno Universe - The Dark Forest</a>
   </div>
   
 </header>
@@ -112,7 +132,7 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="/#about">
+        <a href="/#about" aria-label="Read more about the author">
           <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
@@ -125,7 +145,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/">
+      <a class="sidebar-button-link " href="/" title="Home">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -135,7 +155,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/categories">
+      <a class="sidebar-button-link " href="/categories" title="Categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -145,7 +165,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/tags">
+      <a class="sidebar-button-link " href="/tags" title="Tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -155,7 +175,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/archives">
+      <a class="sidebar-button-link " href="/archives" title="Archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -165,7 +185,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/about/">
+      <a class="sidebar-button-link " href="/about/" title="About Me">
     
       
       
@@ -179,7 +199,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova" title="GitHub">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -189,7 +209,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li" title="Linkedin">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -199,7 +219,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener" title="Email">
     
       <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
       
@@ -222,19 +242,19 @@ if (!doNotTrack) {
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+        <article class="post" id="top">
           
           
             <div class="post-header main-content-wrap text-left">
   
-    <h1 class="post-title" itemprop="headline">
+    <h1 class="post-title">
       ThinkBayes 心得筆記 - Chapter 8
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-08-07T12:00:00&#43;08:00">
+      <time datetime="2018-08-07T12:00:00&#43;08:00">
         
   August 7, 2018
 
@@ -253,196 +273,135 @@ if (!doNotTrack) {
 
 </div>
           
-          <div class="post-content markdown" itemprop="articleBody">
+          <div class="post-content markdown">
             <div class="main-content-wrap">
               <p>Chapter 8 作者介紹了自己實際通勤的案例，並從地鐵班表建立一個數據模型，由月台上的等車人數推測是否應該繼續等待下去，或是轉搭計程車前往目的地。</p>
-
 <h1 id="thinkbayes-note">ThinkBayes Note</h1>
-
-<h2 id="chapter-8--observer-bias">Chapter 8 - Observer Bias</h2>
-
+<h2 id="chapter-8---observer-bias">Chapter 8 - Observer Bias</h2>
 <h3 id="the-red-line-problme">The Red Line Problme</h3>
-
 <p><a href="https://en.wikipedia.org/wiki/Red_Line_(MBTA)">Red Line</a> 為美國 Massachusettss 一條連接 Cambridge 到 Boston 的電車路線。在尖峰時間平均每 7 ~ 8 分鐘到達一班車。現在從 Kendall Square 搭車前往 Needham。當尖峰時間到達 kendall Square 時可能有以下狀況</p>
-
 <ul>
 <li>等車人數<strong>較少</strong>，可推測前一班列車剛走因此需要等待 7 分鐘左右。</li>
 <li>等車人數<strong>較多</strong>，可推測列車不久將會到達。</li>
 <li>等車人數<strong>過多</strong>，可推測列車並沒有準時運行，因此作者會轉搭 Taxi 前往目的地。</li>
 </ul>
-
 <p>要如何從車站中的現在等通勤人數推測下一班車的到來時間，並決定要等待還是轉搭 Taxi?</p>
-
 <h3 id="model">Model</h3>
-
 <p>為了解決問題，作者了假設通勤者到達車站人數的分佈為 Poisson process，λ 為平均每分鐘的到達數量。(雖然有尖峰離峰時間，但觀察時間是在每天相同區段，因此可將 λ 當成<strong>常數</strong>)。而該路線在尖峰時間約每 7 ~ 8 mins 發一班車，但 Kendall Square 的車輛到達間隔約為 3 ~ 12 mins。</p>
-
 <p>為了研究真正的列車時間，作者從 <a href="http://www.mbta.com/rider_tools/developers/">MBTA官網</a> 處下載得到真正紀錄的列車到到達時間，並取出工作日中 4pm ~ 6pm 的車輛到達時間間隔(連續五天，每天約記錄到 15 班車到達間隔)形成分佈 <strong>z</strong>。</p>
-
 <h4 id="observer-bias">Observer bias</h4>
-
 <p>如果 4pm ~ 6pm 都在車站記錄到達時間，那所得到的結果會與官方資料相同。但觀察者實際上所觀測到的間隔時間可能<strong>會比真正的時間來得多</strong>。因觀察者更有可能在長區間到達而得出較長的結論。</p>
-
 <p>假設區間有 5 mins 與 10 mins 兩種且發生機率都為 1/2，則平均區間時間為 7.5 mins。但實際上通勤者更可能到達 10 mins 的區間內。假設在 15 mins 內包含一班間隔時間 5 mins 一班 10mins 的車，通勤者有 1/3 的機會到達 5 mins 區間而有 2/3 會到達 10 mins 區間。因此觀察到的區間為 5*(1/3)+10*(2/3) = 8.33。該觀察上的誤差就被稱為 <strong>Observer bias</strong>。</p>
-
 <blockquote>
 <p>Observer bias 的情況也常發生在現實生活中，如遇到飛機全滿的搭乘者較多，就會在統計上得到認為飛機全滿的機率比真正狀況更高。</p>
 </blockquote>
-
 <p>依照先前的討論可建立兩個機率分佈</p>
-
 <ol>
 <li>以官方資料建立真正的列車到達區間分佈 <strong>z</strong></li>
 <li>由觀測資料所建立的車輛主觀到達區間分佈 <strong>zb</strong> (z biased)。</li>
 </ol>
-
 <p>zb 分佈可由 z 分佈計算得出</p>
-
-<p><span  class="math">\[zb = Normalize(P(Z_{time})*Z_{time})\]</span></p>
-
+$$zb = Normalize(P(Z_{time})*Z_{time})$$
 <p>結果如下</p>
-
-<p><figure><img src="/images/2018/thinkbayes/ch8-train-time-gap.png" alt="train-gap-pripr"></figure>
+<p><img src="/images/2018/thinkbayes/ch8-train-time-gap.png" alt="train-gap-pripr">
 <em>z 與 zb 的分佈圖</em></p>
-
 <h3 id="wait-times">Wait times</h3>
-
 <p>設定兩個數值 x 與 y，其中</p>
-
 <ul>
 <li><strong>x</strong>: 為前一班車到達與 passenger 到達車站的間隔時間 (<strong>elapsed time</strong>)。</li>
 <li><strong>y</strong>: passenger 到達車站與下一班車到達的間隔時間 (<strong>waiting time</strong>)。</li>
 </ul>
-
 <p>因此 zb 的分佈為 x 分佈與 y 分佈的加總</p>
-
-<p><span  class="math">\[zb=x+y\]</span></p>
-
+$$zb=x+y$$
 <p>現在假設觀察者到達車站時間為 5 mins 區間，則等車時間(waiting time)分佈為 0 ~ 5 mins 的 Uniform distribution。如果為 10 mins 則為 0 ~ 10 mins 的 Uniform distribution。因此等車時間分佈 <strong>y</strong> 可由 zb 分佈形成的 Mixture of uniform distribution 得出。結果如下</p>
-
-<p><figure><img src="/images/2018/thinkbayes/ch8-cdf.png" alt="ch8-cdf"></figure>
+<p><img src="/images/2018/thinkbayes/ch8-cdf.png" alt="ch8-cdf">
 <em>z, zb 與 y 的 CDF</em></p>
-
 <p>其中</p>
-
-<p><span  class="math">\[z_{mean} = 7.8\]</span></p>
-
-<p><span  class="math">\[zb_{mean} = 8.8\]</span></p>
-
-<p><span  class="math">\[y_{mean} = \frac{zb_{mean}}{2} = 4.4\]</span></p>
-
+$$z_{mean} = 7.8$$
+$$zb_{mean} = 8.8$$
+$$y_{mean} = \frac{zb_{mean}}{2} = 4.4$$
 <p>在統計結果後，尖峰時刻約每 9 mins 發車，接近 zb 的 mean 而不是 z。</p>
-
 <blockquote>
 <p>作者有寄信去問 MBTA，對方也回信表定時間不一定正確。此外 CDFs 比較好在同一張圖上繪製多個機率分佈，且也比較容易解釋。</p>
 </blockquote>
-
 <h3 id="predicting-wait-time">Predicting wait time</h3>
-
 <p>當乘客現在到達車站後有 10 個人在等車，那該做什麼行動呢? 現假定實際分佈為 z，且 passenger 平均到達人數 λ = 2， y 分佈可由以下步驟計算</p>
-
 <ol>
 <li>使用公開資料建立真正分佈 <strong>zp</strong> 的 Prior 分佈 <strong>z</strong>。</li>
 <li>用通勤者數量來計算 x (elapsed time) 分佈。</li>
-<li>使用 <span  class="math">\(y = zp - x\)</span> 的關係式，來計算 y (waiting time) 分佈。</li>
+<li>使用 $$y = zp - x$$ 的關係式，來計算 y (waiting time) 分佈。</li>
 </ol>
-
 <p>相關方式已在前面太探討過，結果如下圖</p>
-
-<p><figure><img src="/images/2018/thinkbayes/ch8-prior-post-x-pred-y.png" alt="ch8-cdf"></figure></p>
-
+<p><img src="/images/2018/thinkbayes/ch8-prior-post-x-pred-y.png" alt="ch8-cdf"></p>
 <p>可知上一班車最有可能離開 5 ~ 10 mins，因此我們可以預測下一班車到達時間約有 80% 的可能性少於 5 mins。</p>
-
 <h3 id="estimating-the-arrival-rate">Estimating the arrival rate</h3>
-
 <p>之前在做預測時作者給了兩個假設</p>
-
 <ol>
 <li>已知的到達時間間隔分佈。</li>
 <li>通勤者到達率。</li>
 </ol>
-
 <p>現在作者放鬆第二個假設，先記錄一個星期的實際的<strong>到達車站時的等待人數(k1)</strong>，<strong>等待時間(y)</strong>，以及<strong>等待時到達的人數(k2)</strong>，結果如下</p>
-
 <table>
 <thead>
 <tr>
-<th align="center">k1</th>
-<th align="center">y</th>
-<th align="center">k2</th>
+<th style="text-align:center">k1</th>
+<th style="text-align:center">y</th>
+<th style="text-align:center">k2</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">17</td>
-<td align="center">4.6</td>
-<td align="center">9</td>
+<td style="text-align:center">17</td>
+<td style="text-align:center">4.6</td>
+<td style="text-align:center">9</td>
 </tr>
-
 <tr>
-<td align="center">22</td>
-<td align="center">1.0</td>
-<td align="center">0</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">0</td>
 </tr>
-
 <tr>
-<td align="center">23</td>
-<td align="center">1.4</td>
-<td align="center">4</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">1.4</td>
+<td style="text-align:center">4</td>
 </tr>
-
 <tr>
-<td align="center">18</td>
-<td align="center">5.4</td>
-<td align="center">12</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">5.4</td>
+<td style="text-align:center">12</td>
 </tr>
-
 <tr>
-<td align="center">4</td>
-<td align="center">5.8</td>
-<td align="center">11</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5.8</td>
+<td style="text-align:center">11</td>
 </tr>
 </tbody>
 </table>
-
 <p>可得出這星期平均總等待時間(y)為 18，而等待時的到達總人數為 36，通勤者到達率為每分鐘 2 人。在這邊作者將到平均到達人數 λ 設為 Hypothesis，Likelihood 為等待時間與等待時到達人數的 Possion 分佈，計算後得到以下分佈</p>
-
-<p><figure><img src="/images/2018/thinkbayes/ch8-posterior.png" alt="ch8-cdf"></figure></p>
-
+<p><img src="/images/2018/thinkbayes/ch8-posterior.png" alt="ch8-cdf"></p>
 <p>可看到 Posterior 的平均數和中位數區域都非常接近觀測到的結果 - 每分鐘 2 人。但因我們的 sample 數量太小，因此實際的 Posterior</p>
-
 <h3 id="incorporating-uncertainty">Incorporating uncertainty</h3>
-
 <p>當存在非確定數值的輸入時，我們可以使用以下方式</p>
-
 <ol>
 <li>先分析非確定數值(本範例為 λ)。</li>
 <li>計算非確定參數的分佈。</li>
 <li>分析每個參數的數值並建立預測分佈的集合。</li>
 <li>使用參數的權重分佈，計算預測分布的 Mixture distribution。</li>
 </ol>
-
 <p>以此範例來說，前一部分已分析 Hypothesis λ 並得到該參數的分佈，之後可用該分佈的 mixture distribution 建立等待時間的機率分佈，如下圖</p>
-
-<p><figure><img src="/images/2018/thinkbayes/ch8-mixture-lam.png" alt="ch8-mixture"></figure></p>
-
+<p><img src="/images/2018/thinkbayes/ch8-mixture-lam.png" alt="ch8-mixture"></p>
 <p>背景中較淡的陰影線為不同 λ 所建立的等待時間分佈，而中間的深色線為所有分佈建立的 Mixture distribution。</p>
-
 <h3 id="decision-analysis">Decision analysis</h3>
-
 <p>在前面分析了堆事情，但還沒做最後一件事 - 決定接下來的行動是要<strong>等車</strong>還是離開車站<strong>轉搭計程車</strong>。在這邊可以使用到達車站時等車人數來預測接下來的等待時間，假如個超過一定時間(設為 15 分鐘)就轉搭計程車。作者先依照過去一整年的資料建立分佈，並加入了 Long delay 資料後得出以下結果</p>
-
-<p><figure><img src="/images/2018/thinkbayes/ch8-prediction.png" alt="ch8-prediction"></figure></p>
-
+<p><img src="/images/2018/thinkbayes/ch8-prediction.png" alt="ch8-prediction"></p>
 <p>根據分佈可知當等車人數少於 20 人時可推測系統運作正常，long delay 機率很低，而當超過 30 人時我們可以推測距離上一車已經超過 15 mins，超過一般的行車間距，可能是發生嚴重誤點問題。因此作者的結論為當等車人數<strong>少於 30 人</strong>時，應該在<strong>原地繼續等車</strong>，超過 30 人則轉搭<strong>計程車</strong>。</p>
-
 <h2 id="reference">Reference</h2>
-
 <ul>
 <li><a href="http://greenteapress.com/wp/think-bayes/">ThinkBayes</a></li>
 </ul>
               
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -459,159 +418,163 @@ if (!doNotTrack) {
                 
               
             
-            <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/09/kepler-gl/" data-tooltip="Kepler.gl 使用簡介">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch7/" data-tooltip="ThinkBayes 心得筆記 - Chapter 7">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/09/kepler-gl/" data-tooltip="Kepler.gl 使用簡介" aria-label="NEXT: Kepler.gl 使用簡介">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/thinkbayes-ch8/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch7/" data-tooltip="ThinkBayes 心得筆記 - Chapter 7" aria-label="PREVIOUS: ThinkBayes 心得筆記 - Chapter 7">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/08/thinkbayes-ch8/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/thinkbayes-ch8/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/08/thinkbayes-ch8/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
             
-              
-            
+  
+
+
           </div>
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2024 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 
       </div>
       <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-        <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/09/kepler-gl/" data-tooltip="Kepler.gl 使用簡介">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch7/" data-tooltip="ThinkBayes 心得筆記 - Chapter 7">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/09/kepler-gl/" data-tooltip="Kepler.gl 使用簡介" aria-label="NEXT: Kepler.gl 使用簡介">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/thinkbayes-ch8/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch7/" data-tooltip="ThinkBayes 心得筆記 - Chapter 7" aria-label="PREVIOUS: ThinkBayes 心得筆記 - Chapter 7">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/08/thinkbayes-ch8/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/thinkbayes-ch8/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/08/thinkbayes-ch8/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
       </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F08%2Fthinkbayes-ch8%2F">
-          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F08%2Fthinkbayes-ch8%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F08%2Fthinkbayes-ch8%2F">
-          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F08%2Fthinkbayes-ch8%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
         </a>
       </li>
     
   </ul>
 </div>
 <div id="share-options-mask" class="share-options-mask"></div>
+
+
     </div>
     
     <div id="about">
   <div id="about-card">
     <div id="about-btn-close">
-      <i class="fa fa-remove"></i>
+      <i class="fa fa-times"></i>
     </div>
     
       <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
@@ -629,7 +592,7 @@ if (!doNotTrack) {
     
     
       <div id="about-card-location">
-        <i class="fa fa-map-marker"></i>
+        <i class="fa fa-map-marker-alt"></i>
         <br/>
         Taiwan
       </div>
@@ -648,30 +611,16 @@ if (!doNotTrack) {
 
 
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
-
-
-<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<script lang="javascript">
-window.onload = updateMinWidth;
-window.onresize = updateMinWidth;
-document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
-function updateMinWidth() {
-  var sidebar = document.getElementById("sidebar");
-  var main = document.getElementById("main");
-  main.style.minWidth = "";
-  var w1 = getComputedStyle(main).getPropertyValue("min-width");
-  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
-  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
-  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
-}
-</script>
+<script src="/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
 
 <script>
 $(document).ready(function() {
@@ -686,15 +635,6 @@ $(document).ready(function() {
 </script>
 
 
-  
-    
-  
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 
 
 

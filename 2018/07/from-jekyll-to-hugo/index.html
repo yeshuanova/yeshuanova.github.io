@@ -2,10 +2,30 @@
 <html lang="zh-tw">
   <head>
     
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"\/",
+  "author": {
+    "@type": "Person",
+    "name": "Cheng-Shiang Li",
+    
+    "image": "/images/about/me.jpg"
+    
+  },
+  "name":"Xeno Universe - The Dark Forest",
+  "description":"From Jekyll to Hugo",
+  "url":"\/2018\/07\/from-jekyll-to-hugo\/",
+  "keywords":"[]"
+}
+
+</script>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.84.0 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="generator" content="Hugo 0.124.1 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Cheng-Shiang Li">
 <meta name="keywords" content="">
 <meta name="description" content="From Jekyll to Hugo">
@@ -49,12 +69,12 @@
 
 
 
-
-
-
-
   <meta property="og:image" content="/images/about/me.jpg">
   <meta property="twitter:image" content="/images/about/me.jpg">
+
+
+
+
 
 
     <title>從 Jekyll 轉移到 Hugo 心得</title>
@@ -67,12 +87,12 @@
     <link rel="canonical" href="/2018/07/from-jekyll-to-hugo/">
 
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     
-    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    <link rel="stylesheet" href="/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
     
     
       
@@ -82,7 +102,7 @@
 
     
       
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -103,7 +123,7 @@ if (!doNotTrack) {
       <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="/">Xeno Universe - The Dark Forest</a>
+    <a class="header-title-link" href="/" aria-label="Go to homepage">Xeno Universe - The Dark Forest</a>
   </div>
   
 </header>
@@ -112,7 +132,7 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="/#about">
+        <a href="/#about" aria-label="Read more about the author">
           <img class="sidebar-profile-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Cheng-Shiang Li</h4>
@@ -125,7 +145,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/">
+      <a class="sidebar-button-link " href="/" title="Home">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -135,7 +155,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/categories">
+      <a class="sidebar-button-link " href="/categories" title="Categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -145,7 +165,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/tags">
+      <a class="sidebar-button-link " href="/tags" title="Tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -155,7 +175,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/archives">
+      <a class="sidebar-button-link " href="/archives" title="Archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -165,7 +185,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/about/">
+      <a class="sidebar-button-link " href="/about/" title="About Me">
     
       
       
@@ -179,7 +199,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/yeshuanova">
+      <a class="sidebar-button-link " href="https://github.com/yeshuanova" title="GitHub">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -189,7 +209,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/cheng-shiang-li" title="Linkedin">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -199,7 +219,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="mailto:yeshuanova@gmail.com" target="_blank" rel="noopener" title="Email">
     
       <i class="sidebar-button-icon fa fa-lg  fa-envelope-o"></i>
       
@@ -222,19 +242,19 @@ if (!doNotTrack) {
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+        <article class="post" id="top">
           
           
             <div class="post-header main-content-wrap text-left">
   
-    <h1 class="post-title" itemprop="headline">
+    <h1 class="post-title">
       從 Jekyll 轉移到 Hugo 心得
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-07-07T14:00:00&#43;08:00">
+      <time datetime="2018-07-07T14:00:00&#43;08:00">
         
   July 7, 2018
 
@@ -253,7 +273,7 @@ if (!doNotTrack) {
 
 </div>
           
-          <div class="post-content markdown" itemprop="articleBody">
+          <div class="post-content markdown">
             <div class="main-content-wrap">
               <p>由於原先使用 Jekyll 的 voyager theme 所建立的靜態 Blog 在功能上已有些不足，且 Jekyll 的過慢的編譯速度也讓人有些頭大，因此有了轉換網網頁產生器的想法。原本是想使用 Hexo 來當作新的產生器，但在找產生器的過程發現了 Hugo 這個靜態網頁產生器中的新起之秀，研究後發現相當符合個人需求，因此決定使用 Hugo 來作為新的靜態網頁產生器。</p>
 <h2 id="hugo">Hugo</h2>
@@ -267,22 +287,22 @@ if (!doNotTrack) {
 <h2 id="hugo-建立靜態網頁範例">Hugo 建立靜態網頁範例</h2>
 <h3 id="install-hugo">Install Hugo</h3>
 <p>因 Hugo 已將 Go 語言程式轉換為二進位執行檔，因此只需要直接安裝 Hugo 即可，在 macOS 上可使用 Homebrew 套件管理安裝</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install hugo
-</code></pre></div><p>或直接到 Hugo 的 <a href="https://github.com/gohugoio/hugo/releases">GitHub Release</a> 上下載最新版本程式</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install hugo
+</span></span></code></pre></div><p>或直接到 Hugo 的 <a href="https://github.com/gohugoio/hugo/releases">GitHub Release</a> 上下載最新版本程式</p>
 <h3 id="generate-new-site">Generate new site</h3>
 <p>要產生一個新的 web site 內容，可直接執行</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo new site ssg-site
-</code></pre></div><p>執行後會建立一個名為 <code>ssg-site</code> 的資料夾，包含以下內容</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">.
-├── archetypes
-│   └── default.md
-├── config.toml
-├── content
-├── data
-├── layouts
-├── static
-└── themes
-</code></pre></div><p>其中</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new site ssg-site
+</span></span></code></pre></div><p>執行後會建立一個名為 <code>ssg-site</code> 的資料夾，包含以下內容</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>├── archetypes
+</span></span><span style="display:flex;"><span>│   └── default.md
+</span></span><span style="display:flex;"><span>├── config.toml
+</span></span><span style="display:flex;"><span>├── content
+</span></span><span style="display:flex;"><span>├── data
+</span></span><span style="display:flex;"><span>├── layouts
+</span></span><span style="display:flex;"><span>├── static
+</span></span><span style="display:flex;"><span>└── themes
+</span></span></code></pre></div><p>其中</p>
 <ul>
 <li>archetypes: 放置生成文件的基礎樣板資料夾（可先暫時不管）。</li>
 <li><strong>config.toml</strong>: 控制 hugo 產生網頁內容的設定檔，預設使用 toml 格式。(也支援 yaml 與 json 格式)</li>
@@ -295,38 +315,38 @@ if (!doNotTrack) {
 <p>目前只要知道 <strong>config.toml</strong>, <strong>content</strong>, <strong>static</strong> 與 <strong>themes</strong> 這幾個部分即可。</p>
 <h3 id="import-hugo-themes">Import Hugo themes</h3>
 <p>Hugo 並沒有預設的 theme，所以在建立好內容資料夾後，需自行建立 theme 或使用其他 theme，在這我們已 <a href="https://github.com/Vimux/mainroad">Mainroad</a> theme 做範例。</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash"><span style="color:#000080"># 將 mainroid theme 加入 themes/ 中</span>
-git clone https://github.com/Vimux/Mainroad.git themes/mainroad
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span><span style="color:#000080"># 將 mainroid theme 加入 themes/ 中</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/Vimux/Mainroad.git themes/mainroad
+</span></span></code></pre></div><blockquote>
 <p>除了使用 git 指令外，直接從 Github 上下載最新原始檔案壓縮檔，解壓縮後放到 themes 資料夾中。此外對 git 熟悉的是使用者也可用 <code>git submodule</code> 或 <code>git subtree</code> 等方式管理外部引入的 theme repo。</p>
 </blockquote>
 <h3 id="configuration">Configuration</h3>
 <p>Hugo 在生成 SSG 時會使用到 config.toml 檔案的設定內容。我們可以將之前 Mainroad theme 中的 config.toml 修改後加以使用</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000080"># 將 mainroid 的 config.toml 覆蓋原先的預設值</span>
-cp themes/mainroad/exampleSite/config.toml .
-</code></pre></div><p>之後編輯 config.toml 內容，將其修改為自己想要的內容。更詳細的 configuration 設定可參考 <a href="https://gohugo.io/getting-started/configuration/">Hugo 官方文件</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#000080"># 將 mainroid 的 config.toml 覆蓋原先的預設值</span>
+</span></span><span style="display:flex;"><span>cp themes/mainroad/exampleSite/config.toml .
+</span></span></code></pre></div><p>之後編輯 config.toml 內容，將其修改為自己想要的內容。更詳細的 configuration 設定可參考 <a href="https://gohugo.io/getting-started/configuration/">Hugo 官方文件</a></p>
 <h3 id="新增-blog-文章">新增 Blog 文章</h3>
 <p>我們可以手動新增 Markdown 文件</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo new post/hello-world.md
-</code></pre></div><p>之後會在 <code>./content/post/hello-world.md</code> 的位置新增一個 Markdown 文件，其中預設內容會根據 <code>archetype/default.md</code> 這個樣板檔案內容加以建立。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new post/hello-world.md
+</span></span></code></pre></div><p>之後會在 <code>./content/post/hello-world.md</code> 的位置新增一個 Markdown 文件，其中預設內容會根據 <code>archetype/default.md</code> 這個樣板檔案內容加以建立。</p>
 <h3 id="預覽內容">預覽內容</h3>
 <p>先將 <code>./content/post/hello-world.md</code> 內容修改為</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">---
-title: &#34;Hello World&#34;
-date: 2018-07-06T16:00:21+08:00
-categories:
-  <span style="color:#cdcd00">-</span> &#34;Blog&#34;
-tags:
-  <span style="color:#cdcd00">-</span> &#34;Hugo&#34;
-draft: true
----
-
-<span style="color:#000080;font-weight:bold"># Hello World.
-</span><span style="color:#000080;font-weight:bold"></span>
-Post example
-</code></pre></div><p>之後執行以下指令</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo server --buildDrafts
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>title: &#34;Hello World&#34;
+</span></span><span style="display:flex;"><span>date: 2018-07-06T16:00:21+08:00
+</span></span><span style="display:flex;"><span>categories:
+</span></span><span style="display:flex;"><span>  <span style="color:#cdcd00">-</span> &#34;Blog&#34;
+</span></span><span style="display:flex;"><span>tags:
+</span></span><span style="display:flex;"><span>  <span style="color:#cdcd00">-</span> &#34;Hugo&#34;
+</span></span><span style="display:flex;"><span>draft: true
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"># Hello World.
+</span></span></span><span style="display:flex;"><span><span style="color:#000080;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>Post example
+</span></span></code></pre></div><p>之後執行以下指令</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo server --buildDrafts
+</span></span></code></pre></div><blockquote>
 <p>若在 Markdown 的 Front Matter，加入 <code>draft: true</code>，代表該篇文章為草稿不會被 Hugo 轉換為網頁。因此可在指令後加入 <code>--buildDrafts</code> 來轉換草稿文件。</p>
 </blockquote>
 <p>執行成功後會在 <code>localhost:1313</code> 建立一個暫時的網頁，可接載在瀏覽器網址列輸入預覽結果。</p>
@@ -337,21 +357,21 @@ Post example
 </blockquote>
 <h3 id="生成靜態內容">生成靜態內容</h3>
 <p>Hugo 要生成靜態網頁內容只執行 <code>hugo</code> 指令即可</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo
-</code></pre></div><p>執行後生成的網頁內容會自動加入 <code>public</code> 資料夾中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo
+</span></span></code></pre></div><p>執行後生成的網頁內容會自動加入 <code>public</code> 資料夾中。</p>
 <blockquote>
 <p><code>public</code> 為預設資料夾，若要修改可在 config 檔案中設定 <code>publishDir</code> 參數指定輸出位置。</p>
 </blockquote>
 <h2 id="從-jekyll-轉移到-hugo">從 Jekyll 轉移到 Hugo</h2>
 <p>如果要從其他的 SSG 轉換到 Hugo，官方也提供了一些<a href="https://gohugo.io/tools/migrations/">轉換方式</a>。以從 Jekyll 轉換到 Hugo 為例，只要執行</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo import jekyll <span style="color:#39c">[</span>jekyll_root_path<span style="color:#39c">]</span> <span style="color:#39c">[</span>target_path<span style="color:#39c">]</span>
-</code></pre></div><p>就會將 Jekyll 轉換為 Hugo 格式資料夾。但這方式也不是沒問題，原先在的 Jekyll 的 theme 無法直接在 Hugo 使用，且有部分 Front Matter 無法正確轉換，因此建議還是手動轉移較好。而因爲個人轉移時選用的 theme 為 Mainroad，在過程中也遇到了一些問題，在此提出來以供參考。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo import jekyll <span style="color:#39c">[</span>jekyll_root_path<span style="color:#39c">]</span> <span style="color:#39c">[</span>target_path<span style="color:#39c">]</span>
+</span></span></code></pre></div><p>就會將 Jekyll 轉換為 Hugo 格式資料夾。但這方式也不是沒問題，原先在的 Jekyll 的 theme 無法直接在 Hugo 使用，且有部分 Front Matter 無法正確轉換，因此建議還是手動轉移較好。而因爲個人轉移時選用的 theme 為 Mainroad，在過程中也遇到了一些問題，在此提出來以供參考。</p>
 <h3 id="markdown-front-matter">Markdown Front Matter</h3>
 <p>由於 Hugo 與 Jekyll 所使用的 Front Matter 設定不同，有些部分需要每個檔案逐一修改內容，如 <code>categories</code> 或 <code>tags</code> 的內容，之前使用的 <a href="https://github.com/redVi/voyager">voyager</a> theme 在執行時會成格式不對，需修改將其改為 List 結構，如在 Jekyll 中，</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">categories: posts
-</code></pre></div><p>是可行的，但換到 Hugo 的 Mainroad theme 時，需使用 List 結構才行，如</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">categories: [&#34;posts&#34;]
-</code></pre></div><p>才可正常產生靜態網頁，否則會出現錯誤。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>categories: posts
+</span></span></code></pre></div><p>是可行的，但換到 Hugo 的 Mainroad theme 時，需使用 List 結構才行，如</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>categories: [&#34;posts&#34;]
+</span></span></code></pre></div><p>才可正常產生靜態網頁，否則會出現錯誤。</p>
 <h3 id="math-equation-support">Math equation support</h3>
 <p>在加入數學式的支援花了一些時間去解決，主要分為兩個問題 - <strong>Markdown 轉換成 HTML</strong> 以及 Mainroad theme 的 <strong>CSS conflict</strong> 問題。</p>
 <h4 id="markdown-parser-support">Markdown parser support</h4>
@@ -360,30 +380,30 @@ Post example
 <p>雖然 Mainroad theme 雖然有支援 <a href="https://www.mathjax.org/">MathJax</a>，但該 theme 的 CSS style 中有部分和 <a href="https://khan.github.io/KaTeX/">Katex</a> 的 CSS 設定衝突，造成當把 Mainroad 中的 MathJax 部分的樣板原始碼換成支援 Katex 後，在顯示 Matrix 時會造成跑版。詳情狀況可參考個人發在 GitHub 上的 <a href="https://github.com/Khan/KaTeX/issues/1445">Issue #1445</a>。在 Katex 小組了解問題並經過 Mainroad 作者修改樣板後即解決了該問題。</p>
 <h3 id="syntax-highlighting">Syntax highlighting</h3>
 <p>要在 Hugo 中讓程式碼有高亮效果，可在 config 檔案中加入以下設定</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#000080"># use Chroma for syntax highlight</span>
-pygmentsCodeFences = <span style="color:#cdcd00">true</span> <span style="color:#000080"># 啟動 Code Fence 區域的高亮效果</span>
-pygmentsCodefencesGuessSyntax = <span style="color:#cdcd00">true</span> <span style="color:#000080"># 對沒有指定程式類型的 Code Fence 自行推導語言類型</span>
-pygmentsStyle = <span style="color:#cd0000">&#34;fruity&#34;</span> <span style="color:#000080"># 指定使用的高亮風格，如 vim 或 fruity 等(預設為 &#34;monokai&#34;)</span>
-</code></pre></div><p>若想換成其他風格可參考<a href="https://help.farbox.com/pygments.html">這裡</a>的格式，將 <code>pgmentsStyle</code> 的設定修改為該風格 Hugo 就會用該風格顯示 Markdown 中 Code Fence 區段的內容。其他設定可參考 Hugo 官網關於 <a href="https://gohugo.io/content-management/syntax-highlighting/">Syntax Hightlighting</a> 的章節。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#000080"># use Chroma for syntax highlight</span>
+</span></span><span style="display:flex;"><span>pygmentsCodeFences = <span style="color:#cdcd00">true</span> <span style="color:#000080"># 啟動 Code Fence 區域的高亮效果</span>
+</span></span><span style="display:flex;"><span>pygmentsCodefencesGuessSyntax = <span style="color:#cdcd00">true</span> <span style="color:#000080"># 對沒有指定程式類型的 Code Fence 自行推導語言類型</span>
+</span></span><span style="display:flex;"><span>pygmentsStyle = <span style="color:#cd0000">&#34;fruity&#34;</span> <span style="color:#000080"># 指定使用的高亮風格，如 vim 或 fruity 等(預設為 &#34;monokai&#34;)</span>
+</span></span></code></pre></div><p>若想換成其他風格可參考<a href="https://help.farbox.com/pygments.html">這裡</a>的格式，將 <code>pgmentsStyle</code> 的設定修改為該風格 Hugo 就會用該風格顯示 Markdown 中 Code Fence 區段的內容。其他設定可參考 Hugo 官網關於 <a href="https://gohugo.io/content-management/syntax-highlighting/">Syntax Hightlighting</a> 的章節。</p>
 <blockquote>
 <p>pygment 為原先 Hugo 所使用的 Syntax Hightlighting 工具， 在 Hugo 0.28 版後改為 Chroma 為預設內容，但設定檔仍維持原先的格式。</p>
 </blockquote>
 <h3 id="首頁大綱內容">首頁大綱內容</h3>
 <p>Mainroad 的 Markdown 文件顯示在列表中的大綱內容，會是最前面段落開始一直延續到預設長度為止，這在排版上會很難看，因此可以手動在 Markdown 文件中加入 <code>&lt;!--more--&gt;</code> 標籤隔開大綱與主題內容，如下範例</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">
-...{大綱內容}...
-
-<span style="color:#000080">&lt;!--more--&gt;</span>
-
-...{文章內容}...
-</code></pre></div><p>這樣在首頁的列表中就只會顯示<strong>大綱內容</strong>的部分。</p>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>...{大綱內容}...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000080">&lt;!--more--&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>...{文章內容}...
+</span></span></code></pre></div><p>這樣在首頁的列表中就只會顯示<strong>大綱內容</strong>的部分。</p>
 <h3 id="disqus-support">Disqus Support</h3>
 <p>Hugo 本身所產生的內容為靜態網頁，若要有像留言板之類的動態內容就必須藉助外部服務。Hugo 本身支援 <a href="https://disqus.com/">Disqus</a> 這個知名的 Blog 留言服務樣板，只要建立帳號取得 shortname，在 config 檔案中設定完成即可。若使用的 theme 有支援應該能正確顯示</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">disqusShortname = <span style="color:#cd0000">&#34;yourdiscussshortname&#34;</span>
-</code></pre></div><h3 id="google-analysis-support">Google Analysis support</h3>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>disqusShortname = <span style="color:#cd0000">&#34;yourdiscussshortname&#34;</span>
+</span></span></code></pre></div><h3 id="google-analysis-support">Google Analysis support</h3>
 <p>和 Disqus 相同，Hugo 也有內部支援 <a href="https://analytics.google.com/">Google Analysis</a> 來統計你網站的流量與人潮。只要去 Google Analysis 申請一組 Tracking Id 並在 config 中加入設定。如 使用的 theme 有支援該功能則會自動設定</p>
-<div class="highlight"><pre style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">googleAnalytics = <span style="color:#cd0000">&#34;yourtrackingid&#34;</span>
-</code></pre></div><h2 id="reference">Reference</h2>
+<div class="highlight"><pre tabindex="0" style="color:#ccc;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>googleAnalytics = <span style="color:#cd0000">&#34;yourtrackingid&#34;</span>
+</span></span></code></pre></div><h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://gohugo.io/">Hugo</a></li>
 <li><a href="https://github.com/Vimux/mainroad">Mainroad theme</a></li>
@@ -392,6 +412,8 @@ pygmentsStyle = <span style="color:#cd0000">&#34;fruity&#34;</span> <span style=
 <li><a href="http://cjting.me/golang/migrate-to-hugo-from-jekyll/">从Jekyll迁移到Hugo，Hugo不完全指南</a></li>
 </ul>
               
+
+
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
@@ -408,159 +430,163 @@ pygmentsStyle = <span style="color:#cd0000">&#34;fruity&#34;</span> <span style=
                 
               
             
-            <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch2-to-3/" data-tooltip="ThinkBayes 心得筆記 - Chapter 2 ~ 3">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/06/strava-how-to-generate-heatmap/" data-tooltip="Strava 建立全球運動熱點圖的方式">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch2-to-3/" data-tooltip="ThinkBayes 心得筆記 - Chapter 2 ~ 3" aria-label="NEXT: ThinkBayes 心得筆記 - Chapter 2 ~ 3">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/07/from-jekyll-to-hugo/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/06/strava-how-to-generate-heatmap/" data-tooltip="Strava 建立全球運動熱點圖的方式" aria-label="PREVIOUS: Strava 建立全球運動熱點圖的方式">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/from-jekyll-to-hugo/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/07/from-jekyll-to-hugo/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/from-jekyll-to-hugo/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
             
-              
-            
+  
+
+
           </div>
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2021 Cheng-Shiang Li. All Rights Reserved
+    &copy; 2024 Cheng-Shiang Li. All Rights Reserved
   </span>
 </footer>
 
       </div>
       <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-        <div class="post-actions-wrap">
-  
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch2-to-3/" data-tooltip="ThinkBayes 心得筆記 - Chapter 2 ~ 3">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/06/strava-how-to-generate-heatmap/" data-tooltip="Strava 建立全球運動熱點圖的方式">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
       
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/07/thinkbayes-ch2-to-3/" data-tooltip="ThinkBayes 心得筆記 - Chapter 2 ~ 3" aria-label="NEXT: ThinkBayes 心得筆記 - Chapter 2 ~ 3">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
         </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/07/from-jekyll-to-hugo/">
-              <i class="fa fa-facebook-official"></i>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2018/06/strava-how-to-generate-heatmap/" data-tooltip="Strava 建立全球運動熱點圖的方式" aria-label="PREVIOUS: Strava 建立全球運動熱點圖的方式">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
             </a>
-          </li>
-        
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/from-jekyll-to-hugo/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-        
+        </li>
       
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/07/from-jekyll-to-hugo/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
         </a>
       </li>
-    </ul>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/from-jekyll-to-hugo/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
   
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
 </div>
 
+
       </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F07%2Ffrom-jekyll-to-hugo%2F">
-          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F07%2Ffrom-jekyll-to-hugo%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F07%2Ffrom-jekyll-to-hugo%2F">
-          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F07%2Ffrom-jekyll-to-hugo%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
         </a>
       </li>
     
   </ul>
 </div>
 <div id="share-options-mask" class="share-options-mask"></div>
+
+
     </div>
     
     <div id="about">
   <div id="about-card">
     <div id="about-btn-close">
-      <i class="fa fa-remove"></i>
+      <i class="fa fa-times"></i>
     </div>
     
       <img id="about-card-picture" src="/images/about/me.jpg" alt="Author&#39;s picture" />
@@ -578,7 +604,7 @@ pygmentsStyle = <span style="color:#cd0000">&#34;fruity&#34;</span> <span style=
     
     
       <div id="about-card-location">
-        <i class="fa fa-map-marker"></i>
+        <i class="fa fa-map-marker-alt"></i>
         <br/>
         Taiwan
       </div>
@@ -597,30 +623,16 @@ pygmentsStyle = <span style="color:#cd0000">&#34;fruity&#34;</span> <span style=
 
 
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
-
-
-<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<script lang="javascript">
-window.onload = updateMinWidth;
-window.onresize = updateMinWidth;
-document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
-function updateMinWidth() {
-  var sidebar = document.getElementById("sidebar");
-  var main = document.getElementById("main");
-  main.style.minWidth = "";
-  var w1 = getComputedStyle(main).getPropertyValue("min-width");
-  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
-  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
-  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
-}
-</script>
+<script src="/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
 
 <script>
 $(document).ready(function() {
@@ -635,15 +647,6 @@ $(document).ready(function() {
 </script>
 
 
-  
-    
-  
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 
 
 

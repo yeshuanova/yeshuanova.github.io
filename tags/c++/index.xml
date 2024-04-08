@@ -6,15 +6,14 @@
     <description>Recent content in C&#43;&#43; on Xeno Universe - The Dark Forest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 03 Feb 2018 16:00:00 +0800</lastBuildDate><atom:link href="/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Feb 2018 16:00:00 +0800</lastBuildDate>
+    <atom:link href="/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Modern C&#43;&#43; changing</title>
       <link>/2018/02/modern-cpp-changing/</link>
       <pubDate>Sat, 03 Feb 2018 16:00:00 +0800</pubDate>
-      
       <guid>/2018/02/modern-cpp-changing/</guid>
       <description>&lt;p&gt;C++ 標準自從建立後到現在已經經過了許多次改版，其中最重要的版本除了 C++98 外，當在2011 年正式發佈的 C++11 標準了。該標準加入了許多新特性，不但讓程式撰寫更為精簡，在執行時效率也更加上升，可說是之後 C++14 與 C++17 等標準的基石。本篇文章簡單整理了一些關於 C++11 重要標準變更與概念，若要詳細了解相關內容以及 C++14/17 的相關變更可參考 &lt;a href=&#34;https://en.wikipedia.org/wiki/C%2B%2B11&#34;&gt;Wikipedia&lt;/a&gt; 等網站。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
